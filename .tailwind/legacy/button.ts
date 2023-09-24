@@ -8,7 +8,7 @@ const base = apply(
 
 const states = {
   "&:active": apply("scale-95"),
-  "&:disabled": apply("opacity-50 saturate-50 cursor-not-allowed"),
+  "&:disabled": apply("bg-default text-content/50 cursor-not-allowed"),
 }
 
 const sizes = {
