@@ -9,18 +9,20 @@ export interface SegmentedItem {
   value: any
 }
 
-export interface SegmentedProps extends RadioGroupProps<React.ElementType, any> {
+type BaseProps = RadioGroupProps<React.ElementType, any>
+
+export interface SegmentedProps extends BaseProps {
   items?: SegmentedItem[]
 }
 
-export const Segmented = React.forwardRef<HTMLDivElement, SegmentedProps>(({ items, className, ...props }, ref) => {
+export const Segmented = React.forwardRef<HTMLDivElement, SegmentedProps>(function (
+  { items, className, ...props },
+  ref,
+) {
+  const _className = cn("bg-default inline-flex h-10 cursor-pointer gap-1 rounded p-1", className)
+
   return (
-    <RadioGroup
-      as="div"
-      ref={ref}
-      className={cn("bg-default inline-flex h-10 cursor-pointer gap-1 rounded p-1", className)}
-      {...props}
-    >
+    <RadioGroup as="div" ref={ref} className={_className} {...props}>
       {items?.map((item) => (
         <RadioGroup.Option
           key={item.value}

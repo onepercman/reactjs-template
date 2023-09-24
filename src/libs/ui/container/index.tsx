@@ -2,7 +2,6 @@
 
 import { cva, VariantProps } from "class-variance-authority"
 import React from "react"
-import { cn } from "../utils/className"
 
 const containerVariants = cva("mx-auto w-full p-6", {
   variants: {
@@ -27,21 +26,26 @@ const containerVariants = cva("mx-auto w-full p-6", {
   },
 })
 
-export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof containerVariants> {
+type BaseProps = React.HTMLAttributes<HTMLDivElement>
+
+type ContainerVariantProps = VariantProps<typeof containerVariants>
+
+export interface ContainerProps extends BaseProps, ContainerVariantProps {
   className?: string
   size?: "mobile" | "tablet" | "retina" | "fhd" | "qhd" | "uhd" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 }
 
-export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
-  ({ children, className, size, ...props }, ref) => {
-    const classes = cn(containerVariants({ size, className }))
+export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(function (
+  { children, className, size, ...props },
+  ref,
+) {
+  const _className = containerVariants({ size, className })
 
-    return (
-      <div ref={ref} className={classes} {...props}>
-        {children}
-      </div>
-    )
-  },
-)
+  return (
+    <div ref={ref} className={_className} {...props}>
+      {children}
+    </div>
+  )
+})
 
 Container.displayName = "Container"

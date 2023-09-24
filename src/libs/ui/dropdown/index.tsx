@@ -21,7 +21,7 @@ export interface DropdownProps {
   float?: Omit<FloatProps, "children">
 }
 
-export const Dropdown: React.FC<DropdownProps> = ({ menu, onSelect, children, float, className, ...props }) => {
+export const Dropdown: React.FC<DropdownProps> = function ({ menu, onSelect, children, float, className, ...props }) {
   const [show, setShow] = React.useState<boolean>(false)
 
   const triggerProps: React.HTMLAttributes<HTMLDivElement> = {
@@ -32,7 +32,7 @@ export const Dropdown: React.FC<DropdownProps> = ({ menu, onSelect, children, fl
     onClick: () => setShow((prev) => !prev),
   }
 
-  const Trigger =
+  const _trigger =
     typeof children === "string" ? (
       <span {...triggerProps}>{children}</span>
     ) : children ? (
@@ -61,7 +61,7 @@ export const Dropdown: React.FC<DropdownProps> = ({ menu, onSelect, children, fl
         leaveTo="opacity-0 -translate-y-3"
         {...float}
       >
-        {Trigger}
+        {_trigger}
         <div className="border-muted rounded border" {...props}>
           {/* <Float.Arrow className="bg-component border-muted absolute h-3 w-3 rotate-45 border" /> */}
           <div className="bg-component relative flex flex-col rounded p-1 shadow">

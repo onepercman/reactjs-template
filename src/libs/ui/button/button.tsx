@@ -36,71 +36,48 @@ const buttonVariants = cva(cn("btn"), {
   },
 })
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  /* Shows loading */
+type ButtonBaseProps = React.ButtonHTMLAttributes<HTMLButtonElement>
+
+type ButtonVariantProps = VariantProps<typeof buttonVariants>
+
+export interface ButtonProps extends ButtonBaseProps, ButtonVariantProps {
   loading?: boolean
-  /* Makes button disabled */
-  disabled?: boolean
-  /* The label to show in the button when loading is true */
   loadingText?: string
-  /* Set the original html type of button */
-  type?: "button" | "reset" | "submit"
-  /* Adds icon before button label */
   leftIcon?: React.ReactElement
-  /* Adds icon after button label */
   rightIcon?: React.ReactElement
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      disabled: _disabled,
-      loading,
-      loadingText,
-      leftIcon,
-      rightIcon,
-      children,
-      className,
-      variant,
-      size,
-      shape,
-      onClick,
-      ...props
-    },
-    ref,
-  ) => {
-    const [asyncLoading, setAsyncLoading] = React.useState(false)
-    const buttonLoading = asyncLoading || loading
-    const disabled = _disabled || buttonLoading
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function (
+  { children, disabled, loading, loadingText, leftIcon, rightIcon, className, variant, size, shape, onClick, ...props },
+  ref,
+) {
+  const [asyncLoading, setAsyncLoading] = React.useState(false)
 
-    async function handleCLick(ev: React.MouseEvent<HTMLButtonElement>) {
-      if (!onClick) return
-      if (onClick.constructor.name === "AsyncFunction") {
-        setAsyncLoading(true)
-        onClick && (await onClick(ev))
-        setAsyncLoading(false)
-      } else onClick(ev)
+  async function _onClick(ev: React.MouseEvent<HTMLButtonElement>) {
+    if (!onClick) return
+    if (onClick.constructor.name === "AsyncFunction") {
+      setAsyncLoading(true)
+      onClick && (await onClick(ev))
+      setAsyncLoading(false)
+    } else {
+      onClick(ev)
     }
+  }
 
-    return (
-      <button
-        ref={ref}
-        className={cn(buttonVariants({ variant, size, className, shape }))}
-        disabled={disabled}
-        onClick={handleCLick}
-        {...props}
-      >
-        {leftIcon && !buttonLoading ? leftIcon : null}
-        {buttonLoading && (
-          <Loading className={cn(loadingText ? "relative" : "absolute", loadingText ? `mr-2` : "mr-0")} />
-        )}
-        {buttonLoading ? loadingText || <span className="opacity-0">{children}</span> : children}
-        {rightIcon && !buttonLoading ? rightIcon : null}
-      </button>
-    )
-  },
-)
+  const _loading = asyncLoading || loading
+  const _disabled = disabled || _loading
+  const _className = buttonVariants({ variant, size, className, shape })
+  const _loadingClassName = cn(loadingText ? "relative mr-2" : "absolute mr-0")
+  const _transparentChildren = <span className="opacity-0">{children}</span>
+
+  return (
+    <button ref={ref} className={_className} disabled={_disabled} onClick={_onClick} {...props}>
+      {leftIcon && !_loading ? leftIcon : null}
+      {_loading && <Loading className={_loadingClassName} />}
+      {_loading ? loadingText || _transparentChildren : children}
+      {rightIcon && !_loading ? rightIcon : null}
+    </button>
+  )
+})
 
 Button.displayName = "Button"

@@ -37,19 +37,20 @@ type InternalType =
 
 export type DatePickerProps = InternalType & VariantProps<typeof datePickerVariants>
 
-export const DatePicker = React.forwardRef<Picker<Moment>, DatePickerProps>(
-  ({ size, variant, className, ...props }, ref) => {
-    return (
-      <Picker
-        ref={ref}
-        locale={defaultLocale}
-        generateConfig={defaultConfig}
-        suffixIcon={<HiCalendar role="button" className="text-muted" />}
-        className={cn(datePickerVariants({ size, variant, className }))}
-        {...props}
-      />
-    )
-  },
-)
+export const DatePicker = React.forwardRef<Picker<Moment>, DatePickerProps>(function (
+  { size, variant, className, ...props },
+  ref,
+) {
+  return (
+    <Picker
+      ref={ref}
+      locale={defaultLocale}
+      generateConfig={defaultConfig}
+      suffixIcon={<HiCalendar role="button" className="text-muted" />}
+      className={cn(datePickerVariants({ size, variant, className }))}
+      {...props}
+    />
+  )
+})
 
 DatePicker.displayName = "DatePicker"

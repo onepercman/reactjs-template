@@ -15,9 +15,14 @@ export interface DisclosureProps extends React.HTMLAttributes<HTMLDivElement> {
   items?: Array<DisclosureItem>
 }
 
-export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>(({ items, className, ...props }, ref) => {
+export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>(function (
+  { items, className, ...props },
+  ref,
+) {
+  const _className = cn("bg-component flex flex-col gap-1 rounded p-1", className)
+
   return (
-    <div ref={ref} className={cn("bg-component flex flex-col gap-1 rounded p-1", className)}>
+    <div ref={ref} className={_className}>
       {items?.map((item, index) => (
         <HeadlessUI.Disclosure as={React.Fragment} {...props} key={index}>
           {({ open }) => (

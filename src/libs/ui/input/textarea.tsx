@@ -22,16 +22,13 @@ export interface TextareaProps
   isError?: boolean
 }
 
-export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, variant, isError, ...props }, ref) => {
-    return (
-      <textarea
-        ref={ref}
-        className={cn(textareaVariants({ variant, className }), isError && "state-error")}
-        {...props}
-      />
-    )
-  },
-)
+export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(function (
+  { className, variant, isError, ...props },
+  ref,
+) {
+  return (
+    <textarea ref={ref} className={cn(textareaVariants({ variant, className }), isError && "state-error")} {...props} />
+  )
+})
 
 Textarea.displayName = "Textarea"

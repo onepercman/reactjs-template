@@ -17,108 +17,111 @@ export interface DialogProps {
   className?: string
 }
 
-export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
-  ({ open, onClose, closable = true, children, title, trigger, width = 350, center, className }, ref) => {
-    const [show, setShow] = React.useState(Boolean(open))
+export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
+  { open, onClose, closable = true, children, title, trigger, width = 350, center, className },
+  ref,
+) {
+  const [show, setShow] = React.useState(Boolean(open))
 
-    function handleClose() {
-      if (closable) {
-        if (trigger) {
-          setShow(false)
-        } else if (onClose) {
-          onClose()
-          setShow(false)
-        }
+  function handleClose() {
+    if (closable) {
+      if (trigger) {
+        setShow(false)
+      } else if (onClose) {
+        onClose()
+        setShow(false)
       }
     }
+  }
 
-    function getChildren() {
-      if (typeof children === "function") {
-        return children({
-          open() {
-            setShow(true)
-          },
-          close() {
-            handleClose()
-          },
-        })
-      }
-      return children
-    }
-
-    const Trigger =
-      trigger &&
-      React.cloneElement(trigger, {
-        onClick() {
+  function getChildren() {
+    if (typeof children === "function") {
+      return children({
+        open() {
           setShow(true)
-          trigger.props.onClick && trigger.props.onClick()
+        },
+        close() {
+          handleClose()
         },
       })
+    }
+    return children
+  }
 
-    React.useEffect(() => {
-      setShow(!!open)
-    }, [open])
+  const _trigger =
+    trigger &&
+    React.cloneElement(trigger, {
+      onClick() {
+        setShow(true)
+        trigger.props.onClick && trigger.props.onClick()
+      },
+    })
 
-    return (
-      <React.Fragment>
-        {Trigger}
-        <HeadlessUI.Transition appear show={show} as={React.Fragment}>
-          <HeadlessUI.Dialog as="div" ref={ref} onClose={handleClose}>
-            <HeadlessUI.Transition.Child
-              as={React.Fragment}
-              enter="ease-out duration-100"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-100"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur" />
-            </HeadlessUI.Transition.Child>
+  React.useEffect(() => {
+    setShow(!!open)
+  }, [open])
 
-            <div
-              className={cn(
-                "fixed inset-0 z-50 overflow-y-auto",
-                "scrollbar scrollbar-track-inherit scrollbar-thumb-inherit scrollbar-w-1 scrollbar-thumb-rounded",
-              )}
-            >
-              <div className="flex min-h-full p-6 text-center">
-                <HeadlessUI.Transition.Child
-                  as={React.Fragment}
-                  enter="ease-out duration-100"
-                  enterFrom="opacity-0 scale-95"
-                  enterTo="opacity-100 scale-100"
-                  leave="ease-in duration-100"
-                  leaveFrom="opacity-100 scale-100"
-                  leaveTo="opacity-0 scale-95"
+  const _containerClassName = cn(
+    "fixed inset-0 z-50 overflow-y-auto",
+    "scrollbar scrollbar-track-inherit scrollbar-thumb-inherit scrollbar-w-1 scrollbar-thumb-rounded",
+  )
+
+  const _panelClassName = cn(
+    "bg-component border-muted m-auto w-full cursor-auto overflow-hidden rounded border p-4 text-left align-middle shadow transition-all",
+    center ? "m-auto" : "mx-auto mt-32",
+  )
+
+  return (
+    <React.Fragment>
+      {_trigger}
+      <HeadlessUI.Transition appear show={show} as={React.Fragment}>
+        <HeadlessUI.Dialog as="div" ref={ref} onClose={handleClose}>
+          <HeadlessUI.Transition.Child
+            as={React.Fragment}
+            enter="ease-out duration-100"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-100"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur" />
+          </HeadlessUI.Transition.Child>
+
+          <div className={_containerClassName}>
+            <div className="flex min-h-full p-6 text-center">
+              <HeadlessUI.Transition.Child
+                as={React.Fragment}
+                enter="ease-out duration-100"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-100"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <HeadlessUI.Dialog.Panel
+                  className={_panelClassName}
+                  style={{
+                    maxWidth: width + "px",
+                  }}
                 >
-                  <HeadlessUI.Dialog.Panel
-                    className={cn(
-                      "bg-component border-muted m-auto w-full cursor-auto overflow-hidden rounded border p-4 text-left align-middle shadow transition-all",
-                      center ? "m-auto" : "mx-auto mt-32",
-                    )}
-                    style={{
-                      maxWidth: width + "px",
-                    }}
-                  >
-                    {title && (
-                      <HeadlessUI.Dialog.Title as="h3" className="mb-2 font-medium">
-                        {title}
-                      </HeadlessUI.Dialog.Title>
-                    )}
-                    {closable && (trigger || onClose) && (
-                      <HiX role="button" className="absolute right-4 top-4" onClick={handleClose} />
-                    )}
-                    <div className={className}>{getChildren()}</div>
-                  </HeadlessUI.Dialog.Panel>
-                </HeadlessUI.Transition.Child>
-              </div>
+                  {title && (
+                    <HeadlessUI.Dialog.Title as="h3" className="mb-2 font-medium">
+                      {title}
+                    </HeadlessUI.Dialog.Title>
+                  )}
+                  {closable && (trigger || onClose) && (
+                    <HiX role="button" className="absolute right-4 top-4" onClick={handleClose} />
+                  )}
+                  <div className={className}>{getChildren()}</div>
+                </HeadlessUI.Dialog.Panel>
+              </HeadlessUI.Transition.Child>
             </div>
-          </HeadlessUI.Dialog>
-        </HeadlessUI.Transition>
-      </React.Fragment>
-    )
-  },
-)
+          </div>
+        </HeadlessUI.Dialog>
+      </HeadlessUI.Transition>
+    </React.Fragment>
+  )
+})
 
 Dialog.displayName = "Dialog"

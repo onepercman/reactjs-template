@@ -26,19 +26,24 @@ const checkboxVariants = cva(
   },
 )
 
-export interface CheckboxProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">,
-    VariantProps<typeof checkboxVariants> {}
+type CheckboxVariantProps = VariantProps<typeof checkboxVariants>
 
-export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ className, size, children, ...props }, ref) => {
-    return (
-      <label className="inline-flex cursor-pointer items-center gap-2">
-        <input ref={ref} type="checkbox" className={checkboxVariants({ size, className })} {...props} />
-        {children}
-      </label>
-    )
-  },
-)
+type BaseCheckboxProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">
+
+export interface CheckboxProps extends BaseCheckboxProps, CheckboxVariantProps {}
+
+export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(function (
+  { className, size, children, ...props },
+  ref,
+) {
+  const _className = checkboxVariants({ size, className })
+
+  return (
+    <label className="inline-flex cursor-pointer items-center gap-2">
+      <input ref={ref} type="checkbox" className={_className} {...props} />
+      {children}
+    </label>
+  )
+})
 
 Checkbox.displayName = "Checkbox"

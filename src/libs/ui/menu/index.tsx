@@ -19,7 +19,10 @@ export interface MenuProps {
   float?: Omit<FloatProps, "children">
 }
 
-export const Menu = React.forwardRef<HTMLElement, MenuProps>(({ menu, children, onSelect, float, ...props }, ref) => {
+export const Menu = React.forwardRef<HTMLElement, MenuProps>(function (
+  { menu, children, onSelect, float, ...props },
+  ref,
+) {
   const id = React.useId()
 
   return (

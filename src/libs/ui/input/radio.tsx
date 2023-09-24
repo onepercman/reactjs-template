@@ -30,7 +30,10 @@ export interface RadioProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">,
     VariantProps<typeof radioVariants> {}
 
-export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(({ className, size, children, ...props }, ref) => {
+export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(function (
+  { className, size, children, ...props },
+  ref,
+) {
   return (
     <label className="inline-flex cursor-pointer items-center gap-2">
       <input ref={ref} type="radio" className={radioVariants({ size, className })} {...props} />

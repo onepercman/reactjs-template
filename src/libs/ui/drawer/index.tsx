@@ -34,7 +34,9 @@ const drawerTransitionVariant = cva("opacity-0", {
   },
 })
 
-export interface DrawerProps extends VariantProps<typeof drawerVariant> {
+type DrawerVariantProps = VariantProps<typeof drawerVariant>
+
+export interface DrawerProps extends DrawerVariantProps {
   open?: boolean
   onClose?(): void
   closable?: boolean
@@ -46,107 +48,105 @@ export interface DrawerProps extends VariantProps<typeof drawerVariant> {
   className?: string
 }
 
-export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
-  (
-    { open, onClose, side = "right", closable = true, children, title, trigger, width = 350, height = 250, className },
-    ref,
-  ) => {
-    const [show, setShow] = React.useState(Boolean(open))
+export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function (
+  { open, onClose, side = "right", closable = true, children, title, trigger, width = 350, height = 250, className },
+  ref,
+) {
+  const [show, setShow] = React.useState(Boolean(open))
 
-    function handleClose() {
-      if (closable) {
-        if (trigger) {
-          setShow(false)
-        } else if (onClose) {
-          onClose()
-          setShow(false)
-        }
+  function handleClose() {
+    if (closable) {
+      if (trigger) {
+        setShow(false)
+      } else if (onClose) {
+        onClose()
+        setShow(false)
       }
     }
+  }
 
-    function getChildren() {
-      if (typeof children === "function") {
-        return children({
-          open() {
-            setShow(true)
-          },
-          close() {
-            handleClose()
-          },
-        })
-      }
-      return children
-    }
-
-    const Trigger =
-      trigger &&
-      React.cloneElement(trigger, {
-        onClick: () => {
+  function getChildren() {
+    if (typeof children === "function") {
+      return children({
+        open() {
           setShow(true)
-          const { props } = trigger
-          props.onClick && props.onClick()
+        },
+        close() {
+          handleClose()
         },
       })
+    }
+    return children
+  }
 
-    React.useEffect(() => {
-      setShow(!!open)
-    }, [open])
+  const _trigger =
+    trigger &&
+    React.cloneElement(trigger, {
+      onClick: () => {
+        setShow(true)
+        const { props } = trigger
+        props.onClick && props.onClick()
+      },
+    })
 
-    return (
-      <React.Fragment>
-        {Trigger}
-        <HeadlessUI.Transition appear show={show} as={React.Fragment}>
-          <HeadlessUI.Dialog as="div" ref={ref} open={open} onClose={handleClose}>
-            <HeadlessUI.Transition.Child
-              as={React.Fragment}
-              enter="ease-out duration-100"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-100"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
+  React.useEffect(() => {
+    setShow(!!open)
+  }, [open])
+
+  return (
+    <React.Fragment>
+      {_trigger}
+      <HeadlessUI.Transition appear show={show} as={React.Fragment}>
+        <HeadlessUI.Dialog as="div" ref={ref} open={open} onClose={handleClose}>
+          <HeadlessUI.Transition.Child
+            as={React.Fragment}
+            enter="ease-out duration-100"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-100"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur" />
+          </HeadlessUI.Transition.Child>
+
+          <HeadlessUI.Transition.Child
+            as={React.Fragment}
+            enter="ease-out duration-100"
+            enterFrom={drawerTransitionVariant({ side })}
+            enterTo="opacity-100 translate-x-0 translate-y-0"
+            leave="ease-in duration-100"
+            leaveFrom="opacity-100 translate-x-0 translate-y-0"
+            leaveTo={drawerTransitionVariant({ side })}
+          >
+            <HeadlessUI.Dialog.Panel
+              className={drawerVariant({ side })}
+              style={{
+                maxWidth: side === "left" || side === "right" ? width + "px" : "auto",
+                maxHeight: side === "top" || side === "bottom" ? height + "px" : "auto",
+              }}
             >
-              <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur" />
-            </HeadlessUI.Transition.Child>
+              {/* Padding close */}
+              <div className="absolute inset-0" onClick={handleClose} />
+              {/* Padding close */}
 
-            <HeadlessUI.Transition.Child
-              as={React.Fragment}
-              enter="ease-out duration-100"
-              enterFrom={drawerTransitionVariant({ side })}
-              enterTo="opacity-100 translate-x-0 translate-y-0"
-              leave="ease-in duration-100"
-              leaveFrom="opacity-100 translate-x-0 translate-y-0"
-              leaveTo={drawerTransitionVariant({ side })}
-            >
-              <HeadlessUI.Dialog.Panel
-                className={drawerVariant({ side })}
-                style={{
-                  maxWidth: side === "left" || side === "right" ? width + "px" : "auto",
-                  maxHeight: side === "top" || side === "bottom" ? height + "px" : "auto",
-                }}
-              >
-                {/* Padding close */}
-                <div className="absolute inset-0" onClick={handleClose} />
-                {/* Padding close */}
-
-                <div className="bg-component border-muted relative h-full w-full cursor-auto overflow-hidden rounded border text-left align-middle shadow">
-                  {title && (
-                    <HeadlessUI.Dialog.Title as="h3" className="mb-2 p-6 text-lg font-medium">
-                      {title}
-                    </HeadlessUI.Dialog.Title>
-                  )}
-                  {closable && (trigger || onClose) && (
-                    <HiX role="button" className="absolute right-6 top-6" onClick={handleClose} />
-                  )}
-                  <div className={cn("scrollbar-none h-full overflow-y-auto p-6", className)}>{getChildren()}</div>
-                </div>
-              </HeadlessUI.Dialog.Panel>
-            </HeadlessUI.Transition.Child>
-          </HeadlessUI.Dialog>
-        </HeadlessUI.Transition>
-      </React.Fragment>
-    )
-  },
-)
+              <div className="bg-component border-muted relative h-full w-full cursor-auto overflow-hidden rounded border text-left align-middle shadow">
+                {title && (
+                  <HeadlessUI.Dialog.Title as="h3" className="mb-2 p-6 text-lg font-medium">
+                    {title}
+                  </HeadlessUI.Dialog.Title>
+                )}
+                {closable && (trigger || onClose) && (
+                  <HiX role="button" className="absolute right-6 top-6" onClick={handleClose} />
+                )}
+                <div className={cn("scrollbar-none h-full overflow-y-auto p-6", className)}>{getChildren()}</div>
+              </div>
+            </HeadlessUI.Dialog.Panel>
+          </HeadlessUI.Transition.Child>
+        </HeadlessUI.Dialog>
+      </HeadlessUI.Transition>
+    </React.Fragment>
+  )
+})
 
 Drawer.displayName = "Drawer"

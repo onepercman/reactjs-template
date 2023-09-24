@@ -4,7 +4,9 @@ import React from "react"
 import { ControllerFieldState, ControllerRenderProps, UseFormStateReturn } from "react-hook-form"
 import { cn } from "../utils/className"
 
-interface FormItemProps extends React.HTMLAttributes<HTMLDivElement> {
+type BaseProps = React.HTMLAttributes<HTMLDivElement>
+
+interface FormItemProps extends BaseProps {
   children?: React.ReactElement
   label?: string
   mode?: "vertical" | "horizontal"
@@ -23,8 +25,10 @@ export const FormItem = React.forwardRef<HTMLDivElement, FormItemProps>(function
 ) {
   const fieldProps = customField ? {} : { ...state?.field, isError: !!state?.fieldState.error?.message }
 
+  const _className = cn("flex", mode === "vertical" ? "flex-col" : "flex-row gap-3", className)
+
   return (
-    <div ref={ref} className={cn("flex", mode === "vertical" ? "flex-col" : "flex-row gap-3", className)} {...props}>
+    <div ref={ref} className={_className} {...props}>
       {label && (
         <label className="text-muted text-xs leading-10">
           {label}{" "}

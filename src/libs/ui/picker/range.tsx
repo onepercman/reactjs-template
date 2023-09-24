@@ -37,20 +37,21 @@ type InternalType =
 
 export type RangePickerProps = InternalType & VariantProps<typeof datePickerVariants>
 
-export const Range = React.forwardRef<RangePicker<Moment>, RangePickerProps>(
-  ({ size, variant, className, ...props }, ref) => {
-    return (
-      <RangePicker
-        ref={ref}
-        locale={defaultLocale}
-        generateConfig={defaultConfig}
-        separator={<HiArrowCircleRight className="text-muted" />}
-        suffixIcon={<HiCalendar role="button" className="text-muted" />}
-        className={cn(datePickerVariants({ size, variant, className }))}
-        {...props}
-      />
-    )
-  },
-)
+export const Range = React.forwardRef<RangePicker<Moment>, RangePickerProps>(function (
+  { size, variant, className, ...props },
+  ref,
+) {
+  return (
+    <RangePicker
+      ref={ref}
+      locale={defaultLocale}
+      generateConfig={defaultConfig}
+      separator={<HiArrowCircleRight className="text-muted" />}
+      suffixIcon={<HiCalendar role="button" className="text-muted" />}
+      className={cn(datePickerVariants({ size, variant, className }))}
+      {...props}
+    />
+  )
+})
 
 Range.displayName = "Range"
