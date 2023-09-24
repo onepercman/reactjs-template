@@ -1,0 +1,42 @@
+{
+  "tasks": [
+    {
+      "label": "vscode: Install Plugins",
+      "type": "shell",
+      "command": "chmod +x ./.vscode/extensions.list | ./.vscode/extensions.list",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Install Dependencies",
+      "type": "shell",
+      "command": "yarn",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Run Dev Server",
+      "type": "yarn",
+      "script": "dev"
+    },
+    {
+      "label": "Build Product",
+      "type": "yarn",
+      "script": "build"
+    },
+    {
+      "label": "Generate Static App",
+      "type": "yarn",
+      "script": "generate"
+    },
+    {
+      "label": "Run Product Server",
+      "type": "yarn",
+      "script": "start"
+    }
+  ]
+}

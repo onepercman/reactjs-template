@@ -1,0 +1,70 @@
+.deployBranch: &deployBranch
+  - develop
+
+.Tags: &tags
+  - mono-runner
+
+.Variables: &variables
+  ENV: dev
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+  VERSION: $CI_COMMIT_SHORT_SHA
+  DOCKER_REGISTRY_HOST: 325314427579.dkr.ecr.ap-southeast-1.amazonaws.com
+  APPLICATION: dapp
+  IMAGE_FIX: $DOCKER_REGISTRY_HOST/$APPLICATION:$ENV
+  IMAGE_BACKUP: $DOCKER_REGISTRY_HOST/$APPLICATION:$ENV-$CI_COMMIT_SHORT_SHA
+  SSH_KEY: $SSH_KEY_DEV
+  SSH_USER: ubuntu
+  SSH_IP: 13.213.7.190
+  EXPOSE_PORT: 3002
+  CONTAINER_NAME: dapp-dev
+
+build-develop:
+  stage: build
+  image:
+    name: ductn4/ci-node-gitops
+  services:
+    - docker:stable-dind
+  variables:
+    <<: *variables
+  script:
+    # - if [ "$CI_COMMIT_BRANCH" == "testing" ]; then ENV="testing"; fi
+    # - if [ "$CI_COMMIT_BRANCH" == "staging" ]; then ENV="staging"; fi
+    - if [ "$ENV" == "dev" ]; then cp $VAR_FILE_DEV .env; fi
+    # docker
+    - DOCKER_BUILDKIT=1 docker build -t $IMAGE_FIX -f .docker/dev.dockerfile .
+    - docker tag $IMAGE_FIX $IMAGE_BACKUP
+    # Set AWS key
+    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    - aws configure set region $AWS_DEFAULT_REGION
+    # login aws ecr
+    - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $DOCKER_REGISTRY_HOST/$APPLICATION
+    - docker push $IMAGE_BACKUP
+  environment:
+    name: $CI_COMMIT_REF_NAME
+  tags: *tags
+  only: *deployBranch
+  allow_failure: false
+
+# Deployment API
+deploy-dapp:
+  stage: deploy
+  image:
+    name: alpine:latest
+    entrypoint: [""]
+  variables:
+    <<: *variables
+  script:
+    - chmod og= $SSH_KEY
+    - apk update && apk add openssh-client
+    - ssh -i $SSH_KEY -o StrictHostKeyChecking=no $SSH_USER@$SSH_IP "aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $DOCKER_REGISTRY_HOST/$APPLICATION"
+    - ssh -i $SSH_KEY -o StrictHostKeyChecking=no $SSH_USER@$SSH_IP "docker pull $IMAGE_BACKUP"
+    - ssh -i $SSH_KEY -o StrictHostKeyChecking=no $SSH_USER@$SSH_IP "docker rm -f $CONTAINER_NAME || true"
+    - ssh -i $SSH_KEY -o StrictHostKeyChecking=no $SSH_USER@$SSH_IP "docker run -itd --restart always --name $CONTAINER_NAME -p $EXPOSE_PORT:8080 $IMAGE_BACKUP"
+
+  environment:
+    name: $CI_COMMIT_REF_NAME
+  tags: *tags
+  only: *deployBranch
+  # when: manual

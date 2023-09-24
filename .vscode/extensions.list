@@ -1,0 +1,6 @@
+code --install-extension esbenp.prettier-vscode
+code --install-extension bradlc.vscode-tailwindcss
+code --install-extension xiaoxian521.tailwindcss-highlight-intellisense
+code --install-extension bourhaouta.tailwindshades
+code --install-extension ChakrounAnas.turbo-console-log
+code --install-extension ZixuanChen.vitest-explorer

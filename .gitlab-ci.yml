@@ -1,0 +1,15 @@
+stages:
+  - build
+  - deploy
+
+.Tags: &tags
+  - mono-runner
+
+.deployBranch: &deployBranch
+  - develop
+
+# include
+include:
+  - local: "/.gitlab/ci_templates/deploy_dev_jobs.yml"
+    rules:
+      - if: $CI_COMMIT_BRANCH == "develop"
