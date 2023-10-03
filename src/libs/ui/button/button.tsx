@@ -1,46 +1,11 @@
 "use client"
 
-import { cva, VariantProps } from "class-variance-authority"
 import React from "react"
 import { Loading } from "../loading"
 import { cn } from "../utils/className"
+import { ButtonVariantProps, button } from "./variants"
 
-const buttonVariants = cva(cn("btn"), {
-  variants: {
-    size: {
-      xs: "btn-xs",
-      md: "btn-md",
-      sm: "btn-sm",
-      lg: "btn-lg",
-    },
-    variant: {
-      default: "btn-default",
-      primary: "btn-primary",
-      "primary-outlined": "btn-primary-outlined",
-      outlined: "btn-outlined",
-      ghost: "btn-ghost",
-      success: "btn-success",
-      error: "btn-error",
-    },
-    shape: {
-      normal: "btn-normal",
-      pill: "btn-pill",
-      rounded: "btn-rounded",
-      square: "btn-square",
-    },
-  },
-  defaultVariants: {
-    variant: "default",
-    size: "md",
-    shape: "normal",
-  },
-})
-
-type ButtonBaseProps = React.ButtonHTMLAttributes<HTMLButtonElement>
-
-type ButtonVariantProps = VariantProps<typeof buttonVariants>
-
-export interface ButtonProps extends ButtonBaseProps, ButtonVariantProps {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, ButtonVariantProps {
   loading?: boolean
   loadingText?: string
   leftIcon?: React.ReactElement
@@ -66,7 +31,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
 
   const _loading = asyncLoading || loading
   const _disabled = disabled || _loading
-  const _className = buttonVariants({ variant, size, className, shape })
+  const _className = button({ variant, size, className, shape })
   const _loadingClassName = cn(loadingText ? "relative mr-2" : "absolute mr-0")
   const _transparentChildren = <span className="opacity-0">{children}</span>
 

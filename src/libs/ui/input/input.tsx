@@ -1,32 +1,14 @@
 "use client"
 
-import { cva, VariantProps } from "class-variance-authority"
 import React from "react"
 import { HiEye, HiEyeOff, HiX } from "react-icons/hi"
 import { cn } from "../utils/className"
 import { useComposedRefs } from "../utils/compose-refs"
-
-const inputVariants = cva(cn("input"), {
-  variants: {
-    size: {
-      sm: "input-sm",
-      md: "input-md",
-      lg: "input-lg",
-    },
-    variant: {
-      filled: "input-filled",
-      outlined: "input-outlined",
-    },
-  },
-  defaultVariants: {
-    size: "md",
-    variant: "filled",
-  },
-})
+import { InputVariantProps, input } from "./variants"
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "prefix" | "suffix" | "size">,
-    VariantProps<typeof inputVariants> {
+    InputVariantProps {
   prefix?: React.ReactNode
   suffix?: React.ReactNode
   addonBefore?: React.ReactNode
@@ -129,7 +111,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             "input-group",
             isError && "state-error",
             props.disabled && "input-group-disabled",
-            inputVariants({ size, variant, className }),
+            input({ size, variant, className }),
           )}
           onClick={(e) => e.currentTarget.getElementsByTagName("input")[0].focus()}
         >
@@ -146,7 +128,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <input
         ref={composedRef}
         onChange={handleChange}
-        className={cn(inputVariants({ size, variant, className }), isError && "state-error")}
+        className={cn(input({ size, variant, className }), isError && "state-error")}
         {...props}
       />
     )

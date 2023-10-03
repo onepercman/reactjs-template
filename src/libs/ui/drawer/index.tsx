@@ -1,40 +1,10 @@
 "use client"
 
 import * as HeadlessUI from "@headlessui/react"
-import { VariantProps, cva } from "class-variance-authority"
 import React from "react"
 import { HiX } from "react-icons/hi"
 import { cn } from "../utils/className"
-
-const drawerVariant = cva(cn("fixed z-50 p-2"), {
-  variants: {
-    side: {
-      right: "bottom-0 right-0 top-0 w-full",
-      left: "bottom-0 left-0 top-0 w-full",
-      top: "left-0 right-0 top-0 h-full",
-      bottom: "left-0 right-0 bottom-0 h-full",
-    },
-  },
-  defaultVariants: {
-    side: "right",
-  },
-})
-
-const drawerTransitionVariant = cva("opacity-0", {
-  variants: {
-    side: {
-      right: "translate-x-full",
-      left: "-translate-x-full",
-      top: "-translate-y-full",
-      bottom: "translate-y-full",
-    },
-  },
-  defaultVariants: {
-    side: "right",
-  },
-})
-
-type DrawerVariantProps = VariantProps<typeof drawerVariant>
+import { DrawerVariantProps, drawer, drawerTransition } from "./variants"
 
 export interface DrawerProps extends DrawerVariantProps {
   open?: boolean
@@ -113,14 +83,14 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function (
           <HeadlessUI.Transition.Child
             as={React.Fragment}
             enter="ease-out duration-100"
-            enterFrom={drawerTransitionVariant({ side })}
+            enterFrom={drawerTransition({ side })}
             enterTo="opacity-100 translate-x-0 translate-y-0"
             leave="ease-in duration-100"
             leaveFrom="opacity-100 translate-x-0 translate-y-0"
-            leaveTo={drawerTransitionVariant({ side })}
+            leaveTo={drawerTransition({ side })}
           >
             <HeadlessUI.Dialog.Panel
-              className={drawerVariant({ side })}
+              className={drawer({ side })}
               style={{
                 maxWidth: side === "left" || side === "right" ? width + "px" : "auto",
                 maxHeight: side === "top" || side === "bottom" ? height + "px" : "auto",
