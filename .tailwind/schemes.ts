@@ -15,7 +15,7 @@ export const primary = {
   950: "#000000",
 }
 
-const config = {
+const schemes = {
   light: {
     default: colors.stone[100],
     primary: appendDefault(primary),
@@ -46,4 +46,4 @@ const config = {
   },
 }
 
-export default config
+export default schemes

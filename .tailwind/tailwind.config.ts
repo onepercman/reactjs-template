@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss"
 import defaultTheme from "tailwindcss/defaultTheme"
-import dynamicColors from "./colors"
+import schemes from "./schemes"
 
 const config: Config = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -33,7 +33,7 @@ const config: Config = {
     },
   },
   plugins: [
-    require("@bonehub/tailwind-dynamic-colors")(dynamicColors),
+    require("tailwind-schemes")(schemes),
     require("tailwind-scrollbar")({ nocompatible: true }),
     require("@tailwindcss/forms")({ strategy: "base" }),
     require("tailwindcss-animate"),
