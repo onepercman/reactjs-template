@@ -4,7 +4,7 @@
   "name": "virgin-web",
   "version": "0.0.0",
   "engines": {
-    "node": ">=17"
+    "node": ">=18"
   },
   "scripts": {
     "dev": "vite",
