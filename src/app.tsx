@@ -11,7 +11,6 @@ import { BrowserRouter } from "react-router-dom"
 import { SWRConfig } from "swr"
 import { WagmiConfig } from "wagmi"
 import { ClientSentry } from "./components/wallet/client-sentry"
-import Router from "./router"
 import "./styles/styles.scss"
 
 export default function App() {
@@ -25,9 +24,7 @@ export default function App() {
             <AuthSentry />
             <ConnectDialog />
             <ToasterContainer />
-            <Layout>
-              <Router />
-            </Layout>
+            <Layout />
           </SWRConfig>
         </QueryClientProvider>
       </WagmiConfig>

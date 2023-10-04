@@ -5,7 +5,7 @@ import { Drawer } from "@/libs/ui/drawer"
 import { truncateAddress } from "@/utils/string"
 import { FC, Fragment, HTMLAttributes } from "react"
 import { HiMenu } from "react-icons/hi"
-import { Link } from "react-router-dom"
+import { Link, Outlet } from "react-router-dom"
 import { ChainSelector } from "../wallet/chain-selector"
 import { ToggleTheme } from "./toggle-theme"
 
@@ -58,6 +58,7 @@ export const Layout: FC<HTMLAttributes<HTMLDivElement>> = ({ children }) => {
         </Container>
       </header>
       {children}
+      <Outlet />
     </Fragment>
   )
 }
