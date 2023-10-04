@@ -1,7 +1,6 @@
 {
   "private": true,
   "author": "onepercman",
-  "name": "virgin-web",
   "version": "0.0.0",
   "engines": {
     "node": ">=18"

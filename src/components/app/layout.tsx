@@ -30,7 +30,7 @@ export const Layout: FC<HTMLAttributes<HTMLDivElement>> = ({ children }) => {
             </div>
 
             <Drawer
-              title="Virgin"
+              title="Drawer"
               trigger={<Button leftIcon={<HiMenu />} variant="outlined" className="aspect-square p-0" />}
               className="flex flex-col gap-6 px-0"
             >
