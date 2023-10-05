@@ -1,4 +1,6 @@
-FROM node:16-alpine3.15 as BASE
+# Vite static production
+
+FROM node:18-alpine3.17 as BASE
 LABEL author="onepercman"
 
 RUN corepack enable

@@ -4,9 +4,8 @@ const config = {
   reactStrictMode: false,
   trailingSlash: true,
   swcMinify: true,
-  experimental: {
-    appDir: true,
-  },
+  distDir: "/dist",
+  output: "standalone",
 }
 
 module.exports = config
