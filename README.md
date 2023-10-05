@@ -1,22 +1,22 @@
-Implement list
+# Implement list
 
-- Dev Deps
-  [x] postcss
-  [x] tailwindcss
+## Dev Deps
 
-  [x] @headlessui-float/react
-  [x] @headlessui/react
+- postcss
+- tailwindcss
+- @headlessui-float/react
+- @headlessui/react
+- @tailwindcss/forms
+- @bonehub/tailwind-dynamic-colors
+- prettier-plugin-tailwindcss
+- tailwind-merge
+- tailwind-scrollbar
+- tailwindcss-animate
 
-  [x] @tailwindcss/forms
-  [x] @bonehub/tailwind-dynamic-colors
-  [x] prettier-plugin-tailwindcss
-  [x] tailwind-merge
-  [x] tailwind-scrollbar
-  [x] tailwindcss-animate
+## Files
 
-- Files
-  [x] postcss.config.js
-  [x] /.tailwind
-  [x] /src/libs/ui
-  [x] /styles/tailwind.scss
-  [x] /styles/rc - implement react components styles
+- postcss.config.js
+- /.tailwind
+- /src/libs/ui
+- /styles/tailwind.scss
+- /styles/rc - implement react components styles
