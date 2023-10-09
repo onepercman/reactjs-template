@@ -1,5 +1,5 @@
+import { User } from "@/interfaces/user.interface"
 import { api } from "@/libs/axios"
-import { User } from "@/types/auth"
 
 export class AuthService {
   getNonce(address: string) {

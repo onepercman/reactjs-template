@@ -1,6 +1,6 @@
 import { SIGN_MESSAGE } from "@/config/auth.config"
+import { User } from "@/interfaces/user.interface"
 import { Service } from "@/services/app.service"
-import { User } from "@/types/auth"
 import { toastErrors } from "@/utils/toast"
 import jwtDecode from "jwt-decode"
 import { toast } from "react-hot-toast"

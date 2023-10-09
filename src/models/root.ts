@@ -1,5 +1,5 @@
 import { storageKeys } from "@/config/storage.config"
-import { User } from "@/types/auth"
+import { User } from "@/interfaces/user.interface"
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 import { AppSettingsModel, appSettingsModel } from "./app-settings.model"
