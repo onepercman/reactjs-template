@@ -1,6 +1,6 @@
 import { useClient } from "@/models/root"
 import { toastErrors } from "@/utils/toast"
-import { appendTx } from "@/utils/tx-cue"
+import { appendTx } from "@/utils/tx-queue"
 import { useCallback } from "react"
 import { BaseError, hexToBigInt, isAddress } from "viem"
 import { Address, erc20ABI, useContractRead, useToken } from "wagmi"
