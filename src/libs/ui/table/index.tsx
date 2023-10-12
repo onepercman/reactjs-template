@@ -34,7 +34,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(function (
   return (
     <div className={cn(className, "scrollbar-none w-full overflow-x-scroll rounded shadow")}>
       <table ref={ref} className={cn("w-full", tableClassName)} {...props}>
-        <thead className="border-muted border-b border-solid text-left">
+        <thead className="border-line border-b border-solid text-left">
           <tr>
             {columns?.map(({ key, title, ...column }) => (
               <th

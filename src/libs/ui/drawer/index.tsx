@@ -100,7 +100,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function (
               <div className="absolute inset-0" onClick={handleClose} />
               {/* Padding close */}
 
-              <div className="bg-component border-muted relative h-full w-full cursor-auto overflow-hidden rounded border text-left align-middle shadow">
+              <div className="bg-component border-line relative h-full w-full cursor-auto overflow-hidden rounded border text-left align-middle shadow">
                 {title && (
                   <HeadlessUI.Dialog.Title as="h3" className="mb-2 p-6 text-lg font-medium">
                     {title}

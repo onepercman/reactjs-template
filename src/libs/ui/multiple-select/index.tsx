@@ -106,7 +106,7 @@ export const MultipleSelect = React.forwardRef<HTMLDivElement, MultipleSelectPro
             <span className="text-muted">{placeholder}</span>
           )}
         </HeadlessUI.Listbox.Button>
-        <HeadlessUI.Listbox.Options className="bg-component border-muted flex flex-col overflow-hidden rounded border p-1 shadow">
+        <HeadlessUI.Listbox.Options className="bg-component border-line flex flex-col overflow-hidden rounded border p-1 shadow">
           {options?.map((item) => (
             <HeadlessUI.Listbox.Option as={React.Fragment} key={item.value} value={item}>
               <div

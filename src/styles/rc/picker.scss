@@ -15,7 +15,7 @@
 }
 .rc-picker-panel {
   @apply bg-component rounded;
-  @apply border-muted border shadow;
+  @apply border-line border shadow;
   @apply inline-block;
   @apply align-top;
 }
@@ -53,7 +53,7 @@
   @apply flex;
   @apply gap-2;
   @apply p-4;
-  @apply border-muted border-b;
+  @apply border-line border-b;
   @apply min-h-[4rem];
 }
 .rc-picker-header > * {
@@ -144,7 +144,7 @@
 }
 .rc-picker-footer,
 .rc-picker-picker-footer {
-  @apply bg-component border-muted rounded-b border-t p-2;
+  @apply bg-component border-line rounded-b border-t p-2;
   a,
   button {
     @apply btn size-sm btn-primary-outlined btn-normal text-xs;
@@ -303,7 +303,7 @@
   @apply rounded-b-none border-b-0;
 }
 .rc-picker-dropdown-range .rc-picker-footer {
-  @apply border-muted border;
+  @apply border-line border;
 }
 .rc-picker-dropdown-hidden {
   @apply hidden;

@@ -27,7 +27,7 @@ export const ConnectDialog: FC = () => {
             src={wallet.iconURI}
             title={wallet.name}
             role="button"
-            className="border-muted/50 w-full rounded-2xl border object-contain transition-all"
+            className="border-line/50 w-full rounded-2xl border object-contain transition-all"
             onClick={() => connect(wallet)}
           />
         ) : null,

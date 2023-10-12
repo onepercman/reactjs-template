@@ -44,7 +44,7 @@ export const Menu = React.forwardRef<HTMLElement, MenuProps>(function (
         <HeadlessUI.Menu.Button as="div" role="button">
           {children}
         </HeadlessUI.Menu.Button>
-        <HeadlessUI.Menu.Items className="bg-component border-muted flex flex-col rounded border p-1 shadow">
+        <HeadlessUI.Menu.Items className="bg-component border-line flex flex-col rounded border p-1 shadow">
           {menu?.map((item, index) =>
             item.children?.length ? (
               <Menu

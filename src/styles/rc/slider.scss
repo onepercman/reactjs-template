@@ -97,7 +97,7 @@
 }
 .rc-slider-disabled .rc-slider-handle,
 .rc-slider-disabled .rc-slider-dot {
-  @apply bg-muted border-muted cursor-not-allowed shadow-none;
+  @apply bg-muted border-line cursor-not-allowed shadow-none;
 }
 .rc-slider-disabled .rc-slider-mark-text,
 .rc-slider-disabled .rc-slider-dot {
@@ -174,5 +174,5 @@
   @apply absolute h-0 w-0 border-solid border-transparent;
 }
 .rc-slider-tooltip-placement-top .rc-slider-tooltip-arrow {
-  @apply border-muted bottom-1 left-1/2 -ml-1 border;
+  @apply border-line bottom-1 left-1/2 -ml-1 border;
 }

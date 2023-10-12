@@ -62,8 +62,8 @@ export const Dropdown: React.FC<DropdownProps> = function ({ menu, onSelect, chi
         {...float}
       >
         {_trigger}
-        <div className="border-muted rounded border" {...props}>
-          {/* <Float.Arrow className="bg-component border-muted absolute h-3 w-3 rotate-45 border" /> */}
+        <div className="border-line rounded border" {...props}>
+          {/* <Float.Arrow className="bg-component border-line absolute h-3 w-3 rotate-45 border" /> */}
           <div className="bg-component relative flex flex-col rounded p-1 shadow">
             {menu?.map((item, index) =>
               item.children?.length ? (

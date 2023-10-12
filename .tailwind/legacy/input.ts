@@ -14,7 +14,7 @@ const textarea = {
 
 const variants = {
   "&-filled": apply("bg-default"),
-  "&-outlined": apply("bg-transparent border border-muted"),
+  "&-outlined": apply("bg-transparent border border-line"),
 }
 
 const elements = {

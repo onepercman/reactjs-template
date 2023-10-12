@@ -52,8 +52,8 @@ export const Tooltip: React.FC<TooltipProps> = React.forwardRef<HTMLDivElement, 
       {...float}
     >
       {Trigger}
-      <div className="border-muted rounded border" {...triggerProps}>
-        {/* <Float.Arrow className="bg-component border-muted absolute h-3 w-3 rotate-45 border" /> */}
+      <div className="border-line rounded border" {...triggerProps}>
+        {/* <Float.Arrow className="bg-component border-line absolute h-3 w-3 rotate-45 border" /> */}
         <div ref={ref} className={cn("bg-component relative rounded px-4 py-2 shadow", className)} {...props}>
           {message}
         </div>

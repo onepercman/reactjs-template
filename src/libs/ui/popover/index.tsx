@@ -43,7 +43,7 @@ export const Popover = React.forwardRef<HTMLElement, PopoverProps>(function (
           {...float}
         >
           <HeadlessUI.Popover.Button>{children}</HeadlessUI.Popover.Button>
-          <HeadlessUI.Popover.Panel as="div" className="bg-component border-muted rounded border p-6 shadow">
+          <HeadlessUI.Popover.Panel as="div" className="bg-component border-line rounded border p-6 shadow">
             {title && (
               <div className="border-line mb-6 inline-flex w-full items-center justify-between border-b pb-6 text-xl">
                 <span>{title}</span>
