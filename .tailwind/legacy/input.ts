@@ -17,12 +17,26 @@ const variants = {
   "&-outlined": apply("bg-transparent border border-muted"),
 }
 
+const elements = {
+  "&-prefix": apply("pr-3"),
+  "&-suffix": apply("pl-3"),
+  "&-addon-before": {
+    ...apply("-ml-3 mr-3 rounded-none"),
+    "*": apply("rounded-none"),
+  },
+  "&-addon-after": {
+    ...apply("-mr-3 ml-3 rounded-none"),
+    "*": apply("rounded-none"),
+  },
+}
+
 export const input = {
   ".input": {
     ...base,
     ...states,
     ...textarea,
     ...variants,
+    ...elements,
   },
 }
 
@@ -32,20 +46,7 @@ export const inputGroup = {
   // Group
   ".input-group": {
     ...apply("inline-flex items-center overflow-hidden cursor-pointer"),
-    input: apply("w-full h-full bg-transparent border-transparent focus:outline-none focus:ring-transparent"),
-    "&-disabled": {
-      ...apply("cursor-not-allowed opacity-50 saturate-50"),
-      input: apply("cursor-not-allowed"),
-    },
-    "&-prefix": apply("pr-3"),
-    "&-suffix": apply("pl-3"),
-    "&-addon-before": {
-      ...apply("-ml-3 mr-3"),
-      "*": apply("rounded-none"),
-    },
-    "&-addon-after": {
-      ...apply("-mr-3 ml-3"),
-      "*": apply("rounded-none"),
-    },
+    input: apply("w-full h-full bg-transparent border-transparent focus:outline-none focus:ring-transparent p-0"),
+    "&-disabled": apply("opacity-50 saturate-50 cursor-not-allowed"),
   },
 }

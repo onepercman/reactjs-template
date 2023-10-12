@@ -7,8 +7,7 @@ const base = apply(
 )
 
 const states = {
-  "&:active": apply("scale-95"),
-  "&:disabled": apply("bg-default text-content/50 cursor-not-allowed"),
+  "&:disabled": apply("text-content/50 cursor-not-allowed saturate-50"),
 }
 
 const variants = {

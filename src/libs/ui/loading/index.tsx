@@ -4,99 +4,43 @@ import { FC, SVGAttributes } from "react"
 
 export const Loading: FC<SVGAttributes<SVGElement>> = function ({ ...props }) {
   return (
-    <svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" {...props}>
-      <rect x="1" y="6" width="2.8" rx="1" height="12">
-        <animate
-          id="spinner_CcmT"
-          begin="0;spinner_IzZB.end-0.1s"
-          attributeName="y"
-          calcMode="spline"
-          dur="0.6s"
-          values="6;1;6"
-          keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+    <svg
+      width="1em"
+      height="1em"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <g>
+        <circle cx="12" cy="12" r="9.5" fill="none" stroke-width="3" stroke-linecap="round">
+          <animate
+            attributeName="stroke-dasharray"
+            dur="1.5s"
+            calcMode="spline"
+            values="0 150;42 150;42 150;42 150"
+            keyTimes="0;0.475;0.95;1"
+            keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="stroke-dashoffset"
+            dur="1.5s"
+            calcMode="spline"
+            values="0;-16;-59;-59"
+            keyTimes="0;0.475;0.95;1"
+            keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          dur="2s"
+          values="0 12 12;360 12 12"
+          repeatCount="indefinite"
         />
-        <animate
-          begin="0;spinner_IzZB.end-0.1s"
-          attributeName="height"
-          calcMode="spline"
-          dur="0.6s"
-          values="12;22;12"
-          keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
-        />
-      </rect>
-      <rect x="5.8" y="6" width="2.8" rx="1" height="12">
-        <animate
-          begin="spinner_CcmT.begin+0.1s"
-          attributeName="y"
-          calcMode="spline"
-          dur="0.6s"
-          values="6;1;6"
-          keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
-        />
-        <animate
-          begin="spinner_CcmT.begin+0.1s"
-          attributeName="height"
-          calcMode="spline"
-          dur="0.6s"
-          values="12;22;12"
-          keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
-        />
-      </rect>
-      <rect x="10.6" y="6" width="2.8" rx="1" height="12">
-        <animate
-          begin="spinner_CcmT.begin+0.2s"
-          attributeName="y"
-          calcMode="spline"
-          dur="0.6s"
-          values="6;1;6"
-          keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
-        />
-        <animate
-          begin="spinner_CcmT.begin+0.2s"
-          attributeName="height"
-          calcMode="spline"
-          dur="0.6s"
-          values="12;22;12"
-          keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
-        />
-      </rect>
-      <rect x="15.4" y="6" width="2.8" rx="1" height="12">
-        <animate
-          begin="spinner_CcmT.begin+0.3s"
-          attributeName="y"
-          calcMode="spline"
-          dur="0.6s"
-          values="6;1;6"
-          keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
-        />
-        <animate
-          begin="spinner_CcmT.begin+0.3s"
-          attributeName="height"
-          calcMode="spline"
-          dur="0.6s"
-          values="12;22;12"
-          keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
-        />
-      </rect>
-      <rect x="20.2" y="6" width="2.8" rx="1" height="12">
-        <animate
-          id="spinner_IzZB"
-          begin="spinner_CcmT.begin+0.4s"
-          attributeName="y"
-          calcMode="spline"
-          dur="0.6s"
-          values="6;1;6"
-          keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
-        />
-        <animate
-          begin="spinner_CcmT.begin+0.4s"
-          attributeName="height"
-          calcMode="spline"
-          dur="0.6s"
-          values="12;22;12"
-          keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
-        />
-      </rect>
+      </g>
     </svg>
   )
 }

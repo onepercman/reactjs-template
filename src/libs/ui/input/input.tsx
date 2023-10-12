@@ -14,7 +14,6 @@ export interface InputProps
   addonBefore?: React.ReactNode
   addonAfter?: React.ReactNode
   clearable?: boolean
-  isError?: boolean
   transform?(value: string): string
 }
 
@@ -28,10 +27,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       addonAfter,
       size,
       variant,
+      error,
       clearable,
       onChange,
       transform,
-      isError,
       ...props
     },
     ref,
@@ -105,30 +104,31 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     if (isGroup)
       return (
-        <span
+        <div
           role="input"
           className={cn(
+            input({ size, variant, error, className }),
             "input-group",
-            isError && "state-error",
             props.disabled && "input-group-disabled",
-            input({ size, variant, className }),
           )}
-          onClick={(e) => e.currentTarget.getElementsByTagName("input")[0].focus()}
+          onClick={function (e) {
+            e.currentTarget.getElementsByTagName("input")[0].focus()
+          }}
         >
-          {!!addonBefore && <span className="input-group-addon-before">{addonBefore}</span>}
-          {!!prefix && <span className="input-group-prefix">{prefix}</span>}
+          {!!addonBefore && <span className="input-addon-before">{addonBefore}</span>}
+          {!!prefix && <span className="input-prefix">{prefix}</span>}
           <input ref={composedRef} onChange={handleChange} {...props} />
           {getClear()}
           {getTogglePassword()}
-          {!!suffix && <span className="input-group-suffix">{suffix}</span>}
-          {!!addonAfter && <span className="input-group-addon-after">{addonAfter}</span>}
-        </span>
+          {!!suffix && <span className="input-suffix">{suffix}</span>}
+          {!!addonAfter && <span className="input-addon-after">{addonAfter}</span>}
+        </div>
       )
     return (
       <input
         ref={composedRef}
         onChange={handleChange}
-        className={cn(input({ size, variant, className }), isError && "state-error")}
+        className={input({ size, variant, error, className })}
         {...props}
       />
     )

@@ -12,6 +12,9 @@ export const input = cva("input", {
       filled: "input-filled",
       outlined: "input-outlined",
     },
+    error: {
+      true: "state-error",
+    },
   },
   defaultVariants: {
     size: "md",
