@@ -1,12 +1,21 @@
 import Home from "@/pages/home"
-import { Route, Routes } from "react-router-dom"
+import { createBrowserRouter } from "react-router-dom"
+import { Layout } from "./components/app/layout"
 import NotFound from "./pages/not-found"
 
-export default function Router() {
-  return (
-    <Routes>
-      <Route path="*" element={<NotFound />} />
-      <Route path="/" element={<Home />} />
-    </Routes>
-  )
-}
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "*",
+        element: <NotFound />,
+      },
+      {
+        index: true,
+        element: <Home />,
+      },
+    ],
+  },
+])

@@ -16,9 +16,9 @@ export const Popper = SwalPopper.mixin({
     icon: cn("order-2 mx-auto !my-0"),
     htmlContainer: cn("!text-content order-3 !p-0 !m-0 text-left text-base"),
     actions: cn("flex-row-reverse !m-0 order-4 gap-2"),
-    confirmButton: cn("!m-0 btn btn-md btn-normal btn-primary !bg-primary"),
-    denyButton: cn("!m-0 btn btn-md btn-normal btn-error"),
-    cancelButton: cn("!m-0 btn btn-normal btn-md !btn-default"),
+    confirmButton: cn("!m-0 btn size-md btn-normal btn-primary !bg-primary"),
+    denyButton: cn("!m-0 btn size-md btn-normal btn-error"),
+    cancelButton: cn("!m-0 btn btn-normal size-md !btn-default"),
   },
 
   hideClass: {

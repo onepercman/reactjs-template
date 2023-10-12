@@ -12,13 +12,6 @@ const textarea = {
   "&-textarea": apply("py-3"),
 }
 
-const sizes = {
-  "&-xs": apply("h-6 text-xs"),
-  "&-sm": apply("h-8 text-sm"),
-  "&-md": apply("h-10"),
-  "&-lg": apply("h-12 text-lg"),
-}
-
 const variants = {
   "&-filled": apply("bg-default"),
   "&-outlined": apply("bg-transparent border border-muted"),
@@ -29,7 +22,6 @@ export const input = {
     ...base,
     ...states,
     ...textarea,
-    ...sizes,
     ...variants,
   },
 }

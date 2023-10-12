@@ -147,7 +147,7 @@
   @apply bg-component border-muted rounded-b border-t p-2;
   a,
   button {
-    @apply btn btn-sm btn-primary-outlined btn-normal text-xs;
+    @apply btn size-sm btn-primary-outlined btn-normal text-xs;
   }
 }
 .rc-picker-ranges {

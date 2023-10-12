@@ -13,9 +13,9 @@ import { cn } from "../utils/className"
 const datePickerVariants = cva("input-group input", {
   variants: {
     size: {
-      sm: "input-sm",
-      md: "input-md",
-      lg: "input-lg",
+      sm: "size-sm",
+      md: "size-md",
+      lg: "size-lg",
     },
     variant: {
       filled: "input-filled",

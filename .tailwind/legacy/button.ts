@@ -11,13 +11,6 @@ const states = {
   "&:disabled": apply("bg-default text-content/50 cursor-not-allowed"),
 }
 
-const sizes = {
-  "&-xs": apply("h-6 px-1 text-xs"),
-  "&-sm": apply("h-8 px-2 text-sm"),
-  "&-md": apply("h-10 px-4"),
-  "&-lg": apply("h-12 px-4 text-lg"),
-}
-
 const variants = {
   "&-default": {
     ...apply("bg-default"),
@@ -77,7 +70,6 @@ export const button = {
   ".btn": {
     ...base,
     ...states,
-    ...sizes,
     ...variants,
     ...shapes,
     ...group,

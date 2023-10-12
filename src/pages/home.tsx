@@ -4,7 +4,8 @@ import { Container } from "@/libs/ui/container"
 export default function Home() {
   return (
     <Container>
-      <Button>Promise</Button>
+      <Button size="xs">Promise</Button>
+      hello
     </Container>
   )
 }

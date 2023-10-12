@@ -3,10 +3,10 @@ import { VariantProps, cva } from "class-variance-authority"
 export const button = cva("btn", {
   variants: {
     size: {
-      xs: "btn-xs",
-      md: "btn-md",
-      sm: "btn-sm",
-      lg: "btn-lg",
+      xs: "size-xs",
+      md: "size-md",
+      sm: "size-sm",
+      lg: "size-lg",
     },
     variant: {
       default: "btn-default",
