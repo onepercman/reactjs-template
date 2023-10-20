@@ -1,10 +1,33 @@
 "use client"
 
+import { VariantProps, cva } from "class-variance-authority"
 import React from "react"
 import { HiEye, HiEyeOff, HiX } from "react-icons/hi"
 import { cn } from "../utils/className"
 import { useComposedRefs } from "../utils/compose-refs"
-import { InputVariantProps, input } from "./variants"
+
+const input = cva("input", {
+  variants: {
+    size: {
+      sm: "size-sm",
+      md: "size-md",
+      lg: "size-lg",
+    },
+    variant: {
+      filled: "input-filled",
+      outlined: "input-outlined",
+    },
+    error: {
+      true: "state-error",
+    },
+  },
+  defaultVariants: {
+    size: "md",
+    variant: "filled",
+  },
+})
+
+type InputVariantProps = VariantProps<typeof input>
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "prefix" | "suffix" | "size">,

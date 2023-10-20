@@ -1,9 +1,42 @@
 "use client"
 
+import { VariantProps, cva } from "class-variance-authority"
 import React from "react"
 import { Loading } from "../loading"
 import { cn } from "../utils/className"
-import { ButtonVariantProps, button } from "./variants"
+
+const button = cva("btn", {
+  variants: {
+    size: {
+      xs: "size-xs",
+      md: "size-md",
+      sm: "size-sm",
+      lg: "size-lg",
+    },
+    variant: {
+      default: "btn-default",
+      primary: "btn-primary",
+      "primary-outlined": "btn-primary-outlined",
+      outlined: "btn-outlined",
+      ghost: "btn-ghost",
+      success: "btn-success",
+      error: "btn-error",
+    },
+    shape: {
+      normal: "btn-normal",
+      pill: "btn-pill",
+      rounded: "btn-rounded",
+      square: "btn-square",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "md",
+    shape: "normal",
+  },
+})
+
+type ButtonVariantProps = VariantProps<typeof button>
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, ButtonVariantProps {
   loading?: boolean

@@ -1,9 +1,22 @@
 "use client"
 
+import { cva, VariantProps } from "class-variance-authority"
 import React from "react"
 import { cn } from "../utils/className"
-import { textarea, TextareaVariantProps } from "./variants"
 
+const textarea = cva(cn("input input-textarea"), {
+  variants: {
+    variant: {
+      filled: "input-filled",
+      outlined: "input-outlined",
+    },
+  },
+  defaultVariants: {
+    variant: "filled",
+  },
+})
+
+type TextareaVariantProps = VariantProps<typeof textarea>
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement>, TextareaVariantProps {
   isError?: boolean
 }
