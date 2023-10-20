@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react"
 
-export function useLocalStorage<T = any>(key: string, initialValue: T) {
+export function useSessionStorage<T>(key: string, initialValue: T) {
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
-      const item = window.localStorage.getItem(key)
+      const item = window.sessionStorage.getItem(key)
       return item ? JSON.parse(item) : initialValue
     } catch (error) {
-      console.error(`Error reading local storage key "${key}": ${error}`)
+      console.error(`Error reading session storage key "${key}": ${error}`)
       return initialValue
     }
   })
 
   useEffect(() => {
     try {
-      window.localStorage.setItem(key, JSON.stringify(storedValue))
+      window.sessionStorage.setItem(key, JSON.stringify(storedValue))
     } catch (error) {
-      console.error(`Error writing to local storage key "${key}": ${error}`)
+      console.error(`Error writing to session storage key "${key}": ${error}`)
     }
   }, [key, storedValue])
 
