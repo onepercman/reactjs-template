@@ -4,15 +4,7 @@ export function useScrolled(delta = 0) {
   const [isScrolled, setIsScrolled] = React.useState(false)
 
   function scrollHandler() {
-    if (window.scrollY > delta) {
-      if (!isScrolled) {
-        setIsScrolled(true)
-      }
-    } else {
-      if (isScrolled) {
-        setIsScrolled(false)
-      }
-    }
+    setIsScrolled(window.scrollY > delta)
   }
 
   React.useEffect(() => {
