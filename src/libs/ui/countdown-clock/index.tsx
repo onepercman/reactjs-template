@@ -1,6 +1,6 @@
 "use client"
 
-import { UseCountdownStates } from "@/hooks/render/use-countdown"
+import { UseCountdownStates } from "@/hooks/utils/use-countdown"
 import React from "react"
 import { Countdown } from "../countdown"
 import { cn } from "../utils/className"

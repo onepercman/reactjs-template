@@ -1,6 +1,6 @@
 "use client"
 
-import { useResizeObserver } from "@/hooks/render/use-resize-observer"
+import { useResizeObserver } from "@/hooks/utils/use-resize-observer"
 import React, { useState } from "react"
 import { HiChevronDown } from "react-icons/hi"
 import { cn } from "../utils/className"
