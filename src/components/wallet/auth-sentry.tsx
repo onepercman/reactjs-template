@@ -1,6 +1,6 @@
 import { useSWR } from "@/libs/swr"
 import { useClient, useUser } from "@/models/root"
-import jwtDecode from "jwt-decode"
+import { jwtDecode } from "jwt-decode"
 import { FC, useEffect, useRef } from "react"
 import { toast } from "react-hot-toast"
 
