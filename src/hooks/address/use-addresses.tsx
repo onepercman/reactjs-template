@@ -1,5 +1,6 @@
 import { ADDRESSES } from "@/constants/addresses"
-import { useClient } from "@/models/root"
+import { clientProxy } from "@/models/client.model"
+import { useSnapshot } from "valtio"
 import { Address, Chain } from "wagmi"
 
 export function getAddresses(chain: Chain) {
@@ -9,6 +10,6 @@ export function getAddresses(chain: Chain) {
 }
 
 export function useAddresses() {
-  const { chain } = useClient()
+  const { chain } = useSnapshot(clientProxy)
   return getAddresses(chain)
 }

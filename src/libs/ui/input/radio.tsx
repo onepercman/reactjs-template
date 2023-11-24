@@ -4,27 +4,18 @@ import { VariantProps, cva } from "class-variance-authority"
 import React from "react"
 import { cn } from "../utils/className"
 
-const radio = cva(
-  cn(
-    "rounded bg-transparent text-primary",
-    "focus:ring focus:ring-primary focus:outline-none",
-    "focus:shadow focus:shadow-primary",
-    "focus-within:ring focus-within:ring-primary",
-    "focus-visible:ring focus-visible:ring-primary",
-  ),
-  {
-    variants: {
-      size: {
-        md: "h-6 w-6",
-        sm: "h-6 w-6",
-        lg: "h-10 w-10",
-      },
-    },
-    defaultVariants: {
-      size: "md",
+const radio = cva(cn("input-radio"), {
+  variants: {
+    size: {
+      md: "h-4 w-4",
+      sm: "h-3 w-3",
+      lg: "h-5 w-5",
     },
   },
-)
+  defaultVariants: {
+    size: "md",
+  },
+})
 
 type RadioVariantProps = VariantProps<typeof radio>
 export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">, RadioVariantProps {}

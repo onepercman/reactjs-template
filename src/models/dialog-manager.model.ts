@@ -1,17 +1,10 @@
-import { StateCreator } from "zustand"
+import { proxy } from "valtio"
+class DialogManagerModel {
+  connect = false
 
-export interface DialogManagerModel {
-  connect: boolean
-
-  setConnect(connect: boolean): void
-}
-
-export const dialogManagerModel: StateCreator<DialogManagerModel> = function (set) {
-  return {
-    connect: false,
-
-    setConnect(connect) {
-      set({ connect })
-    },
+  setConnect(value: boolean) {
+    this.connect = value
   }
 }
+
+export const dialogManagerProxy = proxy(new DialogManagerModel())

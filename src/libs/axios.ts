@@ -1,12 +1,12 @@
 import { API_URL } from "@/config/endpoints.config"
-import { useUser } from "@/models/root"
+import { userProxy } from "@/models/user.model"
 import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from "axios"
 
 const requestHandler = {
   onFulfilled(config: InternalAxiosRequestConfig) {
-    const { token } = useUser.getState()
-    if (token) {
-      config.headers["Authorization"] = "Bearer " + token
+    const { user } = userProxy
+    if (user) {
+      config.headers["Authorization"] = "Bearer " + user.token
     }
     return config
   },

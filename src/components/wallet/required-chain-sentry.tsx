@@ -1,14 +1,15 @@
 import { useActive } from "@/hooks/wallet/use-active"
 import { Button } from "@/libs/ui/button"
 import { Dialog } from "@/libs/ui/dialog"
-import { useClient } from "@/models/root"
+import { clientProxy } from "@/models/client.model"
 import { toastErrors } from "@/utils/toast"
 import { toast } from "react-hot-toast"
+import { useSnapshot } from "valtio"
 import { BaseError } from "viem"
 import { useNetwork, useSwitchNetwork } from "wagmi"
 
 export function RequiredChainSentry() {
-  const client = useClient()
+  const client = useSnapshot(clientProxy)
   const { chain } = useNetwork()
   const { switchNetworkAsync } = useSwitchNetwork()
   const { disconnect } = useActive()

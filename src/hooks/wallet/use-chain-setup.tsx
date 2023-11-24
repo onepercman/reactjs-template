@@ -1,11 +1,12 @@
 import { supportedChains } from "@/libs/wagmi"
-import { useClient } from "@/models/root"
+import { clientProxy } from "@/models/client.model"
 import { useState } from "react"
 import toast from "react-hot-toast"
+import { useSnapshot } from "valtio"
 import { Chain, useSwitchNetwork } from "wagmi"
 
 export function useChainSetup() {
-  const { walletClient, chain, setChain } = useClient()
+  const { walletClient, chain } = useSnapshot(clientProxy)
   const { switchNetworkAsync } = useSwitchNetwork()
   const [isSwitchingChain, setIsSwitchingChain] = useState(false)
 
@@ -15,12 +16,12 @@ export function useChainSetup() {
       if (walletClient?.account) {
         if (typeof switchNetworkAsync === "function") {
           const setup = await switchNetworkAsync(chain.id)
-          setChain(setup)
+          clientProxy.setChain(setup)
         } else {
           toast.error("An error occurred while switching networks")
         }
       } else {
-        setChain(chain)
+        clientProxy.setChain(chain)
       }
     } catch (err) {
       toast.error("Switch network failed")

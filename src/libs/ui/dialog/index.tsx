@@ -67,7 +67,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
   )
 
   const _panelClassName = cn(
-    "bg-component border-line m-auto w-full cursor-auto overflow-hidden rounded border p-4 text-left align-middle shadow transition-all",
+    "bg-component border-line m-auto w-full lg:!max-w-md lg:min-w-md cursor-auto overflow-hidden rounded border p-6 text-left align-middle shadow transition-all",
     center ? "m-auto" : "mx-auto mt-32",
   )
 

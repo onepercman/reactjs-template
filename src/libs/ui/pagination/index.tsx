@@ -25,6 +25,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(func
     <Button
       size={size}
       key={index}
+      shape="pill"
       variant={page === index + 1 ? "primary" : "default"}
       onClick={() => setOffset(index * limit)}
       className="min-w-[2em]"

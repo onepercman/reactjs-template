@@ -25,23 +25,43 @@ interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   loading?: boolean
   tableClassName?: string
   pagination?: PaginationProps
+  dataKey?: string
 }
 
 export const Table = React.forwardRef<HTMLTableElement, TableProps>(function (
-  { columns, data, sort = "", onSort, reverse, onSelect, className, loading, tableClassName, pagination, ...props },
+  {
+    columns,
+    data,
+    sort = "",
+    onSort,
+    reverse,
+    onSelect,
+    className,
+    loading,
+    tableClassName,
+    pagination,
+    dataKey,
+    ...props
+  },
   ref,
 ) {
   return (
-    <div className={cn(className, "scrollbar-none w-full overflow-x-scroll rounded shadow")}>
-      <table ref={ref} className={cn("w-full", tableClassName)} {...props}>
-        <thead className="border-line border-b border-solid text-left">
+    <div
+      className={cn(
+        className,
+        "scrollbar scrollbar-track-inherit scrollbar-thumb-inherit w-full overflow-x-auto overflow-y-hidden rounded shadow",
+      )}
+    >
+      <table ref={ref} className={cn("w-full border-separate border-spacing-y-1", tableClassName)} {...props}>
+        <thead className="text-left">
           <tr>
-            {columns?.map(({ key, title, ...column }) => (
+            {columns?.map(({ key, title, ...column }, index) => (
               <th
                 key={key}
                 className={cn(
-                  "text-muted bg-transparent px-4 py-4 text-sm font-medium",
+                  "text-base-content bg-transparent px-4 !text-[11px] font-light",
                   sort && "cursor-pointer",
+                  index === columns?.length - 1 && "text-right",
                   className,
                 )}
                 onClick={() => {
@@ -73,12 +93,19 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(function (
             )}
           />
           {data?.map((row, index) => (
-            <tr key={index} className="group transition-all" onClick={() => onSelect && onSelect(row)}>
+            <tr
+              key={dataKey ? row[dataKey] || index : index}
+              className="bg-component animate-tableRow ease-expo group cursor-pointer opacity-0 transition-colors hover:brightness-125"
+              style={{
+                animationDelay: index / 20 + "s",
+              }}
+              onClick={() => onSelect && onSelect(row)}
+            >
               {columns?.map(({ key, ...column }, columnIndex) => (
                 <td
                   key={columnIndex + key}
                   className={cn(
-                    "bg-inherit px-4 py-2 font-normal transition-all",
+                    "bg-inherit px-4 py-2 font-light transition-all first:rounded-l last:rounded-r",
                     onSelect && "group-hover:bg-primary/30 cursor-pointer",
                   )}
                   {...column}

@@ -1,20 +1,21 @@
 import { useActive } from "@/hooks/wallet/use-active"
 import { Dialog } from "@/libs/ui/dialog"
 import { wallets } from "@/libs/wagmi"
-import { useDialogManager } from "@/models/root"
+import { dialogManagerProxy } from "@/models/dialog-manager.model"
 import { FC } from "react"
+import { useSnapshot } from "valtio"
 
 const hasInjectedProvider = typeof window !== "undefined" && typeof window["ethereum"] !== "undefined"
 
 export const ConnectDialog: FC = () => {
-  const dialogManager = useDialogManager()
+  const dialogManager = useSnapshot(dialogManagerProxy)
   const { connect } = useActive()
 
   return (
     <Dialog
       open={dialogManager.connect}
       onClose={function () {
-        dialogManager.setConnect(false)
+        dialogManagerProxy.setConnect(false)
       }}
       title="Select a wallet"
       className="grid grid-cols-3 gap-2"

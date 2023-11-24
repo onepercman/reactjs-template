@@ -7,6 +7,8 @@ import { cn } from "../utils/className"
 export interface SegmentedItem {
   label: React.ReactNode
   value: any
+  icon?: React.ReactNode
+  activeClass?: string
 }
 
 type BaseProps = RadioGroupProps<React.ElementType, any>
@@ -19,22 +21,25 @@ export const Segmented = React.forwardRef<HTMLDivElement, SegmentedProps>(functi
   { items, className, ...props },
   ref,
 ) {
-  const _className = cn("bg-default inline-flex h-10 cursor-pointer gap-1 rounded p-1", className)
-
   return (
-    <RadioGroup as="div" ref={ref} className={_className} {...props}>
+    <RadioGroup
+      as="div"
+      ref={ref}
+      className={cn("bg-default inline-flex h-10 cursor-pointer gap-2 rounded", className)}
+      {...props}
+    >
       {items?.map((item) => (
         <RadioGroup.Option
           key={item.value}
           value={item.value}
           className={({ checked }) =>
             cn(
-              "inline-flex h-full flex-1 select-none items-center justify-center whitespace-nowrap rounded px-3 transition-colors",
-              "hover:bg-primary/10",
-              checked ? "btn-primary text-black" : "text-muted",
+              "btn size-md btn-normal flex-1 !font-semibold focus:ring-transparent",
+              checked ? item.activeClass || "btn-primary" : "btn-static",
             )
           }
         >
+          {item.icon}
           {item.label}
         </RadioGroup.Option>
       ))}

@@ -11,17 +11,23 @@ export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps<React.Elem
   return (
     <InternalSwitch
       ref={ref}
-      className={cn("relative h-6 w-12 overflow-hidden rounded-full bg-slate-700", className)}
+      className={({ checked }: { checked: boolean }) =>
+        cn(
+          "bg-component border-line ring-line relative h-5 w-10 overflow-hidden rounded-full p-1 ring",
+          checked && "ring-primary",
+          className,
+        )
+      }
       {...props}
     >
       {({ checked }) => (
         <div
           className={cn(
-            "bg-primary absolute inset-0 inline-flex justify-end rounded-full transition-all ease-in-out",
-            checked ? "translate-x-0" : "-translate-x-6",
+            "absolute inset-0.5 inline-flex justify-end rounded-full bg-transparent transition-all ease-in-out",
+            checked ? "translate-x-0" : "-translate-x-5",
           )}
         >
-          <span className="absolute h-6 w-6 rounded-full bg-white" />
+          <span className="bg-primary absolute h-4 w-4 rounded-full" />
         </div>
       )}
     </InternalSwitch>

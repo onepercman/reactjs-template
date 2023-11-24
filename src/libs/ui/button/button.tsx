@@ -16,11 +16,11 @@ const button = cva("btn", {
     variant: {
       default: "btn-default",
       primary: "btn-primary",
-      "primary-outlined": "btn-primary-outlined",
       outlined: "btn-outlined",
       ghost: "btn-ghost",
       success: "btn-success",
       error: "btn-error",
+      static: "btn-static",
     },
     shape: {
       normal: "btn-normal",
@@ -69,7 +69,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
   const _transparentChildren = <span className="opacity-0">{children}</span>
 
   return (
-    <button ref={ref} className={_className} disabled={_disabled} onClick={_onClick} {...props}>
+    <button ref={ref} type="button" className={_className} disabled={_disabled} onClick={_onClick} {...props}>
       {leftIcon && !_loading ? leftIcon : null}
       {_loading && <Loading className={_loadingClassName} />}
       {_loading ? loadingText || _transparentChildren : children}

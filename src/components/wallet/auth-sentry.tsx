@@ -1,16 +1,18 @@
 import { useSWR } from "@/libs/swr"
-import { useClient, useUser } from "@/models/root"
+import { clientProxy } from "@/models/client.model"
+import { userProxy } from "@/models/user.model"
 import { jwtDecode } from "jwt-decode"
 import { FC, useEffect, useRef } from "react"
 import { toast } from "react-hot-toast"
+import { useSnapshot } from "valtio"
 
 export const AuthSentry: FC = () => {
-  const { walletClient } = useClient()
-  const { token, login } = useUser()
+  const { walletClient } = useSnapshot(clientProxy)
+  const { user, login } = useSnapshot(userProxy)
 
   useSWR(["auth sentry", walletClient], function () {
     if (walletClient?.account) {
-      login(walletClient)
+      login()
     }
   })
 
@@ -18,12 +20,12 @@ export const AuthSentry: FC = () => {
 
   function autoRefreshToken() {
     toast("Login session has expired, please sign up to login again")
-    if (token && walletClient) {
+    if (user?.token && walletClient) {
       clearTimeout(tokenTimer.current)
-      const { exp } = jwtDecode<{ exp: number }>(token)
+      const { exp } = jwtDecode<{ exp: number }>(user.token)
       const remaining = exp * 1000 - Date.now()
       tokenTimer.current = setTimeout(function () {
-        login(walletClient)
+        login()
       }, remaining)
     }
   }
@@ -34,7 +36,7 @@ export const AuthSentry: FC = () => {
     return function () {
       clearTimeout(tokenTimer.current)
     }
-  }, [token])
+  }, [user])
 
   return null
 }

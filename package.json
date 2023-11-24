@@ -36,9 +36,9 @@
     "sweetalert2": "^11.9.0",
     "sweetalert2-react-content": "5.0.7",
     "swr": "^2.2.4",
+    "valtio": "^1.12.0",
     "viem": "^1.18.9",
-    "wagmi": "^1.4.6",
-    "zustand": "^4.4.6"
+    "wagmi": "^1.4.6"
   },
   "devDependencies": {
     "@headlessui-float/react": "^0.12.0",

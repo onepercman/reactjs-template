@@ -1,16 +1,20 @@
 import { Button } from "@/libs/ui/button"
-import { useAppSettings } from "@/models/root"
+import { appSettingProxy } from "@/models/app-setting.model"
 import { FC } from "react"
+import { useSnapshot } from "valtio"
 
-export const ToggleTheme: FC = () => {
-  const { colorScheme, toggleColorScheme } = useAppSettings()
+export const ToggleColorScheme: FC = () => {
+  const { colorScheme } = useSnapshot(appSettingProxy)
 
   return (
     <Button
       onClick={function () {
-        toggleColorScheme()
+        if (colorScheme === "dark") {
+          appSettingProxy.setColorScheme("light")
+        } else {
+          appSettingProxy.setColorScheme("dark")
+        }
       }}
-      variant="outlined"
       className="aspect-square p-0"
     >
       {colorScheme === "dark" ? (

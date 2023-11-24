@@ -19,4 +19,8 @@ export default defineConfig(({ mode }) => ({
     host: true,
     port: 3000,
   },
+  build: {
+    minify: true,
+    chunkSizeWarningLimit: 3000,
+  },
 }))

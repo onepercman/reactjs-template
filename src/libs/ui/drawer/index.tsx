@@ -137,7 +137,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function (
                   </HeadlessUI.Dialog.Title>
                 )}
                 {closable && (trigger || onClose) && (
-                  <HiX role="button" className="absolute right-6 top-6" onClick={handleClose} />
+                  <HiX role="button" className="absolute right-6 top-6 z-50" onClick={handleClose} />
                 )}
                 <div className={cn("scrollbar-none h-full overflow-y-auto p-6", className)}>{getChildren()}</div>
               </div>

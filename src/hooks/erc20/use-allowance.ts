@@ -1,14 +1,15 @@
-import { useClient } from "@/models/root"
+import { clientProxy } from "@/models/client.model"
 import { toastErrors } from "@/utils/toast"
 import { appendTx } from "@/utils/tx-queue"
 import { useCallback } from "react"
+import { useSnapshot } from "valtio"
 import { BaseError, hexToBigInt, isAddress } from "viem"
 import { Address, erc20ABI, useContractRead, useToken } from "wagmi"
 
 const MaxUint256 = hexToBigInt("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
 
 export function useAllowance(address?: Address, spender?: Address) {
-  const { walletClient, publicClient, chain } = useClient()
+  const { walletClient, publicClient, chain } = useSnapshot(clientProxy)
 
   const { data: token } = useToken({
     address,

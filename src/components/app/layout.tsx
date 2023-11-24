@@ -7,7 +7,7 @@ import { FC, Fragment, HTMLAttributes } from "react"
 import { HiMenu } from "react-icons/hi"
 import { Link, Outlet } from "react-router-dom"
 import { ChainSelector } from "../wallet/chain-selector"
-import { ToggleTheme } from "./toggle-theme"
+import { ToggleColorScheme } from "./toggle-color-scheme"
 
 export const Layout: FC<HTMLAttributes<HTMLDivElement>> = ({ children }) => {
   const { openConnectDialog, disconnect, isConnecting, account } = useActive()
@@ -21,7 +21,7 @@ export const Layout: FC<HTMLAttributes<HTMLDivElement>> = ({ children }) => {
           </Link>
           <Button.Group>
             <div className="hidden sm:inline-flex">
-              <ToggleTheme />
+              <ToggleColorScheme />
               <ChainSelector />
               {account ? <Button variant="outlined">{truncateAddress(account)}</Button> : null}
               <Button variant="outlined" onClick={account ? disconnect : openConnectDialog} loading={isConnecting}>

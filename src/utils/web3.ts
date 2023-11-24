@@ -1,6 +1,6 @@
 import { multicallABI } from "@/constants/abi/common"
 import { getAddresses } from "@/hooks/address/use-addresses"
-import { useClient } from "@/models/root"
+import { clientProxy } from "@/models/client.model"
 import { Address, decodeFunctionResult, encodeFunctionData } from "viem"
 
 export async function multicall(
@@ -11,7 +11,7 @@ export async function multicall(
     params?: any[]
   }>,
 ) {
-  const { publicClient } = useClient.getState()
+  const { publicClient } = clientProxy
   const { MULTICALL } = getAddresses(publicClient.chain)
 
   const callData = calls.map((call) => ({
@@ -45,7 +45,7 @@ export function truncateAddress(address: Address, numberic = 4) {
 }
 
 export function getTxUrl(hash: string) {
-  const { chain } = useClient.getState()
+  const { chain } = clientProxy
   const { blockExplorers } = chain
   if (blockExplorers) {
     const host = blockExplorers.default.url
