@@ -11,7 +11,7 @@ export default plugin(({ addBase }) => {
       "scroll-smooth",
       "min-h-full",
       "bg-body",
-      "scrollbar scrollbar-w-px scrollbar-track-transparent scrollbar-thumb-primary scrollbar-thumb-rounded",
+      "scrollbar scrollbar-w-1 scrollbar-h-1 scrollbar-track-transparent scrollbar-thumb-primary scrollbar-thumb-rounded",
     ),
     "::selection": apply("text-content bg-primary"),
     button: apply("focus:outline-none"),
