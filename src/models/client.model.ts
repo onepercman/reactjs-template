@@ -2,6 +2,7 @@ import { defaultChain } from "@/config/chain.config"
 import { storageKeys } from "@/config/storage.config"
 import { persistedProxy } from "@/libs/valtio"
 import { publicClient } from "@/libs/wagmi"
+import { useSnapshot } from "valtio"
 import { Chain, PublicClient, WalletClient } from "wagmi"
 
 class ClientModel {
@@ -22,3 +23,4 @@ class ClientModel {
 }
 
 export const clientProxy = persistedProxy(storageKeys.client, new ClientModel())
+export const useClientProxy = () => useSnapshot(clientProxy)

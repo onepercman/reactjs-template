@@ -1,10 +1,9 @@
 import { Button } from "@/libs/ui/button"
-import { appSettingProxy } from "@/models/app-setting.model"
+import { appSettingProxy, useAppSettingProxy } from "@/models/app-setting.model"
 import { FC } from "react"
-import { useSnapshot } from "valtio"
 
 export const ToggleColorScheme: FC = () => {
-  const { colorScheme } = useSnapshot(appSettingProxy)
+  const { colorScheme } = useAppSettingProxy()
 
   return (
     <Button

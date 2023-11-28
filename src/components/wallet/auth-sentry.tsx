@@ -1,14 +1,13 @@
 import { useSWR } from "@/libs/swr"
-import { clientProxy } from "@/models/client.model"
-import { userProxy } from "@/models/user.model"
+import { useClientProxy } from "@/models/client.model"
+import { useUserProxy } from "@/models/user.model"
 import { jwtDecode } from "jwt-decode"
 import { FC, useEffect, useRef } from "react"
 import { toast } from "react-hot-toast"
-import { useSnapshot } from "valtio"
 
 export const AuthSentry: FC = () => {
-  const { walletClient } = useSnapshot(clientProxy)
-  const { user, login } = useSnapshot(userProxy)
+  const { walletClient } = useClientProxy()
+  const { user, login } = useUserProxy()
 
   useSWR(["auth sentry", walletClient], function () {
     if (walletClient?.account) {

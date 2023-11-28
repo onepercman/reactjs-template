@@ -1,4 +1,4 @@
-import { proxy } from "valtio"
+import { proxy, useSnapshot } from "valtio"
 class DialogManagerModel {
   connect = false
 
@@ -8,3 +8,4 @@ class DialogManagerModel {
 }
 
 export const dialogManagerProxy = proxy(new DialogManagerModel())
+export const useDialogManagerProxy = () => useSnapshot(dialogManagerProxy)

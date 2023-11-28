@@ -1,10 +1,9 @@
 import { useSWR } from "@/libs/swr"
-import { clientProxy } from "@/models/client.model"
-import { useSnapshot } from "valtio"
+import { clientProxy, useClientProxy } from "@/models/client.model"
 import { WalletClient, useAccount, useWalletClient } from "wagmi"
 
 export function ClientSentry() {
-  const { chain } = useSnapshot(clientProxy)
+  const { chain } = useClientProxy()
 
   const { isConnected } = useAccount()
 

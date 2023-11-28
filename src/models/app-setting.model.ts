@@ -1,7 +1,7 @@
 import { storageKeys } from "@/config/storage.config"
 import { version } from "@/config/version.config"
 import { persistedProxy } from "@/libs/valtio"
-import { subscribe } from "valtio"
+import { subscribe, useSnapshot } from "valtio"
 
 class AppSettingModel {
   colorScheme: ColorScheme = "dark"
@@ -17,6 +17,8 @@ class AppSettingModel {
 }
 
 export const appSettingProxy = persistedProxy(storageKeys.appSettings, new AppSettingModel())
+
+export const useAppSettingProxy = () => useSnapshot(appSettingProxy)
 
 export function applyColorScheme(colorScheme: ColorScheme) {
   document.documentElement.setAttribute("data-theme", colorScheme)

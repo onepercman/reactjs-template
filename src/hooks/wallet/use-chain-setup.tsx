@@ -1,12 +1,11 @@
 import { supportedChains } from "@/libs/wagmi"
-import { clientProxy } from "@/models/client.model"
+import { clientProxy, useClientProxy } from "@/models/client.model"
 import { useState } from "react"
 import toast from "react-hot-toast"
-import { useSnapshot } from "valtio"
 import { Chain, useSwitchNetwork } from "wagmi"
 
 export function useChainSetup() {
-  const { walletClient, chain } = useSnapshot(clientProxy)
+  const { walletClient, chain } = useClientProxy()
   const { switchNetworkAsync } = useSwitchNetwork()
   const [isSwitchingChain, setIsSwitchingChain] = useState(false)
 

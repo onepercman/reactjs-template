@@ -1,17 +1,16 @@
 import { ConnectorIds, Wallet, connectors } from "@/libs/wagmi"
-import { clientProxy } from "@/models/client.model"
+import { useClientProxy } from "@/models/client.model"
 import { dialogManagerProxy } from "@/models/dialog-manager.model"
-import { userProxy } from "@/models/user.model"
+import { useUserProxy } from "@/models/user.model"
 import { isDesktop } from "react-device-detect"
 import toast from "react-hot-toast"
-import { useSnapshot } from "valtio"
 import { UserRejectedRequestError } from "viem"
 import { useAccount, useConnect, useDisconnect } from "wagmi"
 
 export function useActive() {
   const { isConnecting } = useAccount()
-  const { chain, walletClient } = useSnapshot(clientProxy)
-  const { logout } = useSnapshot(userProxy)
+  const { chain, walletClient } = useClientProxy()
+  const { logout } = useUserProxy()
   const { connectAsync } = useConnect()
   const { disconnectAsync } = useDisconnect()
 
