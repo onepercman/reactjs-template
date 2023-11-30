@@ -3,7 +3,7 @@ import { apply } from "../utils"
 const base = apply(
   "inline-flex items-center justify-center gap-2 py-0 font-medium whitespace-nowrap",
   "border border-transparent ring ring-transparent",
-  "transition-all cursor-pointer",
+  "transition-colors cursor-pointer",
 )
 
 const states = {

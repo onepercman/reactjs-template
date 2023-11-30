@@ -264,7 +264,7 @@
   @apply text-right;
 }
 .rc-picker-input > input {
-  @apply w-full transition-all;
+  @apply w-full;
 }
 .rc-picker-input > input::-moz-placeholder {
   @apply opacity-100;
