@@ -3,7 +3,7 @@
 import { Float, FloatProps } from "@headlessui-float/react"
 import * as HeadlessUI from "@headlessui/react"
 import React from "react"
-import { HiChevronDown } from "react-icons/hi"
+import { HiCheck, HiChevronDown } from "react-icons/hi"
 import { Button } from "../button"
 import { cn } from "../utils/className"
 
@@ -23,6 +23,21 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(function (
   { float, options, placeholder, size, variant, className, ...props },
   ref,
 ) {
+  function getValue(value?: any) {
+    if (value?.length) {
+      return (
+        <div className="flex items-center gap-2">
+          {value.map((v: any) => (
+            <span key={v} className="btn size-xs btn-primary btn-normal">
+              {options?.find((el) => el.value === v)?.label}
+            </span>
+          ))}
+        </div>
+      )
+    }
+    return options?.find((el) => el.value === value)?.label || <span />
+  }
+
   return (
     <HeadlessUI.Listbox ref={ref} as="div" {...props}>
       {({ value: internalValue }) => (
@@ -47,21 +62,14 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(function (
             size={size}
             variant={variant}
           >
-            {options?.find((item) => item.value === internalValue)?.label || internalValue || (
-              <span className="text-muted">{placeholder}</span>
-            )}
+            {getValue(internalValue) || placeholder}
           </HeadlessUI.Listbox.Button>
           <HeadlessUI.Listbox.Options className="bg-component border-line flex flex-col overflow-hidden rounded border p-1 shadow">
             {options?.map((item) => (
               <HeadlessUI.Listbox.Option as={React.Fragment} key={item.value} value={item.value}>
                 {({ selected }) => (
-                  <div
-                    className={cn(
-                      "hover:bg-muted cursor-pointer rounded p-2 pr-8 transition-colors",
-                      selected && "bg-primary/20",
-                    )}
-                  >
-                    {item.label || item.value}
+                  <div className="hover:bg-muted flex cursor-pointer items-center justify-between gap-6 rounded p-2 pr-8 transition-colors">
+                    {item.label || item.value} {selected && <HiCheck />}
                   </div>
                 )}
               </HeadlessUI.Listbox.Option>
