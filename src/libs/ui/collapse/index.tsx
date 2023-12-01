@@ -4,7 +4,7 @@ import { useResizeObserver } from "@/libs/custom-hooks/use-resize-observer"
 import React, { useState } from "react"
 import { HiChevronUp } from "react-icons/hi"
 import { cn } from "../utils/className"
-import { useComposedRefs } from "../utils/compose-refs"
+import { useComposedRefs } from "../utils/ref"
 
 export interface CollapseProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
   title: React.ReactNode

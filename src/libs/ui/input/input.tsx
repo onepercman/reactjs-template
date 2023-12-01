@@ -4,7 +4,7 @@ import { VariantProps, cva } from "class-variance-authority"
 import React from "react"
 import { HiEye, HiEyeOff, HiX } from "react-icons/hi"
 import { cn } from "../utils/className"
-import { useComposedRefs } from "../utils/compose-refs"
+import { useComposedRefs } from "../utils/ref"
 
 const input = cva("input", {
   variants: {

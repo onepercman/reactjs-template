@@ -4,7 +4,7 @@ import { useResizeObserver } from "@/libs/custom-hooks/use-resize-observer"
 import { Tab, TabGroupProps } from "@headlessui/react"
 import React, { ElementType } from "react"
 import { cn } from "../utils/className"
-import { useComposedRefs } from "../utils/compose-refs"
+import { useComposedRefs } from "../utils/ref"
 
 type BaseProps = TabGroupProps<ElementType>
 interface SlipTabProps extends BaseProps {
