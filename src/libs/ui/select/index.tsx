@@ -17,7 +17,7 @@ export interface SelectProps<T = any> extends HeadlessUI.ListboxProps<Button, T,
 }
 
 function SelectComponent<T = any>(
-  { multiple, float, options, placeholder, size, variant, className, ...props }: SelectProps<T>,
+  { multiple, float, options, size, variant, className, placeholder, ...props }: SelectProps<T>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   function getValue(value?: any) {
@@ -32,11 +32,15 @@ function SelectComponent<T = any>(
         </div>
       )
     }
-    return options?.find((el) => el.value === value)?.children || <span />
+    return (
+      options?.find((el) => el.value === value)?.children || <span className="text-muted">{placeholder}</span> || (
+        <span />
+      )
+    )
   }
 
   return (
-    <HeadlessUI.Listbox ref={ref} as="div" multiple={multiple} {...props}>
+    <HeadlessUI.Listbox ref={ref} multiple={multiple} {...props}>
       {({ value: internalValue }) => (
         <Float
           portal={true}
@@ -59,7 +63,7 @@ function SelectComponent<T = any>(
             size={size}
             variant={variant}
           >
-            {getValue(internalValue) || placeholder}
+            {getValue(internalValue)}
           </HeadlessUI.Listbox.Button>
           <HeadlessUI.Listbox.Options className="bg-component border-line flex flex-col overflow-hidden rounded border p-1 shadow">
             {options?.map((item) => (

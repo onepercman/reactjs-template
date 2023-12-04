@@ -11,14 +11,14 @@ interface TableColumnProps<T extends TableRow> extends React.ThHTMLAttributes<HT
   key: string
   dataIndex: string
   sort: boolean
-  render(text: T[string], record: T, index: number): void
+  render(value: T[string], row: any, index: number): void
 }
 
 interface TableProps<T extends TableRow> extends React.HTMLAttributes<HTMLTableElement> {
   columns?: readonly Partial<TableColumnProps<T>>[]
   data?: readonly T[]
   className?: string
-  onSelectRow?(row?: T): void
+  onSelectRow?(row?: any): void
   loading?: boolean
   tableClassName?: string
   pagination?: PaginationProps
