@@ -4,44 +4,46 @@ import { Loader } from "../loader"
 import { Pagination, PaginationProps } from "../pagination"
 import { cn } from "../utils/className"
 
-type TableRow = Record<string, any>
+interface TableRow {
+  [key: string]: any
+}
 
-interface TableColumnProps<T extends TableRow> extends React.ThHTMLAttributes<HTMLTableCellElement> {
+interface TableColumnProps<Row extends TableRow> extends React.ThHTMLAttributes<HTMLTableCellElement> {
   title: string
   key: string
   dataIndex: string
   sort: boolean
-  render(value: T[string], row: any, index: number): void
+  render(value: Row[string], row: Row, index: number): void
 }
 
-interface TableProps<T extends TableRow> extends React.HTMLAttributes<HTMLTableElement> {
-  columns?: readonly Partial<TableColumnProps<T>>[]
-  data?: readonly T[]
+interface TableProps<Row extends TableRow> extends React.HTMLAttributes<HTMLTableElement> {
+  columns?: readonly Partial<TableColumnProps<Row>>[]
+  data?: Row[]
   className?: string
-  onSelectRow?(row?: any): void
+  onSelectRow?(row?: Row): void
   loading?: boolean
   tableClassName?: string
   pagination?: PaginationProps
 }
 
-function TableComponent<T extends TableRow>(
-  { columns, data, onSelectRow, className, loading, tableClassName, pagination, ...props }: TableProps<T>,
+function TableComponent<Row extends TableRow>(
+  { columns, data, onSelectRow, className, loading, tableClassName, pagination, ...props }: TableProps<Row>,
   ref: React.ForwardedRef<HTMLTableElement>,
 ) {
   return (
     <div
       className={cn(
         className,
-        "scrollbar scrollbar-track-inherit scrollbar-thumb-inherit w-full overflow-x-auto overflow-y-hidden rounded shadow",
+        "scrollbar scrollbar-track-inherit scrollbar-thumb-inherit w-full overflow-x-auto overflow-y-hidden rounded",
       )}
     >
       <table ref={ref} className={cn("w-full border-separate border-spacing-y-1", tableClassName)} {...props}>
         <thead className="text-left">
           <tr>
-            {columns?.map(({ key, title, ...column }, index) => (
+            {columns?.map(({ key, title, className, ...column }, index) => (
               <th
                 key={key || title || index}
-                className={cn("text-base-content bg-transparent px-4", className)}
+                className={cn("!text-2xs text-muted bg-transparent px-4", className)}
                 {...column}
               >
                 {title}{" "}
@@ -53,7 +55,7 @@ function TableComponent<T extends TableRow>(
         <tbody className="relative text-left">
           <Loader
             className={cn(
-              "absolute inset-0 z-20 bg-black/60 backdrop-blur duration-300",
+              "bg-body/60 absolute inset-0 z-20 rounded backdrop-blur duration-300",
               loading ? "opacity-100" : "pointer-events-none opacity-0",
             )}
           />
@@ -66,16 +68,19 @@ function TableComponent<T extends TableRow>(
               }}
               onClick={() => onSelectRow && onSelectRow(row)}
             >
-              {columns?.map(({ key, ...column }, columnIndex) => (
+              {columns?.map(({ key, className, ...column }, columnIndex) => (
                 <td
                   key={key || columnIndex}
                   className={cn(
                     "bg-inherit px-4 py-2 transition-all first:rounded-l last:rounded-r",
                     onSelectRow && "group-hover:bg-primary/30 cursor-pointer",
+                    className,
                   )}
                   {...column}
                 >
-                  {column.render ? column.render(row[column.dataIndex || ""], row, index) : row[column.dataIndex || ""]}
+                  {column.render
+                    ? column.render(row[column.dataIndex || ""] as (typeof row)["string"], row, index)
+                    : row[column.dataIndex || ""]}
                 </td>
               ))}
             </tr>
@@ -92,6 +97,6 @@ function TableComponent<T extends TableRow>(
   )
 }
 
-export const Table = React.forwardRef(TableComponent) as <T extends TableRow>(
-  props: TableProps<T> & { ref?: React.ForwardedRef<HTMLTableElement> },
+export const Table = React.forwardRef(TableComponent) as <Row extends TableRow>(
+  props: TableProps<Row> & { ref?: React.ForwardedRef<HTMLTableElement> },
 ) => ReturnType<typeof TableComponent>
