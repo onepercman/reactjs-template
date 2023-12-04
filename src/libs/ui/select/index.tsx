@@ -23,7 +23,7 @@ function SelectComponent<T = any>(
   function getValue(value?: any) {
     if (multiple) {
       return (
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 py-1">
           {value.map((v: any) => (
             <span key={v} className="btn size-xs btn-primary btn-normal">
               {options?.find((el) => el.value === v)?.children}
@@ -58,7 +58,7 @@ function SelectComponent<T = any>(
         >
           <HeadlessUI.Listbox.Button
             as={Button}
-            className={cn("relative justify-between", className)}
+            className={cn("relative justify-between", multiple && "h-fit", className)}
             rightIcon={<HiChevronDown />}
             size={size}
             variant={variant}
