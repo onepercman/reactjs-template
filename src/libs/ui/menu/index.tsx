@@ -17,7 +17,7 @@ export interface MenuItem {
 export interface MenuProps {
   selected?: string
   menu?: Array<MenuItem>
-  children?: React.ReactElement
+  children?: React.ReactElement | React.ReactNode
   onSelect?(value?: any): void
   float?: Omit<FloatProps, "children">
   overlayClass?: string
@@ -28,6 +28,21 @@ export const Menu = React.forwardRef<HTMLElement, MenuProps>(function (
   ref,
 ) {
   const id = React.useId()
+
+  function _renderToggle() {
+    if (typeof (children as React.ReactElement).type === "string") {
+      return (
+        <HeadlessUI.Menu.Button
+          key={(children as React.ReactElement).key}
+          as={(children as React.ReactElement).type}
+          {...(children as React.ReactElement).props}
+        />
+      )
+    }
+    return <HeadlessUI.Menu.Button>{children}</HeadlessUI.Menu.Button>
+  }
+
+  if (!children) return
 
   return (
     <HeadlessUI.Menu ref={ref} {...props}>
@@ -45,9 +60,7 @@ export const Menu = React.forwardRef<HTMLElement, MenuProps>(function (
         leaveTo="opacity-0 scale-95"
         {...float}
       >
-        <HeadlessUI.Menu.Button as="div" role="button">
-          {children}
-        </HeadlessUI.Menu.Button>
+        {_renderToggle()}
         <HeadlessUI.Menu.Items className={cn("bg-component flex flex-col rounded p-1 shadow", overlayClass)}>
           {menu?.map((item, index) =>
             item.children?.length ? (
