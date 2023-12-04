@@ -7,35 +7,32 @@ import { HiCheck, HiChevronDown } from "react-icons/hi"
 import { Button } from "../button"
 import { cn } from "../utils/className"
 
-interface SelectOption {
-  label?: React.ReactNode
-  value?: any
+interface SelectOption<T> extends HeadlessUI.ListboxOptionProps<Button, T> {
+  children?: React.ReactNode
 }
 
-type BaseProps = HeadlessUI.ListboxProps<Button, any, any>
-
-export interface SelectProps extends BaseProps {
-  options?: Array<SelectOption>
+export interface SelectProps<T> extends HeadlessUI.ListboxProps<Button, T, T> {
+  options?: Array<SelectOption<T>>
   float?: Omit<FloatProps, "as" | "children" | "className">
 }
 
-export const Select = React.forwardRef<HTMLDivElement, SelectProps>(function (
-  { float, options, placeholder, size, variant, className, ...props },
-  ref,
+function SelectComponent<T>(
+  { float, options, placeholder, size, variant, className, ...props }: SelectProps<T>,
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   function getValue(value?: any) {
-    if (value?.length) {
+    if (value?.length > 1) {
       return (
         <div className="flex items-center gap-2">
           {value.map((v: any) => (
             <span key={v} className="btn size-xs btn-primary btn-normal">
-              {options?.find((el) => el.value === v)?.label}
+              {options?.find((el) => el.value === v)?.children}
             </span>
           ))}
         </div>
       )
     }
-    return options?.find((el) => el.value === value)?.label || <span />
+    return options?.find((el) => el.value === value)?.children || <span />
   }
 
   return (
@@ -66,10 +63,10 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(function (
           </HeadlessUI.Listbox.Button>
           <HeadlessUI.Listbox.Options className="bg-component border-line flex flex-col overflow-hidden rounded border p-1 shadow">
             {options?.map((item) => (
-              <HeadlessUI.Listbox.Option as={React.Fragment} key={item.value} value={item.value}>
+              <HeadlessUI.Listbox.Option as={React.Fragment} key={JSON.stringify(item)} value={item.value}>
                 {({ selected }) => (
                   <div className="hover:bg-muted flex cursor-pointer items-center justify-between gap-6 rounded p-2 pr-8 transition-colors">
-                    {item.label || item.value} {selected && <HiCheck />}
+                    {item.children || (item.value as React.ReactNode)} {selected && <HiCheck />}
                   </div>
                 )}
               </HeadlessUI.Listbox.Option>
@@ -79,6 +76,8 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(function (
       )}
     </HeadlessUI.Listbox>
   )
-})
+}
 
-Select.displayName = "Select"
+export const Select = React.forwardRef(SelectComponent) as <T>(
+  props: SelectProps<T> & { ref?: React.ForwardedRef<HTMLDivElement> },
+) => ReturnType<typeof SelectComponent>
