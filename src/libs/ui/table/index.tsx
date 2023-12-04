@@ -1,49 +1,32 @@
 import React from "react"
-import { HiArrowDown } from "react-icons/hi"
 import { Empty } from "../empty"
 import { Loader } from "../loader"
 import { Pagination, PaginationProps } from "../pagination"
 import { cn } from "../utils/className"
 
-interface TableColumnProps extends React.ThHTMLAttributes<HTMLTableCellElement> {
+type TableRow = Record<string, any>
+
+interface TableColumnProps<T extends TableRow> extends React.ThHTMLAttributes<HTMLTableCellElement> {
   title: string
   key: string
   dataIndex: string
-  className?: string
-  sort?: boolean
-  render?(text: any, record: any, index: number): void
+  sort: boolean
+  render(text: T[string], record: T, index: number): void
 }
 
-interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
-  columns?: Array<TableColumnProps>
-  sort?: string
-  onSort?(key: string): void
-  reverse?: boolean
-  data?: Array<any>
+interface TableProps<T extends TableRow> extends React.HTMLAttributes<HTMLTableElement> {
+  columns?: readonly Partial<TableColumnProps<T>>[]
+  data?: readonly T[]
   className?: string
-  onSelect?(row: any): void
+  onSelectRow?(row?: T): void
   loading?: boolean
   tableClassName?: string
   pagination?: PaginationProps
-  dataKey?: string
 }
 
-export const Table = React.forwardRef<HTMLTableElement, TableProps>(function (
-  {
-    columns,
-    data,
-    sort = "",
-    onSort,
-    reverse,
-    onSelect,
-    className,
-    loading,
-    tableClassName,
-    pagination,
-    dataKey,
-    ...props
-  },
-  ref,
+function TableComponent<T extends TableRow>(
+  { columns, data, onSelectRow, className, loading, tableClassName, pagination, ...props }: TableProps<T>,
+  ref: React.ForwardedRef<HTMLTableElement>,
 ) {
   return (
     <div
@@ -57,29 +40,11 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(function (
           <tr>
             {columns?.map(({ key, title, ...column }, index) => (
               <th
-                key={key}
-                className={cn(
-                  "text-base-content bg-transparent px-4 !text-[11px] font-light",
-                  sort && "cursor-pointer",
-                  index === columns?.length - 1 && "text-right",
-                  className,
-                )}
-                onClick={() => {
-                  if (sort && onSort) {
-                    onSort(key)
-                  }
-                }}
+                key={key || title || index}
+                className={cn("text-base-content bg-transparent px-4", className)}
                 {...column}
               >
                 {title}{" "}
-                {sort === key && (
-                  <HiArrowDown
-                    className={cn(
-                      "text-primary ml-2 inline-block text-xs transition-transform",
-                      reverse && "rotate-180",
-                    )}
-                  />
-                )}
               </th>
             ))}
           </tr>
@@ -94,23 +59,23 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(function (
           />
           {data?.map((row, index) => (
             <tr
-              key={dataKey ? row[dataKey] || index : index}
+              key={row.key || index}
               className="bg-component animate-tableRow ease-expo group cursor-pointer opacity-0 transition-colors hover:brightness-125"
               style={{
                 animationDelay: index / 20 + "s",
               }}
-              onClick={() => onSelect && onSelect(row)}
+              onClick={() => onSelectRow && onSelectRow(row)}
             >
               {columns?.map(({ key, ...column }, columnIndex) => (
                 <td
-                  key={columnIndex + key}
+                  key={key || columnIndex}
                   className={cn(
-                    "bg-inherit px-4 py-2 font-light transition-all first:rounded-l last:rounded-r",
-                    onSelect && "group-hover:bg-primary/30 cursor-pointer",
+                    "bg-inherit px-4 py-2 transition-all first:rounded-l last:rounded-r",
+                    onSelectRow && "group-hover:bg-primary/30 cursor-pointer",
                   )}
                   {...column}
                 >
-                  {column.render ? column.render(row[column.dataIndex], row, index) : row[column.dataIndex]}
+                  {column.render ? column.render(row[column.dataIndex || ""], row, index) : row[column.dataIndex || ""]}
                 </td>
               ))}
             </tr>
@@ -125,6 +90,8 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(function (
       )}
     </div>
   )
-})
+}
 
-Table.displayName = "Table"
+export const Table = React.forwardRef(TableComponent) as <T extends TableRow>(
+  props: TableProps<T> & { ref?: React.ForwardedRef<HTMLUListElement> },
+) => ReturnType<typeof TableComponent>

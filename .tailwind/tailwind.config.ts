@@ -30,6 +30,27 @@ const config: Config = {
         "expo-in": "cubic-bezier(0.95, 0.05, 0.795, 0.035)",
         "expo-out": "cubic-bezier(0.19, 1, 0.22, 1)",
       },
+      keyframes: {
+        skeleton: {
+          to: {
+            transform: "translateX(100%)",
+          },
+        },
+        tableRow: {
+          from: {
+            opacity: "0%",
+            transform: "translateY(1rem) scaleY(110%)",
+          },
+          to: {
+            opacity: "100%",
+            transform: "translateY(0)",
+          },
+        },
+      },
+      animation: {
+        tableRow: "tableRow 0.3s forwards",
+        skeleton: "skeleton 2s infinite",
+      },
     },
   },
   plugins: [
