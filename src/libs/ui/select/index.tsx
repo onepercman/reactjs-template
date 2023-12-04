@@ -7,16 +7,16 @@ import { HiCheck, HiChevronDown } from "react-icons/hi"
 import { Button } from "../button"
 import { cn } from "../utils/className"
 
-interface SelectOption<T> extends HeadlessUI.ListboxOptionProps<Button, T> {
+export interface SelectOption<T = any> extends HeadlessUI.ListboxOptionProps<Button, T> {
   children?: React.ReactNode
 }
 
-export interface SelectProps<T> extends HeadlessUI.ListboxProps<Button, T, T> {
+export interface SelectProps<T = any> extends HeadlessUI.ListboxProps<Button, T, T> {
   options?: Array<SelectOption<T>>
   float?: Omit<FloatProps, "as" | "children" | "className">
 }
 
-function SelectComponent<T>(
+function SelectComponent<T = any>(
   { float, options, placeholder, size, variant, className, ...props }: SelectProps<T>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
@@ -78,6 +78,6 @@ function SelectComponent<T>(
   )
 }
 
-export const Select = React.forwardRef(SelectComponent) as <T>(
+export const Select = React.forwardRef(SelectComponent) as <T = any>(
   props: SelectProps<T> & { ref?: React.ForwardedRef<HTMLDivElement> },
 ) => ReturnType<typeof SelectComponent>
