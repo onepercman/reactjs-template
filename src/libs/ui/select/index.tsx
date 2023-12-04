@@ -17,11 +17,11 @@ export interface SelectProps<T = any> extends HeadlessUI.ListboxProps<Button, T,
 }
 
 function SelectComponent<T = any>(
-  { float, options, placeholder, size, variant, className, ...props }: SelectProps<T>,
+  { multiple, float, options, placeholder, size, variant, className, ...props }: SelectProps<T>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   function getValue(value?: any) {
-    if (value?.length > 1) {
+    if (multiple) {
       return (
         <div className="flex items-center gap-2">
           {value.map((v: any) => (
@@ -36,7 +36,7 @@ function SelectComponent<T = any>(
   }
 
   return (
-    <HeadlessUI.Listbox ref={ref} as="div" {...props}>
+    <HeadlessUI.Listbox ref={ref} as="div" multiple={multiple} {...props}>
       {({ value: internalValue }) => (
         <Float
           portal={true}
