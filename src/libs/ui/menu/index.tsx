@@ -29,7 +29,7 @@ export const Menu = React.forwardRef<HTMLElement, MenuProps>(function (
 ) {
   const id = React.useId()
 
-  function _renderToggle() {
+  function _renderTrigger() {
     if (typeof (children as React.ReactElement).type === "string") {
       return (
         <HeadlessUI.Menu.Button
@@ -60,7 +60,7 @@ export const Menu = React.forwardRef<HTMLElement, MenuProps>(function (
         leaveTo="opacity-0 scale-95"
         {...float}
       >
-        {_renderToggle()}
+        {_renderTrigger()}
         <HeadlessUI.Menu.Items className={cn("bg-component flex flex-col rounded p-1 shadow", overlayClass)}>
           {menu?.map((item, index) =>
             item.children?.length ? (
