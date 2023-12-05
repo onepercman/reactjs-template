@@ -49,13 +49,11 @@ export type ComponentWithAs<Props, DefaultTag extends ReactTag = "div"> = {
   id?: string
 }
 
-type ForwardRefWithAs<Props> = <As extends ReactTag>(
-  props: PropsWithAsAttributes<Props, As>,
-  ref: React.Ref<HTMLElement>,
-) => React.ReactElement | null
-
 export function forwardRefWithAs<As extends ReactTag = "div", Props extends object = object>(
-  render: ForwardRefWithAs<Props>,
+  render: <As extends ReactTag>(
+    props: PropsWithAsAttributes<Props, As>,
+    ref: React.Ref<HTMLElement>,
+  ) => React.ReactElement | null,
 ) {
   return React.forwardRef<HTMLElement, PropsWithAsAttributes<Props, As>>(render) as unknown as ComponentWithAs<
     Props,
