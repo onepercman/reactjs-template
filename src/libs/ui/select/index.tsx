@@ -83,5 +83,5 @@ function SelectComponent<T = any>(
 }
 
 export const Select = React.forwardRef(SelectComponent) as <T = any>(
-  props: SelectProps<T> & { ref?: React.ForwardedRef<HTMLDivElement> },
+  props: SelectProps<T> & React.RefAttributes<HTMLDivElement>,
 ) => ReturnType<typeof SelectComponent>

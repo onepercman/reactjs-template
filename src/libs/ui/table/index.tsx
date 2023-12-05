@@ -98,5 +98,5 @@ function TableComponent<Row extends TableRow>(
 }
 
 export const Table = React.forwardRef(TableComponent) as <Row extends TableRow>(
-  props: TableProps<Row> & { ref?: React.ForwardedRef<HTMLTableElement> },
+  props: TableProps<Row> & React.RefAttributes<HTMLTableElement>,
 ) => ReturnType<typeof TableComponent>
