@@ -37,9 +37,17 @@ export type PropsWithAsAttributes<Props, As extends ReactTag> = Props & {
   as?: As
 } & Omit<React.HTMLAttributes<As>, keyof Props>
 
-export type ComponentWithAs<Props, DefaultTag extends ReactTag = "div"> = <As extends ReactTag = DefaultTag>(
-  props: React.ComponentPropsWithoutRef<As> & PropsWithAsAttributes<Props, As> & React.RefAttributes<Element>,
-) => React.ReactElement | null
+export type ComponentWithAs<Props, DefaultTag extends ReactTag = "div"> = {
+  <As extends ReactTag = DefaultTag>(
+    props: React.ComponentPropsWithoutRef<As> & PropsWithAsAttributes<Props, As> & React.RefAttributes<Element>,
+  ): React.ReactElement | null
+  // Exotic
+  displayName?: string
+  propTypes?: React.WeakValidationMap<any>
+  contextTypes?: React.ValidationMap<any>
+  defaultProps?: Partial<any>
+  id?: string
+}
 
 type ForwardRefWithAs<Props> = <As extends ReactTag>(
   props: PropsWithAsAttributes<Props, As>,

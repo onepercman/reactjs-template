@@ -42,3 +42,5 @@ export const Container = forwardRefWithAs<"div", ContainerProps>(function (
     </Component>
   )
 })
+
+Container.displayName = "Container"

@@ -14,3 +14,5 @@ export const Skeleton = forwardRefWithAs<"div", React.HTMLAttributes<HTMLDivElem
 
   return <Component ref={ref} className={_className} {...props} />
 })
+
+Skeleton.displayName = "Skeleton"
