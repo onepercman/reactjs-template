@@ -4,7 +4,7 @@ import React from "react"
 import { cn } from "../utils/className"
 import { forwardRefWithAs } from "../utils/ref"
 
-export const Skeleton = forwardRefWithAs<React.HTMLAttributes<HTMLDivElement>, "div">(function (
+export const Skeleton = forwardRefWithAs<"div", React.HTMLAttributes<HTMLDivElement>>(function (
   { as = "div", className, ...props },
   ref,
 ) {

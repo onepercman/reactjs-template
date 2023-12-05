@@ -16,7 +16,7 @@ export interface SelectProps<T = any> extends HeadlessUI.ListboxProps<Button, T,
   float?: Omit<FloatProps, "as" | "children" | "className">
 }
 
-function SelectComponent<T = any>(
+function _render<T = any>(
   { multiple, float, options, size, variant, className, placeholder, ...props }: SelectProps<T>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
@@ -82,6 +82,6 @@ function SelectComponent<T = any>(
   )
 }
 
-export const Select = React.forwardRef(SelectComponent) as <T = any>(
+export const Select = React.forwardRef(_render) as <T = any>(
   props: SelectProps<T> & React.RefAttributes<HTMLDivElement>,
-) => ReturnType<typeof SelectComponent>
+) => ReturnType<typeof _render>
