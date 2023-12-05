@@ -23,7 +23,7 @@ export type ComboboxProps<
   nullable?: Nullable
 }
 
-function ComboboxComponent<T = any, Nullable extends boolean = false, Multiple extends boolean = false>(
+function _render<T = any, Nullable extends boolean = false, Multiple extends boolean = false>(
   { float, options, size, variant, className, placeholder, ...props }: ComboboxProps<T, Nullable, Multiple>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
@@ -82,10 +82,10 @@ function ComboboxComponent<T = any, Nullable extends boolean = false, Multiple e
   )
 }
 
-export const Combobox = React.forwardRef(ComboboxComponent) as <
+export const Combobox = React.forwardRef(_render) as <
   T = any,
   Multiple extends boolean = false,
   Nullable extends boolean = false,
 >(
   props: ComboboxProps<T, Multiple, Nullable> & { ref?: React.ForwardedRef<HTMLDivElement> },
-) => ReturnType<typeof ComboboxComponent>
+) => ReturnType<typeof _render>

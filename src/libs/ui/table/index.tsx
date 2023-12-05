@@ -26,7 +26,7 @@ interface TableProps<Row extends TableRow> extends React.HTMLAttributes<HTMLTabl
   pagination?: PaginationProps
 }
 
-function TableComponent<Row extends TableRow>(
+function _render<Row extends TableRow>(
   { columns, data, onSelectRow, className, loading, tableClassName, pagination, ...props }: TableProps<Row>,
   ref: React.ForwardedRef<HTMLTableElement>,
 ) {
@@ -97,6 +97,6 @@ function TableComponent<Row extends TableRow>(
   )
 }
 
-export const Table = React.forwardRef(TableComponent) as <Row extends TableRow>(
+export const Table = React.forwardRef(_render) as <Row extends TableRow>(
   props: TableProps<Row> & React.RefAttributes<HTMLTableElement>,
-) => ReturnType<typeof TableComponent>
+) => ReturnType<typeof _render>
