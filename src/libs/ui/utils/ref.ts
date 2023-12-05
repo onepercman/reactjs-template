@@ -2,44 +2,7 @@ import React from "react"
 
 type PossibleRef<T> = React.Ref<T> | undefined
 
-export type As = keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>
-
-export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T> & {
-  as?: As
-}
-
-export type OmitCommonProps<Target, OmitAdditionalProps extends keyof any = never> = Omit<
-  Target,
-  "transition" | "as" | "color" | "translate" | OmitAdditionalProps
-> & {
-  htmlTranslate?: "yes" | "no" | undefined
-}
-
-export type RightJoinProps<
-  SourceProps extends object = object,
-  OverrideProps extends object = object,
-> = OmitCommonProps<SourceProps, keyof OverrideProps> & OverrideProps
-
-export type MergeWithAs<
-  ComponentProps extends object,
-  AsProps extends object,
-  AdditionalProps extends object = object,
-  AsComponent extends As = As,
-> = (RightJoinProps<ComponentProps, AdditionalProps> | RightJoinProps<AsProps, AdditionalProps>) & {
-  as?: AsComponent
-}
-
-export type ComponentWithAs<Component extends As, Props extends object = object> = {
-  <AsComponent extends As = Component>(
-    props: MergeWithAs<React.ComponentProps<Component>, React.ComponentProps<AsComponent>, Props, AsComponent>,
-  ): JSX.Element
-
-  displayName?: string
-  propTypes?: React.WeakValidationMap<any>
-  contextTypes?: React.ValidationMap<any>
-  defaultProps?: Partial<any>
-  id?: string
-}
+export type ReactTag = keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>
 
 /**
  * Set a given ref to a given value
@@ -70,13 +33,22 @@ export function useComposedRefs<T>(...refs: PossibleRef<T>[]) {
   return React.useCallback(composeRefs(...refs), refs)
 }
 
-export function forwardRefWithAs<Component extends As, Props extends object>(
-  component: React.ForwardRefRenderFunction<
-    any,
-    RightJoinProps<PropsOf<Component>, Props> & {
-      as?: As
-    }
-  >,
-) {
-  return React.forwardRef(component) as unknown as ComponentWithAs<Component, Props>
+export type PropsWithAsAttributes<Props, As extends ReactTag> = Props & {
+  as?: As
+} & Omit<React.HTMLAttributes<As>, keyof Props>
+
+export type ComponentWithAs<Props, DefaultTag extends ReactTag = "div"> = <As extends ReactTag = DefaultTag>(
+  props: React.ComponentPropsWithoutRef<As> & PropsWithAsAttributes<Props, As> & React.RefAttributes<Element>,
+) => React.ReactElement | null
+
+type ForwardRefWithAs<Props> = <As extends ReactTag>(
+  props: PropsWithAsAttributes<Props, As>,
+  ref: React.Ref<HTMLElement>,
+) => React.ReactElement | null
+
+export function forwardRefWithAs<Props, As extends ReactTag = "div">(render: ForwardRefWithAs<Props>) {
+  return React.forwardRef<HTMLElement, PropsWithAsAttributes<Props, As>>(render) as unknown as ComponentWithAs<
+    Props,
+    As
+  >
 }

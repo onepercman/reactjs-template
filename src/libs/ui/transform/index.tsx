@@ -10,17 +10,15 @@ interface TransformProps {
   appear?: boolean
 }
 
-export const Transform = forwardRefWithAs<"div", TransformProps>(function (
+export const Transform = forwardRefWithAs<TransformProps, "div">(function (
   { as = "div", variant, children, ...props },
   ref,
 ) {
   return (
     <Transition {...props} as={React.Fragment} unmount appear>
-      <Transition.Child ref={ref} as={as} {...variant}>
+      <Transition.Child ref={ref} as={as as React.ElementType} {...variant}>
         {children}
       </Transition.Child>
     </Transition>
   )
 })
-
-Transform.displayName = "Transform"

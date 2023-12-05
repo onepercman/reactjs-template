@@ -4,7 +4,7 @@ import React from "react"
 import { cn } from "../utils/className"
 import { forwardRefWithAs } from "../utils/ref"
 
-export const Skeleton = forwardRefWithAs<"div", React.HTMLAttributes<HTMLDivElement>>(function (
+export const Skeleton = forwardRefWithAs<React.HTMLAttributes<HTMLDivElement>, "div">(function (
   { as = "div", className, ...props },
   ref,
 ) {
@@ -14,5 +14,3 @@ export const Skeleton = forwardRefWithAs<"div", React.HTMLAttributes<HTMLDivElem
 
   return <Component ref={ref} className={_className} {...props} />
 })
-
-Skeleton.displayName = "Skeleton"

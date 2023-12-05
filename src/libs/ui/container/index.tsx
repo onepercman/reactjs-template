@@ -1,8 +1,7 @@
 "use client"
 
 import { VariantProps, cva } from "class-variance-authority"
-import React from "react"
-import { forwardRefWithAs } from "../utils/ref"
+import { ReactTag, forwardRefWithAs } from "../utils/ref"
 
 const container = cva("mx-auto w-full p-6", {
   variants: {
@@ -29,18 +28,13 @@ const container = cva("mx-auto w-full p-6", {
 
 type ContainerVariantProps = VariantProps<typeof container>
 
-export interface ContainerProps extends ContainerVariantProps {
-  className?: string
-  size?: "mobile" | "tablet" | "retina" | "fhd" | "qhd" | "uhd" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-}
+export interface ContainerProps extends ContainerVariantProps {}
 
-const defaultElement: React.ElementType = "div"
-
-export const Container = forwardRefWithAs<typeof defaultElement, ContainerProps>(function (
-  { as = defaultElement, children, className, size, ...props },
+export const Container = forwardRefWithAs<ContainerProps, "div">(function (
+  { as = "div", children, className, size, ...props },
   ref,
 ) {
-  const Component = as
+  const Component = as as ReactTag
 
   return (
     <Component ref={ref} className={container({ size, className })} {...props}>
@@ -48,5 +42,3 @@ export const Container = forwardRefWithAs<typeof defaultElement, ContainerProps>
     </Component>
   )
 })
-
-Container.displayName = "Container"
