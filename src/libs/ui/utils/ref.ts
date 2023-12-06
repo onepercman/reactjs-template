@@ -60,3 +60,14 @@ export function forwardRefWithAs<As extends ReactTag = "div", Props extends obje
     As
   >
 }
+
+export function forwardRefWithGeneric<As extends ReactTag = "div", Props extends object = object>(
+  render: <As extends ReactTag, Poly extends object = any>(
+    props: PropsWithAsAttributes<Props, As> & Poly,
+    ref: React.Ref<As>,
+  ) => React.ReactElement | null,
+) {
+  return React.forwardRef<As, PropsWithAsAttributes<Props, As> & Parameters<typeof render>[0]>(
+    render,
+  ) as unknown as ComponentWithAs<Props & Parameters<typeof render>[0], As>
+}
