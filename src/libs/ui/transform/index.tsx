@@ -10,7 +10,7 @@ interface TransformProps {
   appear?: boolean
 }
 
-export const Transform = forwardRefWithAs<TransformProps, "div">(function (
+export const Transform = forwardRefWithAs<"div", TransformProps>(function (
   { as = "div", variant, children, ...props },
   ref,
 ) {
