@@ -2,7 +2,7 @@
 
 import { Transition, TransitionClasses } from "@headlessui/react"
 import React from "react"
-import { forwardRefWithGeneric } from "../utils/ref"
+import { forwardRefWithAs } from "../utils/ref"
 
 interface TransformProps {
   variant?: TransitionClasses
@@ -10,7 +10,7 @@ interface TransformProps {
   appear?: boolean
 }
 
-export const Transform = forwardRefWithGeneric<"div", TransformProps>(function (
+export const Transform = forwardRefWithAs<"div", TransformProps>(function (
   { as = "div", variant, children, ...props },
   ref,
 ) {

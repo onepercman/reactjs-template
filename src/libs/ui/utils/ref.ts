@@ -8,10 +8,7 @@ type PropsWithAsAttributes<Props, As extends ReactTag> = Props & {
   as?: As
 } & Omit<React.HTMLAttributes<As>, keyof Props>
 
-type ComponentWithAs<Props, DefaultTag extends ReactTag = "div"> = {
-  <As extends ReactTag = DefaultTag>(
-    props: React.ComponentPropsWithoutRef<As> & PropsWithAsAttributes<Props, As> & React.RefAttributes<Element>,
-  ): React.ReactElement | null
+type ForwardedRefComponent = {
   displayName?: string
   propTypes?: React.WeakValidationMap<any>
   contextTypes?: React.ValidationMap<any>
@@ -19,10 +16,13 @@ type ComponentWithAs<Props, DefaultTag extends ReactTag = "div"> = {
   id?: string
 }
 
-type ForwardRefWithGenericRenderFunction<Props> = <As extends ReactTag>(
-  props: PropsWithAsAttributes<Props, As>,
-  ref: React.Ref<As>,
-) => React.ReactElement | null
+type ComposedForwardRefWithAsProps<As extends ReactTag, Props> = React.ComponentPropsWithoutRef<As> &
+  PropsWithAsAttributes<Props, As> &
+  React.RefAttributes<Element>
+
+type ComponentWithAs<Props, DefaultTag extends ReactTag = "div"> = ForwardedRefComponent & {
+  <As extends ReactTag = DefaultTag>(props: ComposedForwardRefWithAsProps<As, Props>): React.ReactElement | null
+}
 
 function setRef<T>(ref: PossibleRef<T>, value: T) {
   if (typeof ref === "function") {
@@ -40,12 +40,22 @@ function useComposedRefs<T>(...refs: PossibleRef<T>[]) {
   return React.useCallback(composeRefs(...refs), refs)
 }
 
-function forwardRefWithGeneric<As extends ReactTag = "div", Props extends object = object>(
-  render: ForwardRefWithGenericRenderFunction<Props>,
+function forwardRefWithAs<As extends ReactTag = "div", Props extends object = object>(
+  render: <As extends ReactTag>(
+    props: PropsWithAsAttributes<Props, As>,
+    ref: React.Ref<As>,
+  ) => React.ReactElement | null,
 ) {
   return React.forwardRef<As, PropsWithAsAttributes<Props, As>>(render) as unknown as ComponentWithAs<Props, As>
 }
 
-export type { ComponentWithAs, ForwardRefWithGenericRenderFunction, PossibleRef, PropsWithAsAttributes, ReactTag }
+export type {
+  ComponentWithAs,
+  ComposedForwardRefWithAsProps,
+  ForwardedRefComponent,
+  PossibleRef,
+  PropsWithAsAttributes,
+  ReactTag,
+}
 
-export { forwardRefWithGeneric, useComposedRefs }
+export { forwardRefWithAs, useComposedRefs }
