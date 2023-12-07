@@ -4,6 +4,27 @@ type PossibleRef<T> = React.Ref<T> | undefined
 
 export type ReactTag = keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>
 
+export type PropsWithAsAttributes<Props, As extends ReactTag> = Props & {
+  as?: As
+} & Omit<React.HTMLAttributes<As>, keyof Props>
+
+export type ComponentWithAs<Props, DefaultTag extends ReactTag = "div"> = {
+  <As extends ReactTag = DefaultTag>(
+    props: React.ComponentPropsWithoutRef<As> & PropsWithAsAttributes<Props, As> & React.RefAttributes<Element>,
+  ): React.ReactElement | null
+  // Exotic
+  displayName?: string
+  propTypes?: React.WeakValidationMap<any>
+  contextTypes?: React.ValidationMap<any>
+  defaultProps?: Partial<any>
+  id?: string
+}
+
+export type ForwardRefRenderFunction<Props> = <As extends ReactTag>(
+  props: PropsWithAsAttributes<Props, As>,
+  ref: React.Ref<As>,
+) => React.ReactElement | null
+
 /**
  * Set a given ref to a given value
  * This utility takes care of different types of refs: callback refs and RefObject(s)
@@ -33,22 +54,6 @@ export function useComposedRefs<T>(...refs: PossibleRef<T>[]) {
   return React.useCallback(composeRefs(...refs), refs)
 }
 
-export type PropsWithAsAttributes<Props, As extends ReactTag> = Props & {
-  as?: As
-} & Omit<React.HTMLAttributes<As>, keyof Props>
-
-export type ComponentWithAs<Props, DefaultTag extends ReactTag = "div"> = {
-  <As extends ReactTag = DefaultTag>(
-    props: React.ComponentPropsWithoutRef<As> & PropsWithAsAttributes<Props, As> & React.RefAttributes<Element>,
-  ): React.ReactElement | null
-  // Exotic
-  displayName?: string
-  propTypes?: React.WeakValidationMap<any>
-  contextTypes?: React.ValidationMap<any>
-  defaultProps?: Partial<any>
-  id?: string
-}
-
 export function forwardRefWithAs<As extends ReactTag = "div", Props extends object = object>(
   render: <As extends ReactTag>(
     props: PropsWithAsAttributes<Props, As>,
@@ -62,12 +67,7 @@ export function forwardRefWithAs<As extends ReactTag = "div", Props extends obje
 }
 
 export function forwardRefWithGeneric<As extends ReactTag = "div", Props extends object = object>(
-  render: <As extends ReactTag, Poly extends object = any>(
-    props: PropsWithAsAttributes<Props, As> & Poly,
-    ref: React.Ref<As>,
-  ) => React.ReactElement | null,
+  render: ForwardRefRenderFunction<Props>,
 ) {
-  return React.forwardRef<As, PropsWithAsAttributes<Props, As> & Parameters<typeof render>[0]>(
-    render,
-  ) as unknown as ComponentWithAs<Props & Parameters<typeof render>[0], As>
+  return React.forwardRef<As, PropsWithAsAttributes<Props, As>>(render) as unknown as ComponentWithAs<Props, As>
 }

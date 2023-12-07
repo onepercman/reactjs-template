@@ -4,16 +4,16 @@ import { Loader } from "../loader"
 import { Pagination, PaginationProps } from "../pagination"
 import { cn } from "../utils/className"
 
-interface TableRow {
-  [key: string]: any
+interface TableRow extends Readonly<Record<string, unknown>> {
+  key?: string
 }
 
 interface TableColumnProps<Row extends TableRow> extends React.ThHTMLAttributes<HTMLTableCellElement> {
   title: string
   key: string
-  dataIndex: string
+  dataIndex: keyof Row
   sort: boolean
-  render(value: Row[string], row: Row, index: number): void
+  render(value: Row[keyof Row], row: Row, index: number): React.ReactNode
 }
 
 interface TableProps<Row extends TableRow> extends React.HTMLAttributes<HTMLTableElement> {
@@ -79,8 +79,8 @@ function _render<Row extends TableRow>(
                   {...column}
                 >
                   {column.render
-                    ? column.render(row[column.dataIndex || ""] as (typeof row)["string"], row, index)
-                    : row[column.dataIndex || ""]}
+                    ? column.render(row[column.dataIndex as keyof Row], row, index)
+                    : (row[column.dataIndex || ""] as React.ReactNode)}
                 </td>
               ))}
             </tr>
