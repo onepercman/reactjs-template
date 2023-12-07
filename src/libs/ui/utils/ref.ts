@@ -54,18 +54,6 @@ export function useComposedRefs<T>(...refs: PossibleRef<T>[]) {
   return React.useCallback(composeRefs(...refs), refs)
 }
 
-export function forwardRefWithAs<As extends ReactTag = "div", Props extends object = object>(
-  render: <As extends ReactTag>(
-    props: PropsWithAsAttributes<Props, As>,
-    ref: React.Ref<HTMLElement>,
-  ) => React.ReactElement | null,
-) {
-  return React.forwardRef<HTMLElement, PropsWithAsAttributes<Props, As>>(render) as unknown as ComponentWithAs<
-    Props,
-    As
-  >
-}
-
 export function forwardRefWithGeneric<As extends ReactTag = "div", Props extends object = object>(
   render: ForwardRefRenderFunction<Props>,
 ) {

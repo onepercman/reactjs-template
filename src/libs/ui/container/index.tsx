@@ -1,7 +1,7 @@
 "use client"
 
 import { VariantProps, cva } from "class-variance-authority"
-import { forwardRefWithAs } from "../utils/ref"
+import { forwardRefWithGeneric } from "../utils/ref"
 
 const container = cva("mx-auto w-full p-6", {
   variants: {
@@ -19,6 +19,7 @@ const container = cva("mx-auto w-full p-6", {
       lg: "max-w-lg",
       xl: "max-w-xl",
       "2xl": "max-w-2xl",
+      max: "max-w-full",
     },
   },
   defaultVariants: {
@@ -30,7 +31,7 @@ type ContainerVariantProps = VariantProps<typeof container>
 
 export interface ContainerProps extends ContainerVariantProps {}
 
-export const Container = forwardRefWithAs<"div", ContainerProps>(function (
+export const Container = forwardRefWithGeneric<"div", ContainerProps>(function (
   { as = "div", children, className, size, ...props },
   ref,
 ) {

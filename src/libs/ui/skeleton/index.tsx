@@ -2,9 +2,9 @@
 
 import React from "react"
 import { cn } from "../utils/className"
-import { forwardRefWithAs } from "../utils/ref"
+import { forwardRefWithGeneric } from "../utils/ref"
 
-export const Skeleton = forwardRefWithAs<"div", React.HTMLAttributes<HTMLDivElement>>(function (
+export const Skeleton = forwardRefWithGeneric<"div", React.HTMLAttributes<HTMLDivElement>>(function (
   { as = "div", className, ...props },
   ref,
 ) {
