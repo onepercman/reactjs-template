@@ -13,7 +13,7 @@ interface TableColumnProps<Row extends TableRow> extends React.ThHTMLAttributes<
   key: string
   dataIndex: keyof Row
   sort: boolean
-  render(value: Row[keyof Row], row: Row, index: number): React.ReactNode
+  render(value: any, row: Row, index: number): React.ReactNode
 }
 
 interface TableProps<Row extends TableRow> extends React.HTMLAttributes<HTMLTableElement> {
@@ -79,7 +79,7 @@ function _render<Row extends TableRow>(
                   {...column}
                 >
                   {column.render
-                    ? column.render(row[column.dataIndex as keyof Row], row, index)
+                    ? column.render(row[column.dataIndex!], row, index)
                     : (row[column.dataIndex || ""] as React.ReactNode)}
                 </td>
               ))}
