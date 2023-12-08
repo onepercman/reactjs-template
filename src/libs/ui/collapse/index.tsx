@@ -1,13 +1,11 @@
-"use client"
-
 import { useResizeObserver } from "@/libs/custom-hooks/use-resize-observer"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { HiChevronUp } from "react-icons/hi"
 import { cn } from "../utils/className"
 import { useComposedRefs } from "../utils/ref"
 
 export interface CollapseProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
-  title: React.ReactNode
+  title?: React.ReactNode
   open?: boolean
   defaultOpen?: boolean
   titleClassName?: string
@@ -17,7 +15,7 @@ export interface CollapseProps extends Omit<React.HTMLAttributes<HTMLDivElement>
 }
 
 export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(function (
-  { title, children, titleClassName, onToggle, defaultOpen, indicator, showIndicator = true, ...props },
+  { title, children, open, titleClassName, onToggle, defaultOpen, indicator, showIndicator = true, ...props },
   ref,
 ) {
   const _ref = React.useRef<HTMLDivElement>(null)
@@ -39,26 +37,32 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(function
     return indicator
   }
 
+  useEffect(() => {
+    setHeight(open ? size?.height : 0)
+  }, [open, size])
+
   return (
     <div ref={composedRef} {...props}>
-      <div
-        ref={titleRef}
-        role="button"
-        className={cn("inline-flex h-8 w-full items-center justify-between gap-6", titleClassName)}
-        onClick={() => {
-          if (height === 0 && childrenRef.current) {
-            setHeight(size?.height)
-            setIsOpen(true)
-          } else {
-            setHeight(0)
-            setIsOpen(false)
-          }
-          onToggle && onToggle()
-        }}
-      >
-        {title}
-        {_renderIndicator()}
-      </div>
+      {title ? (
+        <div
+          ref={titleRef}
+          role="button"
+          className={cn("inline-flex h-8 w-full items-center justify-between gap-6", titleClassName)}
+          onClick={() => {
+            if (height === 0 && childrenRef.current) {
+              setHeight(size?.height)
+              setIsOpen(true)
+            } else {
+              setHeight(0)
+              setIsOpen(false)
+            }
+            onToggle && onToggle()
+          }}
+        >
+          {title}
+          {_renderIndicator()}
+        </div>
+      ) : null}
       <div
         className="w-full overflow-hidden transition-all"
         style={{
