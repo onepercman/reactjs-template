@@ -3,6 +3,7 @@ import { Empty } from "../empty"
 import { Loader } from "../loader"
 import { Pagination, PaginationProps } from "../pagination"
 import { cn } from "../utils/className"
+import { ComposedForwardRefWithAsProps, ForwardedRefComponent } from "../utils/ref"
 
 interface TableRow extends Readonly<Record<string, unknown>> {
   key?: string
@@ -18,17 +19,29 @@ interface TableColumnProps<Row extends TableRow> extends React.ThHTMLAttributes<
 
 interface TableProps<Row extends TableRow> extends React.HTMLAttributes<HTMLTableElement> {
   columns?: readonly Partial<TableColumnProps<Row>>[]
-  data?: Row[]
+  data?: readonly Row[]
   className?: string
   onSelectRow?(row?: Row): void
   loading?: boolean
   tableClassName?: string
   pagination?: PaginationProps
 }
+interface Table extends ForwardedRefComponent {
+  <Row extends TableRow>(props: ComposedForwardRefWithAsProps<"div", TableProps<Row>>): React.ReactElement | null
+}
 
-function _render<Row extends TableRow>(
-  { columns, data, onSelectRow, className, loading, tableClassName, pagination, ...props }: TableProps<Row>,
-  ref: React.ForwardedRef<HTMLTableElement>,
+function _createTable<Row extends TableRow>(
+  render: <Row extends TableRow>(
+    props: TableProps<Row> & React.HTMLAttributes<HTMLTableElement>,
+    ref: React.ForwardedRef<HTMLTableElement>,
+  ) => React.ReactElement | null,
+) {
+  return React.forwardRef<HTMLTableElement, TableProps<Row>>(render) as unknown as Table
+}
+
+const Table = _createTable(function (
+  { columns, data, onSelectRow, className, loading, tableClassName, pagination, ...props },
+  ref,
 ) {
   return (
     <div
@@ -95,8 +108,9 @@ function _render<Row extends TableRow>(
       )}
     </div>
   )
-}
+})
 
-export const Table = React.forwardRef(_render) as <Row extends TableRow>(
-  props: TableProps<Row> & React.RefAttributes<HTMLTableElement>,
-) => ReturnType<typeof _render>
+Table.displayName = "Table"
+
+export { Table }
+export type { TableColumnProps, TableProps }
