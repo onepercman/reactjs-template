@@ -20,5 +20,11 @@ export default plugin(({ addBase }) => {
         ...apply("p-0"),
         "&:focus": apply("border-transparent ring-transparent"),
       },
+    // Remove autofill default background
+    "input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active":
+      {
+        transition: "background-color 5000s ease-in-out 0s",
+        "-webkit-text-fill-color": "#fff !important",
+      },
   })
 })
