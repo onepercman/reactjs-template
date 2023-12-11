@@ -24,9 +24,8 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(function
 
   const { ref: childrenRef, size } = useResizeObserver()
 
-  const [height, setHeight] = useState(defaultOpen ? size?.height : 0)
-
   const [isOpen, setIsOpen] = useState(defaultOpen)
+  const [height, setHeight] = useState(defaultOpen ? size?.height : 0)
 
   function _renderIndicator() {
     if (!showIndicator) return null
@@ -38,8 +37,14 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(function
   }
 
   useEffect(() => {
-    setHeight(open ? size?.height : 0)
-  }, [open, size])
+    setHeight(isOpen ? size?.height : 0)
+  }, [isOpen, size])
+
+  useEffect(() => {
+    if (open !== undefined) {
+      setIsOpen(open)
+    }
+  }, [open])
 
   return (
     <div ref={composedRef} {...props}>
@@ -50,10 +55,8 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(function
           className={cn("inline-flex h-8 w-full items-center justify-between gap-6", titleClassName)}
           onClick={() => {
             if (height === 0 && childrenRef.current) {
-              setHeight(size?.height)
               setIsOpen(true)
             } else {
-              setHeight(0)
               setIsOpen(false)
             }
             onToggle && onToggle()
