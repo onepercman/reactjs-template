@@ -5,20 +5,40 @@ import * as HeadlessUI from "@headlessui/react"
 import React from "react"
 import { HiCheck, HiChevronDown } from "react-icons/hi"
 import { Button } from "../button"
+import { ButtonVariantProps } from "../button/button"
 import { cn } from "../utils/className"
+import { ComposedForwardRefWithAsProps, ForwardedRefComponent, ReactTag } from "../utils/ref"
 
-export interface SelectOption<T = any> extends HeadlessUI.ListboxOptionProps<Button, T> {
+export interface SelectOption<Value> extends HeadlessUI.ListboxOptionProps<"div", Value> {
   children?: React.ReactNode
 }
 
-export interface SelectProps<T = any> extends HeadlessUI.ListboxProps<Button, T, T> {
-  options?: Array<SelectOption<T>>
-  float?: Omit<FloatProps, "as" | "children" | "className">
+export type SelectProps<As extends ReactTag, Value> = HeadlessUI.ListboxProps<As, Value, Value> &
+  ButtonVariantProps & {
+    options?: Array<SelectOption<Value>>
+    float?: Omit<FloatProps, "as" | "children" | "className">
+    className?: string
+    placeholder?: string
+  }
+
+interface Select extends ForwardedRefComponent {
+  <As extends ReactTag, Value>(
+    props: ComposedForwardRefWithAsProps<As, SelectProps<As, Value>>,
+  ): React.ReactElement | null
 }
 
-function _render<T = any>(
-  { multiple, float, options, size, variant, className, placeholder, ...props }: SelectProps<T>,
-  ref: React.ForwardedRef<HTMLDivElement>,
+function _createSelect<Value, As extends ReactTag = typeof React.Fragment>(
+  render: <As extends ReactTag, Value>(
+    props: SelectProps<As, Value>,
+    ref: React.ForwardedRef<HTMLElement>,
+  ) => React.ReactElement | null,
+) {
+  return React.forwardRef<HTMLElement, SelectProps<As, Value>>(render) as unknown as Select
+}
+
+export const Select = _createSelect(function (
+  { as = React.Fragment as ReactTag, multiple, float, options, size, variant, className, placeholder, ...props },
+  ref,
 ) {
   function getValue(value?: any) {
     if (multiple) {
@@ -40,7 +60,7 @@ function _render<T = any>(
   }
 
   return (
-    <HeadlessUI.Listbox ref={ref} multiple={multiple} {...props}>
+    <HeadlessUI.Listbox ref={ref} as={as} multiple={multiple} {...(props as any)}>
       {({ value: internalValue }) => (
         <Float
           portal={true}
@@ -80,8 +100,6 @@ function _render<T = any>(
       )}
     </HeadlessUI.Listbox>
   )
-}
+})
 
-export const Select = React.forwardRef(_render) as <T = any>(
-  props: SelectProps<T> & React.RefAttributes<HTMLDivElement>,
-) => ReturnType<typeof _render>
+Select.displayName = "Select"

@@ -7,25 +7,39 @@ import { HiCheck } from "react-icons/hi"
 import { Button } from "../button"
 import { Input } from "../input"
 import { cn } from "../utils/className"
+import { ComposedForwardRefWithAsProps, ForwardedRefComponent } from "../utils/ref"
 
 export interface ComboboxOption<T = any> extends HeadlessUI.ComboboxOptionProps<Button, T> {
   children?: React.ReactNode
 }
 
 export type ComboboxProps<
-  T = any,
-  Nullable extends boolean = false,
-  Multiple extends boolean = false,
-> = HeadlessUI.ComboboxProps<T, Nullable, Multiple, Input> & {
-  options?: Array<ComboboxOption<T>>
+  Value,
+  Nullable extends boolean | undefined,
+  Multiple extends boolean | undefined,
+> = HeadlessUI.ComboboxProps<Value, Nullable, Multiple, Input> & {
+  options?: Array<ComboboxOption<Value>>
   float?: Omit<FloatProps, "as" | "children" | "className">
-  multiple?: Multiple
-  nullable?: Nullable
 }
 
-function _render<T = any, Nullable extends boolean = false, Multiple extends boolean = false>(
-  { float, options, size, variant, className, placeholder, ...props }: ComboboxProps<T, Nullable, Multiple>,
-  ref: React.ForwardedRef<HTMLDivElement>,
+interface Combobox extends ForwardedRefComponent {
+  <Value, Nullable extends boolean | undefined, Multiple extends boolean | undefined>(
+    props: ComposedForwardRefWithAsProps<Input, ComboboxProps<Value, Nullable, Multiple>>,
+  ): React.ReactElement | null
+}
+
+function createComboxbox<Value, Nullable extends boolean | undefined, Multiple extends boolean | undefined>(
+  render: <Value, Nullable extends boolean | undefined, Multiple extends boolean | undefined>(
+    props: ComboboxProps<Value, Nullable, Multiple>,
+    ref: React.ForwardedRef<Input>,
+  ) => React.ReactElement | null,
+) {
+  return React.forwardRef<Input, ComboboxProps<Value, Nullable, Multiple>>(render) as unknown as Combobox
+}
+
+export const Combobox = createComboxbox(function (
+  { float, options, size, variant, className, placeholder, ...props },
+  ref,
 ) {
   return (
     <HeadlessUI.Combobox ref={ref} {...(props as any)}>
@@ -80,12 +94,6 @@ function _render<T = any, Nullable extends boolean = false, Multiple extends boo
       </Float>
     </HeadlessUI.Combobox>
   )
-}
+})
 
-export const Combobox = React.forwardRef(_render) as <
-  T = any,
-  Multiple extends boolean = false,
-  Nullable extends boolean = false,
->(
-  props: ComboboxProps<T, Multiple, Nullable> & { ref?: React.ForwardedRef<HTMLDivElement> },
-) => ReturnType<typeof _render>
+Combobox.displayName = "Combobox"
