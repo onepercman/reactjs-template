@@ -36,21 +36,18 @@ const button = cva("btn", {
   },
 })
 
-export type ButtonVariantProps = VariantProps<typeof button>
+type ButtonVariantProps = VariantProps<typeof button>
 
-export interface ButtonBaseProps {
+interface ButtonBaseProps {
   loading?: boolean
   loadingText?: string
   leftIcon?: React.ReactElement
   rightIcon?: React.ReactElement
 }
 
-export interface ButtonProps
-  extends ButtonBaseProps,
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    ButtonVariantProps {}
+interface ButtonProps extends ButtonBaseProps, React.ButtonHTMLAttributes<HTMLButtonElement>, ButtonVariantProps {}
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function (
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function (
   { children, disabled, loading, loadingText, leftIcon, rightIcon, className, variant, size, shape, onClick, ...props },
   ref,
 ) {
@@ -84,3 +81,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
 })
 
 Button.displayName = "Button"
+
+export { Button }
+export type { ButtonBaseProps, ButtonProps, ButtonVariantProps }

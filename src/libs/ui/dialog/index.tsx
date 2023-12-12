@@ -85,36 +85,33 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur" />
+            <HeadlessUI.Dialog.Overlay className="fixed inset-0 z-50 bg-black/80 backdrop-blur" />
           </HeadlessUI.Transition.Child>
 
           <div className={_containerClassName}>
             <div className="flex min-h-full p-6 text-center">
               <HeadlessUI.Transition.Child
-                as={React.Fragment}
+                as={HeadlessUI.Dialog.Panel}
                 enter="ease-out duration-100"
                 enterFrom="opacity-0 scale-95"
                 enterTo="opacity-100 scale-100"
                 leave="ease-in duration-100"
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
+                className={_panelClassName}
+                style={{
+                  maxWidth: width + "px",
+                }}
               >
-                <HeadlessUI.Dialog.Panel
-                  className={_panelClassName}
-                  style={{
-                    maxWidth: width + "px",
-                  }}
-                >
-                  {title && (
-                    <HeadlessUI.Dialog.Title as="h3" className="mb-2 font-medium">
-                      {title}
-                    </HeadlessUI.Dialog.Title>
-                  )}
-                  {closable && (trigger || onClose) && (
-                    <HiX role="button" className="absolute right-4 top-4" onClick={handleClose} />
-                  )}
-                  <div className={className}>{getChildren()}</div>
-                </HeadlessUI.Dialog.Panel>
+                {title && (
+                  <HeadlessUI.Dialog.Title as="h3" className="mb-2 font-medium">
+                    {title}
+                  </HeadlessUI.Dialog.Title>
+                )}
+                {closable && (trigger || onClose) && (
+                  <HiX role="button" className="absolute right-4 top-4" onClick={handleClose} />
+                )}
+                <HeadlessUI.Dialog.Panel className={className}>{getChildren()}</HeadlessUI.Dialog.Panel>
               </HeadlessUI.Transition.Child>
             </div>
           </div>

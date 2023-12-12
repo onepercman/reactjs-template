@@ -107,7 +107,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function (
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur" />
+            <HeadlessUI.Dialog.Overlay className="fixed inset-0 z-50 bg-black/80 backdrop-blur" />
           </HeadlessUI.Transition.Child>
 
           <HeadlessUI.Transition.Child
