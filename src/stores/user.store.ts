@@ -1,9 +1,9 @@
 import { storageKeys } from "@/config/storage.config"
 import { User } from "@/interfaces/user.interface"
-import { persistedProxy } from "@/libs/valtio"
+import { proxyWithPersist } from "@/libs/valtio"
 import { useSnapshot } from "valtio"
 
-class UserModel {
+class UserStore {
   user?: User
 
   async login() {}
@@ -13,5 +13,6 @@ class UserModel {
   }
 }
 
-export const userProxy = persistedProxy(storageKeys.user, new UserModel())
-export const useUserProxy = () => useSnapshot(userProxy)
+export const userStore = proxyWithPersist(new UserStore(), storageKeys.user)
+
+export const useUserStore = () => useSnapshot(userStore)

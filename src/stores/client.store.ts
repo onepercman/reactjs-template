@@ -1,12 +1,14 @@
 import { defaultChain } from "@/config/chain.config"
+import { isDev } from "@/config/env.config"
 import { storageKeys } from "@/config/storage.config"
 import { ADDRESSES } from "@/constants/addresses"
-import { persistedProxy } from "@/libs/valtio"
+import { proxyWithPersist } from "@/libs/valtio"
 import { publicClient } from "@/libs/wagmi"
 import { useSnapshot } from "valtio"
+import { devtools } from "valtio/utils"
 import { Address, Chain, PublicClient, WalletClient } from "wagmi"
 
-class ClientModel {
+class ClientStore {
   chain: Chain = defaultChain
   walletClient?: WalletClient
 
@@ -29,5 +31,8 @@ class ClientModel {
   }
 }
 
-export const clientProxy = persistedProxy(storageKeys.client, new ClientModel())
-export const useClientProxy = () => useSnapshot(clientProxy)
+export const clientStore = proxyWithPersist(new ClientStore(), storageKeys.client)
+
+devtools(clientStore, { name: "Client", enabled: isDev })
+
+export const useClientStore = () => useSnapshot(clientStore)

@@ -1,9 +1,9 @@
 import { useSWR } from "@/libs/swr"
-import { clientProxy, useClientProxy } from "@/models/client.model"
+import { clientStore, useClientStore } from "@/stores/client.store"
 import { WalletClient, useAccount, useWalletClient } from "wagmi"
 
 export function ClientSentry() {
-  const { chain } = useClientProxy()
+  const { chain } = useClientStore()
 
   const { isConnected } = useAccount()
 
@@ -12,7 +12,7 @@ export function ClientSentry() {
   })
 
   useSWR(["sentry wallet client", walletClient, isConnected], function () {
-    clientProxy.setWalletClient(isConnected ? (walletClient as WalletClient) : undefined)
+    clientStore.setWalletClient(isConnected ? (walletClient as WalletClient) : undefined)
   })
 
   return null

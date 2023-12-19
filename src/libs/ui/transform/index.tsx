@@ -1,5 +1,3 @@
-"use client"
-
 import { Transition, TransitionClasses } from "@headlessui/react"
 import React from "react"
 import { forwardRefWithAs } from "../utils/ref"

@@ -1,5 +1,3 @@
-"use client"
-
 import * as HeadlessUI from "@headlessui/react"
 import React from "react"
 import { HiChevronDown } from "react-icons/hi"

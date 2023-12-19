@@ -1,5 +1,3 @@
-"use client"
-
 import { useResizeObserver } from "@/libs/custom-hooks/use-resize-observer"
 import { Tab, TabGroupProps } from "@headlessui/react"
 import React, { ElementType } from "react"

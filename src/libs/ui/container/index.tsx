@@ -1,5 +1,3 @@
-"use client"
-
 import { VariantProps, cva } from "class-variance-authority"
 import { forwardRefWithAs } from "../utils/ref"
 

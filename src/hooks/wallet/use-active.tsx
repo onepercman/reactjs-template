@@ -1,7 +1,7 @@
 import { ConnectorIds, Wallet, connectors } from "@/libs/wagmi"
-import { useClientProxy } from "@/models/client.model"
-import { dialogManagerProxy } from "@/models/dialog-manager.model"
-import { useUserProxy } from "@/models/user.model"
+import { appSettingStore } from "@/stores/app-setting.store"
+import { useClientStore } from "@/stores/client.store"
+import { useUserStore } from "@/stores/user.store"
 import { isDesktop } from "react-device-detect"
 import toast from "react-hot-toast"
 import { UserRejectedRequestError } from "viem"
@@ -9,8 +9,8 @@ import { useAccount, useConnect, useDisconnect } from "wagmi"
 
 export function useActive() {
   const { isConnecting } = useAccount()
-  const { chain, walletClient } = useClientProxy()
-  const { logout } = useUserProxy()
+  const { chain, walletClient } = useClientStore()
+  const { logout } = useUserStore()
   const { connectAsync } = useConnect()
   const { disconnectAsync } = useDisconnect()
 
@@ -29,7 +29,7 @@ export function useActive() {
   }
 
   function connect(wallet: Wallet) {
-    dialogManagerProxy.setConnect(false)
+    appSettingStore.setShowConnectDialog(false)
     if (wallet.injected) {
       connect2ConnectorId(wallet.connectorId)
     } else if (wallet.connectorId === ConnectorIds.WalletConnect) {
@@ -60,15 +60,10 @@ export function useActive() {
     logout()
   }
 
-  function openConnectDialog() {
-    dialogManagerProxy.setConnect(true)
-  }
-
   return {
     account: walletClient?.account.address,
     isConnecting,
     connect,
-    openConnectDialog,
     disconnect,
   }
 }

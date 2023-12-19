@@ -1,9 +1,9 @@
 import { ENV, Env } from "./env.config"
 
 const HOSTS = <const>{
-  [Env.dev]: "",
-  [Env.stg]: "",
-  [Env.prd]: "",
+  [Env.Dev]: "",
+  [Env.Stg]: "",
+  [Env.Prd]: "",
 }
 
 export const HOST = HOSTS[ENV]

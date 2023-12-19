@@ -1,10 +1,10 @@
-import { clientProxy } from "@/models/client.model"
+import { clientStore } from "@/stores/client.store"
 import { toast } from "react-hot-toast"
 import { Hex } from "viem"
 import { getTxUrl } from "./web3"
 
 export async function appendTx(hash: Hex, msg?: string, success?: string, callback?: () => void) {
-  const { publicClient, chain } = clientProxy
+  const { publicClient, chain } = clientStore
 
   return toast.promise(
     new Promise(function (resolve, reject) {

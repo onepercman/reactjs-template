@@ -1,5 +1,3 @@
-"use client"
-
 import { RadioGroup, RadioGroupProps } from "@headlessui/react"
 import React from "react"
 import { cn } from "../utils/className"

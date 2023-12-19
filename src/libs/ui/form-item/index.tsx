@@ -1,5 +1,3 @@
-"use client"
-
 import React from "react"
 import { ControllerFieldState, ControllerRenderProps, UseFormStateReturn } from "react-hook-form"
 import { cn } from "../utils/className"

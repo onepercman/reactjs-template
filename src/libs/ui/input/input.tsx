@@ -1,5 +1,3 @@
-"use client"
-
 import { VariantProps, cva } from "class-variance-authority"
 import React from "react"
 import { HiEye, HiEyeOff, HiX } from "react-icons/hi"

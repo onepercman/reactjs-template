@@ -20,7 +20,7 @@ function getMergedState<T extends object>(persistedState: T | null, initial: T):
   return persistedState
 }
 
-export function persistedProxy<T extends object>(key: string, initialObject: T): T {
+export function proxyWithPersist<T extends object>(initialObject: T, key: string): T {
   const mergedState = getMergedState(getPersistedState(key), initialObject)
   const state = proxy(mergedState)
   subscribe(state, () => {

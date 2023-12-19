@@ -1,13 +1,13 @@
 import { useSWR } from "@/libs/swr"
-import { useClientProxy } from "@/models/client.model"
-import { useUserProxy } from "@/models/user.model"
+import { useClientStore } from "@/stores/client.store"
+import { useUserStore } from "@/stores/user.store"
 import { jwtDecode } from "jwt-decode"
 import { FC, useEffect, useRef } from "react"
 import { toast } from "react-hot-toast"
 
 export const AuthSentry: FC = () => {
-  const { walletClient } = useClientProxy()
-  const { user, login } = useUserProxy()
+  const { walletClient } = useClientStore()
+  const { user, login } = useUserStore()
 
   useSWR(["auth sentry", walletClient], function () {
     if (walletClient?.account) {

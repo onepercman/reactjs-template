@@ -1,6 +1,5 @@
 import { multicallABI } from "@/constants/abi/common"
-import { getAddresses } from "@/hooks/address/use-addresses"
-import { clientProxy } from "@/models/client.model"
+import { clientStore } from "@/stores/client.store"
 import { Address, decodeFunctionResult, encodeFunctionData } from "viem"
 
 export async function multicall(
@@ -11,8 +10,7 @@ export async function multicall(
     params?: any[]
   }>,
 ) {
-  const { publicClient } = clientProxy
-  const { MULTICALL } = getAddresses(publicClient.chain)
+  const { publicClient, addresses } = clientStore
 
   const callData = calls.map((call) => ({
     target: call.address.toLowerCase(),
@@ -25,7 +23,7 @@ export async function multicall(
 
   const tx = await publicClient.readContract({
     abi: multicallABI,
-    address: MULTICALL,
+    address: addresses.MULTICALL,
     functionName: "aggregate",
     args: callData as any,
   })
@@ -45,7 +43,7 @@ export function truncateAddress(address: Address, numberic = 4) {
 }
 
 export function getTxUrl(hash: string) {
-  const { chain } = clientProxy
+  const { chain } = clientStore
   const { blockExplorers } = chain
   if (blockExplorers) {
     const host = blockExplorers.default.url

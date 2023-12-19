@@ -1,5 +1,3 @@
-"use client"
-
 import { UseCountdownStates } from "@/libs/custom-hooks/use-countdown"
 import React from "react"
 import { Countdown } from "../countdown"

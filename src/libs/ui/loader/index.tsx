@@ -1,5 +1,3 @@
-"use client"
-
 import React from "react"
 import { Loading } from "../loading"
 import { cn } from "../utils/className"

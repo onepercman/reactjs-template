@@ -1,20 +1,20 @@
 import { useActive } from "@/hooks/wallet/use-active"
 import { Dialog } from "@/libs/ui/dialog"
 import { wallets } from "@/libs/wagmi"
-import { dialogManagerProxy, useDialogManagerProxy } from "@/models/dialog-manager.model"
+import { appSettingStore, useAppSettingStore } from "@/stores/app-setting.store"
 import { FC } from "react"
 
 const hasInjectedProvider = typeof window !== "undefined" && typeof window["ethereum"] !== "undefined"
 
 export const ConnectDialog: FC = () => {
-  const dialogManager = useDialogManagerProxy()
+  const { showConnectDialog } = useAppSettingStore()
   const { connect } = useActive()
 
   return (
     <Dialog
-      open={dialogManager.connect}
+      open={showConnectDialog}
       onClose={function () {
-        dialogManagerProxy.setConnect(false)
+        appSettingStore.setShowConnectDialog(false)
       }}
       title="Select a wallet"
       className="grid grid-cols-3 gap-2"

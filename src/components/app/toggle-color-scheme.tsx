@@ -1,17 +1,17 @@
 import { Button } from "@/libs/ui/button"
-import { appSettingProxy, useAppSettingProxy } from "@/models/app-setting.model"
+import { appSettingStore, useAppSettingStore } from "@/stores/app-setting.store"
 import { FC } from "react"
 
 export const ToggleColorScheme: FC = () => {
-  const { colorScheme } = useAppSettingProxy()
+  const { colorScheme } = useAppSettingStore()
 
   return (
     <Button
       onClick={function () {
         if (colorScheme === "dark") {
-          appSettingProxy.setColorScheme("light")
+          appSettingStore.setColorScheme("light")
         } else {
-          appSettingProxy.setColorScheme("dark")
+          appSettingStore.setColorScheme("dark")
         }
       }}
       className="aspect-square p-0"

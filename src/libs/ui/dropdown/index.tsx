@@ -1,5 +1,3 @@
-"use client"
-
 import { Float, FloatProps } from "@headlessui-float/react"
 import React from "react"
 import { HiChevronRight } from "react-icons/hi"

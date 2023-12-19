@@ -1,5 +1,3 @@
-"use client"
-
 import React from "react"
 import { ComposedForwardRefWithAsProps, ForwardedRefComponent, PropsWithAsAttributes, ReactTag } from "../utils/ref"
 

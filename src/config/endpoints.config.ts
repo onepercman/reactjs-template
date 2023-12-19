@@ -1,9 +1,9 @@
 import { ENV, Env } from "./env.config"
 
 const API_URLS = <const>{
-  [Env.dev]: "",
-  [Env.stg]: "",
-  [Env.prd]: "",
+  [Env.Dev]: "",
+  [Env.Stg]: "",
+  [Env.Prd]: "",
 }
 
 export const API_URL = API_URLS[ENV]

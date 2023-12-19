@@ -1,5 +1,3 @@
-"use client"
-
 import InternalSlider, { SliderProps } from "rc-slider"
 import React from "react"
 

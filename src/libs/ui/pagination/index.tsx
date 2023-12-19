@@ -1,5 +1,3 @@
-"use client"
-
 import React from "react"
 import { HiChevronDoubleLeft, HiChevronDoubleRight } from "react-icons/hi"
 import { Button, ButtonProps } from "../button"

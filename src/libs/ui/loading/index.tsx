@@ -1,5 +1,3 @@
-"use client"
-
 import { FC, SVGAttributes } from "react"
 
 export const Loading: FC<SVGAttributes<SVGElement>> = function ({ ...props }) {

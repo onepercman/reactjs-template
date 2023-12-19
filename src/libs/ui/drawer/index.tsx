@@ -1,5 +1,3 @@
-"use client"
-
 import * as HeadlessUI from "@headlessui/react"
 import { VariantProps, cva } from "class-variance-authority"
 import React from "react"

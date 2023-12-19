@@ -1,5 +1,3 @@
-"use client"
-
 import { cva, VariantProps } from "class-variance-authority"
 import { Moment } from "moment-timezone"
 import Picker from "rc-picker"
