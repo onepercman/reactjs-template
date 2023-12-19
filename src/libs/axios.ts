@@ -5,8 +5,8 @@ import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestCo
 const requestHandler = {
   onFulfilled(config: InternalAxiosRequestConfig) {
     const { user } = userProxy
-    if (user) {
-      config.headers["Authorization"] = "Bearer " + user.token
+    if (user && config.headers.Authorization) {
+      config.headers.Authorization = `Bearer ${user.token}`
     }
     return config
   },
