@@ -31,7 +31,7 @@ class ClientStore {
   }
 }
 
-export const clientStore = proxyWithPersist(new ClientStore(), storageKeys.client)
+export const clientStore = proxyWithPersist(new ClientStore(), { key: storageKeys.client })
 
 devtools(clientStore, { name: "Client", enabled: isDev })
 

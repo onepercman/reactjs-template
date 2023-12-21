@@ -24,7 +24,7 @@ class AppSettingStore {
   }
 }
 
-export const appSettingStore = proxyWithPersist(new AppSettingStore(), storageKeys.appSettings)
+export const appSettingStore = proxyWithPersist(new AppSettingStore(), { key: storageKeys.appSettings })
 
 devtools(appSettingStore, { name: "App Setting", enabled: isDev })
 

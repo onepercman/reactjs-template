@@ -1,30 +1,32 @@
 import { proxy, subscribe } from "valtio"
 
-function getPersistedState(key: string) {
+function getPersist(key: string) {
   try {
     return JSON.parse(localStorage.getItem(key) || "")
   } catch (err) {
-    return null
+    return {}
   }
 }
 
-function updateState<T extends object>(key: string, state: T) {
+function setPersist<T extends object>(key: string, state: T) {
   localStorage.setItem(key, JSON.stringify(state))
 }
 
-function getMergedState<T extends object>(persistedState: T | null, initial: T): T {
-  if (!persistedState) {
-    return initial
-  }
-  Object.setPrototypeOf(persistedState, Object.getPrototypeOf(initial))
-  return persistedState
+function getMergedState<T extends object>(initialState: T, persistedState: T | null): T {
+  const states = { ...initialState, ...persistedState }
+  Object.setPrototypeOf(states, Object.getPrototypeOf(initialState))
+  return states
 }
 
-export function proxyWithPersist<T extends object>(initialObject: T, key: string): T {
-  const mergedState = getMergedState(getPersistedState(key), initialObject)
+function proxyWithPersist<T extends object>(initialObject: T, options: { key: string }): T {
+  const { key } = options
+  const mergedState = getMergedState(initialObject, getPersist(key))
+  setPersist(key, mergedState)
   const state = proxy(mergedState)
   subscribe(state, () => {
-    updateState(key, state)
+    setPersist(key, state)
   })
   return state
 }
+
+export { proxyWithPersist }
