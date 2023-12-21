@@ -13,6 +13,8 @@ class UserStore {
   }
 }
 
-export const userStore = proxyWithPersist(new UserStore(), { key: storageKeys.user })
+const userStore = proxyWithPersist(new UserStore(), { key: storageKeys.user })
 
-export const useUserStore = () => useSnapshot(userStore)
+const useUserStore = () => useSnapshot(userStore)
+
+export { useUserStore, userStore }

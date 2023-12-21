@@ -24,13 +24,13 @@ class AppSettingStore {
   }
 }
 
-export const appSettingStore = proxyWithPersist(new AppSettingStore(), { key: storageKeys.appSettings })
+const appSettingStore = proxyWithPersist(new AppSettingStore(), { key: storageKeys.appSettings })
 
 devtools(appSettingStore, { name: "App Setting", enabled: isDev })
 
-export const useAppSettingStore = () => useSnapshot(appSettingStore)
+const useAppSettingStore = () => useSnapshot(appSettingStore)
 
-export function applyColorScheme(colorScheme: ColorScheme) {
+function applyColorScheme(colorScheme: ColorScheme) {
   document.documentElement.setAttribute("data-theme", colorScheme)
 }
 
@@ -51,3 +51,5 @@ if (typeof document !== "undefined") {
     location.reload()
   }
 }
+
+export { appSettingStore, applyColorScheme, useAppSettingStore }

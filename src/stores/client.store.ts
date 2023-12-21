@@ -31,8 +31,10 @@ class ClientStore {
   }
 }
 
-export const clientStore = proxyWithPersist(new ClientStore(), { key: storageKeys.client })
+const clientStore = proxyWithPersist(new ClientStore(), { key: storageKeys.client })
 
 devtools(clientStore, { name: "Client", enabled: isDev })
 
-export const useClientStore = () => useSnapshot(clientStore)
+const useClientStore = () => useSnapshot(clientStore)
+
+export { clientStore, useClientStore }
