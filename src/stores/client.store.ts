@@ -6,27 +6,32 @@ import { proxyWithPersist } from "@/libs/valtio"
 import { publicClient } from "@/libs/wagmi"
 import { useSnapshot } from "valtio"
 import { devtools } from "valtio/utils"
+import { Account } from "viem"
 import { Address, Chain, PublicClient, WalletClient } from "wagmi"
 
 class ClientStore {
   chain: Chain = defaultChain
-  walletClient?: WalletClient
+  walletClient: WalletClient | undefined
+
+  get account(): Account | undefined {
+    return this.walletClient?.account
+  }
 
   get publicClient(): PublicClient {
     return publicClient({ chainId: this.chain.id })
   }
 
-  get addresses() {
+  get contractAddresses(): Record<keyof typeof ADDRESSES, Address> {
     return Object.fromEntries(
       Object.entries(ADDRESSES).map(([key, object]) => [key, object[this.chain.id as keyof typeof object]]),
     ) as Record<keyof typeof ADDRESSES, Address>
   }
 
-  setWalletClient(walletClient: WalletClient | undefined) {
+  updateWalletClient(walletClient: WalletClient | undefined) {
     this.walletClient = walletClient
   }
 
-  setChain(chain: Chain) {
+  updateChain(chain: Chain) {
     this.chain = chain
   }
 }

@@ -15,12 +15,12 @@ export function useChainSetup() {
       if (walletClient?.account) {
         if (typeof switchNetworkAsync === "function") {
           const setup = await switchNetworkAsync(chain.id)
-          clientStore.setChain(setup)
+          clientStore.updateChain(setup)
         } else {
           toast.error("An error occurred while switching networks")
         }
       } else {
-        clientStore.setChain(chain)
+        clientStore.updateChain(chain)
       }
     } catch (err) {
       toast.error("Switch network failed")

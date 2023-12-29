@@ -10,7 +10,7 @@ export async function multicall(
     params?: any[]
   }>,
 ) {
-  const { publicClient, addresses } = clientStore
+  const { publicClient, contractAddresses } = clientStore
 
   const callData = calls.map((call) => ({
     target: call.address.toLowerCase(),
@@ -23,7 +23,7 @@ export async function multicall(
 
   const tx = await publicClient.readContract({
     abi: multicallABI,
-    address: addresses.MULTICALL,
+    address: contractAddresses.MULTICALL,
     functionName: "aggregate",
     args: callData as any,
   })

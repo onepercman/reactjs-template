@@ -12,7 +12,7 @@ export function ClientSentry() {
   })
 
   useSWR(["sentry wallet client", walletClient, isConnected], function () {
-    clientStore.setWalletClient(isConnected ? (walletClient as WalletClient) : undefined)
+    clientStore.updateWalletClient(isConnected ? (walletClient as WalletClient) : undefined)
   })
 
   return null
