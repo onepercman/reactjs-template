@@ -36,6 +36,7 @@
     "sweetalert2": "^11.10.1",
     "sweetalert2-react-content": "5.0.7",
     "swr": "^2.2.4",
+    "uuid": "^9.0.1",
     "valtio": "^1.12.1",
     "viem": "^1.19.9",
     "wagmi": "^1.4.7"
@@ -48,6 +49,7 @@
     "@types/node": "^20.10.0",
     "@types/react": "^18.2.39",
     "@types/react-dom": "^18.2.17",
+    "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
     "@vitejs/plugin-react-swc": "^3.5.0",

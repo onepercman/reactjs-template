@@ -9,6 +9,7 @@ import { QueryClientProvider } from "@tanstack/react-query"
 import { RouterProvider } from "react-router-dom"
 import { SWRConfig } from "swr"
 import { WagmiConfig } from "wagmi"
+import { DialogStack } from "./components/app/dialog-stack"
 import { ClientSentry } from "./components/wallet/client-sentry"
 import { Loader } from "./libs/ui/loader"
 import { router } from "./router"
@@ -19,6 +20,7 @@ export default function App() {
     <WagmiConfig config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
         <SWRConfig value={swrConfig}>
+          <DialogStack />
           <ClientSentry />
           <RequiredChainSentry />
           <AuthSentry />
