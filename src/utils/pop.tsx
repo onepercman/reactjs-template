@@ -1,4 +1,4 @@
-import { Loading } from "@/libs/ui/loading"
+import { Spinner } from "@/libs/ui/spinner"
 import { HiExternalLink } from "react-icons/hi"
 import { BaseError } from "viem"
 import { Popper } from "./popper"
@@ -12,7 +12,7 @@ export function popPendingConfirm() {
     },
     html: (
       <div className="flex flex-col items-center gap-6">
-        <Loading className="text-primary h-24 w-24" />
+        <Spinner className="text-primary h-24 w-24" />
         <p className="text-center text-xl font-bold">Waiting for confirmation</p>
         <p className="text-center text-sm font-semibold">Confirm this transaction in your wallet</p>
       </div>
@@ -31,7 +31,7 @@ export function popPending(msg: string, hash?: string) {
     },
     html: (
       <div className="flex flex-col items-center gap-6">
-        <Loading className="text-primary h-24 w-24" />
+        <Spinner className="text-primary h-24 w-24" />
         {hash && <p className="text-center text-xl font-bold">Transaction is processing</p>}
         <p className="text-center text-sm font-semibold">{msg}</p>
         {hash && (

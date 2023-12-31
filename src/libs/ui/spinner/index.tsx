@@ -1,6 +1,6 @@
 import { FC, SVGAttributes } from "react"
 
-export const Loading: FC<SVGAttributes<SVGElement>> = function ({ ...props }) {
+export const Spinner: FC<SVGAttributes<SVGElement>> = function ({ ...props }) {
   return (
     <svg
       width="1em"
@@ -43,4 +43,4 @@ export const Loading: FC<SVGAttributes<SVGElement>> = function ({ ...props }) {
   )
 }
 
-Loading.displayName = "Loading"
+Spinner.displayName = "Spinner"
