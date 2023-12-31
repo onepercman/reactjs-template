@@ -1,6 +1,6 @@
 import { FC, SVGAttributes } from "react"
 
-export const Loading: FC<SVGAttributes<SVGElement>> = function ({ ...props }) {
+export const Spinner: FC<SVGAttributes<SVGElement>> = function ({ ...props }) {
   return (
     <svg
       width="1em"
@@ -11,7 +11,7 @@ export const Loading: FC<SVGAttributes<SVGElement>> = function ({ ...props }) {
       {...props}
     >
       <g>
-        <circle cx="12" cy="12" r="9.5" fill="none" strokeWidth="3" strokeLinecap="round">
+        <circle cx="12" cy="12" r="9.5" fill="none" strokeWidth="5" strokeLinecap="round">
           <animate
             attributeName="stroke-dasharray"
             dur="1.5s"
@@ -43,4 +43,4 @@ export const Loading: FC<SVGAttributes<SVGElement>> = function ({ ...props }) {
   )
 }
 
-Loading.displayName = "Loading"
+Spinner.displayName = "Spinner"
