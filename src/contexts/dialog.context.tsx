@@ -7,48 +7,73 @@ interface DialogPropsWithStackInfo extends DialogProps {
 }
 
 interface DialogContext {
-  open(props: DialogProps & { id?: string }): void
+  open(props: DialogProps & { id?: string }): string
   close(id: string, destroy?: boolean): void
+  closeAll(): void
 }
 
 const DialogContext = React.createContext<DialogContext>({
-  open() {},
+  open() {
+    return ""
+  },
   close() {},
+  closeAll() {},
 })
 
 const DialogProvider = ({ children }: { children: React.ReactNode }) => {
   const [dialogs, setDialogs] = useState<DialogPropsWithStackInfo[]>([])
 
   function open(props: DialogProps & { id?: string } = {}) {
-    const history = [...dialogs]
-    const dialog = history.find((el) => el.id === props.id)
-    if (dialog) {
-      history.forEach(function (dialog) {
-        if (dialog.id === props.id) {
-          dialog.open = true
-        }
-      })
-    } else {
-      const id = props.id || uuid()
-      history.push({
-        ...props,
-        id: props.id || id,
-        open: true,
-      })
-    }
-    setDialogs(history)
+    const id = props.id || uuid()
+    setDialogs(function (prev) {
+      const history = [...prev]
+      const dialog = history.find((el) => el.id === props.id)
+      if (dialog) {
+        history.forEach(function (dialog) {
+          if (dialog.id === props.id) {
+            dialog.open = true
+          }
+        })
+      } else {
+        history.push({
+          ...props,
+          id,
+          open: true,
+          onClose() {
+            if (typeof props.onClose === "function") {
+              props.onClose()
+            } else {
+              close(id)
+              console.log("Added onclose id: ", id)
+            }
+          },
+        })
+      }
+      return history
+    })
+    return id
   }
 
-  function close(id: string, destroy?: boolean) {
-    const history = [...dialogs]
-    history.forEach(function (dialog) {
-      if (dialog.id === id) {
-        dialog.open = false
-      }
+  function close(id: string) {
+    setDialogs(function (prev) {
+      const history = [...prev]
+      history.forEach(function (dialog) {
+        if (dialog.id === id) {
+          dialog.open = false
+        }
+      })
+      return history
     })
-    if (destroy) {
-      setDialogs(history.filter((el) => el.id !== id))
-    }
+  }
+
+  function closeAll() {
+    setDialogs(function (prev) {
+      const history = [...prev]
+      history.forEach(function (dialog) {
+        dialog.open = false
+      })
+      return history
+    })
   }
 
   return (
@@ -56,6 +81,7 @@ const DialogProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         open,
         close,
+        closeAll,
       }}
     >
       {dialogs.map(function ({ id, children, ...props }) {
