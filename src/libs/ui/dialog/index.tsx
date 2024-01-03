@@ -1,9 +1,10 @@
 import * as HeadlessUI from "@headlessui/react"
 import React from "react"
+import ReactDOM from "react-dom"
 import { HiX } from "react-icons/hi"
 import { cn } from "../utils/className"
 
-export interface DialogProps {
+interface DialogProps {
   open?: boolean
   onClose?(): void
   closable?: boolean
@@ -15,13 +16,14 @@ export interface DialogProps {
   className?: string
 }
 
-export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
+const DialogPrimitive = React.forwardRef<HTMLDivElement, DialogProps>(function (
   { open, onClose, closable = true, children, title, trigger, width = 350, center, className },
   ref,
 ) {
   const [show, setShow] = React.useState(Boolean(open))
 
-  function handleClose() {
+  function handleClose(event?: Event) {
+    event?.preventDefault()
     if (closable) {
       if (trigger) {
         setShow(false)
@@ -71,7 +73,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
     <React.Fragment>
       {_trigger}
       <HeadlessUI.Transition appear show={show} as={React.Fragment}>
-        <HeadlessUI.Dialog as="div" ref={ref} onClose={handleClose} className="z-50">
+        <HeadlessUI.Dialog as="div" ref={ref} onClose={handleClose as any} className="z-50">
           <HeadlessUI.Transition.Child
             as={React.Fragment}
             enter="ease-out duration-100"
@@ -81,7 +83,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <HeadlessUI.Dialog.Overlay className="fixed inset-0 bg-black/80 backdrop-blur" />
+            <HeadlessUI.Dialog.Overlay className="fixed inset-0 bg-black/80 backdrop-blur-sm" />
           </HeadlessUI.Transition.Child>
 
           <div className={_containerClassName}>
@@ -117,4 +119,51 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
   )
 })
 
-Dialog.displayName = "Dialog"
+DialogPrimitive.displayName = "DialogPrimitive"
+
+function openDialog({ children, onClose, ...props }: DialogProps): {
+  close(): void
+} {
+  const container = document.createDocumentFragment()
+  console.log("🚀 ~ file: index.tsx:127 ~ openDialog ~ container:", container)
+
+  function close() {
+    ReactDOM.render(
+      <DialogPrimitive open={false} {...props}>
+        {children}
+      </DialogPrimitive>,
+      container,
+    )
+  }
+
+  ReactDOM.render(
+    <DialogPrimitive
+      open={true}
+      onClose={
+        onClose ||
+        function () {
+          close()
+        }
+      }
+      {...props}
+    >
+      {children}
+    </DialogPrimitive>,
+    container,
+  )
+
+  return {
+    close,
+  }
+}
+
+interface Dialog extends React.ForwardRefExoticComponent<DialogProps & React.RefAttributes<HTMLDivElement>> {
+  open: typeof openDialog
+}
+
+const Dialog = DialogPrimitive as Dialog
+
+Dialog.open = openDialog
+
+export { Dialog }
+export type { DialogProps }

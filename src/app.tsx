@@ -10,7 +10,6 @@ import { RouterProvider } from "react-router-dom"
 import { SWRConfig } from "swr"
 import { WagmiConfig } from "wagmi"
 import { ClientSentry } from "./components/wallet/client-sentry"
-import { DialogProvider } from "./contexts/dialog.context"
 import { Loader } from "./libs/ui/loader"
 import { router } from "./router"
 import "./styles/styles.scss"
@@ -20,14 +19,12 @@ export default function App() {
     <WagmiConfig config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
         <SWRConfig value={swrConfig}>
-          <DialogProvider>
-            <ClientSentry />
-            <RequiredChainSentry />
-            <AuthSentry />
-            <ConnectDialog />
-            <ToasterContainer />
-            <RouterProvider router={router} fallbackElement={<Loader />} />
-          </DialogProvider>
+          <ClientSentry />
+          <RequiredChainSentry />
+          <AuthSentry />
+          <ConnectDialog />
+          <ToasterContainer />
+          <RouterProvider router={router} fallbackElement={<Loader />} />
         </SWRConfig>
       </QueryClientProvider>
     </WagmiConfig>
