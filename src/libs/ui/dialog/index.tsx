@@ -13,11 +13,10 @@ export interface DialogProps {
   width?: number
   center?: boolean
   className?: string
-  z?: number
 }
 
 export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
-  { open, onClose, closable = true, children, title, trigger, width = 350, center, className, z = 50 },
+  { open, onClose, closable = true, children, title, trigger, width = 350, center, className },
   ref,
 ) {
   const [show, setShow] = React.useState(Boolean(open))
@@ -26,10 +25,8 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
     if (closable) {
       if (trigger) {
         setShow(false)
-      } else if (onClose) {
-        onClose()
-        setShow(false)
       }
+      onClose && onClose()
     }
   }
 
@@ -74,7 +71,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
     <React.Fragment>
       {_trigger}
       <HeadlessUI.Transition appear show={show} as={React.Fragment}>
-        <HeadlessUI.Dialog as="div" ref={ref} onClose={handleClose} style={{ zIndex: z }}>
+        <HeadlessUI.Dialog as="div" ref={ref} onClose={handleClose} className="z-50">
           <HeadlessUI.Transition.Child
             as={React.Fragment}
             enter="ease-out duration-100"

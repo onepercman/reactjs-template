@@ -56,10 +56,8 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function (
     if (closable) {
       if (trigger) {
         setShow(false)
-      } else if (onClose) {
-        onClose()
-        setShow(false)
       }
+      onClose && onClose()
     }
   }
 

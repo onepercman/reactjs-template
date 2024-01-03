@@ -44,7 +44,6 @@ const DialogProvider = ({ children }: { children: React.ReactNode }) => {
         history.push({
           ...props,
           id,
-          z: history.length,
           onClose() {
             if (typeof props.onClose === "function") {
               props.onClose()
