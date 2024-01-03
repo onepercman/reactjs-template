@@ -1,5 +1,5 @@
 import { Dialog, DialogProps } from "@/libs/ui/dialog"
-import React, { useState } from "react"
+import React, { useMemo, useState } from "react"
 import { v4 as uuid } from "uuid"
 
 interface DialogPropsWithStackInfo extends DialogProps {
@@ -23,28 +23,33 @@ const DialogContext = React.createContext<DialogContext>({
 const DialogProvider = ({ children }: { children: React.ReactNode }) => {
   const [dialogs, setDialogs] = useState<DialogPropsWithStackInfo[]>([])
 
+  const dialog = useMemo(
+    function () {
+      const ctx = dialogs[dialogs.length - 1]
+      return ctx
+    },
+    [dialogs],
+  )
+
   function open(props: DialogProps & { id?: string } = {}) {
     const id = props.id || uuid()
     setDialogs(function (prev) {
       const history = [...prev]
       const dialog = history.find((el) => el.id === props.id)
+      const dialogIndex = history.findIndex((obj) => obj.id === dialog?.id)
       if (dialog) {
-        history.forEach(function (dialog) {
-          if (dialog.id === props.id) {
-            dialog.open = true
-          }
-        })
+        history.splice(dialogIndex, 1)
+        history.push(dialog)
       } else {
         history.push({
           ...props,
           id,
-          open: true,
+          z: history.length,
           onClose() {
             if (typeof props.onClose === "function") {
               props.onClose()
             } else {
               close(id)
-              console.log("Added onclose id: ", id)
             }
           },
         })
@@ -56,24 +61,12 @@ const DialogProvider = ({ children }: { children: React.ReactNode }) => {
 
   function close(id: string) {
     setDialogs(function (prev) {
-      const history = [...prev]
-      history.forEach(function (dialog) {
-        if (dialog.id === id) {
-          dialog.open = false
-        }
-      })
-      return history
+      return prev.filter((el) => el.id !== id)
     })
   }
 
   function closeAll() {
-    setDialogs(function (prev) {
-      const history = [...prev]
-      history.forEach(function (dialog) {
-        dialog.open = false
-      })
-      return history
-    })
+    setDialogs([])
   }
 
   return (
@@ -84,13 +77,9 @@ const DialogProvider = ({ children }: { children: React.ReactNode }) => {
         closeAll,
       }}
     >
-      {dialogs.map(function ({ id, children, ...props }) {
-        return (
-          <Dialog key={id} {...props}>
-            {children as any}
-          </Dialog>
-        )
-      })}
+      <Dialog open={!!dialogs.length} {...dialog}>
+        {dialog?.children}
+      </Dialog>
       {children}
     </DialogContext.Provider>
   )

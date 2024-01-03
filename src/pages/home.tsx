@@ -12,18 +12,23 @@ export default function Home() {
           dialog.open({
             id: "dialog1",
             title: "Dialog 1",
-            onClose() {
-              dialog.close("dialog1")
-            },
             children: (
               <Button
                 onClick={async function () {
                   dialog.open({
                     id: "dialog2",
                     title: "Dialog 2",
-                    onClose() {
-                      dialog.close("dialog2")
-                    },
+                    children: (
+                      <Button
+                        onClick={async function () {
+                          dialog.open({
+                            id: "dialog1",
+                          })
+                        }}
+                      >
+                        Open dialog 1
+                      </Button>
+                    ),
                   })
                 }}
               >

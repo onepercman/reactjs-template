@@ -13,10 +13,11 @@ export interface DialogProps {
   width?: number
   center?: boolean
   className?: string
+  z?: number
 }
 
 export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
-  { open, onClose, closable = true, children, title, trigger, width = 350, center, className },
+  { open, onClose, closable = true, children, title, trigger, width = 350, center, className, z = 50 },
   ref,
 ) {
   const [show, setShow] = React.useState(Boolean(open))
@@ -60,7 +61,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
   }, [open])
 
   const _containerClassName = cn(
-    "fixed inset-0 z-50 overflow-y-auto",
+    "fixed inset-0 overflow-y-auto",
     "scrollbar scrollbar-track-inherit scrollbar-thumb-inherit scrollbar-w-1 scrollbar-thumb-rounded",
   )
 
@@ -73,7 +74,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
     <React.Fragment>
       {_trigger}
       <HeadlessUI.Transition appear show={show} as={React.Fragment}>
-        <HeadlessUI.Dialog as="div" ref={ref} onClose={handleClose}>
+        <HeadlessUI.Dialog as="div" ref={ref} onClose={handleClose} style={{ zIndex: z }}>
           <HeadlessUI.Transition.Child
             as={React.Fragment}
             enter="ease-out duration-100"
@@ -83,7 +84,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <HeadlessUI.Dialog.Overlay className="fixed inset-0 z-50 bg-black/80 backdrop-blur" />
+            <HeadlessUI.Dialog.Overlay className="fixed inset-0 bg-black/80 backdrop-blur" />
           </HeadlessUI.Transition.Child>
 
           <div className={_containerClassName}>
