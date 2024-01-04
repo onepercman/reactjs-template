@@ -1,6 +1,6 @@
 import * as HeadlessUI from "@headlessui/react"
 import React from "react"
-import ReactDOM from "react-dom"
+import ReactDOM from "react-dom/client"
 import { HiX } from "react-icons/hi"
 import { cn } from "../utils/className"
 
@@ -124,18 +124,18 @@ function openDialog({ children, onClose, ...props }: DialogProps): {
   close(): void
 } {
   const container = document.createDocumentFragment()
-  console.log("🚀 ~ file: index.tsx:127 ~ openDialog ~ container:", container)
+
+  const root = ReactDOM.createRoot(container)
 
   function close() {
-    ReactDOM.render(
+    root.render(
       <DialogPrimitive open={false} {...props}>
         {children}
       </DialogPrimitive>,
-      container,
     )
   }
 
-  ReactDOM.render(
+  root.render(
     <DialogPrimitive
       open={true}
       onClose={
@@ -148,7 +148,6 @@ function openDialog({ children, onClose, ...props }: DialogProps): {
     >
       {children}
     </DialogPrimitive>,
-    container,
   )
 
   return {
