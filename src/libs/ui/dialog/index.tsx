@@ -22,8 +22,7 @@ const DialogPrimitive = React.forwardRef<HTMLDivElement, DialogProps>(function (
 ) {
   const [show, setShow] = React.useState(Boolean(open))
 
-  function handleClose(event?: Event) {
-    event?.preventDefault()
+  function handleClose() {
     if (closable) {
       if (trigger) {
         setShow(false)
@@ -83,7 +82,7 @@ const DialogPrimitive = React.forwardRef<HTMLDivElement, DialogProps>(function (
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <HeadlessUI.Dialog.Overlay className="fixed inset-0 bg-black/80 backdrop-blur-sm" />
+            <div className="fixed inset-0 bg-black/80 backdrop-blur-sm" />
           </HeadlessUI.Transition.Child>
 
           <div className={_containerClassName}>
