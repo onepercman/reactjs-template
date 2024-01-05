@@ -24,7 +24,7 @@
     "immer": "^10.0.3",
     "jwt-decode": "^4.0.0",
     "moment-timezone": "^0.5.44",
-    "rc-picker": "4.0.0-alpha.16",
+    "rc-picker": "4.0.0-alpha.18",
     "rc-slider": "^10.5.0",
     "react": "^18.2.0",
     "react-device-detect": "^2.2.3",
@@ -37,7 +37,7 @@
     "uuid": "^9.0.1",
     "valtio": "^1.12.1",
     "viem": "^2.0.0",
-    "wagmi": "^1.4.13"
+    "wagmi": "^2.0.1"
   },
   "devDependencies": {
     "@headlessui-float/react": "^0.13.0",
@@ -59,7 +59,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "next": "^14.0.4",
-    "postcss": "^8.4.32",
+    "postcss": "^8.4.33",
     "prettier": "^3.1.1",
     "prettier-plugin-organize-imports": "^3.2.4",
     "prettier-plugin-tailwindcss": "^0.5.10",
@@ -76,6 +76,6 @@
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-radar": "^0.9.2",
     "vite-tsconfig-paths": "^4.2.3",
-    "vitest": "^1.1.1"
+    "vitest": "^1.1.2"
   }
 }

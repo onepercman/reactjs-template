@@ -1,6 +1,7 @@
 import { useSWR } from "@/libs/swr"
 import { clientStore, useClientStore } from "@/stores/client.store"
-import { WalletClient, useAccount, useWalletClient } from "wagmi"
+import { WalletClient } from "viem"
+import { useAccount, useWalletClient } from "wagmi"
 
 export function ClientSentry() {
   const { chain } = useClientStore()

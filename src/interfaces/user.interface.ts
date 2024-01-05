@@ -1,4 +1,4 @@
-import { Address, WalletClient } from "wagmi"
+import { Address, WalletClient } from "viem"
 
 export interface User {
   id?: number

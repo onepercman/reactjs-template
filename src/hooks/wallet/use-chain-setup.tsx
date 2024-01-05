@@ -1,20 +1,20 @@
-import { supportedChains } from "@/libs/wagmi"
 import { clientStore, useClientStore } from "@/stores/client.store"
 import { useState } from "react"
 import toast from "react-hot-toast"
-import { Chain, useSwitchNetwork } from "wagmi"
+import { Chain } from "viem"
+import { useSwitchChain } from "wagmi"
 
 export function useChainSetup() {
   const { walletClient, chain } = useClientStore()
-  const { switchNetworkAsync } = useSwitchNetwork()
+  const { switchChainAsync } = useSwitchChain()
   const [isSwitchingChain, setIsSwitchingChain] = useState(false)
 
   async function selectChain(chain: Chain) {
     try {
       setIsSwitchingChain(true)
       if (walletClient?.account) {
-        if (typeof switchNetworkAsync === "function") {
-          const setup = await switchNetworkAsync(chain.id)
+        if (typeof switchChainAsync === "function") {
+          const setup = await switchChainAsync({ chainId: chain.id })
           clientStore.updateChain(setup)
         } else {
           toast.error("An error occurred while switching networks")
@@ -31,7 +31,6 @@ export function useChainSetup() {
 
   return {
     currentChain: chain,
-    chains: supportedChains,
     selectChain,
     isSwitchingChain,
   }

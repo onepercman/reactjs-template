@@ -1,14 +1,11 @@
 import { HOST } from "@/config/host.config"
 import { walletConnectId } from "@/config/wallet-connect.config"
-import { Chain, configureChains, createConfig, mainnet } from "wagmi"
-import { bsc, bscTestnet, fantom, fantomTestnet, goerli } from "wagmi/chains"
-import { InjectedConnector } from "wagmi/connectors/injected"
-import { WalletConnectConnector } from "wagmi/connectors/walletConnect"
-import { publicProvider } from "wagmi/providers/public"
+import { createClient, http } from "viem"
+import { createConfig } from "wagmi"
+import { mainnet } from "wagmi/chains"
+import { injected, walletConnect } from "wagmi/connectors"
 
-export const supportedChains: Chain[] = [mainnet, bsc, bscTestnet, fantom, fantomTestnet, goerli]
-
-export const { publicClient, webSocketPublicClient } = configureChains(supportedChains, [publicProvider()])
+export const chains = <const>[mainnet]
 
 export enum ConnectorIds {
   Injected = "injected",
@@ -16,28 +13,21 @@ export enum ConnectorIds {
 }
 
 export const connectors = {
-  [ConnectorIds.Injected]: new InjectedConnector({
-    chains: supportedChains,
-    options: {},
-  }),
-  [ConnectorIds.WalletConnect]: new WalletConnectConnector({
-    chains: supportedChains,
-    options: {
-      projectId: walletConnectId,
-    },
+  [ConnectorIds.Injected]: injected(),
+  [ConnectorIds.WalletConnect]: walletConnect({
+    projectId: walletConnectId,
   }),
 }
 
 export const wagmiConfig = createConfig({
-  publicClient,
-  webSocketPublicClient,
-  autoConnect: true,
-  connectors: [connectors[ConnectorIds.Injected], connectors[ConnectorIds.WalletConnect]],
-  logger: {
-    warn(message) {
-      console.warn(`🌐 Client: `, message)
-    },
+  chains: chains,
+  client({ chain }) {
+    return createClient({
+      chain,
+      transport: http(),
+    })
   },
+  connectors: [connectors[ConnectorIds.Injected], connectors[ConnectorIds.WalletConnect]],
 })
 
 export interface Wallet {

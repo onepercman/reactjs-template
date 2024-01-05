@@ -3,11 +3,9 @@ import { isDev } from "@/config/env.config"
 import { storageKeys } from "@/config/storage.config"
 import { ADDRESSES } from "@/constants/addresses"
 import { proxyWithPersist } from "@/libs/valtio"
-import { publicClient } from "@/libs/wagmi"
 import { useSnapshot } from "valtio"
 import { devtools } from "valtio/utils"
-import { Account } from "viem"
-import { Address, Chain, PublicClient, WalletClient } from "wagmi"
+import { Account, Address, Chain, PublicClient, WalletClient, createPublicClient, http } from "viem"
 
 class ClientStore {
   chain: Chain = defaultChain
@@ -18,7 +16,7 @@ class ClientStore {
   }
 
   get publicClient(): PublicClient {
-    return publicClient({ chainId: this.chain.id })
+    return createPublicClient({ chain: this.chain, transport: http() })
   }
 
   get contractAddresses(): Record<keyof typeof ADDRESSES, Address> {

@@ -1,11 +1,12 @@
 import { useChainSetup } from "@/hooks/wallet/use-chain-setup"
 import { Button } from "@/libs/ui/button"
 import { Menu } from "@/libs/ui/menu"
+import { chains } from "@/libs/wagmi"
 import { FC } from "react"
 import { HiGlobe } from "react-icons/hi"
 
 export const ChainSelector: FC = () => {
-  const { currentChain, chains, selectChain, isSwitchingChain } = useChainSetup()
+  const { currentChain, selectChain, isSwitchingChain } = useChainSetup()
 
   return (
     <Menu
