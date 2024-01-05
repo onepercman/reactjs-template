@@ -4,9 +4,9 @@ import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestCo
 
 const requestHandler = {
   onFulfilled(config: InternalAxiosRequestConfig) {
-    const { user } = userStore
-    if (user && config.headers.Authorization) {
-      config.headers.Authorization = `Bearer ${user.token}`
+    const { jwt } = userStore
+    if (jwt && config.headers.Authorization) {
+      config.headers.Authorization = `Bearer ${jwt}`
     }
     return config
   },

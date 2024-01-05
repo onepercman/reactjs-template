@@ -5,6 +5,7 @@ import { useSnapshot } from "valtio"
 
 class UserStore {
   user?: User
+  jwt?: string
 
   async login() {}
 
