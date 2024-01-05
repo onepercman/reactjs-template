@@ -1,9 +1,8 @@
 import { cva, VariantProps } from "class-variance-authority"
 import { Moment } from "moment-timezone"
-import Picker from "rc-picker"
+import Picker, { PickerProps, PickerRef } from "rc-picker"
 import defaultConfig from "rc-picker/lib/generate/moment"
 import defaultLocale from "rc-picker/lib/locale/en_US"
-import { PickerBaseProps, PickerDateProps, PickerTimeProps } from "rc-picker/lib/Picker"
 import React from "react"
 import { HiCalendar } from "react-icons/hi"
 import { cn } from "../utils/className"
@@ -28,14 +27,11 @@ const datePickerVariants = cva("input-group input", {
 
 type OmitType = "locale" | "generateConfig" | "suffixIcon"
 
-type InternalType =
-  | Omit<PickerBaseProps<Moment>, OmitType>
-  | Omit<PickerDateProps<Moment>, OmitType>
-  | Omit<PickerTimeProps<Moment>, OmitType>
+type InternalType = Omit<PickerProps<Moment>, OmitType>
 
 export type DatePickerProps = InternalType & VariantProps<typeof datePickerVariants>
 
-export const DatePicker = React.forwardRef<Picker<Moment>, DatePickerProps>(function (
+export const DatePicker = React.forwardRef<PickerRef, DatePickerProps>(function (
   { size, variant, className, ...props },
   ref,
 ) {

@@ -1,6 +1,5 @@
 import { ToasterContainer } from "@/components/app/toaster-container"
 import { AuthSentry } from "@/components/wallet/auth-sentry"
-import { ConnectDialog } from "@/components/wallet/connect-dialog"
 import { RequiredChainSentry } from "@/components/wallet/required-chain-sentry"
 import { queryClient } from "@/libs/react-query"
 import { swrConfig } from "@/libs/swr"
@@ -22,7 +21,6 @@ export default function App() {
           <ClientSentry />
           <RequiredChainSentry />
           <AuthSentry />
-          <ConnectDialog />
           <ToasterContainer />
           <RouterProvider router={router} fallbackElement={<Loader />} />
         </SWRConfig>
