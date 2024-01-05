@@ -52,7 +52,7 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(function
         <div
           ref={titleRef}
           role="button"
-          className={cn("inline-flex h-8 w-full items-center justify-between gap-6", titleClassName)}
+          className={cn("gap-base inline-flex h-8 w-full items-center justify-between", titleClassName)}
           onClick={() => {
             if (height === 0 && childrenRef.current) {
               setIsOpen(true)

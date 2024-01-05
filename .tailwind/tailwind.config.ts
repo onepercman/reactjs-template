@@ -25,6 +25,9 @@ const config: Config = {
       borderRadius: {
         DEFAULT: "0.375rem",
       },
+      spacing: {
+        base: "1rem",
+      },
       transitionTimingFunction: {
         expo: "cubic-bezier(0.5, 1.5, 0.8, 1)",
         "expo-in": "cubic-bezier(0.95, 0.05, 0.795, 0.035)",

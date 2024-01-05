@@ -1,7 +1,7 @@
 import { VariantProps, cva } from "class-variance-authority"
 import { forwardRefWithAs } from "../utils/ref"
 
-const container = cva("mx-auto w-full p-6", {
+const container = cva("mx-auto w-full p-base", {
   variants: {
     size: {
       default: "max-w-screen-default",

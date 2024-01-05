@@ -1,11 +1,10 @@
-import { HOST } from "@/config/host.config"
 import { walletConnectId } from "@/config/wallet-connect.config"
 import { createClient, http } from "viem"
 import { createConfig } from "wagmi"
-import { mainnet } from "wagmi/chains"
+import { goerli, mainnet } from "wagmi/chains"
 import { injected, walletConnect } from "wagmi/connectors"
 
-export const chains = <const>[mainnet]
+export const chains = <const>[mainnet, goerli]
 
 export enum ConnectorIds {
   Injected = "injected",
@@ -29,117 +28,3 @@ export const wagmiConfig = createConfig({
   },
   connectors: [connectors[ConnectorIds.Injected], connectors[ConnectorIds.WalletConnect]],
 })
-
-export interface Wallet {
-  injected: boolean
-  name: string
-  connectorId: ConnectorIds
-  etherId: string
-  mobileOnly: boolean
-  iconURI: string
-  downloadUrl: string
-  deepLink: string
-}
-
-export const wallets: Wallet[] = [
-  {
-    injected: true,
-    name: "Injected",
-    connectorId: ConnectorIds.Injected,
-    etherId: "",
-    mobileOnly: false,
-    iconURI: "/wallets/injected.png",
-    downloadUrl: "",
-    deepLink: "",
-  },
-  {
-    injected: false,
-    name: "MetaMask",
-    connectorId: ConnectorIds.Injected,
-    etherId: "isMetaMask",
-    mobileOnly: false,
-    iconURI: "/wallets/metamask.png",
-    downloadUrl: "https://metamask.io/download/",
-    deepLink: `https://metamask.app.link/dapp/${HOST}`,
-  },
-  {
-    injected: false,
-    name: "Opera Wallet",
-    connectorId: ConnectorIds.Injected,
-    etherId: "isOpera",
-    mobileOnly: false,
-    iconURI: "/wallets/opera.png",
-    downloadUrl: "https://www.opera.com/crypto/next",
-    deepLink: "",
-  },
-  {
-    injected: false,
-    name: "MathWallet",
-    connectorId: ConnectorIds.Injected,
-    etherId: "isMathWallet",
-    mobileOnly: false,
-    iconURI: "/wallets/mathwallet.png",
-    downloadUrl: "https://mathwallet.org/",
-    deepLink: `mathwallet://mathwallet.org?action=link&value=${HOST}`,
-  },
-  {
-    injected: false,
-    name: "SafePal",
-    connectorId: ConnectorIds.Injected,
-    etherId: "isSafePal",
-    mobileOnly: false,
-    iconURI: "/wallets/safepal.png",
-    downloadUrl: "https://safepal.io/download",
-    deepLink: "",
-  },
-  {
-    injected: false,
-    name: "TokenPocket",
-    connectorId: ConnectorIds.Injected,
-    etherId: "isTokenPocket",
-    mobileOnly: false,
-    iconURI: "/wallets/tokenpocket.png",
-    downloadUrl: "https://www.tokenpocket.pro/",
-    deepLink: `https://tokenpocket.github.io/applink?dappUrl=${HOST}`,
-  },
-  {
-    injected: false,
-    name: "Coin98",
-    connectorId: ConnectorIds.Injected,
-    etherId: "isCoin98",
-    mobileOnly: false,
-    iconURI: "/wallets/coin98.png",
-    downloadUrl: "https://coin98.net/",
-    deepLink: "",
-  },
-  {
-    injected: false,
-    name: "Trust Wallet",
-    connectorId: ConnectorIds.Injected,
-    etherId: "isTrust",
-    mobileOnly: false,
-    iconURI: "/wallets/trustwallet.png",
-    downloadUrl: "https://trustwallet.com/",
-    deepLink: `https://link.trustwallet.com/open_url?coin_id=714&url=${HOST}`,
-  },
-  // {
-  //   injected: false,
-  //   name: "Rice Wallet",
-  //   connectorId: ConnectorIds.Injected,
-  //   etherId: "isRiceWallet",
-  //   mobileOnly: true,
-  //   iconURI: "/wallets/ricewallet.png",
-  //   downloadUrl: "https://ricewallet.io/",
-  //   deepLink: "",
-  // },
-  {
-    injected: false,
-    name: "Wallet Connect",
-    connectorId: ConnectorIds.WalletConnect,
-    etherId: "",
-    mobileOnly: false,
-    iconURI: "/wallets/walletconnect.png",
-    downloadUrl: "",
-    deepLink: "",
-  },
-]

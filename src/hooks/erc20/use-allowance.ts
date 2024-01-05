@@ -21,6 +21,9 @@ export function useAllowance(address?: Address, spender?: Address) {
     address,
     functionName: "allowance",
     args: [walletClient?.account?.address as Address, spender!],
+    query: {
+      enabled: Boolean(walletClient?.account && spender),
+    },
   })
 
   const approve = useCallback(async () => {

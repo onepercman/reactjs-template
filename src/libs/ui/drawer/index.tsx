@@ -128,14 +128,14 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function (
 
               <div className="bg-component border-line relative h-full w-full cursor-auto overflow-hidden rounded border text-left align-middle shadow">
                 {title && (
-                  <HeadlessUI.Dialog.Title as="h3" className="mb-2 p-6 text-lg font-medium">
+                  <HeadlessUI.Dialog.Title as="h3" className="p-base mb-2 text-lg font-medium">
                     {title}
                   </HeadlessUI.Dialog.Title>
                 )}
                 {closable && (trigger || onClose) && (
-                  <HiX role="button" className="absolute right-6 top-6 z-50" onClick={handleClose} />
+                  <HiX role="button" className="top-base absolute right-6 z-50" onClick={handleClose} />
                 )}
-                <div className={cn("scrollbar-none h-full overflow-y-auto p-6", className)}>{getChildren()}</div>
+                <div className={cn("scrollbar-none p-base h-full overflow-y-auto", className)}>{getChildren()}</div>
               </div>
             </HeadlessUI.Dialog.Panel>
           </HeadlessUI.Transition.Child>

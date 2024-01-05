@@ -82,7 +82,7 @@ export const Combobox = createComboxbox(function (
           {options?.map((item) => (
             <HeadlessUI.Combobox.Option as={React.Fragment} key={JSON.stringify(item)} value={item.value}>
               {({ selected }) => (
-                <div className="hover:bg-muted flex cursor-pointer items-center justify-between gap-6 rounded p-2 pr-8 transition-colors">
+                <div className="hover:bg-muted gap-base flex cursor-pointer items-center justify-between rounded p-2 pr-8 transition-colors">
                   {item.children || (item.value as React.ReactNode)} {selected && <HiCheck />}
                 </div>
               )}

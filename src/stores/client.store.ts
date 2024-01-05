@@ -34,7 +34,7 @@ class ClientStore {
   }
 }
 
-const clientStore = proxyWithPersist(new ClientStore(), { key: storageKeys.client })
+const clientStore = proxyWithPersist(new ClientStore(), { key: storageKeys.client, include: ["chain"] })
 
 devtools(clientStore, { name: "Client", enabled: isDev })
 

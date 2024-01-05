@@ -64,7 +64,7 @@ const DialogPrimitive = React.forwardRef<HTMLDivElement, DialogProps>(function (
   )
 
   const _panelClassName = cn(
-    "bg-component border-line m-auto w-full lg:!max-w-md lg:min-w-md cursor-auto overflow-hidden rounded border p-6 text-left align-middle shadow transition-all",
+    "bg-component border-line m-auto w-full cursor-auto overflow-hidden rounded border p-base text-left align-middle shadow transition-all",
     center ? "m-auto" : "mx-auto mt-32",
   )
 
@@ -86,7 +86,7 @@ const DialogPrimitive = React.forwardRef<HTMLDivElement, DialogProps>(function (
           </HeadlessUI.Transition.Child>
 
           <div className={_containerClassName}>
-            <div className="flex min-h-full p-6 text-center">
+            <div className="p-base flex min-h-full text-center">
               <HeadlessUI.Transition.Child
                 as={HeadlessUI.Dialog.Panel}
                 enter="ease-out duration-100"
