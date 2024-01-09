@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { Address, erc20Abi } from "viem"
 import { useBlockNumber, useClient, useReadContract } from "wagmi"
 
-export function useBalance(address: Address, blockInterval?: number) {
+export function useTokenBalance(address: Address, blockInterval?: number) {
   const { account } = useClient()
 
   const { data: blockNumber } = useBlockNumber()
