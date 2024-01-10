@@ -8,7 +8,7 @@ export const AuthSentry: FC = () => {
 
   useSWR(["auth sentry", walletClient], function () {
     if (walletClient) {
-      userStore.login()
+      userStore.login(walletClient)
     }
   })
 

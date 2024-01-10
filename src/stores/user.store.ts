@@ -2,12 +2,15 @@ import { storageKeys } from "@/config/storage.config"
 import { User } from "@/interfaces/user.interface"
 import { proxyWithPersist } from "@/libs/valtio"
 import { useSnapshot } from "valtio"
+import { WalletClient } from "viem"
 
 class UserStore {
   user?: User
   jwt?: string
 
-  async login() {}
+  async login(walletClient: WalletClient) {
+    console.log(walletClient)
+  }
 
   logout() {
     this.user = undefined

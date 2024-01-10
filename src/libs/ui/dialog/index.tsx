@@ -138,12 +138,10 @@ function openDialog({ children, onClose, ...props }: DialogProps): {
   root.render(
     <DialogPrimitive
       open={true}
-      onClose={
-        onClose ||
-        function () {
-          close()
-        }
-      }
+      onClose={function () {
+        onClose && onClose()
+        close()
+      }}
       {...props}
     >
       {children}
