@@ -1,5 +1,5 @@
 import { clientStore, useClientStore } from "@/stores/client.store"
-import { useWalletClient } from "wagmi"
+import { useAccountEffect, useWalletClient } from "wagmi"
 
 export function ClientSentry() {
   const { chain } = useClientStore()
@@ -11,6 +11,12 @@ export function ClientSentry() {
         clientStore.updateWalletClient(client)
         return client
       },
+    },
+  })
+
+  useAccountEffect({
+    onDisconnect() {
+      clientStore.updateWalletClient(undefined)
     },
   })
 
