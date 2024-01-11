@@ -21,7 +21,7 @@ export const FormItem = React.forwardRef<HTMLDivElement, FormItemProps>(function
   { className, children, label, mode = "vertical", state, customField = false, required, ...props },
   ref,
 ) {
-  const fieldProps = customField ? {} : { ...state?.field, isError: !!state?.fieldState.error?.message }
+  const fieldProps = state && !customField ? { ...state.field, isError: !!state.fieldState?.error?.message } : {}
 
   const _className = cn("flex", mode === "vertical" ? "flex-col" : "flex-row gap-3", className)
 
