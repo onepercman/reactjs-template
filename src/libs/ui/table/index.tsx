@@ -53,9 +53,9 @@ const Table = _createTable(function (
       <table ref={ref} className={cn("w-full border-separate border-spacing-y-1", tableClassName)} {...props}>
         <thead className="text-left">
           <tr>
-            {columns?.map(({ key, title, className, ...column }, index) => (
+            {columns?.map(({ key, title, className, dataIndex, render: _, ...column }, index) => (
               <th
-                key={key || title || index}
+                key={key || title || (dataIndex as string) || index}
                 className={cn("!text-2xs text-muted bg-transparent px-4", className)}
                 {...column}
               >
@@ -81,7 +81,7 @@ const Table = _createTable(function (
               }}
               onClick={() => onSelectRow && onSelectRow(row)}
             >
-              {columns?.map(({ key, className, ...column }, columnIndex) => (
+              {columns?.map(({ key, className, dataIndex, render, ...column }, columnIndex) => (
                 <td
                   key={key || columnIndex}
                   className={cn(
@@ -91,9 +91,7 @@ const Table = _createTable(function (
                   )}
                   {...column}
                 >
-                  {column.render
-                    ? column.render(row[column.dataIndex!], row, index)
-                    : (row[column.dataIndex || ""] as React.ReactNode)}
+                  {render ? render(row[dataIndex!], row, index) : (row[dataIndex || ""] as React.ReactNode)}
                 </td>
               ))}
             </tr>
