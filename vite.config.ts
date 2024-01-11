@@ -1,6 +1,7 @@
 import react from "@vitejs/plugin-react-swc"
 import { defineConfig, loadEnv } from "vite"
 import vitePluginCompression from "vite-plugin-compression"
+import { nodePolyfills } from "vite-plugin-node-polyfills"
 import vitePluginRadar from "vite-plugin-radar"
 import { default as viteTsConfigPaths } from "vite-tsconfig-paths"
 
@@ -8,6 +9,7 @@ import { default as viteTsConfigPaths } from "vite-tsconfig-paths"
 export default defineConfig(({ mode }) => ({
   base: loadEnv(mode, process.cwd()).VITE_PUBLIC_URL,
   plugins: [
+    nodePolyfills(),
     react(),
     viteTsConfigPaths(),
     vitePluginRadar({
