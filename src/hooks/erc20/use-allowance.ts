@@ -1,6 +1,6 @@
 import { useClientStore } from "@/stores/client.store"
 import { toastErrors } from "@/utils/toast"
-import { appendTx } from "@/utils/tx-queue"
+import { waitTx } from "@/utils/tx-queue"
 import { useCallback } from "react"
 import { Address, BaseError, erc20Abi, hexToBigInt } from "viem"
 import { useReadContract } from "wagmi"
@@ -37,12 +37,12 @@ export function useAllowance(address?: Address, spender?: Address) {
           functionName: "approve",
           args: [spender, MaxUint256],
         })
-        appendTx(
+        waitTx({
           hash,
-          `Approving spending cap for ${symbol || "the token"}`,
-          `Successfully set spending cap for ${symbol || "the token"}`,
-          refetch,
-        )
+          msg: `Approving spending cap for ${symbol || "the token"}`,
+          successMsg: `Successfully set spending cap for ${symbol || "the token"}`,
+          onSuccess: refetch,
+        })
       }
     } catch (err) {
       toastErrors(err as BaseError, "Approve failed")

@@ -3,7 +3,14 @@ import { toast } from "react-hot-toast"
 import { Hex } from "viem"
 import { getTxUrl } from "./web3"
 
-export async function appendTx(hash: Hex, msg?: string, success?: string, callback?: () => void) {
+interface WaitTxArgs {
+  hash: Hex
+  msg?: string
+  successMsg?: string
+  onSuccess?(): void
+}
+
+export async function waitTx({ hash, msg, successMsg, onSuccess }: WaitTxArgs) {
   const { publicClient, chain } = clientStore
 
   return toast.promise(
@@ -12,7 +19,7 @@ export async function appendTx(hash: Hex, msg?: string, success?: string, callba
         .waitForTransactionReceipt({ hash })
         .then(function ({ status }) {
           if (status === "success") {
-            callback && callback()
+            onSuccess && onSuccess()
             resolve(true)
           } else reject("Execution reverted")
         })
@@ -25,7 +32,15 @@ export async function appendTx(hash: Hex, msg?: string, success?: string, callba
         <div className="flex flex-col gap-0.5">
           <span>Pending</span>
           {msg && <span className="text-xs">{msg}</span>}
-          <a href={getTxUrl(hash)} target="_blank" rel="noopener noreferrer" className="text-primary text-xs">
+          <a
+            href={getTxUrl(hash)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary text-xs"
+            onClick={function (e) {
+              e.stopPropagation()
+            }}
+          >
             Open {chain.blockExplorers?.default.name || "tx info"}
           </a>
         </div>
@@ -35,7 +50,15 @@ export async function appendTx(hash: Hex, msg?: string, success?: string, callba
           <div className="flex flex-col gap-0.5">
             <span>Error</span>
             <span className="text-error text-xs">{(err as Error).message}</span>
-            <a href={getTxUrl(hash)} target="_blank" rel="noopener noreferrer" className="text-primary text-xs">
+            <a
+              href={getTxUrl(hash)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary text-xs"
+              onClick={function (e) {
+                e.stopPropagation()
+              }}
+            >
               Open {chain.blockExplorers?.default.name || "tx info"}
             </a>
           </div>
@@ -44,8 +67,16 @@ export async function appendTx(hash: Hex, msg?: string, success?: string, callba
       success: (
         <div className="flex flex-col gap-0.5">
           <span>Success</span>
-          {success && <span className="text-success text-xs">{success}</span>}
-          <a href={getTxUrl(hash)} target="_blank" rel="noopener noreferrer" className="text-primary text-xs">
+          {successMsg && <span className="text-success text-xs">{successMsg}</span>}
+          <a
+            href={getTxUrl(hash)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary text-xs"
+            onClick={function (e) {
+              e.stopPropagation()
+            }}
+          >
             Open {chain.blockExplorers?.default.name || "tx info"}
           </a>
         </div>
@@ -53,6 +84,7 @@ export async function appendTx(hash: Hex, msg?: string, success?: string, callba
     },
     {
       position: "bottom-right",
+      duration: 5000,
     },
   )
 }
