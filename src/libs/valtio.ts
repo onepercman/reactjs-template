@@ -24,6 +24,7 @@ function getPersist(key: string, storage: Storage) {
   try {
     return JSON.parse(storage.getItem(key) || "")
   } catch (err) {
+    console.log(`🔴 get persist error [${key}]`, err)
     return {}
   }
 }
@@ -33,7 +34,7 @@ function setPersist<T extends object>(key: string, state: T, storage: Storage, {
     const data = include ? pick(state, include) : exclude ? omit(state, exclude) : state
     storage.setItem(key, JSON.stringify(data))
   } catch (err) {
-    console.log("🐞 Persist error key: ", key)
+    console.log(`🔴 set persist error [${key}]`, err)
   }
 }
 
