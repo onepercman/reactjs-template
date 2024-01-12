@@ -38,10 +38,9 @@ function getMergedState<T extends object>(initialState: T, persistedState: T): T
   return states
 }
 
-function proxyWithPersist<T extends object>(
-  initialObject: T,
-  { key, storage = defaultStorage, exclude, include, onInit }: ProxyWithPersistOptions<T>,
-): T {
+function createStore<T extends object>(initialObject: T, persistOptions?: ProxyWithPersistOptions<T>): T {
+  if (!persistOptions) return proxy(initialObject)
+  const { key, storage = defaultStorage, exclude, include, onInit } = persistOptions
   const mergedState = getMergedState(initialObject, getPersist(key, storage))
   setPersist(key, mergedState, storage, { exclude, include })
   onInit && onInit(mergedState)
@@ -52,11 +51,4 @@ function proxyWithPersist<T extends object>(
   return state
 }
 
-function Store<T extends { new (...args: any[]): any }>() {
-  return function (Class: T) {
-    return proxy(new Class())
-  }
-}
-
-export { Store, proxyWithPersist }
-export type { ProxyWithPersistOptions }
+export { createStore }

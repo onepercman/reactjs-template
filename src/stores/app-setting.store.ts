@@ -1,7 +1,7 @@
 import { isDev } from "@/config/env.config"
 import { storageKeys } from "@/config/storage.config"
 import { version } from "@/config/version.config"
-import { proxyWithPersist } from "@/libs/valtio"
+import { createStore } from "@/libs/valtio"
 import { subscribe, useSnapshot } from "valtio"
 import { devtools } from "valtio/utils"
 
@@ -24,7 +24,7 @@ class AppSettingStore {
   }
 }
 
-const appSettingStore = proxyWithPersist(new AppSettingStore(), { key: storageKeys.appSettings })
+const appSettingStore = createStore(new AppSettingStore(), { key: storageKeys.appSettings })
 
 devtools(appSettingStore, { name: "App Setting", enabled: isDev })
 

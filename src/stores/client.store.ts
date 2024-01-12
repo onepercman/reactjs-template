@@ -2,7 +2,7 @@ import { defaultChain } from "@/config/chain.config"
 import { isDev } from "@/config/env.config"
 import { storageKeys } from "@/config/storage.config"
 import { ADDRESSES } from "@/constants/addresses"
-import { proxyWithPersist } from "@/libs/valtio"
+import { createStore } from "@/libs/valtio"
 import { useSnapshot } from "valtio"
 import { devtools } from "valtio/utils"
 import { Account, Address, Chain, PublicClient, WalletClient, createPublicClient, http } from "viem"
@@ -34,7 +34,7 @@ class ClientStore {
   }
 }
 
-const clientStore = proxyWithPersist(new ClientStore(), { key: storageKeys.client, include: ["chain"] })
+const clientStore = createStore(new ClientStore(), { key: storageKeys.client, include: ["chain"] })
 
 devtools(clientStore, { name: "Client", enabled: isDev })
 

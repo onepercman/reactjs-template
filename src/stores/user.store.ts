@@ -1,6 +1,6 @@
 import { storageKeys } from "@/config/storage.config"
 import { User } from "@/interfaces/user.interface"
-import { proxyWithPersist } from "@/libs/valtio"
+import { createStore } from "@/libs/valtio"
 import { useSnapshot } from "valtio"
 import { WalletClient } from "viem"
 
@@ -17,7 +17,7 @@ class UserStore {
   }
 }
 
-const userStore = proxyWithPersist(new UserStore(), { key: storageKeys.user })
+const userStore = createStore(new UserStore(), { key: storageKeys.user })
 
 const useUserStore = () => useSnapshot(userStore)
 
