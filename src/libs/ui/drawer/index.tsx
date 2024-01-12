@@ -9,8 +9,8 @@ const drawer = cva(cn("fixed z-50 p-2"), {
     side: {
       right: "bottom-0 right-0 top-0 w-full",
       left: "bottom-0 left-0 top-0 w-full",
-      top: "left-0 right-0 top-0 h-full",
-      bottom: "left-0 right-0 bottom-0 h-full",
+      top: "left-0 right-0 top-0 h-fit",
+      bottom: "left-0 right-0 bottom-0 h-fit",
     },
   },
   defaultVariants: {
@@ -42,12 +42,11 @@ export interface DrawerProps extends DrawerVariantProps {
   title?: React.ReactNode
   trigger?: React.ReactElement
   width?: number
-  height?: number
   className?: string
 }
 
 export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function (
-  { open, onClose, side = "right", closable = true, children, title, trigger, width = 350, height = 250, className },
+  { open, onClose, side = "right", closable = true, children, title, trigger, width = 350, className },
   ref,
 ) {
   const [show, setShow] = React.useState(Boolean(open))
@@ -119,7 +118,6 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function (
               className={drawer({ side })}
               style={{
                 maxWidth: side === "left" || side === "right" ? width + "px" : "auto",
-                maxHeight: side === "top" || side === "bottom" ? height + "px" : "auto",
               }}
             >
               {/* Padding close */}
