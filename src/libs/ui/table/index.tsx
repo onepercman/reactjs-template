@@ -67,6 +67,7 @@ const Table = _createTable(function (
 
         <tbody className="relative text-left">
           <Loader
+            as="tr"
             className={cn(
               "bg-body/60 absolute inset-0 z-20 rounded backdrop-blur duration-300",
               loading ? "opacity-100" : "pointer-events-none opacity-0",

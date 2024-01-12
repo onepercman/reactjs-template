@@ -1,16 +1,30 @@
 import React from "react"
 import { Spinner } from "../spinner"
 import { cn } from "../utils/className"
+import { ComposedForwardRefWithAsProps, ForwardedRefComponent, PropsWithAsAttributes, ReactTag } from "../utils/ref"
 
-export const Loader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(function (
-  { className, ...props },
-  ref,
+interface Loader extends ForwardedRefComponent {
+  <Tag extends ReactTag>(props: ComposedForwardRefWithAsProps<Tag, object>): React.ReactElement | null
+}
+
+function _createLoader<Tag extends ReactTag>(
+  render: <Tag extends ReactTag>(
+    props: PropsWithAsAttributes<object, Tag>,
+    ref: React.ForwardedRef<Tag>,
+  ) => React.ReactElement | null,
 ) {
-  const _className = cn("flex w-full items-center justify-center p-32", className)
+  return React.forwardRef<Tag, PropsWithAsAttributes<object, Tag>>(render) as unknown as Loader
+}
+
+export const Loader = _createLoader(function ({ as, className, ...props }, ref) {
+  const Tag = as || ("div" as ReactTag)
+
+  const _className = cn("flex w-full items-center justify-center p-32 text-xl", className)
+
   return (
-    <div ref={ref} className={_className} {...props}>
-      <Spinner className="text-primary text-6xl" />
-    </div>
+    <Tag ref={ref} className={_className} {...props}>
+      <Spinner className="text-primary" />
+    </Tag>
   )
 })
 
