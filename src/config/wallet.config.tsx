@@ -1,6 +1,5 @@
 import { HiOutlineWallet } from "react-icons/hi2"
 import { coinbaseWallet, injected, metaMask, walletConnect } from "wagmi/connectors"
-import { walletConnectId } from "./wallet-connect.config"
 
 export const wallets = [
   {
@@ -38,7 +37,7 @@ export const wallets = [
   },
   {
     name: "Wallet Connect",
-    connector: walletConnect({ projectId: walletConnectId }),
+    connector: walletConnect({ projectId: "" }),
     icon: (
       <img
         src="https://altcoinsbox.com/wp-content/uploads/2023/04/wallet-connect-logo.png"
