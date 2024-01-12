@@ -9,8 +9,8 @@ const drawer = cva(cn("fixed z-50 p-2"), {
     side: {
       right: "bottom-0 right-0 top-0 w-full",
       left: "bottom-0 left-0 top-0 w-full",
-      top: "left-0 right-0 top-0 h-fit",
-      bottom: "left-0 right-0 bottom-0 h-fit",
+      top: "left-0 right-0 top-0 h-full",
+      bottom: "left-0 right-0 bottom-0 h-full",
     },
   },
   defaultVariants: {
@@ -41,12 +41,13 @@ export interface DrawerProps extends DrawerVariantProps {
   children?: React.ReactNode | ((args: { open(): void; close(): void }) => React.ReactNode)
   title?: React.ReactNode
   trigger?: React.ReactElement
-  width?: number
+  width?: number | string
+  height?: number | string
   className?: string
 }
 
 export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function (
-  { open, onClose, side = "right", closable = true, children, title, trigger, width = 350, className },
+  { open, onClose, side = "right", closable = true, children, title, trigger, width = 350, height, className },
   ref,
 ) {
   const [show, setShow] = React.useState(Boolean(open))
@@ -117,7 +118,8 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function (
             <HeadlessUI.Dialog.Panel
               className={drawer({ side })}
               style={{
-                maxWidth: side === "left" || side === "right" ? width + "px" : "auto",
+                maxWidth: side && ["left", "right"].includes(side) ? width : "auto",
+                maxHeight: side && ["top", "bottom"].includes(side) ? height : "auto",
               }}
             >
               {/* Padding close */}
