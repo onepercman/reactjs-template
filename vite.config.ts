@@ -10,7 +10,9 @@ export default defineConfig(({ mode }) => ({
   base: loadEnv(mode, process.cwd()).VITE_PUBLIC_URL,
   plugins: [
     nodePolyfills(),
-    react(),
+    react({
+      tsDecorators: true,
+    }),
     viteTsConfigPaths(),
     vitePluginRadar({
       analytics: {

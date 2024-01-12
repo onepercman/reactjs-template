@@ -52,5 +52,11 @@ function proxyWithPersist<T extends object>(
   return state
 }
 
-export { proxyWithPersist }
+function Store<T extends { new (...args: any[]): any }>() {
+  return function (Class: T) {
+    return proxy(new Class())
+  }
+}
+
+export { Store, proxyWithPersist }
 export type { ProxyWithPersistOptions }
