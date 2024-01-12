@@ -1,9 +1,10 @@
 import { Button } from "@/libs/ui/button"
-import { appSettingStore, useAppSettingStore } from "@/stores/app-setting.store"
+import { useStore } from "@/libs/valtio"
+import appSettingStore from "@/stores/app-setting.store"
 import { FC } from "react"
 
 export const ToggleColorScheme: FC = () => {
-  const { colorScheme } = useAppSettingStore()
+  const { colorScheme } = useStore(appSettingStore)
 
   return (
     <Button

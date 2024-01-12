@@ -1,15 +1,16 @@
 import { useActive } from "@/hooks/wallet/use-active"
 import { Button } from "@/libs/ui/button"
 import { Dialog } from "@/libs/ui/dialog"
+import { useStore } from "@/libs/valtio"
 import { chains } from "@/libs/wagmi"
-import { useClientStore } from "@/stores/client.store"
+import { clientStore } from "@/stores/client.store"
 import { toastErrors } from "@/utils/toast"
 import { toast } from "react-hot-toast"
 import { BaseError } from "viem"
 import { useChainId, useSwitchChain } from "wagmi"
 
 export function RequiredChainSentry() {
-  const client = useClientStore()
+  const client = useStore(clientStore)
   const chainId = useChainId()
   const { switchChainAsync } = useSwitchChain()
   const { disconnect } = useActive()

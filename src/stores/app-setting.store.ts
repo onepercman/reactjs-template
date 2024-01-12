@@ -2,14 +2,12 @@ import { isDev } from "@/config/env.config"
 import { storageKeys } from "@/config/storage.config"
 import { version } from "@/config/version.config"
 import { createStore } from "@/libs/valtio"
-import { subscribe, useSnapshot } from "valtio"
+import { subscribe } from "valtio"
 import { devtools } from "valtio/utils"
 
 class AppSettingStore {
   colorScheme: ColorScheme = "dark"
   version = "0.0"
-
-  showConnectDialog = false
 
   setColorScheme(colorScheme: ColorScheme) {
     this.colorScheme = colorScheme
@@ -18,17 +16,11 @@ class AppSettingStore {
   updateVersion(version: string) {
     this.version = version
   }
-
-  setShowConnectDialog(show: boolean) {
-    this.showConnectDialog = show
-  }
 }
 
 const appSettingStore = createStore(new AppSettingStore(), { key: storageKeys.appSettings })
 
 devtools(appSettingStore, { name: "App Setting", enabled: isDev })
-
-const useAppSettingStore = () => useSnapshot(appSettingStore)
 
 function applyColorScheme(colorScheme: ColorScheme) {
   document.documentElement.setAttribute("data-theme", colorScheme)
@@ -52,4 +44,4 @@ if (typeof document !== "undefined") {
   }
 }
 
-export { appSettingStore, applyColorScheme, useAppSettingStore }
+export default appSettingStore

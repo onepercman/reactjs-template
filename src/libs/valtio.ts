@@ -1,4 +1,4 @@
-import { proxy, subscribe } from "valtio"
+import { proxy, subscribe, useSnapshot } from "valtio"
 import { omit, pick } from "./object"
 
 const defaultStorage = localStorage
@@ -14,6 +14,11 @@ interface ProxyWithPersistOptions<T extends object> extends WithInOrEx<T> {
   storage?: Storage
   onInit?(state: T): void
 }
+
+type UseStoreReturnType<T extends object> = Pick<
+  T,
+  { [K in keyof T]: T[K] extends (...args: any) => any ? never : K }[keyof T]
+>
 
 function getPersist(key: string, storage: Storage) {
   try {
@@ -51,4 +56,13 @@ function createStore<T extends object>(initialObject: T, persistOptions?: ProxyW
   return state
 }
 
-export { createStore }
+function useStore<T extends object>(
+  store: T,
+  options?: {
+    sync?: boolean
+  },
+): UseStoreReturnType<T> {
+  return useSnapshot(store, options) as UseStoreReturnType<T>
+}
+
+export { createStore, useStore }

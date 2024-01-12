@@ -1,10 +1,11 @@
 import { useSWR } from "@/libs/swr"
-import { useClientStore } from "@/stores/client.store"
-import { userStore } from "@/stores/user.store"
+import { useStore } from "@/libs/valtio"
+import { clientStore } from "@/stores/client.store"
+import userStore from "@/stores/user.store"
 import { FC } from "react"
 
 export const AuthSentry: FC = () => {
-  const { walletClient } = useClientStore()
+  const { walletClient } = useStore(clientStore)
 
   useSWR(["auth sentry", walletClient], function () {
     if (walletClient) {

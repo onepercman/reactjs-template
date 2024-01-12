@@ -3,7 +3,6 @@ import { isDev } from "@/config/env.config"
 import { storageKeys } from "@/config/storage.config"
 import { ADDRESSES } from "@/constants/addresses"
 import { createStore } from "@/libs/valtio"
-import { useSnapshot } from "valtio"
 import { devtools } from "valtio/utils"
 import { Account, Address, Chain, PublicClient, WalletClient, createPublicClient, http } from "viem"
 
@@ -38,6 +37,4 @@ const clientStore = createStore(new ClientStore(), { key: storageKeys.client, in
 
 devtools(clientStore, { name: "Client", enabled: isDev })
 
-const useClientStore = () => useSnapshot(clientStore)
-
-export { clientStore, useClientStore }
+export { clientStore }

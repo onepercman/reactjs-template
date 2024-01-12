@@ -1,4 +1,5 @@
-import { useClientStore } from "@/stores/client.store"
+import { useStore } from "@/libs/valtio"
+import { clientStore } from "@/stores/client.store"
 import { toastErrors } from "@/utils/toast"
 import { waitTx } from "@/utils/tx-queue"
 import { useCallback } from "react"
@@ -8,7 +9,7 @@ import { useReadContract } from "wagmi"
 const MaxUint256 = hexToBigInt("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
 
 export function useAllowance(address?: Address, spender?: Address) {
-  const { walletClient, publicClient, chain } = useClientStore()
+  const { walletClient, publicClient, chain } = useStore(clientStore)
 
   const { data: symbol } = useReadContract({
     address,

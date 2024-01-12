@@ -1,11 +1,12 @@
-import { clientStore, useClientStore } from "@/stores/client.store"
+import { useStore } from "@/libs/valtio"
+import { clientStore } from "@/stores/client.store"
 import { useState } from "react"
 import toast from "react-hot-toast"
 import { Chain } from "viem"
 import { useSwitchChain } from "wagmi"
 
 export function useChainSetup() {
-  const { walletClient, chain } = useClientStore()
+  const { walletClient, chain } = useStore(clientStore)
   const { switchChainAsync } = useSwitchChain()
   const [isSwitchingChain, setIsSwitchingChain] = useState(false)
 

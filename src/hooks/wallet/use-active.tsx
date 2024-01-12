@@ -1,12 +1,13 @@
 import { wallets } from "@/config/wallet.config"
 import { Dialog } from "@/libs/ui/dialog"
-import { useClientStore } from "@/stores/client.store"
+import { useStore } from "@/libs/valtio"
+import { clientStore } from "@/stores/client.store"
 import { isDesktop } from "react-device-detect"
 import { ProviderNotFoundError, useAccount, useConnect, useDisconnect } from "wagmi"
 
 export function useActive() {
   const { isConnecting } = useAccount()
-  const { chain, account } = useClientStore()
+  const { chain, account } = useStore(clientStore)
   const { connectAsync } = useConnect()
   const { disconnectAsync } = useDisconnect()
 

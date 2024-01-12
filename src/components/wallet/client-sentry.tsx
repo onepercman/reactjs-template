@@ -1,8 +1,9 @@
-import { clientStore, useClientStore } from "@/stores/client.store"
+import { useStore } from "@/libs/valtio"
+import { clientStore } from "@/stores/client.store"
 import { useAccountEffect, useWalletClient } from "wagmi"
 
 export function ClientSentry() {
-  const { chain } = useClientStore()
+  const { chain } = useStore(clientStore)
 
   useWalletClient({
     chainId: chain.id,

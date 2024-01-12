@@ -1,5 +1,5 @@
 import { API_URL } from "@/config/endpoints.config"
-import { userStore } from "@/stores/user.store"
+import userStore from "@/stores/user.store"
 import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from "axios"
 
 const requestHandler = {
