@@ -4,7 +4,7 @@ import React from "react"
 import { HiCheck, HiChevronDown } from "react-icons/hi"
 import { Button, ButtonVariantProps } from "../button"
 import { cn } from "../utils/className"
-import { ComposedForwardRefWithAsProps, ForwardedRefComponent, ReactTag } from "../utils/ref"
+import { ForwardRefWithAsProps, ForwardedRefComponent, ReactTag } from "../utils/ref"
 
 export interface SelectOption<Value> extends HeadlessUI.ListboxOptionProps<"div", Value> {
   children?: React.ReactNode
@@ -19,9 +19,7 @@ export type SelectProps<As extends ReactTag, Value> = HeadlessUI.ListboxProps<As
   }
 
 interface Select extends ForwardedRefComponent {
-  <As extends ReactTag, Value>(
-    props: ComposedForwardRefWithAsProps<As, SelectProps<As, Value>>,
-  ): React.ReactElement | null
+  <As extends ReactTag, Value>(props: ForwardRefWithAsProps<As, SelectProps<As, Value>>): React.ReactElement | null
 }
 
 function _generate<Value, As extends ReactTag = typeof React.Fragment>(

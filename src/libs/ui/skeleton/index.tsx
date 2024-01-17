@@ -1,18 +1,18 @@
 import React from "react"
 import { cn } from "../utils/className"
-import { ComposedForwardRefWithAsProps, ForwardedRefComponent, ReactTag } from "../utils/ref"
+import { ForwardRefWithAsProps, ForwardedRefComponent, ReactTag } from "../utils/ref"
 
 interface Skeleton extends ForwardedRefComponent {
-  <Tag extends ReactTag>(props: ComposedForwardRefWithAsProps<Tag, object>): React.ReactElement | null
+  <Tag extends ReactTag>(props: ForwardRefWithAsProps<Tag, object>): React.ReactElement | null
 }
 
 function _generate<Tag extends ReactTag>(
   render: <Tag extends ReactTag>(
-    props: ComposedForwardRefWithAsProps<Tag, object>,
+    props: ForwardRefWithAsProps<Tag, object>,
     ref: React.ForwardedRef<Tag>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<Tag, ComposedForwardRefWithAsProps<Tag, object>>(render) as unknown as Skeleton
+  return React.forwardRef<Tag, ForwardRefWithAsProps<Tag, object>>(render) as unknown as Skeleton
 }
 
 export const Skeleton = _generate(function ({ as = "div", className, ...props }, ref) {

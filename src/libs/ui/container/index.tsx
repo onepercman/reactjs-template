@@ -1,6 +1,6 @@
 import { VariantProps, cva } from "class-variance-authority"
 import React from "react"
-import { ComposedForwardRefWithAsProps, ForwardedRefComponent, ReactTag } from "../utils/ref"
+import { ForwardRefWithAsProps, ForwardedRefComponent, ReactTag } from "../utils/ref"
 
 const container = cva("mx-auto w-full p-base", {
   variants: {
@@ -30,16 +30,16 @@ type ContainerVariantProps = VariantProps<typeof container>
 
 export interface ContainerProps extends ContainerVariantProps {}
 interface Container extends ForwardedRefComponent {
-  <Tag extends ReactTag>(props: ComposedForwardRefWithAsProps<Tag, ContainerProps>): React.ReactElement | null
+  <Tag extends ReactTag>(props: ForwardRefWithAsProps<Tag, ContainerProps>): React.ReactElement | null
 }
 
 function _generate<Tag extends ReactTag>(
   render: <Tag extends ReactTag>(
-    props: ComposedForwardRefWithAsProps<Tag, ContainerProps>,
+    props: ForwardRefWithAsProps<Tag, ContainerProps>,
     ref: React.ForwardedRef<Tag>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<Tag, ComposedForwardRefWithAsProps<Tag, ContainerProps>>(render) as unknown as Container
+  return React.forwardRef<Tag, ForwardRefWithAsProps<Tag, ContainerProps>>(render) as unknown as Container
 }
 
 export const Container = _generate(function ({ as = "div", children, className, size, ...props }, ref) {

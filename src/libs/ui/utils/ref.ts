@@ -8,7 +8,7 @@ type PropsWithAsAttributes<Props, As extends ReactTag> = Props & {
   as?: As
 } & Omit<React.HTMLAttributes<As>, keyof Props>
 
-type ForwardedRefComponent = {
+interface ForwardedRefComponent {
   displayName?: string
   propTypes?: React.WeakValidationMap<any>
   contextTypes?: React.ValidationMap<any>
@@ -16,13 +16,9 @@ type ForwardedRefComponent = {
   id?: string
 }
 
-type ComposedForwardRefWithAsProps<As extends ReactTag, Props> = React.ComponentPropsWithoutRef<As> &
+type ForwardRefWithAsProps<As extends ReactTag, Props> = React.ComponentPropsWithoutRef<As> &
   PropsWithAsAttributes<Props, As> &
   React.RefAttributes<Element>
-
-type ComponentWithAs<Props, DefaultTag extends ReactTag = "div"> = ForwardedRefComponent & {
-  <As extends ReactTag = DefaultTag>(props: ComposedForwardRefWithAsProps<As, Props>): React.ReactElement | null
-}
 
 function setRef<T>(ref: PossibleRef<T>, value: T) {
   if (typeof ref === "function") {
@@ -40,13 +36,6 @@ function useComposedRefs<T>(...refs: PossibleRef<T>[]) {
   return React.useCallback(composeRefs(...refs), refs)
 }
 
-export type {
-  ComponentWithAs,
-  ComposedForwardRefWithAsProps,
-  ForwardedRefComponent,
-  PossibleRef,
-  PropsWithAsAttributes,
-  ReactTag,
-}
+export type { ForwardRefWithAsProps, ForwardedRefComponent, PossibleRef, PropsWithAsAttributes, ReactTag }
 
-export { useComposedRefs }
+export { composeRefs, setRef, useComposedRefs }

@@ -3,7 +3,7 @@ import { Empty } from "../empty"
 import { Loader } from "../loader"
 import { Pagination, PaginationProps } from "../pagination"
 import { cn } from "../utils/className"
-import { ComposedForwardRefWithAsProps, ForwardedRefComponent } from "../utils/ref"
+import { ForwardRefWithAsProps, ForwardedRefComponent } from "../utils/ref"
 
 interface TableRow extends Readonly<Record<string, unknown>> {
   key?: string
@@ -27,7 +27,7 @@ interface TableProps<Row extends TableRow> extends React.HTMLAttributes<HTMLTabl
   pagination?: PaginationProps
 }
 interface Table extends ForwardedRefComponent {
-  <Row extends TableRow>(props: ComposedForwardRefWithAsProps<"div", TableProps<Row>>): React.ReactElement | null
+  <Row extends TableRow>(props: ForwardRefWithAsProps<"div", TableProps<Row>>): React.ReactElement | null
 }
 
 function _generate<Row extends TableRow>(

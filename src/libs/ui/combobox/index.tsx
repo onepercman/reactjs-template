@@ -5,7 +5,7 @@ import { HiCheck } from "react-icons/hi"
 import { Button } from "../button"
 import { Input } from "../input"
 import { cn } from "../utils/className"
-import { ComposedForwardRefWithAsProps, ForwardedRefComponent } from "../utils/ref"
+import { ForwardRefWithAsProps, ForwardedRefComponent } from "../utils/ref"
 
 export interface ComboboxOption<T = any> extends HeadlessUI.ComboboxOptionProps<Button, T> {
   children?: React.ReactNode
@@ -22,7 +22,7 @@ export type ComboboxProps<
 
 interface Combobox extends ForwardedRefComponent {
   <Value, Nullable extends boolean | undefined, Multiple extends boolean | undefined>(
-    props: ComposedForwardRefWithAsProps<Input, ComboboxProps<Value, Nullable, Multiple>>,
+    props: ForwardRefWithAsProps<Input, ComboboxProps<Value, Nullable, Multiple>>,
   ): React.ReactElement | null
 }
 

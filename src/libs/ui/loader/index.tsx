@@ -1,10 +1,10 @@
 import React from "react"
 import { Spinner } from "../spinner"
 import { cn } from "../utils/className"
-import { ComposedForwardRefWithAsProps, ForwardedRefComponent, PropsWithAsAttributes, ReactTag } from "../utils/ref"
+import { ForwardRefWithAsProps, ForwardedRefComponent, PropsWithAsAttributes, ReactTag } from "../utils/ref"
 
 interface Loader extends ForwardedRefComponent {
-  <Tag extends ReactTag>(props: ComposedForwardRefWithAsProps<Tag, object>): React.ReactElement | null
+  <Tag extends ReactTag>(props: ForwardRefWithAsProps<Tag, object>): React.ReactElement | null
 }
 
 function _generate<Tag extends ReactTag>(
