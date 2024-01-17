@@ -1,5 +1,5 @@
 import { HiOutlineWallet } from "react-icons/hi2"
-import { coinbaseWallet, injected, metaMask, walletConnect } from "wagmi/connectors"
+import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors"
 
 export const wallets = [
   {
@@ -11,7 +11,7 @@ export const wallets = [
   },
   {
     name: "MetaMask",
-    connector: metaMask(),
+    connector: injected({ target: "metaMask" }),
     icon: (
       <img
         src="https://altcoinsbox.com/wp-content/uploads/2023/03/metamask-logo-600x600.webp"
