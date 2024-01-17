@@ -40,15 +40,6 @@ function useComposedRefs<T>(...refs: PossibleRef<T>[]) {
   return React.useCallback(composeRefs(...refs), refs)
 }
 
-function forwardRefWithAs<As extends ReactTag = "div", Props extends object = object>(
-  render: <As extends ReactTag>(
-    props: PropsWithAsAttributes<Props, As>,
-    ref: React.Ref<As>,
-  ) => React.ReactElement | null,
-) {
-  return React.forwardRef<As, PropsWithAsAttributes<Props, As>>(render) as unknown as ComponentWithAs<Props, As>
-}
-
 export type {
   ComponentWithAs,
   ComposedForwardRefWithAsProps,
@@ -58,4 +49,4 @@ export type {
   ReactTag,
 }
 
-export { forwardRefWithAs, useComposedRefs }
+export { useComposedRefs }

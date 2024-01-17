@@ -1,6 +1,6 @@
 import { Transition, TransitionClasses } from "@headlessui/react"
 import React from "react"
-import { forwardRefWithAs } from "../utils/ref"
+import { ComposedForwardRefWithAsProps, ForwardedRefComponent, ReactTag } from "../utils/ref"
 
 interface TransformProps {
   variant?: TransitionClasses
@@ -8,12 +8,22 @@ interface TransformProps {
   appear?: boolean
 }
 
-export const Transform = forwardRefWithAs<"div", TransformProps>(function (
-  { as = "div", variant, children, ...props },
-  ref,
+interface Transform extends ForwardedRefComponent {
+  <Tag extends ReactTag>(props: ComposedForwardRefWithAsProps<Tag, TransformProps>): React.ReactElement | null
+}
+
+function _generate<Tag extends ReactTag>(
+  render: <Tag extends ReactTag>(
+    props: ComposedForwardRefWithAsProps<Tag, TransformProps>,
+    ref: React.ForwardedRef<Tag>,
+  ) => React.ReactElement | null,
 ) {
+  return React.forwardRef<Tag, ComposedForwardRefWithAsProps<Tag, object>>(render) as unknown as Transform
+}
+
+export const Transform = _generate(function ({ as = "div", variant, children, ...props }, ref) {
   return (
-    <Transition {...props} as={React.Fragment} unmount appear>
+    <Transition as={React.Fragment} unmount appear {...props}>
       <Transition.Child ref={ref as React.ForwardedRef<HTMLElement>} as={as as React.ElementType} {...variant}>
         {children}
       </Transition.Child>

@@ -30,7 +30,7 @@ interface Table extends ForwardedRefComponent {
   <Row extends TableRow>(props: ComposedForwardRefWithAsProps<"div", TableProps<Row>>): React.ReactElement | null
 }
 
-function _createTable<Row extends TableRow>(
+function _generate<Row extends TableRow>(
   render: <Row extends TableRow>(
     props: TableProps<Row> & React.HTMLAttributes<HTMLTableElement>,
     ref: React.ForwardedRef<HTMLTableElement>,
@@ -39,7 +39,7 @@ function _createTable<Row extends TableRow>(
   return React.forwardRef<HTMLTableElement, TableProps<Row>>(render) as unknown as Table
 }
 
-const Table = _createTable(function (
+const Table = _generate(function (
   { columns, data, onSelectRow, className, loading, tableClassName, pagination, ...props },
   ref,
 ) {

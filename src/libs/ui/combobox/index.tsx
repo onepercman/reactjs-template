@@ -26,7 +26,7 @@ interface Combobox extends ForwardedRefComponent {
   ): React.ReactElement | null
 }
 
-function createComboxbox<Value, Nullable extends boolean | undefined, Multiple extends boolean | undefined>(
+function _generate<Value, Nullable extends boolean | undefined, Multiple extends boolean | undefined>(
   render: <Value, Nullable extends boolean | undefined, Multiple extends boolean | undefined>(
     props: ComboboxProps<Value, Nullable, Multiple>,
     ref: React.ForwardedRef<Input>,
@@ -35,10 +35,7 @@ function createComboxbox<Value, Nullable extends boolean | undefined, Multiple e
   return React.forwardRef<Input, ComboboxProps<Value, Nullable, Multiple>>(render) as unknown as Combobox
 }
 
-export const Combobox = createComboxbox(function (
-  { float, options, size, variant, className, placeholder, ...props },
-  ref,
-) {
+export const Combobox = _generate(function ({ float, options, size, variant, className, placeholder, ...props }, ref) {
   return (
     <HeadlessUI.Combobox ref={ref} {...(props as any)}>
       <Float

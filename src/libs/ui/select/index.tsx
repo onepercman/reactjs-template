@@ -24,7 +24,7 @@ interface Select extends ForwardedRefComponent {
   ): React.ReactElement | null
 }
 
-function _createSelect<Value, As extends ReactTag = typeof React.Fragment>(
+function _generate<Value, As extends ReactTag = typeof React.Fragment>(
   render: <As extends ReactTag, Value>(
     props: SelectProps<As, Value>,
     ref: React.ForwardedRef<HTMLElement>,
@@ -33,7 +33,7 @@ function _createSelect<Value, As extends ReactTag = typeof React.Fragment>(
   return React.forwardRef<HTMLElement, SelectProps<As, Value>>(render) as unknown as Select
 }
 
-export const Select = _createSelect(function (
+export const Select = _generate(function (
   { as = React.Fragment as ReactTag, multiple, float, options, size, variant, className, placeholder, ...props },
   ref,
 ) {
