@@ -3,7 +3,6 @@ import { Empty } from "../empty"
 import { Loader } from "../loader"
 import { Pagination, PaginationProps } from "../pagination"
 import { cn } from "../utils/className"
-import { ForwardRefWithAsProps, ForwardedRefComponent } from "../utils/ref"
 
 interface TableRow extends Readonly<Record<string, unknown>> {
   key?: string

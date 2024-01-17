@@ -5,7 +5,6 @@ import { HiCheck } from "react-icons/hi"
 import { Button } from "../button"
 import { Input } from "../input"
 import { cn } from "../utils/className"
-import { ForwardRefWithAsProps, ForwardedRefComponent } from "../utils/ref"
 
 export interface ComboboxOption<T = any> extends HeadlessUI.ComboboxOptionProps<Button, T> {
   children?: React.ReactNode

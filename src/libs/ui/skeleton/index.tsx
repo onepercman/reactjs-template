@@ -1,6 +1,5 @@
 import React from "react"
 import { cn } from "../utils/className"
-import { ForwardRefWithAsProps, ForwardedRefComponent, ReactTag } from "../utils/ref"
 
 interface Skeleton extends ForwardedRefComponent {
   <Tag extends ReactTag>(props: ForwardRefWithAsProps<Tag, object>): React.ReactElement | null

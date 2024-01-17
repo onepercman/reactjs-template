@@ -1,6 +1,5 @@
 import { Transition, TransitionClasses } from "@headlessui/react"
 import React from "react"
-import { ForwardRefWithAsProps, ForwardedRefComponent, ReactTag } from "../utils/ref"
 
 interface TransformProps {
   variant?: TransitionClasses

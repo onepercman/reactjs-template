@@ -1,6 +1,5 @@
 import { VariantProps, cva } from "class-variance-authority"
 import React from "react"
-import { ForwardRefWithAsProps, ForwardedRefComponent, ReactTag } from "../utils/ref"
 
 const container = cva("mx-auto w-full p-base", {
   variants: {
