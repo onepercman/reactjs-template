@@ -1,8 +1,6 @@
 import { Layout } from "@/components/app/layout"
 import { ToasterContainer } from "@/components/app/toaster-container"
-import { AuthSentry } from "@/components/wallet/auth-sentry"
 import { ClientSentry } from "@/components/wallet/client-sentry"
-import { RequiredChainSentry } from "@/components/wallet/required-chain-sentry"
 import { useMounted } from "@/libs/custom-hooks/use-mounted"
 import { queryClient } from "@/libs/react-query"
 import { swrConfig } from "@/libs/swr"
@@ -24,8 +22,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <SWRConfig value={swrConfig}>
           <ClientSentry />
-          <RequiredChainSentry />
-          <AuthSentry />
           <ToasterContainer />
           <Layout>
             <Component {...pageProps} />

@@ -1,6 +1,4 @@
 import { ToasterContainer } from "@/components/app/toaster-container"
-import { AuthSentry } from "@/components/wallet/auth-sentry"
-import { RequiredChainSentry } from "@/components/wallet/required-chain-sentry"
 import { queryClient } from "@/libs/react-query"
 import { swrConfig } from "@/libs/swr"
 import { wagmiConfig } from "@/libs/wagmi"
@@ -19,8 +17,6 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <SWRConfig value={swrConfig}>
           <ClientSentry />
-          <RequiredChainSentry />
-          <AuthSentry />
           <ToasterContainer />
           <RouterProvider router={router} fallbackElement={<Loader />} />
         </SWRConfig>

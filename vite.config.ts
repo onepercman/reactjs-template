@@ -1,11 +1,9 @@
 import react from "@vitejs/plugin-react-swc"
-import { defineConfig, loadEnv } from "vite"
-import vitePluginCompression from "vite-plugin-compression"
+import { defineConfig, loadEnv, splitVendorChunkPlugin } from "vite"
 import { nodePolyfills } from "vite-plugin-node-polyfills"
 import vitePluginRadar from "vite-plugin-radar"
 import { default as viteTsConfigPaths } from "vite-tsconfig-paths"
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   base: loadEnv(mode, process.cwd()).VITE_PUBLIC_URL,
   plugins: [
@@ -20,7 +18,7 @@ export default defineConfig(({ mode }) => ({
       },
       enableDev: true,
     }),
-    vitePluginCompression(),
+    splitVendorChunkPlugin(),
   ],
   server: {
     host: true,
@@ -29,5 +27,10 @@ export default defineConfig(({ mode }) => ({
   build: {
     minify: true,
     chunkSizeWarningLimit: 3000,
+    rollupOptions: {
+      output: {
+        manualChunks: {},
+      },
+    },
   },
 }))

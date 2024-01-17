@@ -8,9 +8,9 @@ export function ClientSentry() {
   useWalletClient({
     chainId: chain.id,
     query: {
-      select(client) {
-        clientStore.updateWalletClient(client)
-        return client
+      select(walletClient) {
+        clientStore.updateWalletClient(walletClient)
+        return walletClient
       },
     },
   })
