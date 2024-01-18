@@ -8,6 +8,26 @@ const states = {
   "&:disabled": apply("opacity-50 saturate-50 cursor-not-allowed"),
 }
 
+const checkbox = {
+  "&-checkbox": apply(
+    "rounded bg-transparent text-primary",
+    "focus:ring focus:ring-primary focus:outline-none",
+    "focus:shadow focus:shadow-primary",
+    "focus-within:ring focus-within:ring-primary",
+    "focus-visible:ring focus-visible:ring-primary",
+  ),
+}
+
+const radio = {
+  "&-radio": apply(
+    "rounded-full bg-transparent text-primary",
+    "focus:ring focus:ring-primary focus:outline-none",
+    "focus:shadow focus:shadow-primary",
+    "focus-within:ring focus-within:ring-primary",
+    "focus-visible:ring focus-visible:ring-primary",
+  ),
+}
+
 const textarea = {
   "&-textarea": apply("py-3"),
 }
@@ -56,9 +76,11 @@ export const input = {
   ".input": {
     ...base,
     ...states,
+    ...variants,
+    ...checkbox,
+    ...radio,
     ...textarea,
     ...range,
-    ...variants,
     ...elements,
   },
 }
