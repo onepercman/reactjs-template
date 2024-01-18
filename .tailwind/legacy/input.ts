@@ -12,6 +12,28 @@ const textarea = {
   "&-textarea": apply("py-3"),
 }
 
+const range = {
+  "&-range": {
+    ...apply("appearance-none h-4 overflow-hidden rounded bg-transparent cursor-pointer px-0"),
+    "&:focus-visible::-webkit-slider-thumb": apply("shadow-none"),
+    "&:focus-visible::-moz-range-thumb": apply("shadow-none"),
+    "&::-webkit-slider-runnable-track": apply("bg-muted h-1 w-full rounded"),
+    "&::-moz-range-track": apply("bg-muted h-1 w-full rounded"),
+    "&::-webkit-slider-thumb": {
+      ...apply(
+        "bg-component relative h-4 w-4 rounded border-none appearance-none top-1/2 text-primary-400 -translate-y-1/2",
+      ),
+      boxShadow:
+        "0 0 0 3px theme('colors.primary-400') inset, var(--focus-shadow, 0 0), calc(100rem * -1 - 0.5rem) 0 0 100rem",
+    },
+    "&::-moz-range-thumb": {
+      ...apply("bg-component relative h-4 w-4 rounded border-none top-1/2 text-primary-400"),
+      boxShadow:
+        "0 0 0 5px theme('colors.primary-400') inset, var(--focus-shadow, 0 0), calc(100rem * -1 - 0.5rem) 0 0 100rem",
+    },
+  },
+}
+
 const variants = {
   "&-filled": apply("bg-default"),
   "&-outlined": apply("bg-transparent border border-line"),
@@ -35,6 +57,7 @@ export const input = {
     ...base,
     ...states,
     ...textarea,
+    ...range,
     ...variants,
     ...elements,
   },
