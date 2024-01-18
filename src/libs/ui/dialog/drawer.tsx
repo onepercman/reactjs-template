@@ -93,7 +93,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function (
     <React.Fragment>
       {_trigger}
       <HeadlessUI.Transition appear show={show} as={React.Fragment}>
-        <HeadlessUI.Dialog as="div" ref={ref} open={open} onClose={handleClose}>
+        <HeadlessUI.Dialog as="div" ref={ref} onClose={handleClose}>
           <HeadlessUI.Transition.Child
             as={React.Fragment}
             enter="ease-out duration-100"
