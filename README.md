@@ -7,21 +7,21 @@
 - @headlessui-float/react
 - @headlessui/react
 - @tailwindcss/forms
-- @bonehub/tailwind-dynamic-colors
+- tailwind-schemes
 - prettier-plugin-tailwindcss
 - tailwind-merge
 - tailwind-scrollbar
 - tailwindcss-animate
 
-### Files
-
-- postcss.config.js
-- /.tailwind
-- /src/libs/ui
-- /styles/tailwind.scss
-- /styles/rc - implement react components styles
-
 ## Usage
+
+### Custom components
+
+- Legacy:
+  - .tailwind/legacy/button
+  - .tailwind/legacy/input
+- Primitives:
+  - @/libs/ui/
 
 ### Store
 
@@ -46,7 +46,7 @@ export default createStore(new Store())
 - With persist:
 
 ```ts
-export default createStore(new Store(), { name: "App Setting", enabled: isDev, include: ["property1"] })
+export default createStore(new Store(), { key: storageKeys.store1, include: ["property1"] })
 ```
 
 Example
