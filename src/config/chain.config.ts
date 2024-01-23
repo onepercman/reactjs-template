@@ -1,10 +1,10 @@
 import { mainnet } from "viem/chains"
-import { ENV, Env } from "./env.config"
+import { MODE, Mode } from "./mode.config"
 
 const ChainConfig = <const>{
-  [Env.Dev]: mainnet,
-  [Env.Stg]: mainnet,
-  [Env.Prd]: mainnet,
+  [Mode.Dev]: mainnet,
+  [Mode.Stg]: mainnet,
+  [Mode.Prd]: mainnet,
 }
 
-export const defaultChain = ChainConfig[ENV]
+export const defaultChain = ChainConfig[MODE]

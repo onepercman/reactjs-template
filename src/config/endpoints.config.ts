@@ -1,9 +1,9 @@
-import { ENV, Env } from "./env.config"
+import { MODE, Mode } from "./mode.config"
 
 const API_URLS = <const>{
-  [Env.Dev]: "",
-  [Env.Stg]: "",
-  [Env.Prd]: "",
+  [Mode.Dev]: "",
+  [Mode.Stg]: "",
+  [Mode.Prd]: "",
 }
 
-export const API_URL = API_URLS[ENV]
+export const API_URL = API_URLS[MODE]

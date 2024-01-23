@@ -1,9 +1,8 @@
+import { Logger } from "@/libs/logger"
 import { toast } from "react-hot-toast"
 import { BaseError } from "viem"
 
 export function toastErrors(err: BaseError, defaultMsg: string) {
-  if (process.env.NODE_ENV === "development") {
-    console.log("🐞 Contract call ----- ", err)
-  }
+  Logger.error("Contract Call", err)
   toast.error(err.shortMessage || defaultMsg)
 }

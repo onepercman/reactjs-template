@@ -1,4 +1,4 @@
-import { isDev } from "@/config/env.config"
+import { isDev } from "@/config/mode.config"
 import { storageKeys } from "@/config/storage.config"
 import { version } from "@/config/version.config"
 import { createStore } from "@/libs/valtio"

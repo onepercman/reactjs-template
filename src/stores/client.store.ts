@@ -1,5 +1,5 @@
 import { defaultChain } from "@/config/chain.config"
-import { isDev } from "@/config/env.config"
+import { isDev } from "@/config/mode.config"
 import { storageKeys } from "@/config/storage.config"
 import { ADDRESSES } from "@/constants/addresses"
 import { createStore } from "@/libs/valtio"
