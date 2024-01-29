@@ -26,5 +26,8 @@ export default plugin(({ addBase }) => {
         transition: "background-color 5000s ease-in-out 0s",
         "-webkit-text-fill-color": "#fff !important",
       },
+    "a:-webkit-any-link:focus": {
+      outline: "none",
+    },
   })
 })
