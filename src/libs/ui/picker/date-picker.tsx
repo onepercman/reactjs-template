@@ -1,11 +1,11 @@
 import { cva, VariantProps } from "class-variance-authority"
-import { Moment } from "moment-timezone"
+import { Dayjs } from "dayjs"
 import Picker, { PickerProps, PickerRef } from "rc-picker"
-import defaultConfig from "rc-picker/lib/generate/moment"
 import defaultLocale from "rc-picker/lib/locale/en_US"
 import React from "react"
 import { HiCalendar } from "react-icons/hi"
 import { cn } from "../utils/className"
+import defaultConfig from "./dayjs-timezone"
 
 const datePickerVariants = cva("input-group input", {
   variants: {
@@ -27,7 +27,7 @@ const datePickerVariants = cva("input-group input", {
 
 type OmitType = "locale" | "generateConfig" | "suffixIcon"
 
-type InternalType = Omit<PickerProps<Moment>, OmitType>
+type InternalType = Omit<PickerProps<Dayjs>, OmitType>
 
 export type DatePickerProps = InternalType & VariantProps<typeof datePickerVariants>
 
