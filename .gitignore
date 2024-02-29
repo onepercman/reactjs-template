@@ -21,7 +21,6 @@ yarn-error.log*
 
 # local env files
 .env
-.env*.local
 
 # vercel
 .vercel
@@ -32,7 +31,6 @@ yarn-error.log*
 # build dist
 /dist
 /dist-ssr
-*.local
 
 # Editor directories and files
 .idea
