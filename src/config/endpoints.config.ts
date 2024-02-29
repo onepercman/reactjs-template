@@ -1,6 +1,7 @@
 import { MODE, Mode } from "./mode.config"
 
 const API_URLS = <const>{
+  [Mode.Local]: "",
   [Mode.Dev]: "",
   [Mode.Stg]: "",
   [Mode.Prd]: "",

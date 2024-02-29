@@ -27,6 +27,8 @@ const config: Config = {
       },
       spacing: {
         base: "1rem",
+        large: "1.5rem",
+        small: "0.5rem",
       },
       transitionTimingFunction: {
         expo: "cubic-bezier(0.5, 1.5, 0.8, 1)",
