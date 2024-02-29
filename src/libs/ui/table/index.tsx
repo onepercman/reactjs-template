@@ -9,7 +9,7 @@ interface TableRow extends Readonly<Record<string, unknown>> {
 }
 
 interface TableColumnProps<Row extends TableRow> extends React.ThHTMLAttributes<HTMLTableCellElement> {
-  title: string
+  label: React.ReactNode
   key: string
   dataIndex: keyof Row
   sort: boolean
@@ -52,13 +52,13 @@ const Table = _generate(function (
       <table ref={ref} className={cn("w-full border-separate border-spacing-y-1", tableClassName)} {...props}>
         <thead className="text-left">
           <tr>
-            {columns?.map(({ key, title, className, dataIndex, render: _, ...column }, index) => (
+            {columns?.map(({ key, label, className, dataIndex, render: _, ...column }, index) => (
               <th
-                key={key || title || (dataIndex as string) || index}
+                key={key || (dataIndex as string) || index}
                 className={cn("!text-2xs text-muted bg-transparent px-4", className)}
                 {...column}
               >
-                {title}{" "}
+                {label}{" "}
               </th>
             ))}
           </tr>
