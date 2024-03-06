@@ -1,10 +1,10 @@
 import { queryClient } from "@/libs/react-query"
 import { useEffect } from "react"
 import { Address, erc20Abi } from "viem"
-import { useBlockNumber, useClient, useReadContract } from "wagmi"
+import { useAccount, useBlockNumber, useReadContract } from "wagmi"
 
 export function useTokenBalance(address: Address, blockInterval?: number) {
-  const { account } = useClient()
+  const { address: accountAddress } = useAccount()
 
   const { data: blockNumber } = useBlockNumber()
 
@@ -12,9 +12,9 @@ export function useTokenBalance(address: Address, blockInterval?: number) {
     abi: erc20Abi,
     address,
     functionName: "balanceOf",
-    args: [account?.address!],
+    args: [accountAddress!],
     query: {
-      enabled: Boolean(address && account),
+      enabled: Boolean(address && accountAddress),
     },
   })
 

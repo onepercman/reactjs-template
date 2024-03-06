@@ -1,6 +1,7 @@
 import { cva, VariantProps } from "class-variance-authority"
 import { Dayjs } from "dayjs"
-import { PickerRef, RangePicker, RangePickerProps } from "rc-picker"
+import { RangePicker, RangePickerProps } from "rc-picker"
+import { RangePickerRef } from "rc-picker/lib/interface"
 import defaultLocale from "rc-picker/lib/locale/en_US"
 import React from "react"
 import { HiArrowCircleRight, HiCalendar } from "react-icons/hi"
@@ -29,7 +30,7 @@ type OmitType = "locale" | "generateConfig" | "suffixIcon"
 
 type InternalType = Omit<RangePickerProps<Dayjs>, OmitType>
 
-export const Range = React.forwardRef<PickerRef, InternalType & VariantProps<typeof datePickerVariants>>(function (
+export const Range = React.forwardRef<RangePickerRef, InternalType & VariantProps<typeof datePickerVariants>>(function (
   { size, variant, className, ...props },
   ref,
 ) {
