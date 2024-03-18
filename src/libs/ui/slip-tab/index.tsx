@@ -1,12 +1,13 @@
 import { useResizeObserver } from "@/libs/custom-hooks/use-resize-observer"
-import { Tab, TabGroupProps } from "@headlessui/react"
+import { Tab, TabGroupProps, TabProps } from "@headlessui/react"
 import React, { ElementType } from "react"
 import { cn } from "../utils/className"
 import { useComposedRefs } from "../utils/ref"
 
 type BaseProps = TabGroupProps<ElementType>
+
 interface SlipTabProps extends BaseProps {
-  tabs?: string[]
+  tabs?: TabProps<"div">[]
   children?: React.ReactElement | React.ReactElement[]
 }
 
@@ -57,9 +58,13 @@ export const SlipTab = React.forwardRef<HTMLDivElement, SlipTabProps>(function (
               className,
             )}
           >
-            {tabs?.map((tab, index) => (
-              <Tab key={tab + index} className="relative z-10 h-10 flex-1 whitespace-nowrap rounded px-3">
-                {tab}
+            {tabs?.map(({ children, className, ...tab }, index) => (
+              <Tab
+                key={index}
+                className={cn("relative z-10 h-10 flex-1 whitespace-nowrap rounded px-3", className)}
+                {...tab}
+              >
+                {children}
               </Tab>
             ))}
             {getIndicator(selectedIndex)}
