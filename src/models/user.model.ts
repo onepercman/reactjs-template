@@ -1,5 +1,14 @@
-import { User } from "@/interfaces/user.interface"
-import { WalletClient } from "viem"
+import { Address, WalletClient } from "viem"
+
+export interface User {
+  id: number
+  address: Address
+  email: string
+  name: string
+  username: string
+  createdTime: string
+  updatedTime: string
+}
 
 export class UserModel {
   user?: User
