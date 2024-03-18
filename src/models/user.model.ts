@@ -1,7 +1,7 @@
 import { User } from "@/interfaces/user.interface"
 import { WalletClient } from "viem"
 
-export class UserFactory {
+export class UserModel {
   user?: User
   jwt?: string
 

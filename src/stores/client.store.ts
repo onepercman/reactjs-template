@@ -1,10 +1,10 @@
 import { isDev } from "@/config/mode.config"
 import { storageKeys } from "@/config/storage.config"
 import { createStore } from "@/libs/valtio"
-import { ClientFactory } from "@/models/client.factory"
+import { ClientModel } from "@/models/client.model"
 import { devtools } from "valtio/utils"
 
-const clientStore = createStore(new ClientFactory(), { key: storageKeys.client, include: ["chain"] })
+const clientStore = createStore(new ClientModel(), { key: storageKeys.client, include: ["chain"] })
 
 devtools(clientStore, { name: "Client", enabled: isDev })
 

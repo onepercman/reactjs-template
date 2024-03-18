@@ -1,4 +1,4 @@
-export class AppSettingFactory {
+export class AppSettingModel {
   colorScheme: ColorScheme = "dark"
   version = "0.0"
 

@@ -2,7 +2,7 @@ import { defaultChain } from "@/config/chain.config"
 import { ADDRESSES } from "@/constants/addresses"
 import { Account, Address, Chain, PublicClient, WalletClient, createPublicClient, http } from "viem"
 
-export class ClientFactory {
+export class ClientModel {
   chain: Chain = defaultChain
   walletClient: WalletClient | undefined
 

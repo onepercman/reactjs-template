@@ -1,7 +1,7 @@
 import { storageKeys } from "@/config/storage.config"
 import { createStore } from "@/libs/valtio"
-import { UserFactory } from "@/models/user.factory"
+import { UserModel } from "@/models/user.model"
 
-const userStore = createStore(new UserFactory(), { key: storageKeys.user })
+const userStore = createStore(new UserModel(), { key: storageKeys.user })
 
 export default userStore

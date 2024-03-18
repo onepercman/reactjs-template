@@ -2,11 +2,11 @@ import { isDev } from "@/config/mode.config"
 import { storageKeys } from "@/config/storage.config"
 import { version } from "@/config/version.config"
 import { createStore } from "@/libs/valtio"
-import { AppSettingFactory } from "@/models/app-setting.factory"
+import { AppSettingModel } from "@/models/app-setting.model"
 import { subscribe } from "valtio"
 import { devtools } from "valtio/utils"
 
-const appSettingStore = createStore(new AppSettingFactory(), { key: storageKeys.appSettings })
+const appSettingStore = createStore(new AppSettingModel(), { key: storageKeys.appSettings })
 
 devtools(appSettingStore, { name: "App Setting", enabled: isDev })
 
