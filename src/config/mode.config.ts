@@ -7,7 +7,7 @@ export enum Mode {
 
 export const MODE: Mode = (import.meta.env.VITE_MODE as Mode) || Mode.Dev
 
-export const isLocal = MODE === Mode.Local
-export const isDev = MODE === Mode.Dev
-export const isStg = MODE === Mode.Stg
-export const isPrd = MODE === Mode.Prd
+export const __LOCAL__ = MODE === Mode.Local
+export const __DEV__ = MODE === Mode.Dev
+export const __STG__ = MODE === Mode.Stg
+export const __PRD__ = MODE === Mode.Prd

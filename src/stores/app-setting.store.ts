@@ -1,4 +1,4 @@
-import { isDev } from "@/config/mode.config"
+import { __DEV__ } from "@/config/mode.config"
 import { storageKeys } from "@/config/storage.config"
 import { version } from "@/config/version.config"
 import { createStore } from "@/libs/valtio"
@@ -8,7 +8,7 @@ import { devtools } from "valtio/utils"
 
 const appSettingStore = createStore(new AppSettingModel(), { key: storageKeys.appSettings })
 
-devtools(appSettingStore, { name: "App Setting", enabled: isDev })
+devtools(appSettingStore, { name: "App Setting", enabled: __DEV__ })
 
 function applyColorScheme(colorScheme: ColorScheme) {
   document.documentElement.setAttribute("data-theme", colorScheme)
