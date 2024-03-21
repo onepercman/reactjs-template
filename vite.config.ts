@@ -3,6 +3,7 @@ import { randomUUID } from "crypto"
 import { defineConfig, loadEnv } from "vite"
 import { nodePolyfills } from "vite-plugin-node-polyfills"
 import vitePluginRadar from "vite-plugin-radar"
+import svgr from "vite-plugin-svgr"
 import { default as viteTsConfigPaths } from "vite-tsconfig-paths"
 import { dependencies } from "./package.json"
 
@@ -25,6 +26,7 @@ export default defineConfig(({ mode }) => ({
       tsDecorators: true,
     }),
     viteTsConfigPaths(),
+    svgr({ include: "**/*.svg", svgrOptions: { icon: true, replaceAttrValues: { fill: "currentColor" } } }),
     vitePluginRadar({
       analytics: {
         id: loadEnv(mode, process.cwd()).VITE_GA_ID,
