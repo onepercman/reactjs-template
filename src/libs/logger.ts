@@ -1,6 +1,8 @@
+import { _DEV_ } from "@/config/mode.config"
+
 export class Logger {
   static info(statement: string, message: any, ...optionalParams: any[]) {
-    if (!__DEV__) return
+    if (!_DEV_) return
     const options = ["font-size: 1rem; font-weight: bold; color: #71f871", ...optionalParams]
     if (options.length <= 1) {
       options.push("color: white; font-weight: semi-bold")
@@ -9,7 +11,7 @@ export class Logger {
   }
 
   static error(statement: string, message: any, ...optionalParams: any[]) {
-    if (!__DEV__) return
+    if (!_DEV_) return
     const options = ["font-size: 1rem; font-weight: bold; color: #f87171", ...optionalParams]
     if (options.length <= 1) {
       options.push("color: white; font-weight: semi-bold")
@@ -18,7 +20,7 @@ export class Logger {
   }
 
   static warning(statement: string, message: any, ...optionalParams: any[]) {
-    if (!__DEV__) return
+    if (!_DEV_) return
     const options = ["font-size: 1rem; font-weight: bold; color: #f3c50f", ...optionalParams]
     if (options.length <= 1) {
       options.push("color: white; font-weight: semi-bold")

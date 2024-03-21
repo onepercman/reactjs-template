@@ -1,10 +1,10 @@
 import colors from "tailwindcss/colors"
-import { appendDefault } from "./utils"
+import { palette } from "./utils"
 
 const schemes = {
   light: {
     default: colors.stone[100],
-    primary: appendDefault(colors.emerald),
+    primary: palette(colors.emerald),
     secondary: colors.emerald[500],
     body: colors.white,
     component: colors.white,
@@ -12,13 +12,13 @@ const schemes = {
     content: colors.black,
     invert: colors.white,
     line: colors.neutral[300],
-    success: appendDefault(colors.green),
-    warning: appendDefault(colors.yellow),
-    error: appendDefault(colors.red),
+    success: palette(colors.green),
+    warning: palette(colors.yellow),
+    error: palette(colors.red),
   },
   dark: {
     default: colors.neutral[900],
-    primary: appendDefault(colors.emerald),
+    primary: palette(colors.emerald),
     secondary: colors.emerald[500],
     body: colors.neutral[950],
     component: colors.neutral[900],
@@ -26,9 +26,9 @@ const schemes = {
     content: colors.white,
     invert: colors.black,
     line: colors.neutral[800],
-    success: appendDefault(colors.green),
-    warning: appendDefault(colors.yellow),
-    error: appendDefault(colors.red),
+    success: palette(colors.green),
+    warning: palette(colors.yellow),
+    error: palette(colors.red),
   },
 }
 

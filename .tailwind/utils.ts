@@ -7,12 +7,15 @@ export function apply(...inputs: string[]) {
   }
 }
 
-export function appendDefault(colors: Record<any | 500, string>) {
-  if (colors[500]) {
+export function palette<T extends Record<500, string>>(color: T, k: keyof T = 500): T & { DEFAULT: string } {
+  if (color[k]) {
     return {
-      ...colors,
-      DEFAULT: colors[500],
+      ...color,
+      DEFAULT: color[k] as string,
     }
   }
-  return colors
+  return {
+    ...color,
+    DEFAULT: color[Object.keys(color)[0]],
+  }
 }

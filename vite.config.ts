@@ -22,22 +22,12 @@ export default defineConfig(({ mode }) => ({
   base: loadEnv(mode, process.cwd()).VITE_PUBLIC_URL,
   plugins: [
     nodePolyfills(),
-    react({
-      tsDecorators: true,
-    }),
+    react({ tsDecorators: true }),
     viteTsConfigPaths(),
     svgr({ include: "**/*.svg", svgrOptions: { icon: true, replaceAttrValues: { fill: "currentColor" } } }),
-    vitePluginRadar({
-      analytics: {
-        id: loadEnv(mode, process.cwd()).VITE_GA_ID,
-      },
-      enableDev: true,
-    }),
+    vitePluginRadar({ analytics: { id: loadEnv(mode, process.cwd()).VITE_GA_ID }, enableDev: true }),
   ],
-  server: {
-    host: true,
-    port: 3000,
-  },
+  server: { host: true, port: 3000 },
   build: {
     minify: true,
     sourcemap: false,
