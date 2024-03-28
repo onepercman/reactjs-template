@@ -56,12 +56,12 @@ const shapes = {
 
 const group = {
   "&-group": {
-    ...apply("inline-flex"),
+    ...apply("inline-flex -space-x-px"),
+    "&>*": apply("hover:z-10"),
     "*:only-child": apply("!rounded"),
     "*:first-child": apply("!rounded-r-none"),
     "*:last-child": apply("!rounded-l-none"),
     "*:not(:last-child):not(:first-child)": apply("!rounded-none"),
-    "*:not(:last-child)": apply("!border-r-0"),
   },
 }
 
