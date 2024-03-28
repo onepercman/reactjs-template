@@ -62,8 +62,8 @@ const variants = {
 const elements = {
   "&-prefix": apply("flex-none"),
   "&-suffix": apply("flex-none"),
-  "&-addon-before": apply("-ml-small rounded-none flex-none"),
-  "&-addon-after": apply("-mr-small rounded-none flex-none"),
+  "&-addon-before": apply("-ml-small rounded-none flex-none self-stretch h-full"),
+  "&-addon-after": apply("-mr-small rounded-none flex-none self-stretch h-full"),
 }
 
 export const input = {
