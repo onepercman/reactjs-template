@@ -1,6 +1,6 @@
 import { apply } from "../utils"
 
-const base = apply("border border-transparent rounded px-small transition-all")
+const base = apply("border border-transparent rounded px-small transition-all text-ellipsis")
 
 const states = {
   "&:hover": apply("shadow shadow-default"),
@@ -60,16 +60,10 @@ const variants = {
 }
 
 const elements = {
-  "&-prefix": apply("pr-small"),
-  "&-suffix": apply("pl-small"),
-  "&-addon-before": {
-    ...apply("-ml-small mr-small rounded-none"),
-    "*": apply("rounded-none"),
-  },
-  "&-addon-after": {
-    ...apply("-mr-small ml-small rounded-none"),
-    "*": apply("rounded-none"),
-  },
+  "&-prefix": apply("flex-none"),
+  "&-suffix": apply("flex-none"),
+  "&-addon-before": apply("-ml-small rounded-none flex-none"),
+  "&-addon-after": apply("-mr-small rounded-none flex-none"),
 }
 
 export const input = {
@@ -90,8 +84,10 @@ export const input = {
 export const inputGroup = {
   // Group
   ".input-group": {
-    ...apply("inline-flex items-center overflow-hidden cursor-pointer"),
-    input: apply("grow h-full bg-transparent border-transparent focus:outline-none focus:ring-transparent p-0"),
+    ...apply("inline-flex items-center overflow-hidden cursor-text gap-small"),
+    input: apply(
+      "grow bg-transparent border-transparent focus:outline-none focus:ring-transparent p-0 self-stretch overflow-hidden text-ellipsis",
+    ),
     "&-disabled": apply("opacity-50 saturate-50 cursor-not-allowed"),
   },
 }
