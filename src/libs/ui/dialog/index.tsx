@@ -65,7 +65,7 @@ const DialogPrimitive = React.forwardRef<HTMLDivElement, DialogProps>(function (
   )
 
   const _panelClassName = cn(
-    "bg-component border-line m-auto w-full cursor-auto overflow-hidden rounded border p-base text-left align-middle shadow transition-all",
+    "relative bg-component border-line m-auto w-full cursor-auto overflow-hidden rounded border p-base text-left align-middle shadow transition-all",
     center ? "m-auto" : "mx-auto mt-32",
   )
 
