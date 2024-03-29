@@ -54,7 +54,7 @@ const Table = _generate(function (
     }
     if (!data?.length) {
       return (
-        <tr key="empty">
+        <tr>
           <td colSpan={columns?.length || 1}>
             <Empty />
           </td>
