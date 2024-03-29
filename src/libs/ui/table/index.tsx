@@ -42,68 +42,90 @@ const Table = _generate(function (
   { columns, data, onSelectRow, className, loading, tableClassName, pagination, ...props },
   ref,
 ) {
+  function _renderContainer() {
+    if (loading) {
+      return (
+        <tr>
+          <td colSpan={columns?.length || 1}>
+            <Loader />
+          </td>
+        </tr>
+      )
+    }
+    if (!data?.length) {
+      return (
+        <tr key="empty">
+          <td colSpan={columns?.length || 1}>
+            <Empty />
+          </td>
+        </tr>
+      )
+    }
+    return data.map((row, index) => (
+      <tr
+        key={row.key || index}
+        className="animate-push ease-expo divide-line group divide-x opacity-0 transition-colors"
+        style={{
+          animationDelay: index / 20 + "s",
+        }}
+        onClick={() => onSelectRow && onSelectRow(row)}
+      >
+        {columns?.map(({ key, className, dataIndex, render, ...column }, columnIndex) => (
+          <td
+            key={key || columnIndex}
+            className={cn(
+              "px-base py-small transition-all",
+              onSelectRow && "group-hover:bg-primary/30 cursor-pointer",
+              className,
+            )}
+            {...column}
+          >
+            {render ? render(row[dataIndex!], row, index) : (row[dataIndex || ""] as React.ReactNode)}
+          </td>
+        ))}
+      </tr>
+    ))
+  }
+
   return (
     <div
       className={cn(
         className,
-        "scrollbar scrollbar-track-inherit scrollbar-thumb-inherit w-full overflow-x-auto overflow-y-hidden rounded",
+        "scrollbar scrollbar-track-inherit scrollbar-thumb-inherit border-line w-full overflow-auto rounded border",
       )}
     >
-      <table ref={ref} className={cn("w-full border-separate border-spacing-y-1", tableClassName)} {...props}>
-        <thead className="text-left">
-          <tr>
-            {columns?.map(({ key, label, className, dataIndex, render: _, ...column }, index) => (
-              <th
-                key={key || (dataIndex as string) || index}
-                className={cn("!text-2xs text-muted bg-transparent px-4", className)}
-                {...column}
-              >
-                {label}{" "}
-              </th>
-            ))}
-          </tr>
-        </thead>
-
-        <tbody className="relative text-left">
-          <Loader
-            as="tr"
-            className={cn(
-              "bg-body/60 absolute inset-0 z-20 rounded backdrop-blur duration-300",
-              loading ? "opacity-100" : "pointer-events-none opacity-0",
-            )}
-          />
-          {data?.map((row, index) => (
-            <tr
-              key={row.key || index}
-              className="bg-component animate-tableRow ease-expo group cursor-pointer opacity-0 transition-colors hover:brightness-125"
-              style={{
-                animationDelay: index / 20 + "s",
-              }}
-              onClick={() => onSelectRow && onSelectRow(row)}
-            >
-              {columns?.map(({ key, className, dataIndex, render, ...column }, columnIndex) => (
-                <td
-                  key={key || columnIndex}
-                  className={cn(
-                    "bg-inherit px-4 py-2 transition-all first:rounded-l last:rounded-r",
-                    onSelectRow && "group-hover:bg-primary/30 cursor-pointer",
-                    className,
-                  )}
+      <table ref={ref} className={cn("w-full border-collapse", tableClassName)} {...props}>
+        {columns?.filter((c) => !!c.label).length ? (
+          <thead className="text-left">
+            <tr className="divide-line divide-x">
+              {columns.map(({ key, label, className, dataIndex, render: _, ...column }, index) => (
+                <th
+                  key={key || (dataIndex as string) || index}
+                  className={cn("text-muted px-base py-small border-line border-b !text-sm", className)}
                   {...column}
                 >
-                  {render ? render(row[dataIndex!], row, index) : (row[dataIndex || ""] as React.ReactNode)}
-                </td>
+                  {label}{" "}
+                </th>
               ))}
             </tr>
-          ))}
+          </thead>
+        ) : null}
+
+        <tbody className="divide-line relative divide-y text-left">
+          {_renderContainer()}
+          {pagination && (
+            <tr>
+              <td colSpan={columns?.length || 1}>
+                <div className="flex w-full justify-end">
+                  <div className="px-base py-small sticky left-0 right-0 w-fit">
+                    <Pagination {...pagination} />
+                  </div>
+                </div>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
-      {!data?.length && <Empty className={cn(loading && "opacity-0")} />}
-      {pagination && (
-        <div className="mt-4 inline-flex w-full justify-center">
-          <Pagination {...pagination} />
-        </div>
-      )}
     </div>
   )
 })
