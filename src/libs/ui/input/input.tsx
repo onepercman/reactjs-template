@@ -98,7 +98,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       if (showClear && clearable) {
         return (
           <HiX
-            className="text-muted ml-3"
+            className="text-muted cursor-pointer"
             onClick={function () {
               if (internalRef.current) {
                 setShowClear(false)
