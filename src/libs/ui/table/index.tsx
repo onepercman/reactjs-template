@@ -3,6 +3,8 @@ import { Empty } from "../empty"
 import { Loader } from "../loader"
 import { Pagination, PaginationProps } from "../pagination"
 import { cn } from "../utils/className"
+import { TableCell } from "./cell"
+import { TableCellHead } from "./cell-head"
 
 interface TableRow extends Readonly<Record<string, unknown>> {
   key?: string
@@ -27,6 +29,8 @@ interface TableProps<Row extends TableRow> extends React.HTMLAttributes<HTMLTabl
 }
 interface Table extends ForwardedRefComponent {
   <Row extends TableRow>(props: ForwardRefWithAsProps<"div", TableProps<Row>>): React.ReactElement | null
+  Cell: typeof TableCell
+  CellHead: typeof TableCellHead
 }
 
 function _generate<Row extends TableRow>(
@@ -39,28 +43,29 @@ function _generate<Row extends TableRow>(
 }
 
 const Table = _generate(function (
-  { columns, data, onSelectRow, className, loading, tableClassName, pagination, ...props },
+  { children, columns, data, onSelectRow, className, loading, tableClassName, pagination, ...props },
   ref,
 ) {
   function _renderContainer() {
     if (loading) {
       return (
         <tr>
-          <td colSpan={columns?.length || 1}>
+          <TableCell colSpan={columns?.length || 1}>
             <Loader />
-          </td>
+          </TableCell>
         </tr>
       )
     }
     if (!data?.length) {
       return (
         <tr>
-          <td colSpan={columns?.length || 1}>
+          <TableCell colSpan={columns?.length || 1}>
             <Empty />
-          </td>
+          </TableCell>
         </tr>
       )
     }
+
     return data.map((row, index) => (
       <tr
         key={row.key || index}
@@ -71,7 +76,7 @@ const Table = _generate(function (
         onClick={() => onSelectRow && onSelectRow(row)}
       >
         {columns?.map(({ key, className, dataIndex, render, ...column }, columnIndex) => (
-          <td
+          <TableCell
             key={key || columnIndex}
             className={cn(
               "px-base py-small transition-all",
@@ -81,7 +86,7 @@ const Table = _generate(function (
             {...column}
           >
             {render ? render(row[dataIndex!], row, index) : (row[dataIndex || ""] as React.ReactNode)}
-          </td>
+          </TableCell>
         ))}
       </tr>
     ))
@@ -99,13 +104,13 @@ const Table = _generate(function (
           <thead className="text-left">
             <tr className="divide-line divide-x">
               {columns.map(({ key, label, className, dataIndex, render: _, ...column }, index) => (
-                <th
+                <TableCellHead
                   key={key || (dataIndex as string) || index}
                   className={cn("text-muted px-base py-small border-line border-b !text-sm", className)}
                   {...column}
                 >
                   {label}{" "}
-                </th>
+                </TableCellHead>
               ))}
             </tr>
           </thead>
@@ -115,22 +120,25 @@ const Table = _generate(function (
           {_renderContainer()}
           {pagination && (
             <tr>
-              <td colSpan={columns?.length || 1}>
+              <TableCell colSpan={columns?.length || 1}>
                 <div className="flex w-full justify-end">
                   <div className="px-base py-small sticky left-0 right-0 w-fit">
                     <Pagination {...pagination} />
                   </div>
                 </div>
-              </td>
+              </TableCell>
             </tr>
           )}
         </tbody>
+        {children}
       </table>
     </div>
   )
 })
 
 Table.displayName = "Table"
+Table.Cell = TableCell
+Table.CellHead = TableCellHead
 
 export { Table }
 export type { TableColumnProps, TableProps }
