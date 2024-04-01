@@ -18,7 +18,7 @@ function _generate<Tag extends ReactTag>(
 export const Loader = _generate(function ({ as, className, ...props }, ref) {
   const Tag = as || ("div" as ReactTag)
 
-  const _className = cn("flex w-full items-center justify-center p-32 text-xl", className)
+  const _className = cn("flex w-full items-center justify-center p-base text-xl min-h-56", className)
 
   return (
     <Tag ref={ref} className={_className} {...props}>
