@@ -54,9 +54,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function (
   async function _onClick(ev: React.MouseEvent<HTMLButtonElement>) {
     if (!onClick) return
     if (onClick.constructor.name === "AsyncFunction") {
-      setAsyncLoading(true)
-      onClick && (await onClick(ev))
-      setAsyncLoading(false)
+      try {
+        setAsyncLoading(true)
+        onClick && (await onClick(ev))
+      } catch (err) {
+        throw new Error(err as any)
+      } finally {
+        setAsyncLoading(false)
+      }
     } else {
       onClick(ev)
     }
