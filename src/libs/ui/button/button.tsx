@@ -71,7 +71,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function (
   const _disabled = disabled || _loading
   const _className = button({ variant, size, className, shape })
   const _loadingClassName = cn(loadingText ? "relative mr-2" : "absolute mr-0")
-  const _transparentChildren = <span className="opacity-0">{children}</span>
+  const _transparentChildren = (
+    <React.Fragment>
+      {leftIcon && <span className="opacity-0">{leftIcon}</span>}
+      {children && <span className="opacity-0">{children}</span>}
+      {rightIcon && <span className="opacity-0">{rightIcon}</span>}
+    </React.Fragment>
+  )
 
   return (
     <button ref={ref} type="button" className={_className} disabled={_disabled} onClick={_onClick} {...props}>
