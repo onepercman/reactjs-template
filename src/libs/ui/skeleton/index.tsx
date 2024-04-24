@@ -1,25 +1,32 @@
-import React from "react"
-import { cn } from "../utils/className"
+import React from "react";
+import { cn } from "../utils/className";
 
 interface Skeleton extends ForwardedRefComponent {
-  <Tag extends ReactTag>(props: ForwardRefWithAsProps<Tag, object>): React.ReactElement | null
+	<Tag extends ReactTag>(
+		props: ForwardRefWithAsProps<Tag, object>,
+	): React.ReactElement | null;
 }
 
 function _generate<Tag extends ReactTag>(
-  render: <Tag extends ReactTag>(
-    props: ForwardRefWithAsProps<Tag, object>,
-    ref: React.ForwardedRef<Tag>,
-  ) => React.ReactElement | null,
+	render: <Tag extends ReactTag>(
+		props: ForwardRefWithAsProps<Tag, object>,
+		ref: React.ForwardedRef<Tag>,
+	) => React.ReactElement | null,
 ) {
-  return React.forwardRef<Tag, ForwardRefWithAsProps<Tag, object>>(render) as unknown as Skeleton
+	return React.forwardRef<Tag, ForwardRefWithAsProps<Tag, object>>(
+		render,
+	) as unknown as Skeleton;
 }
 
-export const Skeleton = _generate(function ({ as = "div", className, ...props }, ref) {
-  const _className = cn("bg-component animate-pulse rounded", className)
+export const Skeleton = _generate(function (
+	{ as = "div", className, ...props },
+	ref,
+) {
+	const _className = cn("bg-component animate-pulse rounded", className);
 
-  const Tag = as
+	const Tag = as;
 
-  return <Tag ref={ref} className={_className} {...props} />
-})
+	return <Tag ref={ref} className={_className} {...props} />;
+});
 
-Skeleton.displayName = "Skeleton"
+Skeleton.displayName = "Skeleton";
