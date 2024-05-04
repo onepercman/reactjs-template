@@ -1,4 +1,4 @@
-code --install-extension esbenp.prettier-vscode
+code --install-extension biomejs.biome
 code --install-extension bradlc.vscode-tailwindcss
 code --install-extension xiaoxian521.tailwindcss-highlight-intellisense
 code --install-extension bourhaouta.tailwindshades
