@@ -8,16 +8,14 @@
   },
   "scripts": {
     "dev": "vite",
-    "local": "vite --mode local",
     "staging": "vite --mode staging",
     "production": "vite --mode production",
     "build": "tsc && vite build",
-    "build:local": "tsc && vite build --mode local",
     "build:staging": "tsc && vite build --mode staging",
     "build:production": "tsc && vite build --mode production",
+    "preview": "vite preview",
     "lint": "eslint src --ext ts,tsx",
     "format": "prettier --write .",
-    "preview": "vite preview",
     "tsc": "tsc --pretty --noEmit",
     "test": "vitest",
     "postinstall": "husky install"
