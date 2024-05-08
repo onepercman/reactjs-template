@@ -1,5 +1,5 @@
 import { HiOutlineWallet } from "react-icons/hi2"
-import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors"
+import { coinbaseWallet, injected } from "wagmi/connectors"
 
 export const wallets = [
   {
@@ -35,18 +35,18 @@ export const wallets = [
     downloadUrl: "https://www.coinbase.com/wallet/downloads",
     deepLink: `https://go.cb-w.com/dapp?cb_url=${window.origin}`,
   },
-  {
-    name: "Wallet Connect",
-    connector: walletConnect({ projectId: "" }),
-    icon: (
-      <img
-        src="https://altcoinsbox.com/wp-content/uploads/2023/04/wallet-connect-logo.png"
-        alt="Wallet Connect"
-        className="h-[1em] w-[1em]"
-      />
-    ),
-    downloadUrl: "",
-    deepLink: "",
-  },
+  // {
+  //   name: "Wallet Connect",
+  //   connector: walletConnect({ projectId: "" }),
+  //   icon: (
+  //     <img
+  //       src="https://altcoinsbox.com/wp-content/uploads/2023/04/wallet-connect-logo.png"
+  //       alt="Wallet Connect"
+  //       className="h-[1em] w-[1em]"
+  //     />
+  //   ),
+  //   downloadUrl: "",
+  //   deepLink: "",
+  // },
   // TODO: Add more wallet config
 ] as const
