@@ -16,7 +16,7 @@
     "build:staging": "tsc && vite build --mode staging",
     "build:production": "tsc && vite build --mode production",
     "lint": "eslint src --ext ts,tsx",
-    "format": "prettier --write src",
+    "format": "prettier --write .",
     "preview": "vite preview",
     "tsc": "tsc --pretty --noEmit",
     "test": "vitest",

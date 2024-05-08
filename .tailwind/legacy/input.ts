@@ -1,105 +1,93 @@
-import { apply } from "../utils";
+import { apply } from "../utils"
 
-const base = apply(
-	"border border-transparent rounded px-small transition-all text-ellipsis",
-);
+const base = apply("border border-transparent rounded px-small transition-all text-ellipsis")
 
 const states = {
-	"&:hover": apply("shadow shadow-default"),
-	"&:focus, &:focus-within, &:focus-visible": apply(
-		"ring ring-primary/50 border-primary outline-none",
-	),
-	"&:disabled": apply("opacity-50 saturate-50 cursor-not-allowed"),
-};
+  "&:hover": apply("shadow shadow-default"),
+  "&:focus, &:focus-within, &:focus-visible": apply("ring ring-primary/50 border-primary outline-none"),
+  "&:disabled": apply("opacity-50 saturate-50 cursor-not-allowed"),
+}
 
 const checkbox = {
-	"&-checkbox": apply(
-		"rounded bg-transparent text-primary",
-		"focus:ring focus:ring-primary focus:outline-none",
-		"focus:shadow focus:shadow-primary",
-		"focus-within:ring focus-within:ring-primary",
-		"focus-visible:ring focus-visible:ring-primary",
-	),
-};
+  "&-checkbox": apply(
+    "rounded bg-transparent text-primary",
+    "focus:ring focus:ring-primary focus:outline-none",
+    "focus:shadow focus:shadow-primary",
+    "focus-within:ring focus-within:ring-primary",
+    "focus-visible:ring focus-visible:ring-primary",
+  ),
+}
 
 const radio = {
-	"&-radio": apply(
-		"rounded-full bg-transparent text-primary",
-		"focus:ring focus:ring-primary focus:outline-none",
-		"focus:shadow focus:shadow-primary",
-		"focus-within:ring focus-within:ring-primary",
-		"focus-visible:ring focus-visible:ring-primary",
-	),
-};
+  "&-radio": apply(
+    "rounded-full bg-transparent text-primary",
+    "focus:ring focus:ring-primary focus:outline-none",
+    "focus:shadow focus:shadow-primary",
+    "focus-within:ring focus-within:ring-primary",
+    "focus-visible:ring focus-visible:ring-primary",
+  ),
+}
 
 const textarea = {
-	"&-textarea": apply("p-small"),
-};
+  "&-textarea": apply("p-small"),
+}
 
 const range = {
-	"&-range": {
-		...apply(
-			"appearance-none h-4 overflow-hidden rounded bg-transparent cursor-pointer px-0",
-		),
-		"&:focus-visible::-webkit-slider-thumb": apply("shadow-none"),
-		"&:focus-visible::-moz-range-thumb": apply("shadow-none"),
-		"&::-webkit-slider-runnable-track": apply("bg-muted h-1 w-full rounded"),
-		"&::-moz-range-track": apply("bg-muted h-1 w-full rounded"),
-		"&::-webkit-slider-thumb": {
-			...apply(
-				"bg-component relative h-4 w-4 rounded border-none appearance-none top-1/2 text-primary-400 -translate-y-1/2",
-			),
-			boxShadow:
-				"0 0 0 3px theme('colors.primary-400') inset, var(--focus-shadow, 0 0), calc(100rem * -1 - 0.5rem) 0 0 100rem",
-		},
-		"&::-moz-range-thumb": {
-			...apply(
-				"bg-component relative h-4 w-4 rounded border-none top-1/2 text-primary-400",
-			),
-			boxShadow:
-				"0 0 0 5px theme('colors.primary-400') inset, var(--focus-shadow, 0 0), calc(100rem * -1 - 0.5rem) 0 0 100rem",
-		},
-	},
-};
+  "&-range": {
+    ...apply("appearance-none h-4 overflow-hidden rounded bg-transparent cursor-pointer px-0"),
+    "&:focus-visible::-webkit-slider-thumb": apply("shadow-none"),
+    "&:focus-visible::-moz-range-thumb": apply("shadow-none"),
+    "&::-webkit-slider-runnable-track": apply("bg-muted h-1 w-full rounded"),
+    "&::-moz-range-track": apply("bg-muted h-1 w-full rounded"),
+    "&::-webkit-slider-thumb": {
+      ...apply(
+        "bg-component relative h-4 w-4 rounded border-none appearance-none top-1/2 text-primary-400 -translate-y-1/2",
+      ),
+      boxShadow:
+        "0 0 0 3px theme('colors.primary-400') inset, var(--focus-shadow, 0 0), calc(100rem * -1 - 0.5rem) 0 0 100rem",
+    },
+    "&::-moz-range-thumb": {
+      ...apply("bg-component relative h-4 w-4 rounded border-none top-1/2 text-primary-400"),
+      boxShadow:
+        "0 0 0 5px theme('colors.primary-400') inset, var(--focus-shadow, 0 0), calc(100rem * -1 - 0.5rem) 0 0 100rem",
+    },
+  },
+}
 
 const variants = {
-	"&-filled": apply("bg-default"),
-	"&-outlined": apply("bg-transparent border border-line"),
-};
+  "&-filled": apply("bg-default"),
+  "&-outlined": apply("bg-transparent border border-line"),
+}
 
 const elements = {
-	"&-prefix": apply("flex-none"),
-	"&-suffix": apply("flex-none"),
-	"&-addon-before": apply(
-		"-ml-small rounded-none flex-none self-stretch h-full",
-	),
-	"&-addon-after": apply(
-		"-mr-small rounded-none flex-none self-stretch h-full",
-	),
-};
+  "&-prefix": apply("flex-none"),
+  "&-suffix": apply("flex-none"),
+  "&-addon-before": apply("-ml-small rounded-none flex-none self-stretch h-full"),
+  "&-addon-after": apply("-mr-small rounded-none flex-none self-stretch h-full"),
+}
 
 export const input = {
-	".input": {
-		...base,
-		...states,
-		...variants,
-		...checkbox,
-		...radio,
-		...textarea,
-		...range,
-		...elements,
-	},
-};
+  ".input": {
+    ...base,
+    ...states,
+    ...variants,
+    ...checkbox,
+    ...radio,
+    ...textarea,
+    ...range,
+    ...elements,
+  },
+}
 
 // Input group
 
 export const inputGroup = {
-	// Group
-	".input-group": {
-		...apply("inline-flex items-center overflow-hidden cursor-text gap-small"),
-		input: apply(
-			"grow bg-transparent border-transparent focus:outline-none focus:ring-transparent p-0 self-stretch overflow-hidden text-ellipsis",
-		),
-		"&-disabled": apply("opacity-50 saturate-50 cursor-not-allowed"),
-	},
-};
+  // Group
+  ".input-group": {
+    ...apply("inline-flex items-center overflow-hidden cursor-text gap-small"),
+    input: apply(
+      "grow bg-transparent border-transparent focus:outline-none focus:ring-transparent p-0 self-stretch overflow-hidden text-ellipsis",
+    ),
+    "&-disabled": apply("opacity-50 saturate-50 cursor-not-allowed"),
+  },
+}

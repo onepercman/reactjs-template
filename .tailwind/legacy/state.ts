@@ -1,5 +1,5 @@
-import { apply } from "../utils";
+import { apply } from "../utils"
 
 export const state = {
-	".state-error": apply("!ring-error/50 !border-error"),
-};
+  ".state-error": apply("!ring-error/50 !border-error"),
+}
