@@ -1,24 +1,24 @@
-import { Address, WalletClient } from "viem";
+import { Address, WalletClient } from "viem"
 
 export interface User {
-	id: number;
-	address: Address;
-	email: string;
-	name: string;
-	username: string;
-	createdTime: string;
-	updatedTime: string;
+  id: number
+  address: Address
+  email: string
+  name: string
+  username: string
+  createdTime: string
+  updatedTime: string
 }
 
 export class UserModel {
-	user?: User;
-	jwt?: string;
+  user?: User
+  jwt?: string
 
-	async login(walletClient: WalletClient) {
-		console.log(walletClient);
-	}
+  async login(walletClient: WalletClient) {
+    console.log(walletClient)
+  }
 
-	logout() {
-		this.user = undefined;
-	}
+  logout() {
+    this.user = undefined
+  }
 }

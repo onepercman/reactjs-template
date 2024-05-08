@@ -1,1 +1,1 @@
-type ColorScheme = "dark" | "light";
+type ColorScheme = "dark" | "light"
