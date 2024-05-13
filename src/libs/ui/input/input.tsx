@@ -1,10 +1,11 @@
-import { VariantProps, cva } from "class-variance-authority"
+import { cn } from "@/libs/className"
 import React from "react"
 import { HiEye, HiEyeOff, HiX } from "react-icons/hi"
-import { cn } from "../utils/className"
+import { VariantProps, tv } from "tailwind-variants"
 import { useComposedRefs } from "../utils/ref"
 
-const input = cva("input", {
+const input = tv({
+  base: "input",
   variants: {
     size: {
       xs: "size-xs",

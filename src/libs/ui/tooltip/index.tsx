@@ -1,6 +1,6 @@
+import { cn } from "@/libs/className"
 import { Float, FloatProps } from "@headlessui-float/react"
 import React from "react"
-import { cn } from "../utils/className"
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactElement | string

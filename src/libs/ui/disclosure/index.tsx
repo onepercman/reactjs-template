@@ -1,7 +1,7 @@
+import { cn } from "@/libs/className"
 import * as HeadlessUI from "@headlessui/react"
 import React from "react"
 import { HiChevronDown } from "react-icons/hi"
-import { cn } from "../utils/className"
 
 interface DisclosureItem {
   label: React.ReactNode

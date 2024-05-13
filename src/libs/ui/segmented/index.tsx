@@ -1,6 +1,6 @@
+import { cn } from "@/libs/className"
 import { RadioGroup, RadioGroupProps } from "@headlessui/react"
 import React from "react"
-import { cn } from "../utils/className"
 
 export interface SegmentedItem {
   label: React.ReactNode

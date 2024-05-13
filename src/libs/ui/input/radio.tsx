@@ -1,8 +1,8 @@
-import { VariantProps, cva } from "class-variance-authority"
 import React from "react"
-import { cn } from "../utils/className"
+import { VariantProps, tv } from "tailwind-variants"
 
-const radio = cva(cn("input-radio"), {
+const radio = tv({
+  base: "input-radio",
   variants: {
     size: {
       md: "h-4 w-4",

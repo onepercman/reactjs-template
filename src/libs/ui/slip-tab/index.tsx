@@ -1,7 +1,7 @@
+import { cn } from "@/libs/className"
 import { useResizeObserver } from "@/libs/custom-hooks/use-resize-observer"
 import { Tab, TabGroupProps, TabProps } from "@headlessui/react"
 import React, { ElementType } from "react"
-import { cn } from "../utils/className"
 import { useComposedRefs } from "../utils/ref"
 
 type BaseProps = TabGroupProps<ElementType>

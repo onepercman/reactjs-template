@@ -1,7 +1,8 @@
-import { VariantProps, cva } from "class-variance-authority"
 import React from "react"
+import { VariantProps, tv } from "tailwind-variants"
 
-const container = cva("mx-auto w-full p-base", {
+const container = tv({
+  base: "mx-auto w-full p-base",
   variants: {
     size: {
       default: "max-w-screen-default",

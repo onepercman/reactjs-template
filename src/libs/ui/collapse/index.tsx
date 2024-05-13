@@ -1,6 +1,6 @@
+import { cn } from "@/libs/className"
 import { useResizeObserver } from "@/libs/custom-hooks/use-resize-observer"
 import React from "react"
-import { cn } from "../utils/className"
 import { useComposedRefs } from "../utils/ref"
 
 type TitleRenderer = (args: { isOpen: boolean; toggle(): void; open(): void; close(): void }) => React.ReactNode

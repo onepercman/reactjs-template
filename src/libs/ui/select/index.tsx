@@ -1,9 +1,9 @@
+import { cn } from "@/libs/className"
 import { Float, FloatProps } from "@headlessui-float/react"
 import * as HeadlessUI from "@headlessui/react"
 import React from "react"
 import { HiCheck, HiChevronDown } from "react-icons/hi"
 import { Button, ButtonVariantProps } from "../button"
-import { cn } from "../utils/className"
 
 export interface SelectOption<Value> extends HeadlessUI.ListboxOptionProps<"div", Value> {
   children?: React.ReactNode

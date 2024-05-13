@@ -1,6 +1,6 @@
+import { cn } from "@/libs/className"
 import { Switch as InternalSwitch, SwitchProps } from "@headlessui/react"
 import React from "react"
-import { cn } from "../utils/className"
 
 export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps<React.ElementType>>(function (
   { className, ...props },

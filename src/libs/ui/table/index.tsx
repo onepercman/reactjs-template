@@ -1,8 +1,8 @@
+import { cn } from "@/libs/className"
 import React from "react"
 import { Empty } from "../empty"
 import { Loader } from "../loader"
 import { Pagination, PaginationProps } from "../pagination"
-import { cn } from "../utils/className"
 import { TableCell } from "./cell"
 import { TableCellHead } from "./cell-head"
 

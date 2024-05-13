@@ -1,5 +1,5 @@
+import { cn } from "@/libs/className"
 import React from "react"
-import { cn } from "../utils/className"
 
 export const TableCellHead = React.forwardRef<HTMLTableCellElement, React.TdHTMLAttributes<HTMLTableCellElement>>(
   function ({ children, className, ...props }, ref) {

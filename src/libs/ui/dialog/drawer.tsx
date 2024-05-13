@@ -1,10 +1,11 @@
+import { cn } from "@/libs/className"
 import * as HeadlessUI from "@headlessui/react"
-import { VariantProps, cva } from "class-variance-authority"
 import React from "react"
 import { HiX } from "react-icons/hi"
-import { cn } from "../utils/className"
+import { VariantProps, tv } from "tailwind-variants"
 
-const drawer = cva(cn("fixed z-50 p-2"), {
+const drawer = tv({
+  base: "fixed z-50 p-2",
   variants: {
     side: {
       right: "bottom-0 right-0 top-0 w-full",
@@ -18,7 +19,8 @@ const drawer = cva(cn("fixed z-50 p-2"), {
   },
 })
 
-const drawerTransition = cva("opacity-0", {
+const drawerTransition = tv({
+  base: "opacity-0",
   variants: {
     side: {
       right: "translate-x-full",

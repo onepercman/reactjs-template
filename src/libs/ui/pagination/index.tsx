@@ -1,7 +1,7 @@
+import { cn } from "@/libs/className"
 import React from "react"
 import { HiChevronDoubleLeft, HiChevronDoubleRight } from "react-icons/hi"
 import { Button, ButtonProps } from "../button"
-import { cn } from "../utils/className"
 
 export interface PaginationProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
   total?: number

@@ -1,5 +1,5 @@
+import { cn } from "@/libs/className"
 import React from "react"
-import { cn } from "../utils/className"
 
 interface Skeleton extends ForwardedRefComponent {
   <Tag extends ReactTag>(props: ForwardRefWithAsProps<Tag, object>): React.ReactElement | null

@@ -1,5 +1,5 @@
+import { cn } from "@/libs/className"
 import React, { HTMLAttributes } from "react"
-import { cn } from "../utils/className"
 
 export const H1 = React.forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphElement>>(function (
   { children, className, ...props },

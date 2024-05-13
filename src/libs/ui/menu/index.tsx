@@ -1,8 +1,8 @@
+import { cn } from "@/libs/className"
 import { Float, FloatProps } from "@headlessui-float/react"
 import * as HeadlessUI from "@headlessui/react"
 import React from "react"
 import { HiChevronRight } from "react-icons/hi"
-import { cn } from "../utils/className"
 
 export interface MenuItem {
   label: React.ReactNode

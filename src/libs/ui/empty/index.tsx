@@ -1,6 +1,6 @@
+import { cn } from "@/libs/className"
 import React from "react"
 import { HiArchiveBox } from "react-icons/hi2"
-import { cn } from "../utils/className"
 
 export const Empty = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(function (
   { children, className, ...props },

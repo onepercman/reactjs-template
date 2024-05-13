@@ -1,7 +1,7 @@
+import { cn } from "@/libs/className"
 import * as HeadlessUI from "@headlessui/react"
 import React from "react"
 import { HiX } from "react-icons/hi"
-import { cn } from "../utils/className"
 
 export interface DialogProps {
   open?: boolean

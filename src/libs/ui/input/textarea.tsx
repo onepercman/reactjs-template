@@ -1,8 +1,9 @@
-import { cva, VariantProps } from "class-variance-authority"
+import { cn } from "@/libs/className"
 import React from "react"
-import { cn } from "../utils/className"
+import { VariantProps, tv } from "tailwind-variants"
 
-const textarea = cva(cn("input input-textarea"), {
+const textarea = tv({
+  base: "input input-textarea",
   variants: {
     variant: {
       filled: "input-filled",

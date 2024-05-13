@@ -1,6 +1,6 @@
+import { cn } from "@/libs/className"
 import React from "react"
 import { Button } from "../button/button"
-import { cn } from "../utils/className"
 
 type BaseProps = React.HTMLAttributes<HTMLDivElement>
 

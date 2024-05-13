@@ -1,6 +1,6 @@
+import { cn } from "@/libs/className"
 import React from "react"
 import { Spinner } from "../spinner"
-import { cn } from "../utils/className"
 
 interface Loader extends ForwardedRefComponent {
   <Tag extends ReactTag>(props: ForwardRefWithAsProps<Tag, object>): React.ReactElement | null

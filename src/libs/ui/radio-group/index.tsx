@@ -1,6 +1,6 @@
+import { cn } from "@/libs/className"
 import React, { ChangeEventHandler } from "react"
 import { Input } from "../input"
-import { cn } from "../utils/className"
 
 export interface RadioGroupOption extends React.HTMLAttributes<HTMLLabelElement> {
   label?: React.ReactNode

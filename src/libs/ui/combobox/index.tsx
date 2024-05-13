@@ -1,10 +1,10 @@
+import { cn } from "@/libs/className"
 import { Float, FloatProps } from "@headlessui-float/react"
 import * as HeadlessUI from "@headlessui/react"
 import React from "react"
 import { HiCheck } from "react-icons/hi"
 import { Button } from "../button"
 import { Input } from "../input"
-import { cn } from "../utils/className"
 
 export interface ComboboxOption<T = any> extends HeadlessUI.ComboboxOptionProps<Button, T> {
   children?: React.ReactNode

@@ -1,13 +1,14 @@
-import { cva, VariantProps } from "class-variance-authority"
+import { cn } from "@/libs/className"
 import { Dayjs } from "dayjs"
 import Picker, { PickerProps, PickerRef } from "rc-picker"
 import defaultLocale from "rc-picker/lib/locale/en_US"
 import React from "react"
 import { HiCalendar } from "react-icons/hi"
-import { cn } from "../utils/className"
+import { VariantProps, tv } from "tailwind-variants"
 import defaultConfig from "./dayjs-timezone"
 
-const datePickerVariants = cva("input-group input", {
+const datePickerVariants = tv({
+  base: "input-group input",
   variants: {
     size: {
       sm: "size-sm",

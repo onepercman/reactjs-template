@@ -1,8 +1,8 @@
-import { VariantProps, cva } from "class-variance-authority"
 import React from "react"
-import { cn } from "../utils/className"
+import { VariantProps, tv } from "tailwind-variants"
 
-const checkbox = cva(cn("input-checkbox"), {
+const checkbox = tv({
+  base: "input-checkbox",
   variants: {
     size: {
       md: "h-6 w-6",

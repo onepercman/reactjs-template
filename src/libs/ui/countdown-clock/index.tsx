@@ -1,7 +1,7 @@
+import { cn } from "@/libs/className"
 import { UseCountdownStates } from "@/libs/custom-hooks/use-countdown"
 import React from "react"
 import { Countdown } from "../countdown"
-import { cn } from "../utils/className"
 
 type BaseProps = React.HTMLAttributes<HTMLDivElement>
 

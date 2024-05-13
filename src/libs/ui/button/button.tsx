@@ -1,9 +1,10 @@
-import { VariantProps, cva } from "class-variance-authority"
+import { cn } from "@/libs/className"
 import React from "react"
+import { tv, VariantProps } from "tailwind-variants"
 import { Spinner } from "../spinner"
-import { cn } from "../utils/className"
 
-const button = cva("btn", {
+const button = tv({
+  base: "btn",
   variants: {
     size: {
       xs: "size-xs",

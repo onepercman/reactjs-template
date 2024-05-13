@@ -1,6 +1,6 @@
-import { cx, CxOptions } from "class-variance-authority"
 import { twMerge } from "tailwind-merge"
+import { CnOptions, cnBase } from "tailwind-variants"
 
-export function cn(...inputs: CxOptions) {
-  return twMerge(cx(inputs))
+export function cn(...inputs: CnOptions) {
+  return twMerge(cnBase(inputs))
 }

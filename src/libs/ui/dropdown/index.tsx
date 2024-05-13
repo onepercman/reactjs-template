@@ -1,7 +1,7 @@
+import { cn } from "@/libs/className"
 import { Float, FloatProps } from "@headlessui-float/react"
 import React from "react"
 import { HiChevronRight } from "react-icons/hi"
-import { cn } from "../utils/className"
 
 export interface DropdownItem {
   label: React.ReactNode
