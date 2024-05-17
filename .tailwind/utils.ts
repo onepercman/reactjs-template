@@ -1,8 +1,6 @@
-import { cn } from "tailwind-variants"
-
 export function apply(...inputs: string[]) {
   return {
-    [`@apply ${cn(inputs)}`]: {},
+    [`@apply ${inputs.join(" ")}`]: {},
   }
 }
 
