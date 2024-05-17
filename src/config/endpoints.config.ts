@@ -1,10 +1,1 @@
-import { MODE, Mode } from "./mode.config"
-
-const API_URLS = <const>{
-  [Mode.Local]: "",
-  [Mode.Dev]: "",
-  [Mode.Stg]: "",
-  [Mode.Prd]: "",
-}
-
-export const API_URL = API_URLS[MODE]
+export const API_URL = import.meta.env.VITE_API_URL

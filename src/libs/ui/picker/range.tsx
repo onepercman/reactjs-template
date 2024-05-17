@@ -1,4 +1,4 @@
-import { cn } from "@/libs/className"
+import { cn } from "@/libs/tailwind-variants"
 import { Dayjs } from "dayjs"
 import { RangePicker, RangePickerProps } from "rc-picker"
 import { RangePickerRef } from "rc-picker/lib/interface"

@@ -1,4 +1,4 @@
-import { cn } from "@/libs/className"
+import { cn } from "@/libs/tailwind-variants"
 import React from "react"
 import { HiEye, HiEyeOff, HiX } from "react-icons/hi"
 import { VariantProps, tv } from "tailwind-variants"

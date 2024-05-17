@@ -1,4 +1,4 @@
-import { cn } from "@/libs/className"
+import { cn } from "@/libs/tailwind-variants"
 import React from "react"
 
 export type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement>

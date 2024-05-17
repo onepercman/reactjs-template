@@ -1,4 +1,4 @@
-import { cn } from "@/libs/className"
+import { cn } from "@/libs/tailwind-variants"
 import { Switch as InternalSwitch, SwitchProps } from "@headlessui/react"
 import React from "react"
 

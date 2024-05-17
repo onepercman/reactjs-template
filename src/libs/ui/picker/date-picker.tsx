@@ -1,4 +1,4 @@
-import { cn } from "@/libs/className"
+import { cn } from "@/libs/tailwind-variants"
 import { Dayjs } from "dayjs"
 import Picker, { PickerProps, PickerRef } from "rc-picker"
 import defaultLocale from "rc-picker/lib/locale/en_US"

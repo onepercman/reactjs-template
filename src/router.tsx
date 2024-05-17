@@ -1,7 +1,7 @@
-import Home from "@/pages/home"
+import { Layout } from "@/components/layout"
+import Home from "@/routers/home"
+import NotFound from "@/routers/not-found"
 import { createBrowserRouter } from "react-router-dom"
-import { Layout } from "./components/app/layout"
-import NotFound from "./pages/not-found"
 
 export const router = createBrowserRouter([
   {

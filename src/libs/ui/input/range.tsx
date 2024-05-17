@@ -1,4 +1,4 @@
-import { cn } from "@/libs/className"
+import { cn } from "@/libs/tailwind-variants"
 import React from "react"
 
 type BaseRangeProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">

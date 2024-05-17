@@ -1,5 +1,5 @@
-import { cn } from "@/libs/className"
 import { UseCountdownStates } from "@/libs/custom-hooks/use-countdown"
+import { cn } from "@/libs/tailwind-variants"
 import React from "react"
 import { Countdown } from "../countdown"
 

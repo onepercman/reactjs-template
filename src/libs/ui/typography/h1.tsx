@@ -1,4 +1,4 @@
-import { cn } from "@/libs/className"
+import { cn } from "@/libs/tailwind-variants"
 import React, { HTMLAttributes } from "react"
 
 export const H1 = React.forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphElement>>(function (
