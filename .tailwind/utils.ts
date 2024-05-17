@@ -1,9 +1,8 @@
-import { twMerge } from "tailwind-merge"
-import { cnBase } from "tailwind-variants"
+import { cn } from "tailwind-variants"
 
 export function apply(...inputs: string[]) {
   return {
-    [`@apply ${twMerge(cnBase(inputs))}`]: {},
+    [`@apply ${cn(inputs)}`]: {},
   }
 }
 
