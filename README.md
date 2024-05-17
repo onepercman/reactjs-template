@@ -46,7 +46,10 @@ export default createStore(new Store())
 - With persist:
 
 ```ts
-export default createStore(new Store(), { key: storageKeys.store1, include: ["property1"] })
+export default createStore(new Store(), {
+  key: storageKeys.store1,
+  include: ["property1"],
+})
 ```
 
 Example

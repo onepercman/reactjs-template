@@ -21,13 +21,13 @@
     "postinstall": "husky install"
   },
   "dependencies": {
+    "@nextui-org/react": "^2.3.6",
     "@tanstack/react-query": "^5.28.6",
     "axios": "^1.6.8",
     "dayjs": "^1.11.10",
+    "framer-motion": "^11.2.4",
     "humps": "^2.0.1",
     "jwt-decode": "^4.0.0",
-    "rc-picker": "4.3.0",
-    "rc-slider": "^10.5.0",
     "react": "^18.2.0",
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
@@ -37,8 +37,6 @@
     "valtio": "^1.13.2"
   },
   "devDependencies": {
-    "@headlessui-float/react": "^0.13.2",
-    "@headlessui/react": "^1.7.18",
     "@tailwindcss/forms": "^0.5.7",
     "@testing-library/react": "^14.2.2",
     "@types/node": "^20.11.30",

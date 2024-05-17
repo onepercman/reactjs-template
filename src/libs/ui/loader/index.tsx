@@ -3,7 +3,9 @@ import React from "react"
 import { Spinner } from "../spinner"
 
 interface Loader extends ForwardedRefComponent {
-  <Tag extends ReactTag>(props: ForwardRefWithAsProps<Tag, object>): React.ReactElement | null
+  <Tag extends ReactTag>(
+    props: ForwardRefWithAsProps<Tag, object>,
+  ): React.ReactElement | null
 }
 
 function _generate<Tag extends ReactTag>(
@@ -12,13 +14,18 @@ function _generate<Tag extends ReactTag>(
     ref: React.ForwardedRef<Tag>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<Tag, PropsWithAsAttributes<object, Tag>>(render) as unknown as Loader
+  return React.forwardRef<Tag, PropsWithAsAttributes<object, Tag>>(
+    render,
+  ) as unknown as Loader
 }
 
 export const Loader = _generate(function ({ as, className, ...props }, ref) {
   const Tag = as || ("div" as ReactTag)
 
-  const _className = cn("flex w-full items-center justify-center p-base text-xl min-h-56", className)
+  const _className = cn(
+    "flex w-full items-center justify-center p-base text-xl min-h-56",
+    className,
+  )
 
   return (
     <Tag ref={ref} className={_className} {...props}>
