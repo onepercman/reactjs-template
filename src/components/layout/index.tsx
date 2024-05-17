@@ -1,11 +1,16 @@
-import { FC, Fragment, HTMLAttributes } from "react"
-import { Outlet } from "react-router-dom"
+import { NextUIProvider } from "@nextui-org/react"
+import { ThemeProvider } from "next-themes"
+import { FC } from "react"
+import { Outlet, useNavigate } from "react-router-dom"
 
-export const Layout: FC<HTMLAttributes<HTMLDivElement>> = ({ children }) => {
+export const Layout: FC = () => {
+  const navigate = useNavigate()
+
   return (
-    <Fragment>
-      {children}
-      <Outlet />
-    </Fragment>
+    <ThemeProvider>
+      <NextUIProvider navigate={navigate}>
+        <Outlet />
+      </NextUIProvider>
+    </ThemeProvider>
   )
 }
