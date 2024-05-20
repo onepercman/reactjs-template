@@ -11,7 +11,8 @@
     "enterTo",
     "leave",
     "leaveFrom",
-    "leaveTo"
+    "leaveTo",
+    ".*classNames.*"
   ],
   "tailwindCSS.experimental.classRegex": [
     ["tv\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
