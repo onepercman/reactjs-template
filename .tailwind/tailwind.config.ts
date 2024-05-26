@@ -1,5 +1,4 @@
 import { nextui } from "@nextui-org/react"
-import tailwindForm from "@tailwindcss/forms"
 import tailwindScrollbar from "tailwind-scrollbar"
 import type { Config } from "tailwindcss"
 import tailwindAnimate from "tailwindcss-animate"
@@ -37,7 +36,6 @@ const config: Config = {
   plugins: [
     tailwindAnimate,
     tailwindScrollbar({ nocompatible: true }),
-    tailwindForm({ strategy: "base" }),
     nextui({
       themes: {
         dark: {
