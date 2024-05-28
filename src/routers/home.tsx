@@ -18,8 +18,6 @@ export default function Home() {
       >
         Button
       </Button>
-
-      <div className="text-muted">Text</div>
     </Container>
   )
 }

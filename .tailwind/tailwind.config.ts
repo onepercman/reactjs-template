@@ -1,4 +1,5 @@
 import { nextui } from "@nextui-org/react"
+import { schemes } from "tailwind-schemes"
 import tailwindScrollbar from "tailwind-scrollbar"
 import type { Config } from "tailwindcss"
 import tailwindAnimate from "tailwindcss-animate"
@@ -77,6 +78,9 @@ const config: Config = {
           },
         },
       },
+    }),
+    schemes({
+      schemes: {},
     }),
   ],
 }
