@@ -110,8 +110,8 @@ devDependencies:
     specifier: ^1.72.0
     version: 1.72.0
   tailwind-schemes:
-    specifier: ^1.2.6
-    version: 1.2.6(tailwindcss@3.4.1)
+    specifier: ^1.4.0
+    version: 1.4.0(tailwindcss@3.4.1)
   tailwind-scrollbar:
     specifier: ^3.1.0
     version: 3.1.0(tailwindcss@3.4.1)
@@ -6914,8 +6914,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.1
 
-  /tailwind-schemes@1.2.6(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-3blPQWI7uHppLuHueeKT0d8YhTbXi4cOyG90JvpoY73EfxV9gr57mkMBb1EdljthTcLA5DHbjAQNZ7X/3tcK9w==}
+  /tailwind-schemes@1.4.0(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-Y91UVgcHtZIh6avQhS59BuHjeGoEJ7tDezbOjEWVQZ/JS+uuFHCYK2H0ICjlEskdZ9f7BX1RlssdiWcV0/ylrA==}
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
