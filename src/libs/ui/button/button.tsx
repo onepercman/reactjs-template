@@ -189,14 +189,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function (
   )
 
   return (
-    <button
-      ref={ref}
-      type="button"
-      className={_className}
-      disabled={_disabled}
-      onClick={_onClick}
-      {...props}
-    >
+    <button ref={ref} type="button" className={_className} disabled={_disabled} onClick={_onClick} {...props}>
       {leftIcon && !_loading ? leftIcon : null}
       {_loading && <Spinner className={_loadingClassName} />}
       {_loading ? loadingText || _transparentChildren : children}

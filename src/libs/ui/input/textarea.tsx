@@ -1,8 +1,6 @@
 import React from "react"
 import { HiX } from "react-icons/hi"
-import TextAreaAutoSize, {
-  TextareaAutosizeProps,
-} from "react-textarea-autosize"
+import TextAreaAutoSize, { TextareaAutosizeProps } from "react-textarea-autosize"
 import { VariantProps, tv } from "tailwind-variants"
 import { useComposedRefs } from "../utils/ref"
 
@@ -41,10 +39,7 @@ const textArea = tv({
 type TextareaVariantProps = VariantProps<typeof textArea>
 
 export interface TextareaProps<AutoSize extends boolean = true>
-  extends Omit<
-      React.HTMLAttributes<HTMLTextAreaElement>,
-      "prefix" | "suffix" | "size"
-    >,
+  extends Omit<React.HTMLAttributes<HTMLTextAreaElement>, "prefix" | "suffix" | "size">,
     TextareaVariantProps {
   autoSize?: AutoSize
   prefix?: React.ReactNode | React.ReactElement
@@ -115,16 +110,14 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       const element = prefix as React.ReactElement
       if (!element) return null
 
-      if (typeof element === "object" && "type" in element)
-        return React.cloneElement(element)
+      if (typeof element === "object" && "type" in element) return React.cloneElement(element)
       return <span>{element}</span>
     }
 
     function _renderSuffix() {
       const element = suffix as React.ReactElement
       if (!element) return null
-      if (typeof element === "object" && "type" in element)
-        return React.cloneElement(element)
+      if (typeof element === "object" && "type" in element) return React.cloneElement(element)
       return <span>{element}</span>
     }
 

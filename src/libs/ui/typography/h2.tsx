@@ -1,10 +1,10 @@
 import { cn } from "@/libs/tailwind-variants"
 import React, { HTMLAttributes } from "react"
 
-export const H2 = React.forwardRef<
-  HTMLParagraphElement,
-  HTMLAttributes<HTMLParagraphElement>
->(function ({ children, className, ...props }, ref) {
+export const H2 = React.forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphElement>>(function (
+  { children, className, ...props },
+  ref,
+) {
   return (
     <h2 ref={ref} className={cn("text-lg font-semibold", className)} {...props}>
       {children}

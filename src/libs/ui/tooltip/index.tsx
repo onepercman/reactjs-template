@@ -8,10 +8,10 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   float?: Omit<FloatProps, "children">
 }
 
-export const Tooltip: React.FC<TooltipProps> = React.forwardRef<
-  HTMLDivElement,
-  TooltipProps
->(function ({ children, message, className, float, ...props }, ref) {
+export const Tooltip: React.FC<TooltipProps> = React.forwardRef<HTMLDivElement, TooltipProps>(function (
+  { children, message, className, float, ...props },
+  ref,
+) {
   const [show, setShow] = React.useState<boolean>(false)
 
   const triggerProps: React.HTMLAttributes<HTMLDivElement> = {
@@ -52,14 +52,7 @@ export const Tooltip: React.FC<TooltipProps> = React.forwardRef<
       {Trigger}
       <div className="border-line rounded border" {...triggerProps}>
         {/* <Float.Arrow className="bg-component border-line absolute h-3 w-3 rotate-45 border" /> */}
-        <div
-          ref={ref}
-          className={cn(
-            "bg-component relative rounded px-4 py-2 shadow",
-            className,
-          )}
-          {...props}
-        >
+        <div ref={ref} className={cn("bg-component relative rounded px-4 py-2 shadow", className)} {...props}>
           {message}
         </div>
       </div>

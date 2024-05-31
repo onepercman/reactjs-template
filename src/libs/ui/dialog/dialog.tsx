@@ -7,9 +7,7 @@ export interface DialogProps {
   open?: boolean
   onClose?(): void
   closable?: boolean
-  children?:
-    | React.ReactNode
-    | ((args: { open(): void; close(): void }) => React.ReactNode)
+  children?: React.ReactNode | ((args: { open(): void; close(): void }) => React.ReactNode)
   title?: React.ReactNode
   trigger?: React.ReactElement
   width?: number
@@ -18,17 +16,7 @@ export interface DialogProps {
 }
 
 export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
-  {
-    open,
-    onClose,
-    closable = true,
-    children,
-    title,
-    trigger,
-    width = 350,
-    center,
-    className,
-  },
+  { open, onClose, closable = true, children, title, trigger, width = 350, center, className },
   ref,
 ) {
   const [show, setShow] = React.useState(Boolean(open))
@@ -83,12 +71,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
     <React.Fragment>
       {_trigger}
       <HeadlessUI.Transition appear show={show} as={React.Fragment}>
-        <HeadlessUI.Dialog
-          as="div"
-          ref={ref}
-          onClose={handleClose as any}
-          className="z-50"
-        >
+        <HeadlessUI.Dialog as="div" ref={ref} onClose={handleClose as any} className="z-50">
           <HeadlessUI.Transition.Child
             as={React.Fragment}
             enter="ease-out duration-100"
@@ -122,15 +105,9 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
                   </HeadlessUI.Dialog.Title>
                 )}
                 {closable && (trigger || onClose) && (
-                  <HiX
-                    role="button"
-                    className="absolute right-4 top-4"
-                    onClick={handleClose}
-                  />
+                  <HiX role="button" className="absolute right-4 top-4" onClick={handleClose} />
                 )}
-                <HeadlessUI.Dialog.Panel className={className}>
-                  {getChildren()}
-                </HeadlessUI.Dialog.Panel>
+                <HeadlessUI.Dialog.Panel className={className}>{getChildren()}</HeadlessUI.Dialog.Panel>
               </HeadlessUI.Transition.Child>
             </div>
           </div>

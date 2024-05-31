@@ -1,10 +1,6 @@
 import { cn } from "@/libs/tailwind-variants"
 import React from "react"
-import {
-  ControllerFieldState,
-  ControllerRenderProps,
-  UseFormStateReturn,
-} from "react-hook-form"
+import { ControllerFieldState, ControllerRenderProps, UseFormStateReturn } from "react-hook-form"
 
 type BaseProps = React.HTMLAttributes<HTMLDivElement>
 
@@ -21,60 +17,40 @@ interface FormItemProps extends BaseProps {
   required?: boolean | string
 }
 
-export const FormItem = React.forwardRef<HTMLDivElement, FormItemProps>(
-  function (
-    {
-      className,
-      children,
-      label,
-      mode = "vertical",
-      state,
-      customField = false,
-      required,
-      ...props
-    },
-    ref,
-  ) {
-    const fieldProps =
-      state && !customField
-        ? { ...state.field, isError: !!state.fieldState?.error?.message }
-        : {}
+export const FormItem = React.forwardRef<HTMLDivElement, FormItemProps>(function (
+  { className, children, label, mode = "vertical", state, customField = false, required, ...props },
+  ref,
+) {
+  const fieldProps = state && !customField ? { ...state.field, isError: !!state.fieldState?.error?.message } : {}
 
-    const _className = cn(
-      "flex",
-      mode === "vertical" ? "flex-col" : "flex-row gap-3",
-      className,
-    )
+  const _className = cn("flex", mode === "vertical" ? "flex-col" : "flex-row gap-3", className)
 
-    return (
-      <div ref={ref} className={_className} {...props}>
-        {label && (
-          <label className="text-secondary text-xs leading-10">
-            {label}{" "}
-            {required && (
-              <span className="text-2xs text-error">
-                {typeof required === "boolean" ? "(*)" : `(${required})`}
-              </span>
-            )}
-          </label>
-        )}
-        <div className="flex flex-col gap-2">
-          {children &&
-            React.cloneElement(children, {
-              ...fieldProps,
-            })}
-          <div
-            className={cn(
-              "text-error text-xs transition-opacity",
-              state?.fieldState?.error?.message ? "opacity-100" : "opacity-0",
-            )}
-          >
-            {state?.fieldState?.error?.message}
-          </div>
+  return (
+    <div ref={ref} className={_className} {...props}>
+      {label && (
+        <label className="text-secondary text-xs leading-10">
+          {label}{" "}
+          {required && (
+            <span className="text-2xs text-error">{typeof required === "boolean" ? "(*)" : `(${required})`}</span>
+          )}
+        </label>
+      )}
+      <div className="flex flex-col gap-2">
+        {children &&
+          React.cloneElement(children, {
+            ...fieldProps,
+          })}
+        <div
+          className={cn(
+            "text-error text-xs transition-opacity",
+            state?.fieldState?.error?.message ? "opacity-100" : "opacity-0",
+          )}
+        >
+          {state?.fieldState?.error?.message}
         </div>
       </div>
-    )
-  },
-)
+    </div>
+  )
+})
 
 FormItem.displayName = "FormItem"

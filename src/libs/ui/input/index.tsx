@@ -5,10 +5,7 @@ import { Radio, RadioProps } from "./radio"
 import { Range } from "./range"
 import { Textarea, TextareaProps } from "./textarea"
 
-interface Input
-  extends React.ForwardRefExoticComponent<
-    InputProps & React.RefAttributes<HTMLInputElement>
-  > {
+interface Input extends React.ForwardRefExoticComponent<InputProps & React.RefAttributes<HTMLInputElement>> {
   Number: typeof InputNumber
   Textarea: typeof Textarea
   Checkbox: typeof Checkbox

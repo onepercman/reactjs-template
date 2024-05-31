@@ -8,9 +8,7 @@ interface TransformProps {
 }
 
 interface Transform extends ForwardedRefComponent {
-  <Tag extends ReactTag>(
-    props: ForwardRefWithAsProps<Tag, TransformProps>,
-  ): React.ReactElement | null
+  <Tag extends ReactTag>(props: ForwardRefWithAsProps<Tag, TransformProps>): React.ReactElement | null
 }
 
 function _generate<Tag extends ReactTag>(
@@ -19,22 +17,13 @@ function _generate<Tag extends ReactTag>(
     ref: React.ForwardedRef<Tag>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<Tag, ForwardRefWithAsProps<Tag, object>>(
-    render,
-  ) as unknown as Transform
+  return React.forwardRef<Tag, ForwardRefWithAsProps<Tag, object>>(render) as unknown as Transform
 }
 
-export const Transform = _generate(function (
-  { as = "div", variant, children, ...props },
-  ref,
-) {
+export const Transform = _generate(function ({ as = "div", variant, children, ...props }, ref) {
   return (
     <Transition as={React.Fragment} unmount appear {...props}>
-      <Transition.Child
-        ref={ref as React.ForwardedRef<HTMLElement>}
-        as={as as React.ElementType}
-        {...variant}
-      >
+      <Transition.Child ref={ref as React.ForwardedRef<HTMLElement>} as={as as React.ElementType} {...variant}>
         {children}
       </Transition.Child>
     </Transition>

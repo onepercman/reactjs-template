@@ -31,10 +31,10 @@ type OmitType = "locale" | "generateConfig" | "suffixIcon"
 
 type InternalType = Omit<RangePickerProps<Dayjs>, OmitType>
 
-export const Range = React.forwardRef<
-  RangePickerRef,
-  InternalType & VariantProps<typeof datePickerVariants>
->(function ({ size, variant, className, ...props }, ref) {
+export const Range = React.forwardRef<RangePickerRef, InternalType & VariantProps<typeof datePickerVariants>>(function (
+  { size, variant, className, ...props },
+  ref,
+) {
   return (
     <RangePicker
       ref={ref}

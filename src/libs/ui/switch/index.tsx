@@ -2,10 +2,10 @@ import { cn } from "@/libs/tailwind-variants"
 import { Switch as InternalSwitch, SwitchProps } from "@headlessui/react"
 import React from "react"
 
-export const Switch = React.forwardRef<
-  HTMLButtonElement,
-  SwitchProps<React.ElementType>
->(function ({ className, ...props }, ref) {
+export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps<React.ElementType>>(function (
+  { className, ...props },
+  ref,
+) {
   return (
     <InternalSwitch
       ref={ref}

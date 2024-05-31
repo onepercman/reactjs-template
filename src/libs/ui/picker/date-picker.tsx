@@ -30,22 +30,22 @@ type OmitType = "locale" | "generateConfig" | "suffixIcon"
 
 type InternalType = Omit<PickerProps<Dayjs>, OmitType>
 
-export type DatePickerProps = InternalType &
-  VariantProps<typeof datePickerVariants>
+export type DatePickerProps = InternalType & VariantProps<typeof datePickerVariants>
 
-export const DatePicker = React.forwardRef<PickerRef, DatePickerProps>(
-  function ({ size, variant, className, ...props }, ref) {
-    return (
-      <Picker
-        ref={ref}
-        locale={defaultLocale}
-        generateConfig={defaultConfig}
-        suffixIcon={<HiCalendar role="button" className="text-secondary" />}
-        className={cn(datePickerVariants({ size, variant, className }))}
-        {...props}
-      />
-    )
-  },
-)
+export const DatePicker = React.forwardRef<PickerRef, DatePickerProps>(function (
+  { size, variant, className, ...props },
+  ref,
+) {
+  return (
+    <Picker
+      ref={ref}
+      locale={defaultLocale}
+      generateConfig={defaultConfig}
+      suffixIcon={<HiCalendar role="button" className="text-secondary" />}
+      className={cn(datePickerVariants({ size, variant, className }))}
+      {...props}
+    />
+  )
+})
 
 DatePicker.displayName = "DatePicker"

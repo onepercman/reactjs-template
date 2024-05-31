@@ -59,12 +59,7 @@ export const Menu = React.forwardRef<HTMLElement, MenuProps>(function (
         {...float}
       >
         {_renderTrigger()}
-        <HeadlessUI.Menu.Items
-          className={cn(
-            "bg-component flex flex-col rounded p-1 shadow",
-            overlayClass,
-          )}
-        >
+        <HeadlessUI.Menu.Items className={cn("bg-component flex flex-col rounded p-1 shadow", overlayClass)}>
           {menu?.map((item, index) =>
             item.children?.length ? (
               <Menu
@@ -95,9 +90,7 @@ export const Menu = React.forwardRef<HTMLElement, MenuProps>(function (
                   <span
                     className={cn(
                       "absolute right-2 top-2 transition-opacity",
-                      selected && selected === item.key
-                        ? "opacity-100"
-                        : "opacity-0",
+                      selected && selected === item.key ? "opacity-100" : "opacity-0",
                     )}
                   >
                     <i className="fa-solid fa-check" />

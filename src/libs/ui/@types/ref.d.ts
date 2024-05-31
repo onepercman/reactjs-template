@@ -14,9 +14,6 @@ interface ForwardedRefComponent {
   id?: string
 }
 
-type ForwardRefWithAsProps<
-  As extends ReactTag,
-  Props,
-> = React.ComponentPropsWithoutRef<As> &
+type ForwardRefWithAsProps<As extends ReactTag, Props> = React.ComponentPropsWithoutRef<As> &
   PropsWithAsAttributes<Props, As> &
   React.RefAttributes<Element>

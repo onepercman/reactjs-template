@@ -82,10 +82,7 @@ async function openConfirm({
   })
 }
 
-interface Dialog
-  extends React.ForwardRefExoticComponent<
-    DialogProps & React.RefAttributes<HTMLDivElement>
-  > {
+interface Dialog extends React.ForwardRefExoticComponent<DialogProps & React.RefAttributes<HTMLDivElement>> {
   open: typeof openDialog
   confirm: typeof openConfirm
   Drawer: typeof Drawer

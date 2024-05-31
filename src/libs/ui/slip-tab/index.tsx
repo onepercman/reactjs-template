@@ -42,9 +42,7 @@ export const SlipTab = React.forwardRef<HTMLDivElement, SlipTabProps>(function (
 
   function getPanels() {
     if ((children as Array<any> | undefined)?.length) {
-      return (children as React.ReactElement[]).map((panel) => (
-        <Tab.Panel>{panel}</Tab.Panel>
-      ))
+      return (children as React.ReactElement[]).map((panel) => <Tab.Panel>{panel}</Tab.Panel>)
     }
     return <Tab.Panel>{children}</Tab.Panel>
   }
@@ -63,10 +61,7 @@ export const SlipTab = React.forwardRef<HTMLDivElement, SlipTabProps>(function (
             {tabs?.map(({ children, className, ...tab }, index) => (
               <Tab
                 key={index}
-                className={cn(
-                  "relative z-10 h-10 flex-1 whitespace-nowrap rounded px-3",
-                  className as string,
-                )}
+                className={cn("relative z-10 h-10 flex-1 whitespace-nowrap rounded px-3", className as string)}
                 {...tab}
               >
                 {children}

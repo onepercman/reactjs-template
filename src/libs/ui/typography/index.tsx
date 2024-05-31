@@ -3,8 +3,7 @@ import { H2 } from "./h2"
 
 interface Typography
   extends React.ForwardRefExoticComponent<
-    React.HTMLAttributes<HTMLParagraphElement> &
-      React.RefAttributes<HTMLParagraphElement>
+    React.HTMLAttributes<HTMLParagraphElement> & React.RefAttributes<HTMLParagraphElement>
   > {
   H1: typeof H1
   H2: typeof H2

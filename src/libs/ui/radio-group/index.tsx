@@ -2,8 +2,7 @@ import { cn } from "@/libs/tailwind-variants"
 import React, { ChangeEventHandler } from "react"
 import { Input } from "../input"
 
-export interface RadioGroupOption
-  extends React.HTMLAttributes<HTMLLabelElement> {
+export interface RadioGroupOption extends React.HTMLAttributes<HTMLLabelElement> {
   label?: React.ReactNode
   value: string
 }
@@ -15,9 +14,7 @@ export interface RadioGroupProps {
 }
 
 interface RadioGroup extends ForwardedRefComponent {
-  <Tag extends ReactTag>(
-    props: ForwardRefWithAsProps<Tag, RadioGroupProps>,
-  ): React.ReactElement | null
+  <Tag extends ReactTag>(props: ForwardRefWithAsProps<Tag, RadioGroupProps>): React.ReactElement | null
 }
 
 function _generate<Tag extends ReactTag>(
@@ -26,9 +23,7 @@ function _generate<Tag extends ReactTag>(
     ref: React.ForwardedRef<Tag>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<Tag, ForwardRefWithAsProps<Tag, RadioGroupProps>>(
-    render,
-  ) as unknown as RadioGroup
+  return React.forwardRef<Tag, ForwardRefWithAsProps<Tag, RadioGroupProps>>(render) as unknown as RadioGroup
 }
 
 export const RadioGroup = _generate(function (
@@ -40,21 +35,12 @@ export const RadioGroup = _generate(function (
   return (
     <Tag ref={ref} className={cn("flex flex-col gap-2", className)} {...props}>
       {options?.map(({ label, value: optionValue, className, ...option }) => (
-        <label
-          key={optionValue}
-          role="button"
-          className={cn("inline-flex items-center gap-2", className)}
-          {...option}
-        >
+        <label key={optionValue} role="button" className={cn("inline-flex items-center gap-2", className)} {...option}>
           <Input.Radio
             name={name}
             value={optionValue}
             checked={value !== undefined ? value === optionValue : undefined}
-            defaultChecked={
-              defaultValue !== undefined
-                ? optionValue === defaultValue
-                : undefined
-            }
+            defaultChecked={defaultValue !== undefined ? optionValue === defaultValue : undefined}
           />{" "}
           {label}
         </label>

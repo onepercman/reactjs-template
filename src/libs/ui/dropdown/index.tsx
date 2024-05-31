@@ -19,14 +19,7 @@ export interface DropdownProps {
   float?: Omit<FloatProps, "children">
 }
 
-export const Dropdown: React.FC<DropdownProps> = function ({
-  menu,
-  onSelect,
-  children,
-  float,
-  className,
-  ...props
-}) {
+export const Dropdown: React.FC<DropdownProps> = function ({ menu, onSelect, children, float, className, ...props }) {
   const [show, setShow] = React.useState<boolean>(false)
 
   const triggerProps: React.HTMLAttributes<HTMLDivElement> = {

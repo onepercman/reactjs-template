@@ -5,16 +5,11 @@ import React from "react"
 import { HiCheck, HiChevronDown } from "react-icons/hi"
 import { Button, ButtonVariantProps } from "../button"
 
-export interface SelectOption<Value>
-  extends HeadlessUI.ListboxOptionProps<"div", Value> {
+export interface SelectOption<Value> extends HeadlessUI.ListboxOptionProps<"div", Value> {
   children?: React.ReactNode
 }
 
-export type SelectProps<As extends ReactTag, Value> = HeadlessUI.ListboxProps<
-  As,
-  Value,
-  Value
-> &
+export type SelectProps<As extends ReactTag, Value> = HeadlessUI.ListboxProps<As, Value, Value> &
   ButtonVariantProps & {
     options?: Array<SelectOption<Value>>
     float?: Omit<FloatProps, "as" | "children" | "className">
@@ -23,9 +18,7 @@ export type SelectProps<As extends ReactTag, Value> = HeadlessUI.ListboxProps<
   }
 
 interface Select extends ForwardedRefComponent {
-  <As extends ReactTag, Value>(
-    props: ForwardRefWithAsProps<As, SelectProps<As, Value>>,
-  ): React.ReactElement | null
+  <As extends ReactTag, Value>(props: ForwardRefWithAsProps<As, SelectProps<As, Value>>): React.ReactElement | null
 }
 
 function _generate<Value, As extends ReactTag = typeof React.Fragment>(
@@ -34,23 +27,11 @@ function _generate<Value, As extends ReactTag = typeof React.Fragment>(
     ref: React.ForwardedRef<HTMLElement>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLElement, SelectProps<As, Value>>(
-    render,
-  ) as unknown as Select
+  return React.forwardRef<HTMLElement, SelectProps<As, Value>>(render) as unknown as Select
 }
 
 export const Select = _generate(function (
-  {
-    as = React.Fragment as ReactTag,
-    multiple,
-    float,
-    options,
-    size,
-    variant,
-    className,
-    placeholder,
-    ...props
-  },
+  { as = React.Fragment as ReactTag, multiple, float, options, size, variant, className, placeholder, ...props },
   ref,
 ) {
   function getValue(value?: any) {
@@ -66,19 +47,14 @@ export const Select = _generate(function (
       )
     }
     return (
-      options?.find((el) => el.value === value)?.children || (
-        <span className="text-secondary">{placeholder}</span>
-      ) || <span />
+      options?.find((el) => el.value === value)?.children || <span className="text-secondary">{placeholder}</span> || (
+        <span />
+      )
     )
   }
 
   return (
-    <HeadlessUI.Listbox
-      ref={ref}
-      as={as}
-      multiple={multiple}
-      {...(props as any)}
-    >
+    <HeadlessUI.Listbox ref={ref} as={as} multiple={multiple} {...(props as any)}>
       {({ value: internalValue }) => (
         <Float
           portal={true}
@@ -96,11 +72,7 @@ export const Select = _generate(function (
         >
           <HeadlessUI.Listbox.Button
             as={Button}
-            className={cn(
-              "relative justify-between",
-              multiple && "h-fit",
-              className,
-            )}
+            className={cn("relative justify-between", multiple && "h-fit", className)}
             rightIcon={<HiChevronDown />}
             size={size}
             variant={variant}
@@ -109,15 +81,10 @@ export const Select = _generate(function (
           </HeadlessUI.Listbox.Button>
           <HeadlessUI.Listbox.Options className="bg-component border-line flex flex-col overflow-hidden rounded border p-1 shadow">
             {options?.map((item) => (
-              <HeadlessUI.Listbox.Option
-                as={React.Fragment}
-                key={JSON.stringify(item)}
-                value={item.value}
-              >
+              <HeadlessUI.Listbox.Option as={React.Fragment} key={JSON.stringify(item)} value={item.value}>
                 {({ selected }) => (
                   <div className="hover:bg-secondary flex cursor-pointer items-center justify-between gap-4 rounded p-2 pr-8 transition-colors">
-                    {item.children || (item.value as React.ReactNode)}{" "}
-                    {selected && <HiCheck />}
+                    {item.children || (item.value as React.ReactNode)} {selected && <HiCheck />}
                   </div>
                 )}
               </HeadlessUI.Listbox.Option>

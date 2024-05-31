@@ -40,9 +40,7 @@ export interface DrawerProps extends DrawerVariantProps {
   open?: boolean
   onClose?(): void
   closable?: boolean
-  children?:
-    | React.ReactNode
-    | ((args: { open(): void; close(): void }) => React.ReactNode)
+  children?: React.ReactNode | ((args: { open(): void; close(): void }) => React.ReactNode)
   title?: React.ReactNode
   trigger?: React.ReactElement
   width?: number | string
@@ -51,18 +49,7 @@ export interface DrawerProps extends DrawerVariantProps {
 }
 
 export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function (
-  {
-    open,
-    onClose,
-    side = "right",
-    closable = true,
-    children,
-    title,
-    trigger,
-    width = 350,
-    height,
-    className,
-  },
+  { open, onClose, side = "right", closable = true, children, title, trigger, width = 350, height, className },
   ref,
 ) {
   const [show, setShow] = React.useState(Boolean(open))
@@ -133,10 +120,8 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function (
             <HeadlessUI.Dialog.Panel
               className={drawer({ side })}
               style={{
-                maxWidth:
-                  side && ["left", "right"].includes(side) ? width : "auto",
-                maxHeight:
-                  side && ["top", "bottom"].includes(side) ? height : "auto",
+                maxWidth: side && ["left", "right"].includes(side) ? width : "auto",
+                maxHeight: side && ["top", "bottom"].includes(side) ? height : "auto",
               }}
             >
               {/* Padding close */}
@@ -145,28 +130,14 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function (
 
               <div className="bg-component border-line relative h-full w-full cursor-auto overflow-hidden rounded border text-left align-middle shadow">
                 {title && (
-                  <HeadlessUI.Dialog.Title
-                    as="h3"
-                    className="mb-2 p-4 text-lg font-medium"
-                  >
+                  <HeadlessUI.Dialog.Title as="h3" className="mb-2 p-4 text-lg font-medium">
                     {title}
                   </HeadlessUI.Dialog.Title>
                 )}
                 {closable && (trigger || onClose) && (
-                  <HiX
-                    role="button"
-                    className="absolute right-6 top-4 z-50"
-                    onClick={handleClose}
-                  />
+                  <HiX role="button" className="absolute right-6 top-4 z-50" onClick={handleClose} />
                 )}
-                <div
-                  className={cn(
-                    "scrollbar-none h-full overflow-y-auto p-4",
-                    className,
-                  )}
-                >
-                  {getChildren()}
-                </div>
+                <div className={cn("scrollbar-none h-full overflow-y-auto p-4", className)}>{getChildren()}</div>
               </div>
             </HeadlessUI.Dialog.Panel>
           </HeadlessUI.Transition.Child>

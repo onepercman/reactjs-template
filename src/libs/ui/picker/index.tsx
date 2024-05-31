@@ -2,10 +2,7 @@ import { PickerRef } from "rc-picker"
 import { DatePicker, DatePickerProps } from "./date-picker"
 import { Range } from "./range"
 
-interface Picker
-  extends React.ForwardRefExoticComponent<
-    DatePickerProps & React.RefAttributes<PickerRef>
-  > {
+interface Picker extends React.ForwardRefExoticComponent<DatePickerProps & React.RefAttributes<PickerRef>> {
   Range: typeof Range
 }
 

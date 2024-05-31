@@ -35,10 +35,7 @@ const input = tv({
 type InputVariantProps = VariantProps<typeof input>
 
 export interface InputProps
-  extends Omit<
-      React.InputHTMLAttributes<HTMLInputElement>,
-      "prefix" | "suffix" | "size"
-    >,
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "prefix" | "suffix" | "size">,
     InputVariantProps {
   prefix?: React.ReactNode | React.ReactElement
   suffix?: React.ReactNode | React.ReactElement
@@ -135,16 +132,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       const element = prefix as React.ReactElement
       if (!element) return null
 
-      if (typeof element === "object" && "type" in element)
-        return React.cloneElement(element)
+      if (typeof element === "object" && "type" in element) return React.cloneElement(element)
       return <span>{element}</span>
     }
 
     function _renderSuffix() {
       const element = suffix as React.ReactElement
       if (!element) return null
-      if (typeof element === "object" && "type" in element)
-        return React.cloneElement(element)
+      if (typeof element === "object" && "type" in element) return React.cloneElement(element)
       return <span>{element}</span>
     }
 
@@ -182,12 +177,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       >
         {_renderAddonBefore()}
         {_renderPrefix()}
-        <input
-          ref={composedRef}
-          onChange={handleChange}
-          className={classes.input()}
-          {...props}
-        />
+        <input ref={composedRef} onChange={handleChange} className={classes.input()} {...props} />
         {getClear()}
         {getTogglePassword()}
         {_renderSuffix()}

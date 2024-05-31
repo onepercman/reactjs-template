@@ -10,8 +10,7 @@ interface TableRow extends Readonly<Record<string, unknown>> {
   key?: string
 }
 
-interface TableColumnProps<Row extends TableRow>
-  extends React.ThHTMLAttributes<HTMLTableCellElement> {
+interface TableColumnProps<Row extends TableRow> extends React.ThHTMLAttributes<HTMLTableCellElement> {
   label: React.ReactNode
   key: string
   dataIndex: keyof Row
@@ -19,8 +18,7 @@ interface TableColumnProps<Row extends TableRow>
   render(value: any, row: Row, index: number): React.ReactNode
 }
 
-interface TableProps<Row extends TableRow>
-  extends React.HTMLAttributes<HTMLTableElement> {
+interface TableProps<Row extends TableRow> extends React.HTMLAttributes<HTMLTableElement> {
   columns?: readonly Partial<TableColumnProps<Row>>[]
   data?: readonly Row[]
   className?: string
@@ -30,9 +28,7 @@ interface TableProps<Row extends TableRow>
   pagination?: PaginationProps
 }
 interface Table extends ForwardedRefComponent {
-  <Row extends TableRow>(
-    props: ForwardRefWithAsProps<"div", TableProps<Row>>,
-  ): React.ReactElement | null
+  <Row extends TableRow>(props: ForwardRefWithAsProps<"div", TableProps<Row>>): React.ReactElement | null
   Cell: typeof TableCell
   CellHead: typeof TableCellHead
 }
@@ -43,23 +39,11 @@ function _generate<Row extends TableRow>(
     ref: React.ForwardedRef<HTMLTableElement>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLTableElement, TableProps<Row>>(
-    render,
-  ) as unknown as Table
+  return React.forwardRef<HTMLTableElement, TableProps<Row>>(render) as unknown as Table
 }
 
 const Table = _generate(function (
-  {
-    children,
-    columns,
-    data,
-    onSelectRow,
-    className,
-    loading,
-    tableClassName,
-    pagination,
-    ...props
-  },
+  { children, columns, data, onSelectRow, className, loading, tableClassName, pagination, ...props },
   ref,
 ) {
   function _renderContainer() {
@@ -91,23 +75,19 @@ const Table = _generate(function (
         }}
         onClick={() => onSelectRow && onSelectRow(row)}
       >
-        {columns?.map(
-          ({ key, className, dataIndex, render, ...column }, columnIndex) => (
-            <TableCell
-              key={key || columnIndex}
-              className={cn(
-                "px-4 py-2 transition-all",
-                onSelectRow && "group-hover:bg-primary/30 cursor-pointer",
-                className,
-              )}
-              {...column}
-            >
-              {render
-                ? render(row[dataIndex!], row, index)
-                : (row[dataIndex || ""] as React.ReactNode)}
-            </TableCell>
-          ),
-        )}
+        {columns?.map(({ key, className, dataIndex, render, ...column }, columnIndex) => (
+          <TableCell
+            key={key || columnIndex}
+            className={cn(
+              "px-4 py-2 transition-all",
+              onSelectRow && "group-hover:bg-primary/30 cursor-pointer",
+              className,
+            )}
+            {...column}
+          >
+            {render ? render(row[dataIndex!], row, index) : (row[dataIndex || ""] as React.ReactNode)}
+          </TableCell>
+        ))}
       </tr>
     ))
   }
@@ -119,31 +99,19 @@ const Table = _generate(function (
         "scrollbar scrollbar-track-inherit scrollbar-thumb-inherit border-line w-full overflow-auto rounded border",
       )}
     >
-      <table
-        ref={ref}
-        className={cn("w-full border-collapse", tableClassName)}
-        {...props}
-      >
+      <table ref={ref} className={cn("w-full border-collapse", tableClassName)} {...props}>
         {columns?.filter((c) => !!c.label).length ? (
           <thead className="text-left">
             <tr className="divide-line divide-x">
-              {columns.map(
-                (
-                  { key, label, className, dataIndex, render: _, ...column },
-                  index,
-                ) => (
-                  <TableCellHead
-                    key={key || (dataIndex as string) || index}
-                    className={cn(
-                      "text-secondary border-line border-b px-4 py-2 !text-sm",
-                      className,
-                    )}
-                    {...column}
-                  >
-                    {label}{" "}
-                  </TableCellHead>
-                ),
-              )}
+              {columns.map(({ key, label, className, dataIndex, render: _, ...column }, index) => (
+                <TableCellHead
+                  key={key || (dataIndex as string) || index}
+                  className={cn("text-secondary border-line border-b px-4 py-2 !text-sm", className)}
+                  {...column}
+                >
+                  {label}{" "}
+                </TableCellHead>
+              ))}
             </tr>
           </thead>
         ) : null}

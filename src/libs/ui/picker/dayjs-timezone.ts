@@ -131,17 +131,12 @@ const generateConfig: GenerateConfig<Dayjs> = {
 
   locale: {
     ...generatedDayjs.locale,
-    getWeekFirstDay: (locale) =>
-      dayjs.tz().locale(parseLocale(locale)).localeData().firstDayOfWeek(),
-    getWeekFirstDate: (locale, date) =>
-      date.locale(parseLocale(locale)).weekday(0),
+    getWeekFirstDay: (locale) => dayjs.tz().locale(parseLocale(locale)).localeData().firstDayOfWeek(),
+    getWeekFirstDate: (locale, date) => date.locale(parseLocale(locale)).weekday(0),
     getWeek: (locale, date) => date.locale(parseLocale(locale)).week(),
-    getShortWeekDays: (locale) =>
-      dayjs.tz().locale(parseLocale(locale)).localeData().weekdaysMin(),
-    getShortMonths: (locale) =>
-      dayjs.tz().locale(parseLocale(locale)).localeData().monthsShort(),
-    format: (locale, date, format) =>
-      date.locale(parseLocale(locale)).format(format),
+    getShortWeekDays: (locale) => dayjs.tz().locale(parseLocale(locale)).localeData().weekdaysMin(),
+    getShortMonths: (locale) => dayjs.tz().locale(parseLocale(locale)).localeData().monthsShort(),
+    format: (locale, date, format) => date.locale(parseLocale(locale)).format(format),
   },
 }
 
