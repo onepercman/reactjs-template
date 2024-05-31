@@ -80,7 +80,7 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
       }
       return React.cloneElement(element as React.ReactElement, {
         className: cn(
-          "gap-base inline-flex h-8 w-full items-center justify-between",
+          "gap-4 inline-flex h-8 w-full items-center justify-between",
           element.props.className,
         ),
         onClick() {

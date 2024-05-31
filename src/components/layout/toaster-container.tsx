@@ -8,7 +8,7 @@ export const ToasterContainer: FC = () => {
       containerClassName="!top-20"
       toastOptions={{
         position: "bottom-left",
-        className: "!bg-component !text-content !rounded",
+        className: "!bg-component !text-foreground !rounded",
       }}
     />,
     document.body,

@@ -10,7 +10,7 @@ export const Empty = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "text-muted p-base flex min-h-56 w-full flex-col items-center justify-center gap-2",
+        "text-secondary flex min-h-56 w-full flex-col items-center justify-center gap-2 p-4",
         className,
       )}
       {...props}

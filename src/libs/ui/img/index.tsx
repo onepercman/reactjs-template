@@ -6,7 +6,7 @@ export interface ImgBoundaryProps extends BaseImgProps {
   altSrc: string
 }
 
-export const Img = React.forwardRef<HTMLImageElement, ImgBoundaryProps>(
+export const ImgBoundary = React.forwardRef<HTMLImageElement, ImgBoundaryProps>(
   function ({ src, altSrc = "/favicon.ico", ...props }, ref) {
     const _src = src || altSrc
 
@@ -19,4 +19,4 @@ export const Img = React.forwardRef<HTMLImageElement, ImgBoundaryProps>(
   },
 )
 
-Img.displayName = "Img"
+ImgBoundary.displayName = "ImgBoundary"

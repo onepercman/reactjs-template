@@ -1,5 +1,4 @@
-import { nextui } from "@nextui-org/react"
-import { schemes } from "tailwind-schemes"
+import { colorize, resetCSS, schemes } from "tailwind-schemes"
 import tailwindScrollbar from "tailwind-scrollbar"
 import type { Config } from "tailwindcss"
 import tailwindAnimate from "tailwindcss-animate"
@@ -7,10 +6,7 @@ import colors from "tailwindcss/colors"
 import defaultTheme from "tailwindcss/defaultTheme"
 
 const config: Config = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   darkMode: ["class", '[data-theme="dark"]'],
   theme: {
     extend: {
@@ -37,50 +33,44 @@ const config: Config = {
   plugins: [
     tailwindAnimate,
     tailwindScrollbar({ nocompatible: true }),
-    nextui({
-      themes: {
-        dark: {
-          colors: {
-            background: colors.gray[950],
-            foreground: colors.gray[900],
-            content1: colors.gray[800],
-            content2: colors.gray[700],
-            content3: colors.gray[600],
-            content4: colors.gray[500],
-            default: colors.gray[400],
-            divider: colors.gray[800],
-            primary: colors.amber,
-            secondary: colors.gray[800],
-            success: colors.green,
-            danger: colors.red,
-            warning: colors.yellow,
-            overlay: colors.black,
-            focus: colors.gray,
-          },
-        },
+    schemes({
+      schemes: {
         light: {
-          colors: {
-            background: colors.white,
-            foreground: colors.black,
-            content1: colors.white,
-            content2: colors.gray[100],
-            content3: colors.gray[200],
-            content4: colors.gray[300],
-            default: colors.gray[100],
-            divider: colors.gray[200],
-            primary: colors.amber,
-            secondary: colors.gray[400],
-            success: colors.green,
-            danger: colors.red,
-            warning: colors.yellow,
-            overlay: colors.black,
-            focus: colors.gray,
-          },
+          background: colors.white,
+          foreground: colors.black,
+          primary: colorize(colors.emerald),
+          secondary: colors.neutral[200],
+          muted: colors.neutral[200],
+          accent: colorize(colors.cyan),
+          default: colors.stone[100],
+          component: colors.white,
+          invert: colors.white,
+          line: colors.neutral[300],
+          info: colorize(colors.sky),
+          success: colorize(colors.green),
+          warning: colorize(colors.yellow),
+          error: colorize(colors.red),
+        },
+        dark: {
+          background: colors.neutral[950],
+          foreground: colors.white,
+          primary: colorize(colors.emerald),
+          secondary: colors.neutral[800],
+          muted: colors.neutral[800],
+          accent: colorize(colors.cyan),
+          default: colors.neutral[900],
+          component: colors.neutral[900],
+          invert: colors.black,
+          line: colors.neutral[800],
+          info: colorize(colors.sky),
+          success: colorize(colors.green),
+          warning: colorize(colors.yellow),
+          error: colorize(colors.red),
         },
       },
     }),
-    schemes({
-      schemes: {},
+    resetCSS({
+      html: "bg-background",
     }),
   ],
 }

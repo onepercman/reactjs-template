@@ -23,7 +23,7 @@ export const Loader = _generate(function ({ as, className, ...props }, ref) {
   const Tag = as || ("div" as ReactTag)
 
   const _className = cn(
-    "flex w-full items-center justify-center p-base text-xl min-h-56",
+    "flex w-full items-center justify-center p-4 text-xl min-h-56",
     className,
   )
 
