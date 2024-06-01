@@ -4,8 +4,11 @@ import { VariantProps, tv } from "tailwind-variants"
 import { useComposedRefs } from "../utils/ref"
 
 const input = tv({
+  base: "flex flex-col gap-1 group",
   slots: {
-    base: "border border-transparent rounded px-2 transition-all text-ellipsis inline-flex items-center overflow-hidden cursor-text gap-2",
+    label: "text-xs space-y-2 text-secondary",
+    group:
+      "border-transparent rounded px-2 transition-all text-ellipsis inline-flex items-center overflow-hidden cursor-text gap-2 focus-within:border-primary border-2",
     input:
       "grow bg-transparent border-transparent focus:outline-none focus:ring-transparent p-0 self-stretch overflow-hidden text-ellipsis h-full",
     addonBefore: "rounded-r-none",
@@ -13,17 +16,20 @@ const input = tv({
   },
   variants: {
     size: {
-      xs: { base: "h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] px-2 text-xs" },
-      sm: { base: "h-[2rem] min-h-[2rem] min-w-[2rem] px-2 text-sm" },
-      md: { base: "h-[2.5rem] min-h-[2.5rem] min-w-[2.5rem] px-2" },
-      lg: { base: "h-[3rem] min-h-[3rem] min-w-[3rem] px-4" },
+      xs: { group: "h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] px-2 text-xs" },
+      sm: { group: "h-[2rem] min-h-[2rem] min-w-[2rem] px-2 text-sm" },
+      md: { group: "h-[2.5rem] min-h-[2.5rem] min-w-[2.5rem] px-2" },
+      lg: { group: "h-[3rem] min-h-[3rem] min-w-[3rem] px-4" },
     },
     variant: {
-      filled: { base: "border-0 bg-default" },
-      outlined: { base: "border-2 border-line" },
+      filled: { group: "bg-default" },
+      outlined: { group: "border-line" },
     },
     invalid: {
-      true: "border-2 border-error text-error",
+      true: {
+        group: "border-2 border-error text-error bg-error/10 focus-within:border-error-600",
+        label: "text-error",
+      },
     },
   },
   defaultVariants: {
@@ -37,10 +43,14 @@ type InputVariantProps = VariantProps<typeof input>
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "prefix" | "suffix" | "size">,
     InputVariantProps {
+  label?: React.ReactNode
+  required?: boolean
   prefix?: React.ReactNode | React.ReactElement
   suffix?: React.ReactNode | React.ReactElement
   addonBefore?: React.ReactNode | React.ReactElement
   addonAfter?: React.ReactNode | React.ReactElement
+  invalid?: boolean
+  invalidMessage?: React.ReactNode
   clearable?: boolean
   transform?(value: string): string
 }
@@ -49,6 +59,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
+      label,
       prefix,
       suffix,
       addonBefore,
@@ -56,6 +67,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       size,
       variant,
       invalid,
+      invalidMessage,
+      required,
       clearable,
       onChange,
       transform,
@@ -163,26 +176,37 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       return <span className={classes.addonAfter()}>{element}</span>
     }
 
-    const classes = input({ size, variant, invalid, className })
+    const classes = input({ size, variant, invalid })
 
     return (
-      <div
+      <label
         role="input"
-        className={classes.base({
-          class: addonBefore ? "pl-0" : addonAfter ? "pr-0" : "",
-        })}
+        className={classes.base({ className })}
         onClick={function (e) {
           e.currentTarget.getElementsByTagName("input")[0].focus()
         }}
       >
-        {_renderAddonBefore()}
-        {_renderPrefix()}
-        <input ref={composedRef} onChange={handleChange} className={classes.input()} {...props} />
-        {getClear()}
-        {getTogglePassword()}
-        {_renderSuffix()}
-        {_renderAddonAfter()}
-      </div>
+        <div className={classes.label()}>
+          <span>{label}</span>
+          {required ? <span className="text-error text-xs">(*)</span> : null}
+        </div>
+        <div
+          className={classes.group({
+            class: addonBefore ? "pl-0" : addonAfter ? "pr-0" : "",
+          })}
+        >
+          {_renderAddonBefore()}
+          {_renderPrefix()}
+          <input ref={composedRef} onChange={handleChange} className={classes.input()} {...props} />
+          {getClear()}
+          {getTogglePassword()}
+          {_renderSuffix()}
+          {_renderAddonAfter()}
+        </div>
+        {invalid && invalidMessage ? (
+          <div className="text-error animate-in fade-in text-xs">{invalidMessage}</div>
+        ) : null}
+      </label>
     )
   },
 )

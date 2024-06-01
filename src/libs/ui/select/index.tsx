@@ -1,99 +1,135 @@
-import { cn } from "@/libs/tailwind-variants"
-import { Float, FloatProps } from "@headlessui-float/react"
-import * as HeadlessUI from "@headlessui/react"
+import { Select as ArkSelect, Portal, SelectRootProps } from "@ark-ui/react"
 import React from "react"
-import { HiCheck, HiChevronDown } from "react-icons/hi"
+import { HiCheck, HiChevronDown, HiX } from "react-icons/hi"
 import { Button, ButtonVariantProps } from "../button"
+import { select } from "./select"
 
-export interface SelectOption<Value> extends HeadlessUI.ListboxOptionProps<"div", Value> {
-  children?: React.ReactNode
+export interface SelectOptionProps<Value> {
+  label?: React.ReactNode
+  children?: SelectOptionProps<Value>[]
+  offset?: number
+  value: Value
 }
 
-export type SelectProps<As extends ReactTag, Value> = HeadlessUI.ListboxProps<As, Value, Value> &
-  ButtonVariantProps & {
-    options?: Array<SelectOption<Value>>
-    float?: Omit<FloatProps, "as" | "children" | "className">
-    className?: string
-    placeholder?: string
-  }
-
-interface Select extends ForwardedRefComponent {
-  <As extends ReactTag, Value>(props: ForwardRefWithAsProps<As, SelectProps<As, Value>>): React.ReactElement | null
+export interface SelectProps<Value>
+  extends Omit<SelectRootProps<SelectOptionProps<Value>>, "items" | "color">,
+    ButtonVariantProps {
+  label?: React.ReactNode
+  readonly options?: SelectOptionProps<Value>[]
+  placeholder?: string
+  allowClear?: boolean
+  invalid?: boolean
+  invalidMessage?: React.ReactNode
+  indent?: number
 }
 
-function _generate<Value, As extends ReactTag = typeof React.Fragment>(
-  render: <As extends ReactTag, Value>(
-    props: SelectProps<As, Value>,
-    ref: React.ForwardedRef<HTMLElement>,
-  ) => React.ReactElement | null,
+export interface Select extends ForwardedRefComponent {
+  <Value>(props: SelectProps<Value>): React.ReactElement | null
+}
+
+function _constructor<Value = any>(
+  render: (props: SelectProps<Value>, ref: React.ForwardedRef<HTMLDivElement>) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLElement, SelectProps<As, Value>>(render) as unknown as Select
+  return React.forwardRef<HTMLDivElement, SelectProps<Value>>(render) as unknown as Select
 }
 
-export const Select = _generate(function (
-  { as = React.Fragment as ReactTag, multiple, float, options, size, variant, className, placeholder, ...props },
+function flattenOptions<T>(options: SelectOptionProps<T>[]): SelectOptionProps<T>[] {
+  const result: SelectOptionProps<T>[] = []
+  function flatten({ children, ...option }: SelectOptionProps<T>): void {
+    result.push({ ...option })
+    if (children?.length) {
+      children.forEach(flatten)
+    }
+  }
+  options.forEach(flatten)
+  return result
+}
+
+export const Select = _constructor(function (
+  {
+    label,
+    options = [],
+    placeholder,
+    size,
+    variant,
+    color,
+    allowClear,
+    className,
+    invalid,
+    invalidMessage,
+    indent = 16,
+    ...props
+  },
   ref,
 ) {
-  function getValue(value?: any) {
-    if (multiple) {
+  const classes = select({ invalid })
+
+  function _renderOption(option: SelectOptionProps<any>, offset = 0) {
+    if (option.children?.length)
       return (
-        <div className="flex flex-wrap items-center gap-2 py-1">
-          {value.map((v: any) => (
-            <span key={v} className="btn size-xs btn-primary btn-normal">
-              {options?.find((el) => el.value === v)?.children}
-            </span>
-          ))}
-        </div>
+        <ArkSelect.ItemGroup className={classes.group()}>
+          <ArkSelect.ItemGroupLabel className={classes.groupLabel()}>
+            <span style={{ paddingLeft: offset * indent }}>{option.label}</span>
+          </ArkSelect.ItemGroupLabel>
+          {option.children.map((children) => _renderOption(children, children.children?.length ? offset + 1 : offset))}
+        </ArkSelect.ItemGroup>
       )
-    }
     return (
-      options?.find((el) => el.value === value)?.children || <span className="text-secondary">{placeholder}</span> || (
-        <span />
-      )
+      <ArkSelect.Item key={option.value} item={option} className={classes.item()}>
+        <ArkSelect.ItemText className={classes.itemText()} style={{ paddingLeft: offset * indent }}>
+          {option.label}
+        </ArkSelect.ItemText>
+        <ArkSelect.ItemIndicator className={classes.itemIndicator()}>
+          <HiCheck className="inline" />
+        </ArkSelect.ItemIndicator>
+      </ArkSelect.Item>
     )
   }
 
   return (
-    <HeadlessUI.Listbox ref={ref} as={as} multiple={multiple} {...(props as any)}>
-      {({ value: internalValue }) => (
-        <Float
-          portal={true}
-          flip={10}
-          shift={10}
-          adaptiveWidth={true}
-          offset={4}
-          enter="ease-out duration-100"
-          enterFrom="opacity-0 -translate-y-3"
-          enterTo="opacity-100 translate-y-0"
-          leave="ease-in duration-100"
-          leaveFrom="opacity-100 translate-y-0"
-          leaveTo="opacity-0 -translate-y-3"
-          {...float}
-        >
-          <HeadlessUI.Listbox.Button
-            as={Button}
-            className={cn("relative justify-between", multiple && "h-fit", className)}
-            rightIcon={<HiChevronDown />}
+    <ArkSelect.Root
+      ref={ref}
+      items={flattenOptions(options)}
+      itemToValue={(item) => item.children || item.value}
+      positioning={{
+        sameWidth: true,
+        ...props.positioning,
+      }}
+      className={classes.base({ className })}
+      {...props}
+    >
+      <ArkSelect.Label className={classes.label()}>{label}</ArkSelect.Label>
+      <ArkSelect.Control>
+        <ArkSelect.Trigger asChild>
+          <Button
             size={size}
             variant={variant}
+            color={color}
+            className={classes.trigger()}
+            rightIcon={
+              <div className="inline-flex items-center gap-1">
+                <ArkSelect.ClearTrigger asChild hidden={!allowClear}>
+                  <Button size="xs" variant="default" shape="circle" leftIcon={<HiX />} className={classes.clear()} />
+                </ArkSelect.ClearTrigger>
+                <ArkSelect.Indicator>
+                  <HiChevronDown />
+                </ArkSelect.Indicator>
+              </div>
+            }
           >
-            {getValue(internalValue)}
-          </HeadlessUI.Listbox.Button>
-          <HeadlessUI.Listbox.Options className="bg-component border-line flex flex-col overflow-hidden rounded border p-1 shadow">
-            {options?.map((item) => (
-              <HeadlessUI.Listbox.Option as={React.Fragment} key={JSON.stringify(item)} value={item.value}>
-                {({ selected }) => (
-                  <div className="hover:bg-secondary flex cursor-pointer items-center justify-between gap-4 rounded p-2 pr-8 transition-colors">
-                    {item.children || (item.value as React.ReactNode)} {selected && <HiCheck />}
-                  </div>
-                )}
-              </HeadlessUI.Listbox.Option>
-            ))}
-          </HeadlessUI.Listbox.Options>
-        </Float>
-      )}
-    </HeadlessUI.Listbox>
+            <ArkSelect.ValueText placeholder={placeholder} />
+          </Button>
+        </ArkSelect.Trigger>
+      </ArkSelect.Control>
+      {invalid && invalidMessage ? <div className="text-error animate-in fade-in text-xs">{invalidMessage}</div> : null}
+      <Portal>
+        <ArkSelect.Positioner>
+          <ArkSelect.Content className={classes.list()}>
+            {options.map((option) => _renderOption(option))}
+          </ArkSelect.Content>
+        </ArkSelect.Positioner>
+      </Portal>
+      <ArkSelect.HiddenSelect />
+    </ArkSelect.Root>
   )
 })
-
-Select.displayName = "Select"

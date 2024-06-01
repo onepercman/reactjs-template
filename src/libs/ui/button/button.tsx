@@ -4,7 +4,7 @@ import { tv, VariantProps } from "tailwind-variants"
 import { Spinner } from "../spinner"
 
 const button = tv({
-  base: "inline-flex items-center justify-center gap-2 py-0 font-medium whitespace-nowrap border border-transparent ring ring-transparent transition-colors cursor-pointer",
+  base: "inline-flex items-center justify-center gap-2 py-0 font-medium whitespace-nowrap border-transparent ring ring-transparent transition-all cursor-pointer active:brightness-75 border-2 hover:brightness-125",
   variants: {
     size: {
       xs: "h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] px-2 text-xs",
@@ -13,8 +13,8 @@ const button = tv({
       lg: "h-[3rem] min-h-[3rem] min-w-[3rem] px-4",
     },
     variant: {
-      default: "border-0",
-      outlined: "border-2",
+      default: "border-transparent",
+      outlined: "border-2 hover:text-white",
       ghost: "border-0 bg-transparent",
     },
     color: {
@@ -27,7 +27,7 @@ const button = tv({
     shape: {
       normal: "rounded",
       pill: "rounded-full",
-      rounded: "rounded-full aspect-square p-0",
+      circle: "rounded-full aspect-square p-0",
       square: "aspect-square p-0 rounded",
     },
     disabled: {

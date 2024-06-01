@@ -5,26 +5,32 @@ import { VariantProps, tv } from "tailwind-variants"
 import { useComposedRefs } from "../utils/ref"
 
 const textArea = tv({
+  base: "flex flex-col gap-1 group",
   slots: {
-    base: "border border-transparent rounded px-2 transition-all text-ellipsis inline-flex items-center overflow-hidden cursor-text gap-2",
+    label: "text-xs space-y-2 text-secondary",
+    group:
+      "border-2 rounded px-2 transition-all text-ellipsis inline-flex items-center overflow-hidden cursor-text gap-2 py-2 focus-within:border-primary",
     textarea:
-      "grow bg-transparent border-transparent focus:outline-none focus:ring-transparent p-0 self-stretch overflow-hidden text-ellipsis h-fit my-auto",
+      "grow bg-transparent border-transparent focus:outline-none focus:ring-transparent p-0 self-stretch text-ellipsis h-fit my-auto",
     addonBefore: "rounded-r-none",
     addonAfter: "rounded-l-none",
   },
   variants: {
     size: {
-      xs: { base: "min-h-[1.5rem] min-w-[1.5rem] px-2 text-xs" },
-      sm: { base: "min-h-[2rem] min-w-[2rem] px-2 text-sm" },
-      md: { base: "min-h-[2.5rem] min-w-[2.5rem] px-2" },
-      lg: { base: "min-h-[3rem] min-w-[3rem] px-4" },
+      xs: { group: "min-h-[1.5rem] min-w-[1.5rem] px-2 text-xs" },
+      sm: { group: "min-h-[2rem] min-w-[2rem] px-2 text-sm" },
+      md: { group: "min-h-[2.5rem] min-w-[2.5rem] px-2" },
+      lg: { group: "min-h-[3rem] min-w-[3rem] px-4" },
     },
     variant: {
-      filled: { base: "border-0 bg-default" },
-      outlined: { base: "border-2 border-line" },
+      filled: { group: "bg-default border-transparent" },
+      outlined: { group: "border-2 border-line" },
     },
     invalid: {
-      true: { base: "border-2 border-error text-error" },
+      true: {
+        group: "border-2 border-error text-error bg-error/10 focus-within:border-error-600",
+        label: "text-error",
+      },
     },
     autoSize: {
       true: { textarea: "resize-none" },
@@ -42,10 +48,14 @@ export interface TextareaProps<AutoSize extends boolean = true>
   extends Omit<React.HTMLAttributes<HTMLTextAreaElement>, "prefix" | "suffix" | "size">,
     TextareaVariantProps {
   autoSize?: AutoSize
+  label?: React.ReactNode
+  required?: boolean
   prefix?: React.ReactNode | React.ReactElement
   suffix?: React.ReactNode | React.ReactElement
   addonBefore?: React.ReactNode | React.ReactElement
   addonAfter?: React.ReactNode | React.ReactElement
+  invalid?: boolean
+  invalidMessage?: React.ReactNode
   clearable?: boolean
   transform?(value: string): string
   autoSizeOptions?: AutoSize extends true ? TextareaAutosizeProps : undefined
@@ -64,6 +74,9 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       invalid,
       clearable,
       autoSize,
+      label,
+      required,
+      invalidMessage,
       autoSizeOptions,
       onChange,
       transform,
@@ -146,28 +159,33 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const Component = autoSize ? TextAreaAutoSize : ("textarea" as any)
 
     return (
-      <div
-        role="input"
-        className={classes.base({
-          class: addonBefore ? "pl-0" : addonAfter ? "pr-0" : "",
-        })}
-        onClick={function (e) {
-          e.currentTarget.getElementsByTagName("input")[0].focus()
-        }}
-      >
-        {_renderAddonBefore()}
-        {_renderPrefix()}
-        <Component
-          ref={composedRef}
-          onChange={handleChange}
-          className={classes.textarea({ autoSize })}
-          {...props}
-          {...autoSizeOptions}
-        />
-        {getClear()}
-        {_renderSuffix()}
-        {_renderAddonAfter()}
-      </div>
+      <label role="input" className={classes.base({ className })}>
+        <div className={classes.label()}>
+          <span>{label}</span>
+          {required ? <span className="text-error text-xs">(*)</span> : null}
+        </div>
+        <div
+          className={classes.group({
+            class: addonBefore ? "pl-0" : addonAfter ? "pr-0" : "",
+          })}
+        >
+          {_renderAddonBefore()}
+          {_renderPrefix()}
+          <Component
+            ref={composedRef}
+            onChange={handleChange}
+            className={classes.textarea({ autoSize })}
+            {...props}
+            {...autoSizeOptions}
+          />
+          {getClear()}
+          {_renderSuffix()}
+          {_renderAddonAfter()}
+        </div>
+        {invalid && invalidMessage ? (
+          <div className="text-error animate-in fade-in text-xs">{invalidMessage}</div>
+        ) : null}
+      </label>
     )
   },
 )
