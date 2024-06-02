@@ -2,7 +2,8 @@ import { Button } from "@/libs/ui/button"
 import { Combobox } from "@/libs/ui/combobox"
 import { Container } from "@/libs/ui/container"
 import { Input } from "@/libs/ui/input"
-import { Select, SelectOptionProps } from "@/libs/ui/select"
+import { Menu } from "@/libs/ui/menu"
+import { Select } from "@/libs/ui/select"
 import { LuArrowRightCircle } from "react-icons/lu"
 
 const buttonColors = ["default", "primary", "success", "error", "warning"]
@@ -90,50 +91,98 @@ export default function Home() {
         placeholder="Select option"
         invalidMessage="Invalid field"
       />
+
+      <div className="inline-flex items-center gap-2 text-lg font-medium">
+        <LuArrowRightCircle /> MENU
+      </div>
+
+      <div>
+        <Menu
+          options={[
+            {
+              label: "Option 1",
+              value: "1",
+            },
+            {
+              isSeparator: true,
+            },
+            {
+              label: "Option 2",
+              value: "2",
+            },
+          ]}
+        >
+          <Button>Please select an option</Button>
+        </Menu>
+      </div>
     </Container>
   )
 }
 
-const selectOptions: SelectOptionProps<number>[] = [
+const selectOptions = [
   {
     label: "Option 1",
-    value: 1,
+    value: "1",
   },
   {
     label: "Option 2",
-    value: 2,
+    value: "2",
   },
   {
     label: "Option 3",
-    value: 3,
+    value: "3",
   },
   {
     label: "Option 4",
-    value: 4,
+    value: "4",
   },
   {
     label: "Option 5",
-    value: 5,
+    value: "5",
   },
   {
     label: "Group 1",
-    value: 6,
-    children: [
+    value: "6",
+    items: [
       {
         label: "Item 1.1",
-        value: 11,
+        value: "11",
       },
       {
         label: "Item 1.2",
-        value: 12,
+        value: "12",
       },
       {
         label: "Group 1.1",
-        value: 13,
+        value: "13",
         children: [
           {
             label: "HEHE",
-            value: 99,
+            value: "99",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Nested",
+    value: "nested",
+    children: [
+      {
+        label: "Item 1.1",
+        value: "nest 1",
+      },
+      {
+        label: "Item 1.2",
+        value: "nest 2",
+      },
+      {
+        label: "Group 1.1",
+        value: "nest 3",
+        children: [
+          {
+            label: "HEHE",
+            value: "nest 3.3",
           },
         ],
       },
