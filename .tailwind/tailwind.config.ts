@@ -28,6 +28,14 @@ const config: Config = {
       borderRadius: {
         DEFAULT: "6px",
       },
+      keyframes: {
+        heightIn: { from: { opacity: "0", height: "0" }, to: { opacity: "100%", height: "var(--height)" } },
+        heightOut: { from: { opacity: "100%", height: "var(--height)" }, to: { opacity: "0", height: "0" } },
+      },
+      animation: {
+        heightIn: "heightIn 0.3s forwards",
+        heightOut: "heightOut 0.3s forwards",
+      },
     },
   },
   plugins: [

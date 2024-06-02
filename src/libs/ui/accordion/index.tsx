@@ -9,8 +9,7 @@ const accordion = tv({
     item: "flex flex-col duration-500",
     trigger: "bg-component w-full p-2 rounded inline-flex justify-between gap-2 items-center",
     indicator: "data-[state=open]:rotate-180 transition-all",
-    content:
-      "duration-500 data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out p-2",
+    content: "data-[state=open]:animate-heightIn data-[state=closed]:animate-heightOut overflow-hidden",
   },
 })
 
