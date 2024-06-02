@@ -32,7 +32,7 @@ interface Table extends ForwardedRefComponent {
   CellHead: typeof TableCellHead
 }
 
-function _generate<Row extends TableRow>(
+function _constructor<Row extends TableRow>(
   render: <Row extends TableRow>(
     props: TableProps<Row> & React.HTMLAttributes<HTMLTableElement>,
     ref: React.ForwardedRef<HTMLTableElement>,
@@ -41,7 +41,7 @@ function _generate<Row extends TableRow>(
   return React.forwardRef<HTMLTableElement, TableProps<Row>>(render) as unknown as Table
 }
 
-const Table = _generate(function (
+const Table = _constructor(function (
   {
     children,
     columns,

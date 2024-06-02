@@ -6,7 +6,7 @@ interface Loader extends ForwardedRefComponent {
   <Tag extends ReactTag>(props: ForwardRefWithAsProps<Tag, object>): React.ReactElement | null
 }
 
-function _generate<Tag extends ReactTag>(
+function _constructor<Tag extends ReactTag>(
   render: <Tag extends ReactTag>(
     props: PropsWithAsAttributes<object, Tag>,
     ref: React.ForwardedRef<Tag>,
@@ -15,7 +15,7 @@ function _generate<Tag extends ReactTag>(
   return React.forwardRef<Tag, PropsWithAsAttributes<object, Tag>>(render) as unknown as Loader
 }
 
-export const Loader = _generate(function ({ as, className, ...props }, ref) {
+export const Loader = _constructor(function ({ as, className, ...props }, ref) {
   const Tag = as || ("div" as ReactTag)
 
   const _className = cn("flex w-full items-center justify-center p-4 text-xl min-h-56", className)

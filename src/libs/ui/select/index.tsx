@@ -158,7 +158,9 @@ export const Select = _constructor(function (
           </Button>
         </Ark.Select.Trigger>
       </Ark.Select.Control>
-      {invalid && invalidMessage ? <div className="text-error animate-in fade-in text-xs">{invalidMessage}</div> : null}
+      <Ark.Presence className="text-error animate-in fade-in text-xs" present={Boolean(invalid && invalidMessage)}>
+        {invalidMessage}
+      </Ark.Presence>
       <Ark.Portal>
         <Ark.Select.Positioner>
           <Ark.Select.Content className={classes.list()}>

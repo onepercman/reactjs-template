@@ -1,3 +1,4 @@
+import * as Ark from "@ark-ui/react"
 import React from "react"
 import { HiEye, HiEyeOff } from "react-icons/hi"
 import { LuX } from "react-icons/lu"
@@ -204,9 +205,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {_renderSuffix()}
           {_renderAddonAfter()}
         </div>
-        {invalid && invalidMessage ? (
-          <div className="text-error animate-in fade-in text-xs">{invalidMessage}</div>
-        ) : null}
+        <Ark.Presence className="text-error animate-in fade-in text-xs" present={Boolean(invalid && invalidMessage)}>
+          {invalidMessage}
+        </Ark.Presence>
       </label>
     )
   },

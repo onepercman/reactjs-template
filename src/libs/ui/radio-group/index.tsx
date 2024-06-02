@@ -1,51 +1,78 @@
-import { cn } from "@/libs/tailwind-variants"
-import React, { ChangeEventHandler } from "react"
-import { Input } from "../input"
+import * as Ark from "@ark-ui/react"
+import React from "react"
+import { VariantProps, tv } from "tailwind-variants"
 
-export interface RadioGroupOption extends React.HTMLAttributes<HTMLLabelElement> {
+const radioGroup = tv({
+  base: "flex flex-col gap-2",
+  slots: {
+    label: "text-sm text-secondary",
+    item: "inline-flex items-center gap-2 cursor-pointer",
+    itemText: "",
+    control:
+      "rounded-full text-transparent border-2 border-line after:content-[''] after:h-full after:w-full after:rounded-full after:bg-transparent data-[state=checked]:after:bg-primary flex text-sm p-1 data-[hover]:border-primary duration-300 data-[state=checked]:border-primary",
+  },
+  variants: {
+    size: {
+      xs: { label: "text-xs", itemText: "text-xs", control: "h-4 w-4" },
+      sm: { label: "text-sm", itemText: "text-sm", control: "h-5 w-5" },
+      md: { label: "text-md", itemText: "text-md", control: "h-6 w-6" },
+      lg: { label: "text-lg", itemText: "text-lg", control: "h-7 w-7" },
+    },
+    invalid: {
+      true: {
+        label: "text-error",
+        control: "data-[state=checked]:border-error data-[state=checked]:after:bg-error",
+        itemText: "data-[state=checked]:text-error",
+      },
+    },
+  },
+  defaultVariants: {
+    size: "md",
+  },
+})
+
+export interface RadioGroupOption extends Ark.RadioGroup.ItemProps {
   label?: React.ReactNode
-  value: string
 }
 
-export interface RadioGroupProps {
+export interface RadioGroupProps extends Ark.RadioGroupRootProps, VariantProps<typeof radioGroup> {
+  label?: React.ReactNode
   options?: RadioGroupOption[]
-  value?: string
-  onChange?: ChangeEventHandler<HTMLInputElement>
+  invalid?: boolean
+  invalidMessage?: React.ReactNode
 }
 
 interface RadioGroup extends ForwardedRefComponent {
-  <Tag extends ReactTag>(props: ForwardRefWithAsProps<Tag, RadioGroupProps>): React.ReactElement | null
+  (props: RadioGroupProps): React.ReactElement | null
 }
 
-function _generate<Tag extends ReactTag>(
-  render: <Tag extends ReactTag>(
-    props: ForwardRefWithAsProps<Tag, RadioGroupProps>,
-    ref: React.ForwardedRef<Tag>,
-  ) => React.ReactElement | null,
+function _constructor(
+  render: (props: RadioGroupProps, ref: React.ForwardedRef<HTMLDivElement>) => React.ReactElement | null,
 ) {
-  return React.forwardRef<Tag, ForwardRefWithAsProps<Tag, RadioGroupProps>>(render) as unknown as RadioGroup
+  return React.forwardRef<HTMLDivElement, RadioGroupProps>(render) as unknown as RadioGroup
 }
 
-export const RadioGroup = _generate(function (
-  { as = "div", options, name, value, defaultValue, className, ...props },
+export const RadioGroup = _constructor(function (
+  { options, label, size, className, invalid, invalidMessage, ...props },
   ref,
 ) {
-  const Tag = as
+  const classes = radioGroup({ size, invalid, className })
 
   return (
-    <Tag ref={ref} className={cn("flex flex-col gap-2", className)} {...props}>
-      {options?.map(({ label, value: optionValue, className, ...option }) => (
-        <label key={optionValue} role="button" className={cn("inline-flex items-center gap-2", className)} {...option}>
-          <Input.Radio
-            name={name}
-            value={optionValue}
-            checked={value !== undefined ? value === optionValue : undefined}
-            defaultChecked={defaultValue !== undefined ? optionValue === defaultValue : undefined}
-          />{" "}
-          {label}
-        </label>
+    <Ark.RadioGroup.Root ref={ref} className={classes.base()} {...props}>
+      <Ark.RadioGroup.Label className={classes.label()}>{label}</Ark.RadioGroup.Label>
+      <Ark.RadioGroup.Indicator />
+      {options?.map(({ label, ...item }) => (
+        <Ark.RadioGroup.Item key={item.value} {...item} className={classes.item()}>
+          <Ark.RadioGroup.ItemControl className={classes.control()} />
+          <Ark.RadioGroup.ItemText className={classes.itemText()}>{label}</Ark.RadioGroup.ItemText>
+          <Ark.RadioGroup.ItemHiddenInput />
+        </Ark.RadioGroup.Item>
       ))}
-    </Tag>
+      <Ark.Presence className="text-error animate-in fade-in text-xs" present={Boolean(invalid && invalidMessage)}>
+        {invalidMessage}
+      </Ark.Presence>
+    </Ark.RadioGroup.Root>
   )
 })
 

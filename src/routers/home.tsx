@@ -4,6 +4,7 @@ import { Combobox } from "@/libs/ui/combobox"
 import { Container } from "@/libs/ui/container"
 import { Input } from "@/libs/ui/input"
 import { Menu } from "@/libs/ui/menu"
+import { RadioGroup } from "@/libs/ui/radio-group"
 import { Select } from "@/libs/ui/select"
 import { LuArrowRightCircle } from "react-icons/lu"
 
@@ -56,6 +57,28 @@ export default function Home() {
           </div>
         ))}
       </div>
+
+      <div className="flex gap-4">
+        <Input.Checkbox size="xs">Checkbox</Input.Checkbox>
+        <Input.Checkbox size="sm">Checkbox</Input.Checkbox>
+        <Input.Checkbox size="md">Checkbox</Input.Checkbox>
+        <Input.Checkbox size="lg">Checkbox</Input.Checkbox>
+      </div>
+
+      <RadioGroup
+        size="md"
+        label="Label"
+        options={[
+          {
+            label: "Option 1",
+            value: "1",
+          },
+          {
+            label: "Option 2",
+            value: "2",
+          },
+        ]}
+      />
 
       <div className="inline-flex items-center gap-2 text-lg font-medium">
         <LuArrowRightCircle /> TEXTAREA

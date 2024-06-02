@@ -5,7 +5,7 @@ interface Skeleton extends ForwardedRefComponent {
   <Tag extends ReactTag>(props: ForwardRefWithAsProps<Tag, object>): React.ReactElement | null
 }
 
-function _generate<Tag extends ReactTag>(
+function _constructor<Tag extends ReactTag>(
   render: <Tag extends ReactTag>(
     props: ForwardRefWithAsProps<Tag, object>,
     ref: React.ForwardedRef<Tag>,
@@ -14,7 +14,7 @@ function _generate<Tag extends ReactTag>(
   return React.forwardRef<Tag, ForwardRefWithAsProps<Tag, object>>(render) as unknown as Skeleton
 }
 
-export const Skeleton = _generate(function ({ as = "div", className, ...props }, ref) {
+export const Skeleton = _constructor(function ({ as = "div", className, ...props }, ref) {
   const _className = cn("bg-default animate-pulse rounded", className)
 
   const Tag = as

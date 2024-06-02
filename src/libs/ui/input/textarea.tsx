@@ -1,3 +1,4 @@
+import * as Ark from "@ark-ui/react"
 import React from "react"
 import { LuX } from "react-icons/lu"
 import TextAreaAutoSize, { TextareaAutosizeProps } from "react-textarea-autosize"
@@ -182,9 +183,9 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           {_renderSuffix()}
           {_renderAddonAfter()}
         </div>
-        {invalid && invalidMessage ? (
-          <div className="text-error animate-in fade-in text-xs">{invalidMessage}</div>
-        ) : null}
+        <Ark.Presence className="text-error animate-in fade-in text-xs" present={Boolean(invalid && invalidMessage)}>
+          {invalidMessage}
+        </Ark.Presence>
       </label>
     )
   },
