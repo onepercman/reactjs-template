@@ -25,8 +25,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(function (
           className="relative flex flex-1 flex-col items-center text-center"
         >
           <Button
-            color={step && step >= index + 1 ? "primary" : "black"}
-            variant={step === index + 1 ? "primary" : "default"}
+            color={step && step >= index + 1 ? "primary" : "default"}
             className="relative z-10 mb-4"
             onClick={() => onSelected && onSelected(index + 1)}
           >

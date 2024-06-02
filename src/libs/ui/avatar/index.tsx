@@ -1,4 +1,4 @@
-import { Avatar as ArkAvatar, AvatarImageProps } from "@ark-ui/react"
+import * as Ark from "@ark-ui/react"
 import React from "react"
 import { VariantProps, tv } from "tailwind-variants"
 
@@ -21,7 +21,7 @@ const avatar = tv({
   },
 })
 
-interface AvatarProps extends AvatarImageProps, VariantProps<typeof avatar> {
+interface AvatarProps extends Ark.AvatarImageProps, VariantProps<typeof avatar> {
   fallback?: React.ReactNode
 }
 
@@ -32,9 +32,9 @@ export const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>(function (
   const classes = avatar({ size })
 
   return (
-    <ArkAvatar.Root className={classes.base({ className })}>
-      <ArkAvatar.Fallback className={classes.fallback()}>{fallback}</ArkAvatar.Fallback>
-      <ArkAvatar.Image ref={ref} className={classes.image()} {...props} />
-    </ArkAvatar.Root>
+    <Ark.Avatar.Root className={classes.base({ className })}>
+      <Ark.Avatar.Fallback className={classes.fallback()}>{fallback}</Ark.Avatar.Fallback>
+      <Ark.Avatar.Image ref={ref} className={classes.image()} {...props} />
+    </Ark.Avatar.Root>
   )
 })

@@ -1,4 +1,4 @@
-import { Checkbox as ArkCheckbox, CheckboxRootProps } from "@ark-ui/react"
+import * as Ark from "@ark-ui/react"
 import React from "react"
 import { HiCheck } from "react-icons/hi"
 import { VariantProps, tv } from "tailwind-variants"
@@ -56,7 +56,7 @@ const checkbox = tv({
 
 type CheckboxVariantProps = VariantProps<typeof checkbox>
 
-export interface CheckboxProps extends Omit<CheckboxRootProps, "color">, CheckboxVariantProps {}
+export interface CheckboxProps extends Omit<Ark.CheckboxRootProps, "color">, CheckboxVariantProps {}
 
 export const Checkbox = React.forwardRef<HTMLLabelElement, CheckboxProps>(function (
   { className, variant, color, size, children, placement, ...props },
@@ -65,17 +65,17 @@ export const Checkbox = React.forwardRef<HTMLLabelElement, CheckboxProps>(functi
   const classes = checkbox({ size, variant, color, placement, className })
 
   return (
-    <ArkCheckbox.Root ref={ref} {...props} className={classes.base()}>
-      <ArkCheckbox.Label className={classes.label()}>{children}</ArkCheckbox.Label>
+    <Ark.Checkbox.Root ref={ref} {...props} className={classes.base()}>
+      <Ark.Checkbox.Label className={classes.label()}>{children}</Ark.Checkbox.Label>
       <div className={classes.controlWrapper()}>
-        <ArkCheckbox.Control className={classes.control()}>
-          <ArkCheckbox.Indicator>
+        <Ark.Checkbox.Control className={classes.control()}>
+          <Ark.Checkbox.Indicator>
             <HiCheck />
-          </ArkCheckbox.Indicator>
-        </ArkCheckbox.Control>
+          </Ark.Checkbox.Indicator>
+        </Ark.Checkbox.Control>
       </div>
-      <ArkCheckbox.HiddenInput />
-    </ArkCheckbox.Root>
+      <Ark.Checkbox.HiddenInput />
+    </Ark.Checkbox.Root>
   )
 })
 

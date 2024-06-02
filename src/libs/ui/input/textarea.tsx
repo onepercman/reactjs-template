@@ -1,4 +1,5 @@
 import React from "react"
+import { LuX } from "react-icons/lu"
 import TextAreaAutoSize, { TextareaAutosizeProps } from "react-textarea-autosize"
 import { VariantProps, tv } from "tailwind-variants"
 import { useComposedRefs } from "../utils/ref"

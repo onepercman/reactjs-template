@@ -2,7 +2,6 @@ import { cn } from "@/libs/tailwind-variants"
 import React from "react"
 import { Empty } from "../empty"
 import { Loader } from "../loader"
-import { Pagination, PaginationProps } from "../pagination"
 import { TableCell } from "./cell"
 import { TableCellHead } from "./cell-head"
 
@@ -25,7 +24,7 @@ interface TableProps<Row extends TableRow> extends React.HTMLAttributes<HTMLTabl
   onSelectRow?(row?: Row): void
   loading?: boolean
   tableClassName?: string
-  pagination?: PaginationProps
+  // pagination?: PaginationProps
 }
 interface Table extends ForwardedRefComponent {
   <Row extends TableRow>(props: ForwardRefWithAsProps<"div", TableProps<Row>>): React.ReactElement | null
@@ -43,7 +42,17 @@ function _generate<Row extends TableRow>(
 }
 
 const Table = _generate(function (
-  { children, columns, data, onSelectRow, className, loading, tableClassName, pagination, ...props },
+  {
+    children,
+    columns,
+    data,
+    onSelectRow,
+    className,
+    loading,
+    tableClassName,
+    // pagination,
+    ...props
+  },
   ref,
 ) {
   function _renderContainer() {
@@ -118,7 +127,7 @@ const Table = _generate(function (
 
         <tbody className="divide-line relative divide-y text-left">
           {_renderContainer()}
-          {pagination && (
+          {/* {pagination && (
             <tr>
               <TableCell colSpan={columns?.length || 1}>
                 <div className="flex w-full justify-end">
@@ -128,7 +137,7 @@ const Table = _generate(function (
                 </div>
               </TableCell>
             </tr>
-          )}
+          )} */}
         </tbody>
         {children}
       </table>
