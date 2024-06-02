@@ -1,5 +1,4 @@
 import React from "react"
-import { HiX } from "react-icons/hi"
 import TextAreaAutoSize, { TextareaAutosizeProps } from "react-textarea-autosize"
 import { VariantProps, tv } from "tailwind-variants"
 import { useComposedRefs } from "../utils/ref"
@@ -92,7 +91,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     function getClear() {
       if (showClear && clearable) {
         return (
-          <HiX
+          <LuX
             className="text-secondary cursor-pointer"
             onClick={function () {
               if (internalRef.current) {

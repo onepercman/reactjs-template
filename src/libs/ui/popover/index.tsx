@@ -1,7 +1,6 @@
 import { Float, FloatProps } from "@headlessui-float/react"
 import * as HeadlessUI from "@headlessui/react"
 import React from "react"
-import { HiX } from "react-icons/hi"
 
 export interface PopoverProps {
   children?: React.ReactElement | React.ReactNode
@@ -60,7 +59,7 @@ export const Popover = React.forwardRef<HTMLElement, PopoverProps>(function (
             {title && (
               <div className="border-line mb-6 inline-flex w-full items-center justify-between border-b pb-6 text-xl">
                 <span>{title}</span>
-                <HiX role="button" onClick={() => close()} />
+                <LuX role="button" onClick={() => close()} />
               </div>
             )}
             {_renderOverlay(close)}

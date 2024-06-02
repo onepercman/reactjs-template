@@ -1,8 +1,9 @@
 import { Button } from "@/libs/ui/button"
+import { Combobox } from "@/libs/ui/combobox"
 import { Container } from "@/libs/ui/container"
 import { Input } from "@/libs/ui/input"
-import { Select } from "@/libs/ui/select"
-import { HiArrowRightCircle } from "react-icons/hi2"
+import { Select, SelectOptionProps } from "@/libs/ui/select"
+import { LuArrowRightCircle } from "react-icons/lu"
 
 const buttonColors = ["default", "primary", "success", "error", "warning"]
 const buttonVariants = ["default", "ghost", "outlined"]
@@ -15,7 +16,7 @@ export default function Home() {
   return (
     <Container className="space-y-6 pb-80">
       <div className="inline-flex items-center gap-2 text-lg font-medium">
-        <HiArrowRightCircle /> BUTTON
+        <LuArrowRightCircle /> BUTTON
       </div>
 
       <div className="flex flex-col gap-4">
@@ -35,7 +36,7 @@ export default function Home() {
       </div>
 
       <div className="inline-flex items-center gap-2 text-lg font-medium">
-        <HiArrowRightCircle /> INPUT
+        <LuArrowRightCircle /> INPUT
       </div>
 
       <div className="flex gap-4">
@@ -55,7 +56,7 @@ export default function Home() {
       </div>
 
       <div className="inline-flex items-center gap-2 text-lg font-medium">
-        <HiArrowRightCircle /> TEXTAREA
+        <LuArrowRightCircle /> TEXTAREA
       </div>
 
       <div className="flex gap-4">
@@ -64,84 +65,78 @@ export default function Home() {
       </div>
 
       <div className="inline-flex items-center gap-2 text-lg font-medium">
-        <HiArrowRightCircle /> Select
+        <LuArrowRightCircle /> SELECT
       </div>
 
       <Select
         variant="default"
-        options={[
-          {
-            label: "Option 1",
-            value: 1,
-          },
-          {
-            label: "Option 2",
-            value: 2,
-          },
-          {
-            label: "Option 3",
-            value: 3,
-            children: [],
-          },
-        ]}
+        options={selectOptions}
         allowClear
         label="Label"
         placeholder="Select option"
         invalidMessage="Invalid field"
       />
-      <Select
+      <Select variant="outlined" options={selectOptions} allowClear label="Label" placeholder="Select option" />
+
+      <div className="inline-flex items-center gap-2 text-lg font-medium">
+        <LuArrowRightCircle /> COMBOBOX
+      </div>
+
+      <Combobox
         variant="outlined"
-        options={[
-          {
-            label: "Option 1",
-            value: 1,
-          },
-          {
-            label: "Option 2",
-            value: 2,
-          },
-          {
-            label: "Option 3",
-            value: 3,
-          },
-          {
-            label: "Option 4",
-            value: 4,
-          },
-          {
-            label: "Option 5",
-            value: 5,
-          },
-          {
-            label: "Group 1",
-            value: 6,
-            children: [
-              {
-                label: "Item 1.1",
-                value: 11,
-              },
-              {
-                label: "Item 1.2",
-                value: 12,
-              },
-              {
-                label: "Group 1.1",
-                value: 13,
-                children: [
-                  {
-                    label: "HEHE",
-                    value: 99,
-                  },
-                ],
-              },
-            ],
-          },
-        ]}
+        options={selectOptions}
         allowClear
         label="Label"
         placeholder="Select option"
-        className="min-w-80"
+        invalidMessage="Invalid field"
       />
     </Container>
   )
 }
+
+const selectOptions: SelectOptionProps<number>[] = [
+  {
+    label: "Option 1",
+    value: 1,
+  },
+  {
+    label: "Option 2",
+    value: 2,
+  },
+  {
+    label: "Option 3",
+    value: 3,
+  },
+  {
+    label: "Option 4",
+    value: 4,
+  },
+  {
+    label: "Option 5",
+    value: 5,
+  },
+  {
+    label: "Group 1",
+    value: 6,
+    children: [
+      {
+        label: "Item 1.1",
+        value: 11,
+      },
+      {
+        label: "Item 1.2",
+        value: 12,
+      },
+      {
+        label: "Group 1.1",
+        value: 13,
+        children: [
+          {
+            label: "HEHE",
+            value: 99,
+          },
+        ],
+      },
+    ],
+  },
+]

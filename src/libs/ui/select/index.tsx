@@ -1,8 +1,40 @@
-import { Select as ArkSelect, Portal, SelectRootProps } from "@ark-ui/react"
+import * as Ark from "@ark-ui/react"
 import React from "react"
-import { HiCheck, HiChevronDown, HiX } from "react-icons/hi"
+import { LuCheck, LuChevronDown, LuX } from "react-icons/lu"
+import { tv } from "tailwind-variants"
 import { Button, ButtonVariantProps } from "../button"
-import { select } from "./select"
+
+export const select = tv({
+  base: "flex flex-col gap-1 w-fit",
+  slots: {
+    label: "text-sm text-secondary",
+    trigger: "min-w-full justify-between data-[placeholder-shown]:text-secondary data-[placeholder-shown]:font-normal",
+    clear: "text-secondary text-xs flex-none",
+    list: "flex flex-col border border-line w-full rounded overflow-hidden bg-component shadow-lg p-1 data-[state=open]:animate-in data-[state=open]:fade-in duration-500 data-[state=false]:animate-out data-[state=false]:fade-out",
+    group: "flex flex-col",
+    groupLabel: "w-full px-2 py-1 text-xs text-secondary",
+    item: "inline-flex relative gap-2 justify-between items-start cursor-pointer hover:bg-default pl-3 py-2 pr-8 rounded",
+    itemText: "grow",
+    itemIndicator: "h-full absolute right-2 top-0 data-[state=checked]:flex items-center",
+  },
+  variants: {
+    size: {
+      xs: { item: "text-xs py-1" },
+      sm: { item: "text-sm py-1" },
+      md: { item: "text-base" },
+      lg: { item: "text-lg" },
+    },
+    invalid: {
+      true: {
+        label: "text-error",
+        trigger: "bg-error/10 border-error border-2 !text-error",
+      },
+    },
+  },
+  defaultVariants: {
+    size: "md",
+  },
+})
 
 export interface SelectOptionProps<Value> {
   label?: React.ReactNode
@@ -12,7 +44,7 @@ export interface SelectOptionProps<Value> {
 }
 
 export interface SelectProps<Value>
-  extends Omit<SelectRootProps<SelectOptionProps<Value>>, "items" | "color">,
+  extends Omit<Ark.SelectRootProps<SelectOptionProps<Value>>, "items" | "color">,
     ButtonVariantProps {
   label?: React.ReactNode
   readonly options?: SelectOptionProps<Value>[]
@@ -62,35 +94,37 @@ export const Select = _constructor(function (
   },
   ref,
 ) {
-  const classes = select({ invalid })
+  const classes = select({ invalid, size })
 
   function _renderOption(option: SelectOptionProps<any>, offset = 0) {
     if (option.children?.length)
       return (
-        <ArkSelect.ItemGroup className={classes.group()}>
-          <ArkSelect.ItemGroupLabel className={classes.groupLabel()}>
+        <Ark.Select.ItemGroup className={classes.group()}>
+          <Ark.Select.ItemGroupLabel className={classes.groupLabel()}>
             <span style={{ paddingLeft: offset * indent }}>{option.label}</span>
-          </ArkSelect.ItemGroupLabel>
+          </Ark.Select.ItemGroupLabel>
           {option.children.map((children) => _renderOption(children, children.children?.length ? offset + 1 : offset))}
-        </ArkSelect.ItemGroup>
+        </Ark.Select.ItemGroup>
       )
     return (
-      <ArkSelect.Item key={option.value} item={option} className={classes.item()}>
-        <ArkSelect.ItemText className={classes.itemText()} style={{ paddingLeft: offset * indent }}>
+      <Ark.Select.Item key={option.value} item={option} className={classes.item()}>
+        <Ark.Select.ItemText className={classes.itemText()} style={{ paddingLeft: offset * indent }}>
           {option.label}
-        </ArkSelect.ItemText>
-        <ArkSelect.ItemIndicator className={classes.itemIndicator()}>
-          <HiCheck className="inline" />
-        </ArkSelect.ItemIndicator>
-      </ArkSelect.Item>
+        </Ark.Select.ItemText>
+        <Ark.Select.ItemIndicator className={classes.itemIndicator()}>
+          <LuCheck />
+        </Ark.Select.ItemIndicator>
+      </Ark.Select.Item>
     )
   }
 
   return (
-    <ArkSelect.Root
+    <Ark.Select.Root
       ref={ref}
       items={flattenOptions(options)}
-      itemToValue={(item) => item.children || item.value}
+      itemToString={(item) => item.label || item.value}
+      itemToValue={(item) => item.value}
+      unmountOnExit
       positioning={{
         sameWidth: true,
         ...props.positioning,
@@ -98,9 +132,9 @@ export const Select = _constructor(function (
       className={classes.base({ className })}
       {...props}
     >
-      <ArkSelect.Label className={classes.label()}>{label}</ArkSelect.Label>
-      <ArkSelect.Control>
-        <ArkSelect.Trigger asChild>
+      <Ark.Select.Label className={classes.label()}>{label}</Ark.Select.Label>
+      <Ark.Select.Control>
+        <Ark.Select.Trigger asChild>
           <Button
             size={size}
             variant={variant}
@@ -108,28 +142,30 @@ export const Select = _constructor(function (
             className={classes.trigger()}
             rightIcon={
               <div className="inline-flex items-center gap-1">
-                <ArkSelect.ClearTrigger asChild hidden={!allowClear}>
-                  <Button size="xs" variant="default" shape="circle" leftIcon={<HiX />} className={classes.clear()} />
-                </ArkSelect.ClearTrigger>
-                <ArkSelect.Indicator>
-                  <HiChevronDown />
-                </ArkSelect.Indicator>
+                {allowClear ? (
+                  <Ark.Select.ClearTrigger>
+                    <Button size="xs" variant="default" shape="circle" leftIcon={<LuX />} className={classes.clear()} />
+                  </Ark.Select.ClearTrigger>
+                ) : null}
+                <Ark.Select.Indicator>
+                  <LuChevronDown />
+                </Ark.Select.Indicator>
               </div>
             }
           >
-            <ArkSelect.ValueText placeholder={placeholder} />
+            <Ark.Select.ValueText placeholder={placeholder} />
           </Button>
-        </ArkSelect.Trigger>
-      </ArkSelect.Control>
+        </Ark.Select.Trigger>
+      </Ark.Select.Control>
       {invalid && invalidMessage ? <div className="text-error animate-in fade-in text-xs">{invalidMessage}</div> : null}
-      <Portal>
-        <ArkSelect.Positioner>
-          <ArkSelect.Content className={classes.list()}>
+      <Ark.Portal>
+        <Ark.Select.Positioner>
+          <Ark.Select.Content className={classes.list()}>
             {options.map((option) => _renderOption(option))}
-          </ArkSelect.Content>
-        </ArkSelect.Positioner>
-      </Portal>
-      <ArkSelect.HiddenSelect />
-    </ArkSelect.Root>
+          </Ark.Select.Content>
+        </Ark.Select.Positioner>
+      </Ark.Portal>
+      <Ark.Select.HiddenSelect />
+    </Ark.Select.Root>
   )
 })

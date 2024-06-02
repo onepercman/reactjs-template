@@ -1,5 +1,6 @@
 import React from "react"
-import { HiEye, HiEyeOff, HiX } from "react-icons/hi"
+import { HiEye, HiEyeOff } from "react-icons/hi"
+import { LuX } from "react-icons/lu"
 import { VariantProps, tv } from "tailwind-variants"
 import { useComposedRefs } from "../utils/ref"
 
@@ -10,7 +11,7 @@ const input = tv({
     group:
       "border-transparent rounded px-2 transition-all text-ellipsis inline-flex items-center overflow-hidden cursor-text gap-2 focus-within:border-primary border-2",
     input:
-      "grow bg-transparent border-transparent focus:outline-none focus:ring-transparent p-0 self-stretch overflow-hidden text-ellipsis h-full",
+      "grow bg-transparent border-transparent focus:outline-none focus:ring-transparent p-0 self-stretch overflow-hidden text-ellipsis h-full placeholder:text-secondary",
     addonBefore: "rounded-r-none",
     addonAfter: "rounded-l-none",
   },
@@ -38,7 +39,7 @@ const input = tv({
   },
 })
 
-type InputVariantProps = VariantProps<typeof input>
+export type InputVariantProps = VariantProps<typeof input>
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "prefix" | "suffix" | "size">,
@@ -114,7 +115,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     function getClear() {
       if (showClear && clearable) {
         return (
-          <HiX
+          <LuX
             className="text-secondary cursor-pointer"
             onClick={function () {
               if (internalRef.current) {

@@ -1,6 +1,5 @@
 import { cn } from "@/libs/tailwind-variants"
 import React from "react"
-import { HiChevronDoubleLeft, HiChevronDoubleRight } from "react-icons/hi"
 import { Button, ButtonProps } from "../button"
 
 export interface PaginationProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
@@ -36,7 +35,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(func
     <Button
       size={size}
       variant="default"
-      leftIcon={<HiChevronDoubleLeft />}
+      leftIcon={<LuChevronDoubleLeft />}
       onClick={function () {
         setOffset(offset - limit)
       }}
@@ -48,7 +47,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(func
     <Button
       size={size}
       variant="default"
-      leftIcon={<HiChevronDoubleRight />}
+      leftIcon={<LuChevronDoubleRight />}
       onClick={function () {
         setOffset(limit + offset)
       }}

@@ -33,7 +33,7 @@ interface Container extends ForwardedRefComponent {
   <Tag extends ReactTag>(props: ForwardRefWithAsProps<Tag, ContainerProps>): React.ReactElement | null
 }
 
-function _generate<Tag extends ReactTag>(
+function _constructor<Tag extends ReactTag>(
   render: <Tag extends ReactTag>(
     props: ForwardRefWithAsProps<Tag, ContainerProps>,
     ref: React.ForwardedRef<Tag>,
@@ -42,7 +42,7 @@ function _generate<Tag extends ReactTag>(
   return React.forwardRef<Tag, ForwardRefWithAsProps<Tag, ContainerProps>>(render) as unknown as Container
 }
 
-export const Container = _generate(function ({ as = "div", children, className, size, ...props }, ref) {
+export const Container = _constructor(function ({ as = "div", children, className, size, ...props }, ref) {
   const Tag = as
 
   return (

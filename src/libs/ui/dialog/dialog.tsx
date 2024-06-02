@@ -1,7 +1,7 @@
 import { cn } from "@/libs/tailwind-variants"
 import * as HeadlessUI from "@headlessui/react"
 import React from "react"
-import { HiX } from "react-icons/hi"
+import { LuX } from "react-icons/lu"
 
 export interface DialogProps {
   open?: boolean
@@ -105,7 +105,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function (
                   </HeadlessUI.Dialog.Title>
                 )}
                 {closable && (trigger || onClose) && (
-                  <HiX role="button" className="absolute right-4 top-4" onClick={handleClose} />
+                  <LuX role="button" className="absolute right-4 top-4" onClick={handleClose} />
                 )}
                 <HeadlessUI.Dialog.Panel className={className}>{getChildren()}</HeadlessUI.Dialog.Panel>
               </HeadlessUI.Transition.Child>

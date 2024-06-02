@@ -1,7 +1,6 @@
 import { cn } from "@/libs/tailwind-variants"
 import { Float, FloatProps } from "@headlessui-float/react"
 import React from "react"
-import { HiChevronRight } from "react-icons/hi"
 
 export interface DropdownItem {
   label: React.ReactNode
@@ -77,7 +76,7 @@ export const Dropdown: React.FC<DropdownProps> = function ({ menu, onSelect, chi
                     <span className="inline-flex items-center gap-2">
                       {item.icon} {item.label}
                     </span>
-                    <HiChevronRight />
+                    <LuChevronRight />
                   </span>
                 </Dropdown>
               ) : (

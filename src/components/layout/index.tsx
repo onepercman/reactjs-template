@@ -1,7 +1,7 @@
 import { Button } from "@/libs/ui/button"
 import { useTheme } from "next-themes"
 import { FC, Fragment } from "react"
-import { HiMoon, HiSun } from "react-icons/hi"
+import { LuMoon, LuSun } from "react-icons/lu"
 import { Outlet } from "react-router-dom"
 
 export const Layout: FC = () => {
@@ -10,7 +10,7 @@ export const Layout: FC = () => {
     <Fragment>
       <Outlet />
       <Button
-        leftIcon={theme === "dark" ? <HiMoon /> : <HiSun />}
+        leftIcon={theme === "dark" ? <LuMoon /> : <LuSun />}
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         className="fixed bottom-6 right-6"
         shape="square"

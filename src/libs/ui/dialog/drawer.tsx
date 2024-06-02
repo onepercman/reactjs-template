@@ -1,7 +1,6 @@
 import { cn } from "@/libs/tailwind-variants"
 import * as HeadlessUI from "@headlessui/react"
 import React from "react"
-import { HiX } from "react-icons/hi"
 import { VariantProps, tv } from "tailwind-variants"
 
 const drawer = tv({
@@ -135,7 +134,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function (
                   </HeadlessUI.Dialog.Title>
                 )}
                 {closable && (trigger || onClose) && (
-                  <HiX role="button" className="absolute right-6 top-4 z-50" onClick={handleClose} />
+                  <LuX role="button" className="absolute right-6 top-4 z-50" onClick={handleClose} />
                 )}
                 <div className={cn("scrollbar-none h-full overflow-y-auto p-4", className)}>{getChildren()}</div>
               </div>

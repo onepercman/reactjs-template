@@ -1,7 +1,6 @@
 import { cn } from "@/libs/tailwind-variants"
 import * as HeadlessUI from "@headlessui/react"
 import React from "react"
-import { HiChevronDown } from "react-icons/hi"
 
 interface DisclosureItem {
   label: React.ReactNode
@@ -27,7 +26,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>(func
             <React.Fragment>
               <HeadlessUI.Disclosure.Button className={cn("bg-component relative z-10 rounded p-2 pr-8 text-left")}>
                 {item.label}
-                <HiChevronDown className={cn("absolute right-2 top-3 transition-all", open && "rotate-180")} />
+                <LuChevronDown className={cn("absolute right-2 top-3 transition-all", open && "rotate-180")} />
               </HeadlessUI.Disclosure.Button>
               <HeadlessUI.Transition appear show={open}>
                 <HeadlessUI.Transition.Child

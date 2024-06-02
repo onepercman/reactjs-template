@@ -2,7 +2,6 @@ import { cn } from "@/libs/tailwind-variants"
 import { Float, FloatProps } from "@headlessui-float/react"
 import * as HeadlessUI from "@headlessui/react"
 import React from "react"
-import { HiChevronRight } from "react-icons/hi"
 
 export interface MenuItem {
   label: React.ReactNode
@@ -74,7 +73,7 @@ export const Menu = React.forwardRef<HTMLElement, MenuProps>(function (
                   <span className="inline-flex items-center gap-2">
                     {item.icon} {item.label}
                   </span>
-                  <HiChevronRight />
+                  <LuChevronRight />
                 </span>
               </Menu>
             ) : (
