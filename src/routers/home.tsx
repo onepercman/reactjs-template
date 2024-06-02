@@ -1,3 +1,4 @@
+import { Accordion } from "@/libs/ui/accordion"
 import { Button } from "@/libs/ui/button"
 import { Combobox } from "@/libs/ui/combobox"
 import { Container } from "@/libs/ui/container"
@@ -115,6 +116,22 @@ export default function Home() {
           <Button>Please select an option</Button>
         </Menu>
       </div>
+
+      <Accordion
+        multiple
+        items={[
+          {
+            trigger: { children: <div>Trigger 1</div> },
+            content: { children: "Content 1" },
+            value: "1",
+          },
+          {
+            trigger: { children: <div>Trigger 2</div> },
+            content: { children: "Content 2" },
+            value: "2",
+          },
+        ]}
+      />
     </Container>
   )
 }
