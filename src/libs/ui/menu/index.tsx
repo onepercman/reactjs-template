@@ -10,7 +10,7 @@ export const menu = tv({
     groupLabel: "w-full px-2 py-1 text-xs text-secondary",
     item: "inline-flex relative gap-2 justify-between items-center cursor-pointer hover:bg-default px-3 py-2 rounded",
     itemIndicator: "h-full absolute right-2 top-0 data-[state=checked]:flex items-center",
-    separator: "w-full h-px bg-line my-1",
+    separator: "w-full h-px border-line my-1",
   },
   variants: {
     size: {

@@ -141,7 +141,7 @@ export const Select = _constructor(function (
             color={color}
             className={classes.trigger()}
             rightIcon={
-              <div className="inline-flex items-center gap-1">
+              <div className="inline-flex h-full items-center gap-1">
                 {allowClear ? (
                   <Ark.Select.ClearTrigger>
                     <Button size="xs" variant="default" shape="circle" leftIcon={<LuX />} className={classes.clear()} />
