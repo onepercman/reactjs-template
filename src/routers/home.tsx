@@ -2,10 +2,12 @@ import { Accordion } from "@/libs/ui/accordion"
 import { Button } from "@/libs/ui/button"
 import { Combobox } from "@/libs/ui/combobox"
 import { Container } from "@/libs/ui/container"
+import { Dialog } from "@/libs/ui/dialog"
 import { Input } from "@/libs/ui/input"
 import { Menu } from "@/libs/ui/menu"
 import { RadioGroup } from "@/libs/ui/radio-group"
 import { Select } from "@/libs/ui/select"
+import { toaster } from "@/libs/ui/toast"
 import { LuArrowRightCircle } from "react-icons/lu"
 
 const buttonColors = ["default", "primary", "success", "error", "warning"]
@@ -177,6 +179,32 @@ export default function Home() {
           },
         ]}
       />
+
+      <div className="inline-flex items-center gap-2 text-lg font-medium">
+        <LuArrowRightCircle /> MENU
+      </div>
+
+      <div>
+        <Dialog trigger={<Button>Dialog</Button>}>Content</Dialog>
+      </div>
+
+      <div className="inline-flex items-center gap-2 text-lg font-medium">
+        <LuArrowRightCircle /> MENU
+      </div>
+
+      <div>
+        <Button
+          onClick={() =>
+            toaster.create({
+              type: ["info", "success", "error"][Math.floor(Math.random() * 3)],
+              title: "Toast " + new Date().getSeconds(),
+              description: "Description",
+            })
+          }
+        >
+          Toast
+        </Button>
+      </div>
     </Container>
   )
 }
