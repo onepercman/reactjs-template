@@ -1,4 +1,3 @@
-import { cn } from "@/libs/tailwind-variants"
 import React from "react"
 import { tv, VariantProps } from "tailwind-variants"
 import { Spinner } from "../spinner"
@@ -31,7 +30,7 @@ const button = tv({
       square: "aspect-square p-0 rounded",
     },
     disabled: {
-      true: "brightness-95 saturate-0",
+      true: "saturate-0 opacity-75 cursor-not-allowed data-[loading]:saturate-50",
     },
   },
   compoundVariants: [
@@ -126,6 +125,7 @@ interface ButtonBaseProps {
   loadingText?: string
   leftIcon?: React.ReactElement
   rightIcon?: React.ReactElement
+  loadingVariant?: "default" | "transparent"
 }
 
 interface ButtonProps
@@ -139,6 +139,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function (
     disabled,
     loading,
     loadingText,
+    loadingVariant = "default",
     leftIcon,
     rightIcon,
     className,
@@ -179,21 +180,23 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function (
     shape,
     disabled: _disabled,
   })
-  const _loadingClassName = cn(loadingText ? "relative mr-2" : "absolute mr-0")
-  const _transparentChildren = (
-    <React.Fragment>
-      {leftIcon && <span className="opacity-0">{leftIcon}</span>}
-      {children && <span className="opacity-0">{children}</span>}
-      {rightIcon && <span className="opacity-0">{rightIcon}</span>}
-    </React.Fragment>
-  )
 
   return (
-    <button ref={ref} type="button" className={_className} disabled={_disabled} onClick={_onClick} {...props}>
-      {leftIcon && !_loading ? leftIcon : null}
-      {_loading && <Spinner className={_loadingClassName} />}
-      {_loading ? loadingText || _transparentChildren : children}
-      {rightIcon && !_loading ? rightIcon : null}
+    <button
+      ref={ref}
+      type="button"
+      className={_className}
+      disabled={_disabled}
+      onClick={_onClick}
+      data-loading={_loading}
+      {...props}
+    >
+      {_loading && <Spinner className={loadingVariant === "default" ? "relative" : "absolute"} />}
+      <span className={loading ? (loadingVariant === "default" ? "hidden" : "opacity-0") : ""}>{leftIcon}</span>
+      <span className={loading && loadingVariant === "transparent" ? "opacity-0" : ""}>
+        {loading ? loadingText || children : children}
+      </span>
+      <span className={loading && loadingVariant === "transparent" ? "opacity-0" : ""}>{rightIcon}</span>
     </button>
   )
 })
