@@ -1,5 +1,5 @@
 import * as Ark from "@ark-ui/react"
-import React from "react"
+import React, { Fragment } from "react"
 import { LuCheck, LuChevronDown, LuX } from "react-icons/lu"
 import { tv } from "tailwind-variants"
 import { Button, ButtonVariantProps } from "../button"
@@ -8,8 +8,9 @@ export const select = tv({
   base: "flex flex-col gap-1 w-fit",
   slots: {
     label: "text-sm text-secondary",
-    trigger: "min-w-full justify-between data-[placeholder-shown]:text-secondary data-[placeholder-shown]:font-normal",
-    clear: "text-secondary text-xs flex-none",
+    trigger:
+      "min-w-full justify-between data-[placeholder-shown]:text-secondary data-[placeholder-shown]:font-normal relative",
+    clear: "text-secondary text-xs absolute top-1/2 right-3 -translate-y-1/2",
     list: "flex flex-col border border-line w-full rounded overflow-hidden bg-component shadow-lg p-1 data-[state=open]:animate-in data-[state=open]:fade-in duration-500 data-[state=false]:animate-out data-[state=false]:fade-out",
     group: "flex flex-col",
     groupLabel: "w-full px-2 py-1 text-xs text-secondary",
@@ -141,7 +142,7 @@ export const Select = _constructor(function (
             color={color}
             className={classes.trigger()}
             rightIcon={
-              <div className="inline-flex h-full items-center gap-1">
+              <Fragment>
                 {allowClear ? (
                   <Ark.Select.ClearTrigger>
                     <Button size="xs" variant="default" shape="circle" leftIcon={<LuX />} className={classes.clear()} />
@@ -150,7 +151,7 @@ export const Select = _constructor(function (
                 <Ark.Select.Indicator>
                   <LuChevronDown />
                 </Ark.Select.Indicator>
-              </div>
+              </Fragment>
             }
           >
             <Ark.Select.ValueText placeholder={placeholder} />

@@ -37,7 +37,7 @@ const button = tv({
     {
       variant: "default",
       color: "default",
-      class: "bg-default hover:bg-default",
+      class: "bg-default hover:brightness-150",
     },
     {
       variant: "default",
