@@ -1,59 +1,38 @@
-## Implement list
+# Ark UI components kit
 
-### Dev Deps
-
-- postcss
-- tailwindcss
-- @headlessui-float/react
-- @headlessui/react
-- @tailwindcss/forms
-- tailwind-schemes
-- prettier-plugin-tailwindcss
-- tailwind-merge
-- tailwind-scrollbar
-- tailwindcss-animate
-
-## Usage
-
-### Custom components
-
-- Legacy:
-  - .tailwind/legacy/button
-  - .tailwind/legacy/input
-- Primitives:
-  - @/libs/ui/
-
-### Store
-
-- Step 1: Create a store in "@/stores" using "createStore" function
-- Step 2: Use "useStore" hook instead of "useSnapshot" to have typesafe
-
-```ts
-import { createStore } from "@/libs/valtio"
-
-class Store {
-  property1: "value1"
-  property2: "value2"
-
-  action() {
-    this.property1 = "new value"
-  }
-}
-
-export default createStore(new Store())
-```
-
-- With persist:
-
-```ts
-export default createStore(new Store(), {
-  key: storageKeys.store1,
-  include: ["property1"],
-})
-```
-
-Example
-
-```tsx
-const { property1 } = useStore(store)
-```
+- [x] Accordion
+- [x] Avatar
+- [x] Button
+- [ ] Carousel
+- [x] Checkbox
+- [ ] Clipboard
+- [ ] Collapsible
+- [ ] Color Picker
+- [x] Combobox
+- [ ] Date Picker
+- [x] Dialog
+- [ ] Editable
+- [ ] File Upload
+- [ ] Hover Card
+- [x] Input
+- [x] Menu
+- [ ] Number Input
+- [ ] Pagination
+- [ ] Pin Input
+- [ ] Popover
+- [ ] Progress - Circular
+- [ ] Progress - Linear
+- [x] Radio Group
+- [ ] Rating Group
+- [ ] Segment Group
+- [x] Select
+- [ ] Slider
+- [ ] Splitter
+- [ ] Switch
+- [ ] Tabs
+- [x] Table
+- [ ] Tags Input
+- [x] Toast
+- [ ] Toggle Group
+- [ ] Tooltip
+- [ ] Tree View

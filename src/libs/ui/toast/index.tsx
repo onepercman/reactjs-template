@@ -6,8 +6,9 @@ import { Button } from "../button"
 import { Spinner } from "../spinner"
 
 export const toastClass = tv({
-  base: "border relative border-line bg-component p-4 rounded data-[state=open]:animate-in data-[state=open]:slide-in-from-bottom data-[state=closed]:animate-out data-[state=closed]:slide-out-to-bottom min-w-64 shadow-lg",
+  base: "border relative border-line bg-component p-4 rounded min-w-64 shadow-lg transition-all translate-x-[var(--x)] -translate-y-[var(--delta)] data-[paused]:translate-y-[var(--y)] scale-[var(--scale)] data-[paused]:scale-100 opacity-[var(--opacity)] data-[paused]:opacity-100",
   slots: {
+    container: "gap-8",
     title: "text-sm mt-0 inline-flex items-center gap-2",
     description: "text-xs text-secondary",
     dismiss: "absolute top-2 right-2",
@@ -34,25 +35,23 @@ function getIcon(type?: "success" | "error" | "loading" | "info" | any) {
 }
 
 export const ToasterContainer: FC = () => {
+  const classes = toastClass()
+
   return (
-    <Ark.Toaster toaster={toaster} className="group flex gap-4">
+    <Ark.Toaster toaster={toaster} className={classes.container()}>
       {({ id, title, description, type }) => {
-        const classes = toastClass({})
         return (
           <Ark.Toast.Root
             key={id}
             className={classes.base()}
-            style={{
-              zIndex: "var(--z-index)",
-              height: "var(--height)",
-              opacity: "var(--opacity)",
-              willChange: "translate, opacity, scale",
-              transitionProperty: "translate, scale, opacity, height",
-              overflowWrap: "anywhere",
-              scale: "var(--scale)",
-              translate: "var(--x) var(--y) 0",
-              transitionDuration: "0.3s",
-            }}
+            style={
+              {
+                "--scale": "calc(1 - var(--index) * 0.1)",
+                "--delta": "var(--index) * var(--gap)",
+                "--opacity": "calc(1 - var(--index) * 0.15)",
+                zIndex: "var(--z-index)",
+              } as React.CSSProperties
+            }
           >
             <Ark.Toast.Title className={classes.title()}>
               {getIcon(type)}
