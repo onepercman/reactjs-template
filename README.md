@@ -17,7 +17,7 @@
 - [x] Input
 - [x] Menu
 - [ ] Number Input
-- [ ] Pagination
+- [x] Pagination
 - [ ] Pin Input
 - [ ] Popover
 - [ ] Progress - Circular

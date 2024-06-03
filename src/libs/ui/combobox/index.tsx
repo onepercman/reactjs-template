@@ -1,10 +1,10 @@
+import { Button } from "@/libs/ui/button"
+import { Input } from "@/libs/ui/input"
+import { InputVariantProps } from "@/libs/ui/input/input"
 import * as Ark from "@ark-ui/react"
 import React from "react"
 import { LuCheck, LuChevronsUpDown, LuX } from "react-icons/lu"
 import { tv } from "tailwind-variants"
-import { Button } from "../button"
-import { Input } from "../input"
-import { InputVariantProps } from "../input/input"
 
 export const combobox = tv({
   base: "flex flex-col gap-1 w-fit",

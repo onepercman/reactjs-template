@@ -1,5 +1,5 @@
+import { Input, InputProps } from "@/libs/ui/input"
 import React from "react"
-import { Input, InputProps } from "./input"
 
 const specialSymbolsRegex = /[.*+?^${}()|[\]\\]/g
 const currencyRegex = RegExp(`^\\d*(?:\\\\[.])?\\d*$`)

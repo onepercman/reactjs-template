@@ -1,9 +1,9 @@
+import { Button } from "@/libs/ui/button"
+import { Spinner } from "@/libs/ui/spinner"
 import * as Ark from "@ark-ui/react"
 import { FC } from "react"
 import { LuCheck, LuInfo, LuX, LuXCircle } from "react-icons/lu"
 import { tv } from "tailwind-variants"
-import { Button } from "../button"
-import { Spinner } from "../spinner"
 
 export const toastClass = tv({
   base: "border relative border-line bg-component p-4 rounded min-w-64 shadow-lg transition-all translate-x-[var(--x)] -translate-y-[var(--delta)] data-[paused]:translate-y-[var(--y)] scale-[var(--scale)] data-[paused]:scale-100 opacity-[var(--opacity)] data-[paused]:opacity-100",

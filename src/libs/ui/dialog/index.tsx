@@ -1,8 +1,8 @@
+import { Button } from "@/libs/ui/button"
 import * as Ark from "@ark-ui/react"
 import React from "react"
 import { LuX } from "react-icons/lu"
 import { VariantProps, tv } from "tailwind-variants"
-import { Button } from "../button"
 
 export const dialog = tv({
   base: "bg-component border border-line shadow p-4 rounded relative w-full space-y-4 h-fit data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out",

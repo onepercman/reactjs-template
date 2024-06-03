@@ -1,9 +1,9 @@
+import { useComposedRefs } from "@/libs/ui/utils/ref"
 import * as Ark from "@ark-ui/react"
 import React from "react"
 import { LuX } from "react-icons/lu"
 import TextAreaAutoSize, { TextareaAutosizeProps } from "react-textarea-autosize"
 import { VariantProps, tv } from "tailwind-variants"
-import { useComposedRefs } from "../utils/ref"
 
 const textArea = tv({
   base: "flex flex-col gap-1 group",

@@ -1,7 +1,7 @@
 import { useResizeObserver } from "@/libs/custom-hooks/use-resize-observer"
 import { cn } from "@/libs/tailwind-variants"
+import { useComposedRefs } from "@/libs/ui/utils/ref"
 import React from "react"
-import { useComposedRefs } from "../utils/ref"
 
 type TitleRenderer = (args: { isOpen: boolean; toggle(): void; open(): void; close(): void }) => React.ReactNode
 

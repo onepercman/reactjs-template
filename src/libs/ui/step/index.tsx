@@ -1,6 +1,6 @@
 import { cn } from "@/libs/tailwind-variants"
+import { Button } from "@/libs/ui/button/button"
 import React from "react"
-import { Button } from "../button/button"
 
 type BaseProps = React.HTMLAttributes<HTMLDivElement>
 

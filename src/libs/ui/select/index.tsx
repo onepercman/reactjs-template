@@ -1,8 +1,8 @@
+import { Button, ButtonVariantProps } from "@/libs/ui/button"
 import * as Ark from "@ark-ui/react"
 import React, { Fragment } from "react"
 import { LuCheck, LuChevronDown, LuX } from "react-icons/lu"
 import { tv } from "tailwind-variants"
-import { Button, ButtonVariantProps } from "../button"
 
 export const select = tv({
   base: "flex flex-col gap-1 w-fit",

@@ -1,7 +1,7 @@
 import { UseCountdownStates } from "@/libs/custom-hooks/use-countdown"
 import { cn } from "@/libs/tailwind-variants"
+import { Countdown } from "@/libs/ui/countdown"
 import React from "react"
-import { Countdown } from "../countdown"
 
 type BaseProps = React.HTMLAttributes<HTMLDivElement>
 

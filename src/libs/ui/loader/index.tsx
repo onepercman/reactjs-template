@@ -1,6 +1,6 @@
 import { cn } from "@/libs/tailwind-variants"
+import { Spinner } from "@/libs/ui/spinner"
 import React from "react"
-import { Spinner } from "../spinner"
 
 interface Loader extends ForwardedRefComponent {
   <Tag extends ReactTag>(props: ForwardRefWithAsProps<Tag, object>): React.ReactElement | null

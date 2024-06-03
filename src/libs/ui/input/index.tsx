@@ -1,9 +1,9 @@
-import { Checkbox, CheckboxProps } from "./checkbox"
-import { InputProps, Input as InternalInput } from "./input"
-import { InputNumber } from "./input-number"
-import { Radio, RadioProps } from "./radio"
-import { Range } from "./range"
-import { Textarea, TextareaProps } from "./textarea"
+import { Checkbox, CheckboxProps } from "@/libs/ui/input/checkbox"
+import { InputProps, Input as InternalInput } from "@/libs/ui/input/input"
+import { InputNumber } from "@/libs/ui/input/input-number"
+import { Radio, RadioProps } from "@/libs/ui/input/radio"
+import { Range } from "@/libs/ui/input/range"
+import { Textarea, TextareaProps } from "@/libs/ui/input/textarea"
 
 interface Input extends React.ForwardRefExoticComponent<InputProps & React.RefAttributes<HTMLInputElement>> {
   Number: typeof InputNumber

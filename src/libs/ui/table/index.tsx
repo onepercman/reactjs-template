@@ -1,9 +1,10 @@
 import { cn } from "@/libs/tailwind-variants"
+import { Empty } from "@/libs/ui/empty"
+import { Loader } from "@/libs/ui/loader"
+import { Pagination, PaginationProps } from "@/libs/ui/pagination"
+import { TableCell } from "@/libs/ui/table/cell"
+import { TableCellHead } from "@/libs/ui/table/cell-head"
 import React from "react"
-import { Empty } from "../empty"
-import { Loader } from "../loader"
-import { TableCell } from "./cell"
-import { TableCellHead } from "./cell-head"
 
 interface TableRow extends Readonly<Record<string, unknown>> {
   key?: string
@@ -24,7 +25,7 @@ interface TableProps<Row extends TableRow> extends React.HTMLAttributes<HTMLTabl
   onSelectRow?(row?: Row): void
   loading?: boolean
   tableClassName?: string
-  // pagination?: PaginationProps
+  pagination?: PaginationProps
 }
 interface Table extends ForwardedRefComponent {
   <Row extends TableRow>(props: ForwardRefWithAsProps<"div", TableProps<Row>>): React.ReactElement | null
@@ -42,17 +43,7 @@ function _constructor<Row extends TableRow>(
 }
 
 const Table = _constructor(function (
-  {
-    children,
-    columns,
-    data,
-    onSelectRow,
-    className,
-    loading,
-    tableClassName,
-    // pagination,
-    ...props
-  },
+  { children, columns, data, onSelectRow, className, loading, tableClassName, pagination, ...props },
   ref,
 ) {
   function _renderContainer() {
@@ -127,7 +118,7 @@ const Table = _constructor(function (
 
         <tbody className="divide-line relative divide-y text-left">
           {_renderContainer()}
-          {/* {pagination && (
+          {pagination && (
             <tr>
               <TableCell colSpan={columns?.length || 1}>
                 <div className="flex w-full justify-end">
@@ -137,7 +128,7 @@ const Table = _constructor(function (
                 </div>
               </TableCell>
             </tr>
-          )} */}
+          )}
         </tbody>
         {children}
       </table>
