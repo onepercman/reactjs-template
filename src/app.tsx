@@ -9,7 +9,7 @@ import "./styles/styles.scss"
 
 export default function App() {
   return (
-    <ThemeProvider>
+    <ThemeProvider defaultTheme="dark">
       <QueryClientProvider client={queryClient}>
         <ToasterContainer />
         <RouterProvider router={router} fallbackElement={<Loader />} />

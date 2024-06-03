@@ -10,7 +10,8 @@ export const Layout: FC = () => {
     <Fragment>
       <Outlet />
       <Button
-        leftIcon={theme === "dark" ? <LuMoon /> : <LuSun />}
+        size="sm"
+        leftIcon={theme === "dark" ? <LuSun /> : <LuMoon />}
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         className="fixed bottom-6 right-6"
         shape="square"
