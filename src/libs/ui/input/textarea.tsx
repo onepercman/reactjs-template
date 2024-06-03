@@ -2,7 +2,7 @@ import {
   TextareaSlotsClasses,
   TextareaVariantProps,
   textarea,
-} from "@/libs/ui/theme/textarea"
+} from "@/libs/ui/theme"
 import { useComposedRefs } from "@/libs/ui/utils/ref"
 import * as Ark from "@ark-ui/react"
 import React from "react"
