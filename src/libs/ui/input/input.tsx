@@ -1,12 +1,9 @@
-import { input } from "@/libs/ui/theme"
+import { InputVariantProps, input } from "@/libs/ui/theme"
 import { useComposedRefs } from "@/libs/ui/utils/ref"
 import * as Ark from "@ark-ui/react"
 import React from "react"
 import { HiEye, HiEyeOff } from "react-icons/hi"
 import { LuX } from "react-icons/lu"
-import { VariantProps } from "tailwind-variants"
-
-export type InputVariantProps = VariantProps<typeof input>
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "prefix" | "suffix" | "size">,

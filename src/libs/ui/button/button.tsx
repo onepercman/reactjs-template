@@ -1,9 +1,6 @@
 import { Spinner } from "@/libs/ui/spinner"
-import { button } from "@/libs/ui/theme"
+import { ButtonVariantProps, button } from "@/libs/ui/theme"
 import React from "react"
-import { VariantProps } from "tailwind-variants"
-
-type ButtonVariantProps = VariantProps<typeof button>
 
 interface ButtonBaseProps {
   loading?: boolean

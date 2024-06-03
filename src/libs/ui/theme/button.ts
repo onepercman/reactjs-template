@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants"
+import { VariantProps, tv } from "tailwind-variants"
 
 export const button = tv({
   base: "inline-flex items-center justify-center gap-2 py-0 font-medium whitespace-nowrap border-transparent ring ring-transparent transition-all cursor-pointer active:brightness-75 border-2 outline-none",
@@ -115,3 +115,7 @@ export const button = tv({
     shape: "normal",
   },
 })
+
+export type ButtonVariantProps = VariantProps<typeof button>
+export type ButtonReturnType = ReturnType<typeof button>
+export type ButtonSlots = keyof ButtonReturnType

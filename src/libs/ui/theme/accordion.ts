@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants"
+import { VariantProps, tv } from "tailwind-variants"
 
 export const accordion = tv({
   base: "flex flex-col gap-2 border border-line p-2 rounded duration-500",
@@ -9,3 +9,7 @@ export const accordion = tv({
     content: "data-[state=open]:animate-heightIn data-[state=closed]:animate-heightOut overflow-hidden",
   },
 })
+
+export type AccordionVariantProps = VariantProps<typeof accordion>
+export type AccordionReturnType = ReturnType<typeof accordion>
+export type AccordionSlots = keyof AccordionReturnType

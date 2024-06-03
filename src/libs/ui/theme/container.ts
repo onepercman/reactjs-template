@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants"
+import { VariantProps, tv } from "tailwind-variants"
 
 export const container = tv({
   base: "mx-auto w-full p-4",
@@ -24,3 +24,7 @@ export const container = tv({
     size: "default",
   },
 })
+
+export type ContainerVariantProps = VariantProps<typeof container>
+export type ContainerReturnType = ReturnType<typeof container>
+export type ContainerSlots = keyof ContainerReturnType

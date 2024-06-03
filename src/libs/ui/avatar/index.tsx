@@ -1,9 +1,8 @@
-import { avatar } from "@/libs/ui/theme"
+import { AvatarVariantProps, avatar } from "@/libs/ui/theme"
 import * as Ark from "@ark-ui/react"
 import React from "react"
-import { VariantProps } from "tailwind-variants"
 
-interface AvatarProps extends Ark.AvatarImageProps, VariantProps<typeof avatar> {
+interface AvatarProps extends Ark.AvatarImageProps, AvatarVariantProps {
   fallback?: React.ReactNode
 }
 

@@ -1,10 +1,7 @@
-import { checkbox } from "@/libs/ui/theme"
+import { CheckboxVariantProps, checkbox } from "@/libs/ui/theme"
 import * as Ark from "@ark-ui/react"
 import React from "react"
 import { LuCheck, LuMinus } from "react-icons/lu"
-import { VariantProps } from "tailwind-variants"
-
-type CheckboxVariantProps = VariantProps<typeof checkbox>
 
 export interface CheckboxProps extends Ark.CheckboxRootProps, CheckboxVariantProps {
   indeterminate?: boolean

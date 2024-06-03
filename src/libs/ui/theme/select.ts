@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants"
+import { VariantProps, tv } from "tailwind-variants"
 
 export const select = tv({
   base: "flex flex-col gap-1 w-fit",
@@ -32,3 +32,7 @@ export const select = tv({
     size: "md",
   },
 })
+
+export type SelectVariantProps = VariantProps<typeof select>
+export type SelectReturnType = ReturnType<typeof select>
+export type SelectSlots = keyof SelectReturnType

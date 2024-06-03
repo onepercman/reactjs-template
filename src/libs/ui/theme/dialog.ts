@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants"
+import { VariantProps, tv } from "tailwind-variants"
 
 export const dialog = tv({
   base: "bg-component border border-line shadow p-4 rounded relative w-full space-y-4 h-fit data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out",
@@ -32,3 +32,7 @@ export const dialog = tv({
     placement: "topCenter",
   },
 })
+
+export type DialogVariantProps = VariantProps<typeof dialog>
+export type DialogReturnType = ReturnType<typeof dialog>
+export type DialogSlots = keyof DialogReturnType

@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants"
+import { VariantProps, tv } from "tailwind-variants"
 
 export const combobox = tv({
   base: "flex flex-col gap-1 w-fit",
@@ -25,3 +25,7 @@ export const combobox = tv({
     size: "md",
   },
 })
+
+export type ComboboxVariantProps = VariantProps<typeof combobox>
+export type ComboboxReturnType = ReturnType<typeof combobox>
+export type ComboboxSlots = keyof ComboboxReturnType

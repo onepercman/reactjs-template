@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants"
+import { VariantProps, tv } from "tailwind-variants"
 
 export const table = tv({
   base: "border-line w-full overflow-auto rounded border",
@@ -16,3 +16,7 @@ export const table = tv({
     },
   },
 })
+
+export type TableVariantProps = VariantProps<typeof table>
+export type TableReturnType = ReturnType<typeof table>
+export type TableSlots = keyof TableReturnType

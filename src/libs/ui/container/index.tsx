@@ -1,8 +1,5 @@
-import { container } from "@/libs/ui/theme"
+import { ContainerVariantProps, container } from "@/libs/ui/theme"
 import React from "react"
-import { VariantProps } from "tailwind-variants"
-
-type ContainerVariantProps = VariantProps<typeof container>
 
 export interface ContainerProps extends ContainerVariantProps {}
 interface Container extends ForwardedRefComponent {

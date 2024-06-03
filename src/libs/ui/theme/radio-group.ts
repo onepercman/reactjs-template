@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants"
+import { VariantProps, tv } from "tailwind-variants"
 
 export const radioGroup = tv({
   base: "flex flex-col gap-2",
@@ -28,3 +28,7 @@ export const radioGroup = tv({
     size: "md",
   },
 })
+
+export type RadioGroupVariantProps = VariantProps<typeof radioGroup>
+export type RadioGroupReturnType = ReturnType<typeof radioGroup>
+export type RadioGroupSlots = keyof RadioGroupReturnType

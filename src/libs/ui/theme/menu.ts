@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants"
+import { VariantProps, tv } from "tailwind-variants"
 
 export const menu = tv({
   slots: {
@@ -21,3 +21,7 @@ export const menu = tv({
     size: "md",
   },
 })
+
+export type MenuVariantProps = VariantProps<typeof menu>
+export type MenuReturnType = ReturnType<typeof menu>
+export type MenuSlots = keyof MenuReturnType

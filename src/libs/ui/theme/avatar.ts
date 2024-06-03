@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants"
+import { VariantProps, tv } from "tailwind-variants"
 
 export const avatar = tv({
   slots: {
@@ -18,3 +18,7 @@ export const avatar = tv({
     size: "md",
   },
 })
+
+export type AvatarVariantProps = VariantProps<typeof avatar>
+export type AvatarReturnType = ReturnType<typeof avatar>
+export type AvatarSlots = keyof AvatarReturnType

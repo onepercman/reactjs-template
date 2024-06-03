@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants"
+import { VariantProps, tv } from "tailwind-variants"
 
 export const input = tv({
   base: "flex flex-col gap-1 group",
@@ -34,3 +34,7 @@ export const input = tv({
     variant: "filled",
   },
 })
+
+export type InputVariantProps = VariantProps<typeof input>
+export type InputReturnType = ReturnType<typeof input>
+export type InputSlots = keyof InputReturnType
