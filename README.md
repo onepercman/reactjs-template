@@ -34,5 +34,5 @@
 - [ ] Tags Input
 - [x] Toast
 - [ ] Toggle Group
-- [ ] Tooltip
+- [x] Tooltip
 - [ ] Tree View
