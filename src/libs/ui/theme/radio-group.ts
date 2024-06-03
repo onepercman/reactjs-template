@@ -32,3 +32,4 @@ export const radioGroup = tv({
 export type RadioGroupVariantProps = VariantProps<typeof radioGroup>
 export type RadioGroupReturnType = ReturnType<typeof radioGroup>
 export type RadioGroupSlots = keyof RadioGroupReturnType
+export type RadioGroupSlotsClasses = SlotsClasses<RadioGroupSlots>

@@ -36,3 +36,4 @@ export const select = tv({
 export type SelectVariantProps = VariantProps<typeof select>
 export type SelectReturnType = ReturnType<typeof select>
 export type SelectSlots = keyof SelectReturnType
+export type SelectSlotsClasses = SlotsClasses<SelectSlots>

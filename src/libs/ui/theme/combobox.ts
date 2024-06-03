@@ -29,3 +29,4 @@ export const combobox = tv({
 export type ComboboxVariantProps = VariantProps<typeof combobox>
 export type ComboboxReturnType = ReturnType<typeof combobox>
 export type ComboboxSlots = keyof ComboboxReturnType
+export type ComboboxSlotsClasses = SlotsClasses<ComboboxSlots>

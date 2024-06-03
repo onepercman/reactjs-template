@@ -1,6 +1,6 @@
 import { Button } from "@/libs/ui/button"
 import { Input } from "@/libs/ui/input"
-import { InputVariantProps, combobox } from "@/libs/ui/theme"
+import { ComboboxSlotsClasses, InputVariantProps, combobox } from "@/libs/ui/theme"
 import * as Ark from "@ark-ui/react"
 import React from "react"
 import { LuCheck, LuChevronsUpDown, LuX } from "react-icons/lu"
@@ -14,7 +14,8 @@ export interface ComboboxOptionProps<Value> {
 
 export interface ComboboxProps<Value>
   extends Omit<Ark.ComboboxRootProps<ComboboxOptionProps<Value>>, "items" | "color">,
-    InputVariantProps {
+    InputVariantProps,
+    ComboboxSlotsClasses {
   label?: React.ReactNode
   readonly options?: ComboboxOptionProps<Value>[]
   placeholder?: string
@@ -54,10 +55,11 @@ export const Combobox = _constructor(function (
     size,
     variant,
     allowClear,
-    className,
     invalid,
     invalidMessage,
     indent = 16,
+    className,
+    classNames,
     ...props
   },
   ref,
@@ -67,19 +69,22 @@ export const Combobox = _constructor(function (
   function _renderOption(option: ComboboxOptionProps<any>, offset = 0) {
     if (option.children?.length)
       return (
-        <Ark.Combobox.ItemGroup className={classes.group()}>
-          <Ark.Combobox.ItemGroupLabel className={classes.groupLabel()}>
+        <Ark.Combobox.ItemGroup className={classes.group({ className: classNames?.group })}>
+          <Ark.Combobox.ItemGroupLabel className={classes.groupLabel({ class: classNames?.groupLabel })}>
             <span style={{ paddingLeft: offset * indent }}>{option.label}</span>
           </Ark.Combobox.ItemGroupLabel>
           {option.children.map((children) => _renderOption(children, children.children?.length ? offset + 1 : offset))}
         </Ark.Combobox.ItemGroup>
       )
     return (
-      <Ark.Combobox.Item key={option.value} item={option} className={classes.item()}>
-        <Ark.Combobox.ItemText className={classes.itemText()} style={{ paddingLeft: offset * indent }}>
+      <Ark.Combobox.Item key={option.value} item={option} className={classes.item({ class: classNames?.item })}>
+        <Ark.Combobox.ItemText
+          className={classes.itemText({ class: classNames?.itemText })}
+          style={{ paddingLeft: offset * indent }}
+        >
           {option.label}
         </Ark.Combobox.ItemText>
-        <Ark.Combobox.ItemIndicator className={classes.itemIndicator()}>
+        <Ark.Combobox.ItemIndicator className={classes.itemIndicator({ class: classNames?.itemIndicator })}>
           <LuCheck />
         </Ark.Combobox.ItemIndicator>
       </Ark.Combobox.Item>
@@ -97,16 +102,16 @@ export const Combobox = _constructor(function (
         sameWidth: true,
         ...props.positioning,
       }}
-      className={classes.base({ className })}
+      className={classes.base({ className, class: classNames?.base })}
       {...props}
     >
-      <Ark.Combobox.Label className={classes.label()}>{label}</Ark.Combobox.Label>
+      <Ark.Combobox.Label className={classes.label({ class: classNames?.label })}>{label}</Ark.Combobox.Label>
       <Ark.Combobox.Control>
         <Ark.Combobox.Input asChild>
           <Input
             size={size}
             variant={variant}
-            className={classes.trigger()}
+            className={classes.trigger({ class: classNames?.trigger })}
             placeholder={placeholder}
             invalid={invalid}
             invalidMessage={invalidMessage}
@@ -114,7 +119,13 @@ export const Combobox = _constructor(function (
               <div className="inline-flex items-center gap-1">
                 {allowClear ? (
                   <Ark.Combobox.ClearTrigger>
-                    <Button size="xs" variant="default" shape="circle" leftIcon={<LuX />} className={classes.clear()} />
+                    <Button
+                      size="xs"
+                      variant="default"
+                      shape="circle"
+                      leftIcon={<LuX />}
+                      className={classes.clear({ class: classNames?.clear })}
+                    />
                   </Ark.Combobox.ClearTrigger>
                 ) : null}
                 <Ark.Combobox.Trigger>
@@ -127,7 +138,7 @@ export const Combobox = _constructor(function (
       </Ark.Combobox.Control>
       <Ark.Portal>
         <Ark.Combobox.Positioner>
-          <Ark.Combobox.Content className={classes.list()}>
+          <Ark.Combobox.Content className={classes.list({ class: classNames?.list })}>
             {options.map((option) => _renderOption(option))}
           </Ark.Combobox.Content>
         </Ark.Combobox.Positioner>

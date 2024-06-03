@@ -25,3 +25,4 @@ export const menu = tv({
 export type MenuVariantProps = VariantProps<typeof menu>
 export type MenuReturnType = ReturnType<typeof menu>
 export type MenuSlots = keyof MenuReturnType
+export type MenuSlotsClasses = SlotsClasses<MenuSlots>

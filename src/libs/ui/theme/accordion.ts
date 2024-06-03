@@ -13,3 +13,4 @@ export const accordion = tv({
 export type AccordionVariantProps = VariantProps<typeof accordion>
 export type AccordionReturnType = ReturnType<typeof accordion>
 export type AccordionSlots = keyof AccordionReturnType
+export type AccordionSlotsClasses = SlotsClasses<AccordionSlots>

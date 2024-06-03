@@ -41,3 +41,4 @@ export const textarea = tv({
 export type TextareaVariantProps = VariantProps<typeof textarea>
 export type TextareaReturnType = ReturnType<typeof textarea>
 export type TextareaSlots = keyof TextareaReturnType
+export type TextareaSlotsClasses = SlotsClasses<TextareaSlots>

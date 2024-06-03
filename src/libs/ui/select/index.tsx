@@ -1,5 +1,5 @@
 import { Button, ButtonVariantProps } from "@/libs/ui/button"
-import { select } from "@/libs/ui/theme"
+import { SelectSlotsClasses, select } from "@/libs/ui/theme"
 import * as Ark from "@ark-ui/react"
 import React, { Fragment } from "react"
 import { LuCheck, LuChevronDown, LuX } from "react-icons/lu"
@@ -13,7 +13,8 @@ export interface SelectOptionProps<Value> {
 
 export interface SelectProps<Value>
   extends Omit<Ark.SelectRootProps<SelectOptionProps<Value>>, "items" | "color">,
-    ButtonVariantProps {
+    ButtonVariantProps,
+    SelectSlotsClasses {
   label?: React.ReactNode
   readonly options?: SelectOptionProps<Value>[]
   placeholder?: string
@@ -54,10 +55,11 @@ export const Select = _constructor(function (
     variant,
     color,
     allowClear,
-    className,
     invalid,
     invalidMessage,
     indent = 16,
+    className,
+    classNames,
     ...props
   },
   ref,
@@ -67,19 +69,22 @@ export const Select = _constructor(function (
   function _renderOption(option: SelectOptionProps<any>, offset = 0) {
     if (option.children?.length)
       return (
-        <Ark.Select.ItemGroup className={classes.group()}>
-          <Ark.Select.ItemGroupLabel className={classes.groupLabel()}>
+        <Ark.Select.ItemGroup className={classes.group({ class: classNames?.group })}>
+          <Ark.Select.ItemGroupLabel className={classes.groupLabel({ class: classNames?.groupLabel })}>
             <span style={{ paddingLeft: offset * indent }}>{option.label}</span>
           </Ark.Select.ItemGroupLabel>
           {option.children.map((children) => _renderOption(children, children.children?.length ? offset + 1 : offset))}
         </Ark.Select.ItemGroup>
       )
     return (
-      <Ark.Select.Item key={option.value} item={option} className={classes.item()}>
-        <Ark.Select.ItemText className={classes.itemText()} style={{ paddingLeft: offset * indent }}>
+      <Ark.Select.Item key={option.value} item={option} className={classes.item({ class: classNames?.item })}>
+        <Ark.Select.ItemText
+          className={classes.itemText({ class: classNames?.itemText })}
+          style={{ paddingLeft: offset * indent }}
+        >
           {option.label}
         </Ark.Select.ItemText>
-        <Ark.Select.ItemIndicator className={classes.itemIndicator()}>
+        <Ark.Select.ItemIndicator className={classes.itemIndicator({ class: classNames?.itemIndicator })}>
           <LuCheck />
         </Ark.Select.ItemIndicator>
       </Ark.Select.Item>
@@ -97,22 +102,28 @@ export const Select = _constructor(function (
         sameWidth: true,
         ...props.positioning,
       }}
-      className={classes.base({ className })}
+      className={classes.base({ className, class: classNames?.base })}
       {...props}
     >
-      <Ark.Select.Label className={classes.label()}>{label}</Ark.Select.Label>
+      <Ark.Select.Label className={classes.label({ class: classNames?.label })}>{label}</Ark.Select.Label>
       <Ark.Select.Control>
         <Ark.Select.Trigger asChild>
           <Button
             size={size}
             variant={variant}
             color={color}
-            className={classes.trigger()}
+            className={classes.trigger({ class: classNames?.trigger })}
             rightIcon={
               <Fragment>
                 {allowClear ? (
                   <Ark.Select.ClearTrigger>
-                    <Button size="xs" variant="default" shape="circle" leftIcon={<LuX />} className={classes.clear()} />
+                    <Button
+                      size="xs"
+                      variant="default"
+                      shape="circle"
+                      leftIcon={<LuX />}
+                      className={classes.clear({ class: classNames?.clear })}
+                    />
                   </Ark.Select.ClearTrigger>
                 ) : null}
                 <Ark.Select.Indicator>
@@ -130,7 +141,7 @@ export const Select = _constructor(function (
       </Ark.Presence>
       <Ark.Portal>
         <Ark.Select.Positioner>
-          <Ark.Select.Content className={classes.list()}>
+          <Ark.Select.Content className={classes.list({ class: classNames?.list })}>
             {options.map((option) => _renderOption(option))}
           </Ark.Select.Content>
         </Ark.Select.Positioner>

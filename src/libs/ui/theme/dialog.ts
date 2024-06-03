@@ -36,3 +36,4 @@ export const dialog = tv({
 export type DialogVariantProps = VariantProps<typeof dialog>
 export type DialogReturnType = ReturnType<typeof dialog>
 export type DialogSlots = keyof DialogReturnType
+export type DialogSlotsClasses = SlotsClasses<DialogSlots>

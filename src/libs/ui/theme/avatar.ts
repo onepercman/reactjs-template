@@ -22,3 +22,4 @@ export const avatar = tv({
 export type AvatarVariantProps = VariantProps<typeof avatar>
 export type AvatarReturnType = ReturnType<typeof avatar>
 export type AvatarSlots = keyof AvatarReturnType
+export type AvatarSlotsClasses = SlotsClasses<AvatarSlots>

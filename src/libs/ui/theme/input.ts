@@ -38,3 +38,4 @@ export const input = tv({
 export type InputVariantProps = VariantProps<typeof input>
 export type InputReturnType = ReturnType<typeof input>
 export type InputSlots = keyof InputReturnType
+export type InputSlotsClasses = SlotsClasses<InputSlots>

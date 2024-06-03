@@ -20,3 +20,4 @@ export const table = tv({
 export type TableVariantProps = VariantProps<typeof table>
 export type TableReturnType = ReturnType<typeof table>
 export type TableSlots = keyof TableReturnType
+export type TableSlotsClasses = SlotsClasses<TableSlots>

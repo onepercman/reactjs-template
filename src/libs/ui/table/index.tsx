@@ -1,13 +1,19 @@
+import { cn } from "@/libs/tailwind-variants"
 import { Empty } from "@/libs/ui/empty"
 import { Loader } from "@/libs/ui/loader"
 import { Pagination, PaginationProps } from "@/libs/ui/pagination"
-import { table } from "@/libs/ui/theme"
+import { TableSlotsClasses, TableVariantProps, table } from "@/libs/ui/theme"
 import React, { useEffect, useState } from "react"
-import { VariantProps } from "tailwind-variants"
+import { LuArrowDown } from "react-icons/lu"
 import { Input } from "../input"
 
 interface TableRow extends Readonly<Record<string, unknown>> {
   key?: string
+}
+
+interface TableSort {
+  column: string
+  direction: "asc" | "desc"
 }
 
 interface TableColumnProps<Row extends TableRow> extends React.ThHTMLAttributes<HTMLTableCellElement> {
@@ -17,17 +23,23 @@ interface TableColumnProps<Row extends TableRow> extends React.ThHTMLAttributes<
   sort: boolean
   headAlign?: React.ThHTMLAttributes<HTMLTableCellElement>["align"]
   dataAlign?: React.ThHTMLAttributes<HTMLTableCellElement>["align"]
+  enableSort?: boolean
   render(value: any, row: Row, index: number): React.ReactNode
 }
 
-interface TableProps<Row extends TableRow> extends React.HTMLAttributes<HTMLTableElement>, VariantProps<typeof table> {
+interface TableProps<Row extends TableRow>
+  extends React.HTMLAttributes<HTMLTableElement>,
+    TableVariantProps,
+    TableSlotsClasses {
   columns?: readonly Partial<TableColumnProps<Row>>[]
   data?: readonly Row[]
-  className?: string
   loading?: boolean
+  className?: string
   pagination?: PaginationProps
   defaultSelectedKeys?: any[]
   selectedKeys?: any[]
+  sort?: TableSort
+  onSort?(sort?: TableSort): void
   extractKey?(row: Row): any
   onSelectRow?(row: Row[]): void
 }
@@ -50,21 +62,36 @@ const Table = _constructor(function (
     columns,
     data = [],
     selectionMode,
-    className,
     loading,
     pagination,
     selectedKeys,
     defaultSelectedKeys = [],
+    sort,
+    onSort,
     extractKey = (r) => r.key,
     onSelectRow,
+    className,
+    classNames,
     ...props
   },
   ref,
 ) {
   const [selected, setSelected] = useState<any[]>(defaultSelectedKeys)
+  const [sortDescriptor, setSortDescriptor] = useState<TableSort>()
 
   function _isSelected(row: any) {
     return selected.includes(extractKey(row))
+  }
+
+  function _onSort(column: string) {
+    setSortDescriptor(function (prev) {
+      const value: TableSort = {
+        column,
+        direction: !prev ? "asc" : prev.column !== column ? "asc" : prev.direction === "asc" ? "desc" : "asc",
+      }
+      onSort && onSort(value)
+      return value
+    })
   }
 
   function _selectRow(row: any) {
@@ -96,6 +123,10 @@ const Table = _constructor(function (
     setSelected(selectedKeys || [])
   }, [selectedKeys])
 
+  useEffect(() => {
+    setSortDescriptor(sort)
+  }, [sort])
+
   if (selectionMode === "multiple" && columns) {
     columns = [
       {
@@ -118,7 +149,7 @@ const Table = _constructor(function (
     if (loading) {
       return (
         <tr>
-          <td colSpan={columns?.length || 1} className={classes.td()}>
+          <td colSpan={columns?.length || 1} className={classes.td({ class: classNames?.td })}>
             <Loader />
           </td>
         </tr>
@@ -127,7 +158,7 @@ const Table = _constructor(function (
     if (!data?.length) {
       return (
         <tr>
-          <td colSpan={columns?.length || 1} className={classes.td()}>
+          <td colSpan={columns?.length || 1} className={classes.td({ class: classNames?.td })}>
             <Empty />
           </td>
         </tr>
@@ -137,14 +168,19 @@ const Table = _constructor(function (
     return data.map((row, index) => (
       <tr
         key={row.key || index}
-        className={classes.tr({ className: _isSelected(row) ? "bg-default" : "" })}
+        className={classes.tr({ className: _isSelected(row) ? "bg-default" : "", class: classNames?.tr })}
         style={{
           animationDelay: index / 20 + "s",
         }}
         onClick={() => _selectRow(row)}
       >
         {columns?.map(({ key, className, dataIndex, render, align, dataAlign, ...column }, columnIndex) => (
-          <td key={key || columnIndex} className={classes.td()} align={align || dataAlign} {...column}>
+          <td
+            key={key || columnIndex}
+            className={classes.td({ class: classNames?.td })}
+            align={align || dataAlign}
+            {...column}
+          >
             {render ? render(row[dataIndex!], row, index) : (row[dataIndex || ""] as React.ReactNode)}
           </td>
         ))}
@@ -153,20 +189,49 @@ const Table = _constructor(function (
   }
 
   return (
-    <div className={classes.base()}>
-      <table ref={ref} className={classes.table()} {...props}>
+    <div className={classes.base({ class: classNames?.base })}>
+      <table ref={ref} className={classes.table({ class: classNames?.table })} {...props}>
         {columns?.filter((c) => !!c.label).length ? (
           <thead>
-            <tr className={classes.trHead()}>
+            <tr className={classes.trHead({ class: classNames?.trHead })}>
               {columns.map(
-                ({ key, label, className, dataIndex, render: _, align, headAlign = "left", ...column }, index) => (
+                (
+                  {
+                    key,
+                    label,
+                    className,
+                    dataIndex,
+                    render: _,
+                    align,
+                    enableSort = true,
+                    headAlign = "left",
+                    ...column
+                  },
+                  index,
+                ) => (
                   <th
                     key={key || (dataIndex as string) || index}
-                    className={classes.th()}
+                    className={classes.th({ class: classNames?.th })}
                     align={align ?? headAlign}
                     {...column}
                   >
-                    {label}{" "}
+                    {sort && key && enableSort ? (
+                      <div
+                        className="inline-flex cursor-pointer select-none items-center gap-2"
+                        onClick={() => _onSort(key || "")}
+                      >
+                        {label}
+                        <LuArrowDown
+                          className={cn(
+                            "inline-block transition-transform",
+                            sortDescriptor?.column === key ? "opacity-100" : "opacity-0",
+                            sortDescriptor?.direction === "desc" ? "-scale-y-100" : "",
+                          )}
+                        />
+                      </div>
+                    ) : (
+                      label
+                    )}
                   </th>
                 ),
               )}
@@ -177,8 +242,8 @@ const Table = _constructor(function (
         <tbody className="divide-line relative divide-y text-left">
           {_renderContainer()}
           {pagination && (
-            <tr className={classes.tr()}>
-              <td colSpan={columns?.length || 1} className={classes.td()}>
+            <tr className={classes.tr({ class: classNames?.tr })}>
+              <td colSpan={columns?.length || 1} className={classes.td({ class: classNames?.td })}>
                 <div className="flex w-full justify-end">
                   <div className="sticky left-0 right-0 w-fit px-4 py-2">
                     <Pagination {...pagination} />
