@@ -64,12 +64,12 @@ const config: Config = {
           foreground: colors.white,
           primary: colorize(colors.emerald),
           secondary: colors.gray[400],
-          muted: colors.gray[600],
+          muted: colors.gray[700],
           accent: colorize(colors.cyan),
           default: colors.gray[800],
           component: colors.gray[900],
           invert: colors.black,
-          line: colors.gray[800],
+          line: colors.gray[700],
           info: colorize(colors.sky),
           success: colorize(colors.green),
           warning: colorize(colors.yellow),
@@ -79,6 +79,7 @@ const config: Config = {
     }),
     resetCSS({
       html: "bg-background",
+      "*": "scrollbar scrollbar-thumb-default scrollbar-thumb-rounded scrollbar-track-rounded scrollbar-track-transparent",
     }),
   ],
 }

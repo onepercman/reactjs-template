@@ -1,17 +1,7 @@
+import { accordion } from "@/libs/ui/theme"
 import * as Ark from "@ark-ui/react"
 import React from "react"
 import { LuChevronDown } from "react-icons/lu"
-import { tv } from "tailwind-variants"
-
-const accordion = tv({
-  base: "flex flex-col gap-2 border border-line p-2 rounded duration-500",
-  slots: {
-    item: "flex flex-col duration-500",
-    trigger: "bg-component w-full p-2 rounded inline-flex justify-between gap-2 items-center",
-    indicator: "data-[state=open]:rotate-180 transition-all",
-    content: "data-[state=open]:animate-heightIn data-[state=closed]:animate-heightOut overflow-hidden",
-  },
-})
 
 interface AccordionItemProps extends Omit<Ark.Accordion.ItemProps, "content"> {
   trigger?: Ark.Accordion.ItemTriggerProps

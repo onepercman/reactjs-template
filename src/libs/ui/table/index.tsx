@@ -1,10 +1,10 @@
-import { cn } from "@/libs/tailwind-variants"
 import { Empty } from "@/libs/ui/empty"
 import { Loader } from "@/libs/ui/loader"
 import { Pagination, PaginationProps } from "@/libs/ui/pagination"
-import { TableCell } from "@/libs/ui/table/cell"
-import { TableCellHead } from "@/libs/ui/table/cell-head"
-import React from "react"
+import { table } from "@/libs/ui/theme"
+import React, { useEffect, useState } from "react"
+import { VariantProps } from "tailwind-variants"
+import { Input } from "../input"
 
 interface TableRow extends Readonly<Record<string, unknown>> {
   key?: string
@@ -15,22 +15,24 @@ interface TableColumnProps<Row extends TableRow> extends React.ThHTMLAttributes<
   key: string
   dataIndex: keyof Row
   sort: boolean
+  headAlign?: React.ThHTMLAttributes<HTMLTableCellElement>["align"]
+  dataAlign?: React.ThHTMLAttributes<HTMLTableCellElement>["align"]
   render(value: any, row: Row, index: number): React.ReactNode
 }
 
-interface TableProps<Row extends TableRow> extends React.HTMLAttributes<HTMLTableElement> {
+interface TableProps<Row extends TableRow> extends React.HTMLAttributes<HTMLTableElement>, VariantProps<typeof table> {
   columns?: readonly Partial<TableColumnProps<Row>>[]
   data?: readonly Row[]
   className?: string
-  onSelectRow?(row?: Row): void
   loading?: boolean
-  tableClassName?: string
   pagination?: PaginationProps
+  defaultSelectedKeys?: any[]
+  selectedKeys?: any[]
+  extractKey?(row: Row): any
+  onSelectRow?(row: Row[]): void
 }
 interface Table extends ForwardedRefComponent {
   <Row extends TableRow>(props: ForwardRefWithAsProps<"div", TableProps<Row>>): React.ReactElement | null
-  Cell: typeof TableCell
-  CellHead: typeof TableCellHead
 }
 
 function _constructor<Row extends TableRow>(
@@ -43,25 +45,91 @@ function _constructor<Row extends TableRow>(
 }
 
 const Table = _constructor(function (
-  { children, columns, data, onSelectRow, className, loading, tableClassName, pagination, ...props },
+  {
+    children,
+    columns,
+    data = [],
+    selectionMode,
+    className,
+    loading,
+    pagination,
+    selectedKeys,
+    defaultSelectedKeys = [],
+    extractKey = (r) => r.key,
+    onSelectRow,
+    ...props
+  },
   ref,
 ) {
+  const [selected, setSelected] = useState<any[]>(defaultSelectedKeys)
+
+  function _isSelected(row: any) {
+    return selected.includes(extractKey(row))
+  }
+
+  function _selectRow(row: any) {
+    if (!selectionMode) return
+    setSelected(function (prev) {
+      const key = extractKey(row)
+      let value
+      if (selectionMode === "multiple") {
+        value = prev.includes(key) ? prev.filter((e) => e !== key) : prev.concat(key)
+      } else {
+        value = prev.includes(key) ? [] : [key]
+      }
+      onSelectRow && onSelectRow(value)
+      return value
+    })
+  }
+
+  function toggleAll() {
+    setSelected(function (prev) {
+      const allKeys = data.map((el) => extractKey(el as any))
+      const isAll = prev.length && prev.every((el) => allKeys.includes(el))
+      const value = isAll ? [] : allKeys
+      onSelectRow && onSelectRow(value)
+      return value
+    })
+  }
+
+  useEffect(() => {
+    setSelected(selectedKeys || [])
+  }, [selectedKeys])
+
+  if (selectionMode === "multiple" && columns) {
+    columns = [
+      {
+        label: (
+          <div onClick={toggleAll}>
+            <Input.Checkbox size="sm" checked={!!selected.length} indeterminate={data.length !== selected.length} />
+          </div>
+        ),
+        render(_, row) {
+          return <Input.Checkbox size="sm" checked={_isSelected(row)} />
+        },
+      },
+      ...columns,
+    ]
+  }
+
+  const classes = table({ selectionMode, className })
+
   function _renderContainer() {
     if (loading) {
       return (
         <tr>
-          <TableCell colSpan={columns?.length || 1}>
+          <td colSpan={columns?.length || 1} className={classes.td()}>
             <Loader />
-          </TableCell>
+          </td>
         </tr>
       )
     }
     if (!data?.length) {
       return (
         <tr>
-          <TableCell colSpan={columns?.length || 1}>
+          <td colSpan={columns?.length || 1} className={classes.td()}>
             <Empty />
-          </TableCell>
+          </td>
         </tr>
       )
     }
@@ -69,49 +137,39 @@ const Table = _constructor(function (
     return data.map((row, index) => (
       <tr
         key={row.key || index}
-        className="animate-push ease-expo divide-line group divide-x opacity-0 transition-colors"
+        className={classes.tr({ className: _isSelected(row) ? "bg-default" : "" })}
         style={{
           animationDelay: index / 20 + "s",
         }}
-        onClick={() => onSelectRow && onSelectRow(row)}
+        onClick={() => _selectRow(row)}
       >
-        {columns?.map(({ key, className, dataIndex, render, ...column }, columnIndex) => (
-          <TableCell
-            key={key || columnIndex}
-            className={cn(
-              "px-4 py-2 transition-all",
-              onSelectRow && "group-hover:bg-primary/30 cursor-pointer",
-              className,
-            )}
-            {...column}
-          >
+        {columns?.map(({ key, className, dataIndex, render, align, dataAlign, ...column }, columnIndex) => (
+          <td key={key || columnIndex} className={classes.td()} align={align || dataAlign} {...column}>
             {render ? render(row[dataIndex!], row, index) : (row[dataIndex || ""] as React.ReactNode)}
-          </TableCell>
+          </td>
         ))}
       </tr>
     ))
   }
 
   return (
-    <div
-      className={cn(
-        className,
-        "scrollbar scrollbar-track-inherit scrollbar-thumb-inherit border-line w-full overflow-auto rounded border",
-      )}
-    >
-      <table ref={ref} className={cn("w-full border-collapse", tableClassName)} {...props}>
+    <div className={classes.base()}>
+      <table ref={ref} className={classes.table()} {...props}>
         {columns?.filter((c) => !!c.label).length ? (
-          <thead className="text-left">
-            <tr className="divide-line divide-x">
-              {columns.map(({ key, label, className, dataIndex, render: _, ...column }, index) => (
-                <TableCellHead
-                  key={key || (dataIndex as string) || index}
-                  className={cn("text-secondary border-line border-b px-4 py-2 !text-sm", className)}
-                  {...column}
-                >
-                  {label}{" "}
-                </TableCellHead>
-              ))}
+          <thead>
+            <tr className={classes.trHead()}>
+              {columns.map(
+                ({ key, label, className, dataIndex, render: _, align, headAlign = "left", ...column }, index) => (
+                  <th
+                    key={key || (dataIndex as string) || index}
+                    className={classes.th()}
+                    align={align ?? headAlign}
+                    {...column}
+                  >
+                    {label}{" "}
+                  </th>
+                ),
+              )}
             </tr>
           </thead>
         ) : null}
@@ -119,14 +177,14 @@ const Table = _constructor(function (
         <tbody className="divide-line relative divide-y text-left">
           {_renderContainer()}
           {pagination && (
-            <tr>
-              <TableCell colSpan={columns?.length || 1}>
+            <tr className={classes.tr()}>
+              <td colSpan={columns?.length || 1} className={classes.td()}>
                 <div className="flex w-full justify-end">
                   <div className="sticky left-0 right-0 w-fit px-4 py-2">
                     <Pagination {...pagination} />
                   </div>
                 </div>
-              </TableCell>
+              </td>
             </tr>
           )}
         </tbody>
@@ -137,8 +195,6 @@ const Table = _constructor(function (
 })
 
 Table.displayName = "Table"
-Table.Cell = TableCell
-Table.CellHead = TableCellHead
 
 export { Table }
 export type { TableColumnProps, TableProps }
