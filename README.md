@@ -13,7 +13,7 @@
 - [x] Dialog
 - [ ] Editable
 - [ ] File Upload
-- [ ] Hover Card
+- [x] Hover Card
 - [x] Input
 - [x] Menu
 - [ ] Number Input

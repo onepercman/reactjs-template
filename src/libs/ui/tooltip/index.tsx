@@ -2,7 +2,7 @@ import {
   TooltipSlotsClasses,
   TooltipVariantProps,
   tooltip,
-} from "@/libs/ui/theme/tooltip"
+} from "@/libs/ui/theme"
 import * as Ark from "@ark-ui/react"
 import React from "react"
 
