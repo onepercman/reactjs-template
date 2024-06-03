@@ -12,8 +12,13 @@ export interface UseCountdownStates<T extends number | string = number> {
 
 const DELTA = 1000 // 1s
 
-export function useCountdown(targetDate: number | string, formatValue?: boolean) {
-  const [remaining, setRemaining] = useState<number>(new Date(targetDate).valueOf() - Date.now())
+export function useCountdown(
+  targetDate: number | string,
+  formatValue?: boolean,
+) {
+  const [remaining, setRemaining] = useState<number>(
+    new Date(targetDate).valueOf() - Date.now(),
+  )
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -31,8 +36,10 @@ export function useCountdown(targetDate: number | string, formatValue?: boolean)
 
   return useMemo(() => {
     const days = Math.floor(remaining / (1000 * 60 * 60 * 24)) || 0
-    const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) || 0
-    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60)) || 0
+    const hours =
+      Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) || 0
+    const minutes =
+      Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60)) || 0
     const seconds = Math.floor((remaining % (1000 * 60)) / 1000) || 0
     return {
       days: formatValue ? pad(days) : days,

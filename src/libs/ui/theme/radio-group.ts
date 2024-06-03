@@ -19,7 +19,8 @@ export const radioGroup = tv({
     invalid: {
       true: {
         label: "text-error",
-        control: "data-[state=checked]:border-error data-[state=checked]:after:bg-error",
+        control:
+          "data-[state=checked]:border-error data-[state=checked]:after:bg-error",
         itemText: "data-[state=checked]:text-error",
       },
     },

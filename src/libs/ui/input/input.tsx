@@ -6,7 +6,10 @@ import { HiEye, HiEyeOff } from "react-icons/hi"
 import { LuX } from "react-icons/lu"
 
 export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "prefix" | "suffix" | "size">,
+  extends Omit<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      "prefix" | "suffix" | "size"
+    >,
     InputVariantProps,
     InputSlotsClasses {
   label?: React.ReactNode
@@ -112,14 +115,16 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       const element = prefix as React.ReactElement
       if (!element) return null
 
-      if (typeof element === "object" && "type" in element) return React.cloneElement(element)
+      if (typeof element === "object" && "type" in element)
+        return React.cloneElement(element)
       return <span>{element}</span>
     }
 
     function _renderSuffix() {
       const element = suffix as React.ReactElement
       if (!element) return null
-      if (typeof element === "object" && "type" in element) return React.cloneElement(element)
+      if (typeof element === "object" && "type" in element)
+        return React.cloneElement(element)
       return <span>{element}</span>
     }
 
@@ -128,9 +133,18 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       if (!element) return null
       if (typeof element === "object" && "type" in element)
         return React.cloneElement(element, {
-          className: classes.addonBefore({ className: element.props.className, class: classNames?.addonBefore }),
+          className: classes.addonBefore({
+            className: element.props.className,
+            class: classNames?.addonBefore,
+          }),
         })
-      return <span className={classes.addonBefore({ class: classNames?.addonBefore })}>{element}</span>
+      return (
+        <span
+          className={classes.addonBefore({ class: classNames?.addonBefore })}
+        >
+          {element}
+        </span>
+      )
     }
 
     function _renderAddonAfter() {
@@ -138,9 +152,16 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       if (!element) return null
       if (typeof element === "object" && "type" in element)
         return React.cloneElement(element, {
-          className: classes.addonAfter({ className: element.props.className, class: classNames?.addonAfter }),
+          className: classes.addonAfter({
+            className: element.props.className,
+            class: classNames?.addonAfter,
+          }),
         })
-      return <span className={classes.addonAfter({ class: classNames?.addonAfter })}>{element}</span>
+      return (
+        <span className={classes.addonAfter({ class: classNames?.addonAfter })}>
+          {element}
+        </span>
+      )
     }
 
     const classes = input({ size, variant, invalid })
@@ -176,7 +197,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {_renderSuffix()}
           {_renderAddonAfter()}
         </div>
-        <Ark.Presence className="text-error animate-in fade-in text-xs" present={Boolean(invalid && invalidMessage)}>
+        <Ark.Presence
+          className="text-error animate-in fade-in text-xs"
+          present={Boolean(invalid && invalidMessage)}
+        >
           {invalidMessage}
         </Ark.Presence>
       </label>

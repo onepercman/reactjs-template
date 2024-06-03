@@ -13,29 +13,46 @@ interface AccordionProps extends Ark.AccordionRootProps {
 }
 
 export interface Accordion extends ForwardedRefComponent {
-  (props: AccordionProps, ref: React.ForwardedRef<HTMLDivElement>): React.ReactElement | null
+  (
+    props: AccordionProps,
+    ref: React.ForwardedRef<HTMLDivElement>,
+  ): React.ReactElement | null
 }
 
 function _constructor(
-  render: (props: AccordionProps, ref: React.ForwardedRef<HTMLDivElement>) => React.ReactElement | null,
+  render: (
+    props: AccordionProps,
+    ref: React.ForwardedRef<HTMLDivElement>,
+  ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLDivElement, AccordionProps>(render) as unknown as Accordion
+  return React.forwardRef<HTMLDivElement, AccordionProps>(
+    render,
+  ) as unknown as Accordion
 }
 
-export const Accordion = _constructor(function ({ items, className, ...props }, ref) {
+export const Accordion = _constructor(function (
+  { items, className, ...props },
+  ref,
+) {
   const classes = accordion({ className })
 
   return (
     <Ark.Accordion.Root ref={ref} className={classes.base()} {...props}>
       {items?.map(({ trigger, content, ...item }) => (
         <Ark.Accordion.Item {...item}>
-          <Ark.Accordion.ItemTrigger className={classes.trigger({ className: trigger?.className })} {...trigger}>
+          <Ark.Accordion.ItemTrigger
+            className={classes.trigger({ className: trigger?.className })}
+            {...trigger}
+          >
             {trigger?.children}
             <Ark.Accordion.ItemIndicator asChild>
               <LuChevronDown className={classes.indicator()} />
             </Ark.Accordion.ItemIndicator>
           </Ark.Accordion.ItemTrigger>
-          <Ark.Accordion.ItemContent className={classes.content({ className: content?.className })} {...content} />
+          <Ark.Accordion.ItemContent
+            className={classes.content({ className: content?.className })}
+            {...content}
+          />
         </Ark.Accordion.Item>
       ))}
     </Ark.Accordion.Root>

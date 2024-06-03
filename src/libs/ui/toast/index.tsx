@@ -6,7 +6,16 @@ import { LuCheck, LuInfo, LuX, LuXCircle } from "react-icons/lu"
 import { tv } from "tailwind-variants"
 
 export const toastClass = tv({
-  base: "border relative border-line bg-component p-4 rounded min-w-64 shadow-lg transition-all translate-x-[var(--x)] -translate-y-[var(--delta)] data-[paused]:translate-y-[var(--y)] scale-[var(--scale)] data-[paused]:scale-100 opacity-[var(--opacity)] data-[paused]:opacity-100",
+  base: [
+    "border relative border-line bg-component p-4 rounded min-w-64 shadow-lg transition-all",
+    "translate-x-[var(--x)]",
+    "-translate-y-[var(--delta)]",
+    "data-[paused]:translate-y-[var(--y)]",
+    "scale-[var(--scale)]",
+    "data-[paused]:scale-100",
+    "opacity-[var(--opacity)]",
+    "data-[paused]:opacity-100",
+  ],
   slots: {
     container: "gap-8",
     title: "text-sm mt-0 inline-flex items-center gap-2",
@@ -57,9 +66,16 @@ export const ToasterContainer: FC = () => {
               {getIcon(type)}
               {title}
             </Ark.Toast.Title>
-            <Ark.Toast.Description className={classes.description()}>{description}</Ark.Toast.Description>
+            <Ark.Toast.Description className={classes.description()}>
+              {description}
+            </Ark.Toast.Description>
             <Ark.Toast.CloseTrigger asChild>
-              <Button size="xs" shape="circle" className={classes.dismiss()} leftIcon={<LuX />} />
+              <Button
+                size="xs"
+                shape="circle"
+                className={classes.dismiss()}
+                leftIcon={<LuX />}
+              />
             </Ark.Toast.CloseTrigger>
           </Ark.Toast.Root>
         )

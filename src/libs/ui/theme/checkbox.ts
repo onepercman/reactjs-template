@@ -4,8 +4,10 @@ export const checkbox = tv({
   slots: {
     base: "inline-flex items-center gap-2 cursor-pointer",
     label: "",
-    control:
-      "rounded flex border-2 border-line hover:border-primary transition-colors text-primary data-[state=checked]:border-primary",
+    control: [
+      "rounded flex border-2 border-line hover:border-primary transition-colors text-primary",
+      "data-[state=checked]:border-primary",
+    ],
   },
   variants: {
     size: {
@@ -15,7 +17,10 @@ export const checkbox = tv({
       lg: { label: "text-lg", control: "h-8 w-8 text-lg" },
     },
     indeterminate: {
-      true: { control: "data-[state=checked]:bg-primary data-[state=checked]:text-white" },
+      true: {
+        control:
+          "data-[state=checked]:bg-primary data-[state=checked]:text-white",
+      },
     },
     placement: {
       head: "flex-row",

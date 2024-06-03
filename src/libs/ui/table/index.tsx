@@ -16,7 +16,8 @@ interface TableSort {
   direction: "asc" | "desc"
 }
 
-interface TableColumnProps<Row extends TableRow> extends React.ThHTMLAttributes<HTMLTableCellElement> {
+interface TableColumnProps<Row extends TableRow>
+  extends React.ThHTMLAttributes<HTMLTableCellElement> {
   label: React.ReactNode
   key: string
   dataIndex: keyof Row
@@ -44,7 +45,9 @@ interface TableProps<Row extends TableRow>
   onSelectRow?(row: Row[]): void
 }
 interface Table extends ForwardedRefComponent {
-  <Row extends TableRow>(props: ForwardRefWithAsProps<"div", TableProps<Row>>): React.ReactElement | null
+  <Row extends TableRow>(
+    props: ForwardRefWithAsProps<"div", TableProps<Row>>,
+  ): React.ReactElement | null
 }
 
 function _constructor<Row extends TableRow>(
@@ -53,7 +56,9 @@ function _constructor<Row extends TableRow>(
     ref: React.ForwardedRef<HTMLTableElement>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLTableElement, TableProps<Row>>(render) as unknown as Table
+  return React.forwardRef<HTMLTableElement, TableProps<Row>>(
+    render,
+  ) as unknown as Table
 }
 
 const Table = _constructor(function (
@@ -87,7 +92,13 @@ const Table = _constructor(function (
     setSortDescriptor(function (prev) {
       const value: TableSort = {
         column,
-        direction: !prev ? "asc" : prev.column !== column ? "asc" : prev.direction === "asc" ? "desc" : "asc",
+        direction: !prev
+          ? "asc"
+          : prev.column !== column
+            ? "asc"
+            : prev.direction === "asc"
+              ? "desc"
+              : "asc",
       }
       onSort && onSort(value)
       return value
@@ -100,7 +111,9 @@ const Table = _constructor(function (
       const key = extractKey(row)
       let value
       if (selectionMode === "multiple") {
-        value = prev.includes(key) ? prev.filter((e) => e !== key) : prev.concat(key)
+        value = prev.includes(key)
+          ? prev.filter((e) => e !== key)
+          : prev.concat(key)
       } else {
         value = prev.includes(key) ? [] : [key]
       }
@@ -132,7 +145,11 @@ const Table = _constructor(function (
       {
         label: (
           <div onClick={toggleAll}>
-            <Input.Checkbox size="sm" checked={!!selected.length} indeterminate={data.length !== selected.length} />
+            <Input.Checkbox
+              size="sm"
+              checked={!!selected.length}
+              indeterminate={data.length !== selected.length}
+            />
           </div>
         ),
         render(_, row) {
@@ -149,7 +166,10 @@ const Table = _constructor(function (
     if (loading) {
       return (
         <tr>
-          <td colSpan={columns?.length || 1} className={classes.td({ class: classNames?.td })}>
+          <td
+            colSpan={columns?.length || 1}
+            className={classes.td({ class: classNames?.td })}
+          >
             <Loader />
           </td>
         </tr>
@@ -158,7 +178,10 @@ const Table = _constructor(function (
     if (!data?.length) {
       return (
         <tr>
-          <td colSpan={columns?.length || 1} className={classes.td({ class: classNames?.td })}>
+          <td
+            colSpan={columns?.length || 1}
+            className={classes.td({ class: classNames?.td })}
+          >
             <Empty />
           </td>
         </tr>
@@ -168,29 +191,43 @@ const Table = _constructor(function (
     return data.map((row, index) => (
       <tr
         key={row.key || index}
-        className={classes.tr({ className: _isSelected(row) ? "bg-default" : "", class: classNames?.tr })}
+        className={classes.tr({
+          className: _isSelected(row) ? "bg-default" : "",
+          class: classNames?.tr,
+        })}
         style={{
           animationDelay: index / 20 + "s",
         }}
         onClick={() => _selectRow(row)}
       >
-        {columns?.map(({ key, className, dataIndex, render, align, dataAlign, ...column }, columnIndex) => (
-          <td
-            key={key || columnIndex}
-            className={classes.td({ class: classNames?.td })}
-            align={align || dataAlign}
-            {...column}
-          >
-            {render ? render(row[dataIndex!], row, index) : (row[dataIndex || ""] as React.ReactNode)}
-          </td>
-        ))}
+        {columns?.map(
+          (
+            { key, className, dataIndex, render, align, dataAlign, ...column },
+            columnIndex,
+          ) => (
+            <td
+              key={key || columnIndex}
+              className={classes.td({ class: classNames?.td })}
+              align={align || dataAlign}
+              {...column}
+            >
+              {render
+                ? render(row[dataIndex!], row, index)
+                : (row[dataIndex || ""] as React.ReactNode)}
+            </td>
+          ),
+        )}
       </tr>
     ))
   }
 
   return (
     <div className={classes.base({ class: classNames?.base })}>
-      <table ref={ref} className={classes.table({ class: classNames?.table })} {...props}>
+      <table
+        ref={ref}
+        className={classes.table({ class: classNames?.table })}
+        {...props}
+      >
         {columns?.filter((c) => !!c.label).length ? (
           <thead>
             <tr className={classes.trHead({ class: classNames?.trHead })}>
@@ -224,8 +261,12 @@ const Table = _constructor(function (
                         <LuArrowDown
                           className={cn(
                             "inline-block transition-transform",
-                            sortDescriptor?.column === key ? "opacity-100" : "opacity-0",
-                            sortDescriptor?.direction === "desc" ? "-scale-y-100" : "",
+                            sortDescriptor?.column === key
+                              ? "opacity-100"
+                              : "opacity-0",
+                            sortDescriptor?.direction === "desc"
+                              ? "-scale-y-100"
+                              : "",
                           )}
                         />
                       </div>
@@ -243,7 +284,10 @@ const Table = _constructor(function (
           {_renderContainer()}
           {pagination && (
             <tr className={classes.tr({ class: classNames?.tr })}>
-              <td colSpan={columns?.length || 1} className={classes.td({ class: classNames?.td })}>
+              <td
+                colSpan={columns?.length || 1}
+                className={classes.td({ class: classNames?.td })}
+              >
                 <div className="flex w-full justify-end">
                   <div className="sticky left-0 right-0 w-fit px-4 py-2">
                     <Pagination {...pagination} />

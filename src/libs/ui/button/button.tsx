@@ -73,11 +73,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function (
       data-loading={_loading}
       {...props}
     >
-      {_loading && <Spinner className={loadingVariant === "default" ? "relative" : "absolute"} />}
+      {_loading && (
+        <Spinner
+          className={loadingVariant === "default" ? "relative" : "absolute"}
+        />
+      )}
 
       {leftIcon ? (
         _loading ? (
-          <span className={loadingVariant === "default" ? "hidden" : "opacity-0"}>{leftIcon}</span>
+          <span
+            className={loadingVariant === "default" ? "hidden" : "opacity-0"}
+          >
+            {leftIcon}
+          </span>
         ) : (
           leftIcon
         )
@@ -85,7 +93,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function (
 
       {children || loadingText ? (
         _loading ? (
-          <span className={loadingVariant === "transparent" ? "opacity-0" : ""}>{loadingText || children}</span>
+          <span className={loadingVariant === "transparent" ? "opacity-0" : ""}>
+            {loadingText || children}
+          </span>
         ) : (
           children
         )
@@ -93,7 +103,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function (
 
       {rightIcon ? (
         _loading ? (
-          <span className={loadingVariant === "transparent" ? "opacity-0" : ""}>{rightIcon}</span>
+          <span className={loadingVariant === "transparent" ? "opacity-0" : ""}>
+            {rightIcon}
+          </span>
         ) : (
           rightIcon
         )

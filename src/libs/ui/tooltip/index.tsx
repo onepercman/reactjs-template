@@ -1,8 +1,15 @@
-import { TooltipSlotsClasses, TooltipVariantProps, tooltip } from "@/libs/ui/theme/tooltip"
+import {
+  TooltipSlotsClasses,
+  TooltipVariantProps,
+  tooltip,
+} from "@/libs/ui/theme/tooltip"
 import * as Ark from "@ark-ui/react"
 import React from "react"
 
-interface TooltipProps extends Ark.TooltipRootProps, TooltipVariantProps, TooltipSlotsClasses {
+interface TooltipProps
+  extends Ark.TooltipRootProps,
+    TooltipVariantProps,
+    TooltipSlotsClasses {
   className?: string
   content?: React.ReactNode
 }
@@ -17,7 +24,10 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(function (
     <Ark.Tooltip.Root openDelay={200} closeDelay={200} {...props}>
       <Ark.Tooltip.Trigger asChild>{children}</Ark.Tooltip.Trigger>
       <Ark.Tooltip.Positioner>
-        <Ark.Tooltip.Content ref={ref} className={classes.base({ class: classNames?.base })}>
+        <Ark.Tooltip.Content
+          ref={ref}
+          className={classes.base({ class: classNames?.base })}
+        >
           <Ark.Tooltip.Arrow
             style={
               {
@@ -26,7 +36,9 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(function (
               } as React.CSSProperties
             }
           >
-            <Ark.Tooltip.ArrowTip className={classes.arrow({ class: classNames?.arrow })} />
+            <Ark.Tooltip.ArrowTip
+              className={classes.arrow({ class: classNames?.arrow })}
+            />
           </Ark.Tooltip.Arrow>
           {content}
         </Ark.Tooltip.Content>

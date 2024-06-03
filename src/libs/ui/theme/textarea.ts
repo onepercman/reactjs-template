@@ -4,10 +4,14 @@ export const textarea = tv({
   base: "flex flex-col gap-1 group",
   slots: {
     label: "text-xs space-y-2 text-secondary",
-    group:
-      "border-2 rounded px-2 transition-all text-ellipsis inline-flex items-center overflow-hidden cursor-text gap-2 py-2 focus-within:border-primary",
-    textarea:
-      "grow bg-transparent border-transparent focus:outline-none focus:ring-transparent p-0 self-stretch text-ellipsis h-fit my-auto",
+    group: [
+      "border-2 rounded px-2 transition-all text-ellipsis inline-flex items-center overflow-hidden cursor-text gap-2 py-2",
+      "focus-within:border-primary",
+    ],
+    textarea: [
+      "grow bg-transparent border-transparent p-0 self-stretch text-ellipsis h-fit my-auto",
+      "focus:outline-none focus:ring-transparent",
+    ],
     addonBefore: "rounded-r-none",
     addonAfter: "rounded-l-none",
   },
@@ -24,7 +28,8 @@ export const textarea = tv({
     },
     invalid: {
       true: {
-        group: "border-2 border-error text-error bg-error/10 focus-within:border-error-600",
+        group:
+          "border-2 border-error text-error bg-error/10 focus-within:border-error-600",
         label: "text-error",
       },
     },

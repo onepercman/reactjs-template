@@ -12,7 +12,10 @@ export interface SelectOptionProps<Value> {
 }
 
 export interface SelectProps<Value>
-  extends Omit<Ark.SelectRootProps<SelectOptionProps<Value>>, "items" | "color">,
+  extends Omit<
+      Ark.SelectRootProps<SelectOptionProps<Value>>,
+      "items" | "color"
+    >,
     ButtonVariantProps,
     SelectSlotsClasses {
   label?: React.ReactNode
@@ -29,12 +32,19 @@ export interface Select extends ForwardedRefComponent {
 }
 
 function _constructor<Value = any>(
-  render: (props: SelectProps<Value>, ref: React.ForwardedRef<HTMLDivElement>) => React.ReactElement | null,
+  render: (
+    props: SelectProps<Value>,
+    ref: React.ForwardedRef<HTMLDivElement>,
+  ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLDivElement, SelectProps<Value>>(render) as unknown as Select
+  return React.forwardRef<HTMLDivElement, SelectProps<Value>>(
+    render,
+  ) as unknown as Select
 }
 
-function flattenOptions<T>(options: SelectOptionProps<T>[]): SelectOptionProps<T>[] {
+function flattenOptions<T>(
+  options: SelectOptionProps<T>[],
+): SelectOptionProps<T>[] {
   const result: SelectOptionProps<T>[] = []
   function flatten({ children, ...option }: SelectOptionProps<T>): void {
     result.push({ ...option })
@@ -69,22 +79,39 @@ export const Select = _constructor(function (
   function _renderOption(option: SelectOptionProps<any>, offset = 0) {
     if (option.children?.length)
       return (
-        <Ark.Select.ItemGroup className={classes.group({ class: classNames?.group })}>
-          <Ark.Select.ItemGroupLabel className={classes.groupLabel({ class: classNames?.groupLabel })}>
+        <Ark.Select.ItemGroup
+          className={classes.group({ class: classNames?.group })}
+        >
+          <Ark.Select.ItemGroupLabel
+            className={classes.groupLabel({ class: classNames?.groupLabel })}
+          >
             <span style={{ paddingLeft: offset * indent }}>{option.label}</span>
           </Ark.Select.ItemGroupLabel>
-          {option.children.map((children) => _renderOption(children, children.children?.length ? offset + 1 : offset))}
+          {option.children.map((children) =>
+            _renderOption(
+              children,
+              children.children?.length ? offset + 1 : offset,
+            ),
+          )}
         </Ark.Select.ItemGroup>
       )
     return (
-      <Ark.Select.Item key={option.value} item={option} className={classes.item({ class: classNames?.item })}>
+      <Ark.Select.Item
+        key={option.value}
+        item={option}
+        className={classes.item({ class: classNames?.item })}
+      >
         <Ark.Select.ItemText
           className={classes.itemText({ class: classNames?.itemText })}
           style={{ paddingLeft: offset * indent }}
         >
           {option.label}
         </Ark.Select.ItemText>
-        <Ark.Select.ItemIndicator className={classes.itemIndicator({ class: classNames?.itemIndicator })}>
+        <Ark.Select.ItemIndicator
+          className={classes.itemIndicator({
+            class: classNames?.itemIndicator,
+          })}
+        >
           <LuCheck />
         </Ark.Select.ItemIndicator>
       </Ark.Select.Item>
@@ -105,7 +132,9 @@ export const Select = _constructor(function (
       className={classes.base({ className, class: classNames?.base })}
       {...props}
     >
-      <Ark.Select.Label className={classes.label({ class: classNames?.label })}>{label}</Ark.Select.Label>
+      <Ark.Select.Label className={classes.label({ class: classNames?.label })}>
+        {label}
+      </Ark.Select.Label>
       <Ark.Select.Control>
         <Ark.Select.Trigger asChild>
           <Button
@@ -136,12 +165,17 @@ export const Select = _constructor(function (
           </Button>
         </Ark.Select.Trigger>
       </Ark.Select.Control>
-      <Ark.Presence className="text-error animate-in fade-in text-xs" present={Boolean(invalid && invalidMessage)}>
+      <Ark.Presence
+        className="text-error animate-in fade-in text-xs"
+        present={Boolean(invalid && invalidMessage)}
+      >
         {invalidMessage}
       </Ark.Presence>
       <Ark.Portal>
         <Ark.Select.Positioner>
-          <Ark.Select.Content className={classes.list({ class: classNames?.list })}>
+          <Ark.Select.Content
+            className={classes.list({ class: classNames?.list })}
+          >
             {options.map((option) => _renderOption(option))}
           </Ark.Select.Content>
         </Ark.Select.Positioner>

@@ -1,12 +1,21 @@
-import { TextareaSlotsClasses, TextareaVariantProps, textarea } from "@/libs/ui/theme/textarea"
+import {
+  TextareaSlotsClasses,
+  TextareaVariantProps,
+  textarea,
+} from "@/libs/ui/theme/textarea"
 import { useComposedRefs } from "@/libs/ui/utils/ref"
 import * as Ark from "@ark-ui/react"
 import React from "react"
 import { LuX } from "react-icons/lu"
-import TextAreaAutoSize, { TextareaAutosizeProps } from "react-textarea-autosize"
+import TextAreaAutoSize, {
+  TextareaAutosizeProps,
+} from "react-textarea-autosize"
 
 export interface TextareaProps<AutoSize extends boolean = true>
-  extends Omit<React.HTMLAttributes<HTMLTextAreaElement>, "prefix" | "suffix" | "size">,
+  extends Omit<
+      React.HTMLAttributes<HTMLTextAreaElement>,
+      "prefix" | "suffix" | "size"
+    >,
     TextareaVariantProps,
     TextareaSlotsClasses {
   autoSize?: AutoSize
@@ -86,14 +95,16 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       const element = prefix as React.ReactElement
       if (!element) return null
 
-      if (typeof element === "object" && "type" in element) return React.cloneElement(element)
+      if (typeof element === "object" && "type" in element)
+        return React.cloneElement(element)
       return <span>{element}</span>
     }
 
     function _renderSuffix() {
       const element = suffix as React.ReactElement
       if (!element) return null
-      if (typeof element === "object" && "type" in element) return React.cloneElement(element)
+      if (typeof element === "object" && "type" in element)
+        return React.cloneElement(element)
       return <span>{element}</span>
     }
 
@@ -102,9 +113,18 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       if (!element) return null
       if (typeof element === "object" && "type" in element)
         return React.cloneElement(element, {
-          className: classes.addonBefore({ className: element.props.className, class: classNames?.addonBefore }),
+          className: classes.addonBefore({
+            className: element.props.className,
+            class: classNames?.addonBefore,
+          }),
         })
-      return <span className={classes.addonBefore({ class: classNames?.addonBefore })}>{element}</span>
+      return (
+        <span
+          className={classes.addonBefore({ class: classNames?.addonBefore })}
+        >
+          {element}
+        </span>
+      )
     }
 
     function _renderAddonAfter() {
@@ -112,9 +132,16 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       if (!element) return null
       if (typeof element === "object" && "type" in element)
         return React.cloneElement(element, {
-          className: classes.addonAfter({ className: element.props.className, class: classNames?.addonAfter }),
+          className: classes.addonAfter({
+            className: element.props.className,
+            class: classNames?.addonAfter,
+          }),
         })
-      return <span className={classes.addonAfter({ class: classNames?.addonAfter })}>{element}</span>
+      return (
+        <span className={classes.addonAfter({ class: classNames?.addonAfter })}>
+          {element}
+        </span>
+      )
     }
 
     const classes = textarea({ variant, size, invalid, className })
@@ -122,7 +149,10 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const Component = autoSize ? TextAreaAutoSize : ("textarea" as any)
 
     return (
-      <label role="input" className={classes.base({ className, class: classNames?.base })}>
+      <label
+        role="input"
+        className={classes.base({ className, class: classNames?.base })}
+      >
         <div className={classes.label({ class: classNames?.label })}>
           <span>{label}</span>
           {required ? <span className="text-error text-xs">(*)</span> : null}
@@ -138,7 +168,10 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           <Component
             ref={composedRef}
             onChange={handleChange}
-            className={classes.textarea({ autoSize, class: classNames?.textarea })}
+            className={classes.textarea({
+              autoSize,
+              class: classNames?.textarea,
+            })}
             {...props}
             {...autoSizeOptions}
           />
@@ -146,7 +179,10 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           {_renderSuffix()}
           {_renderAddonAfter()}
         </div>
-        <Ark.Presence className="text-error animate-in fade-in text-xs" present={Boolean(invalid && invalidMessage)}>
+        <Ark.Presence
+          className="text-error animate-in fade-in text-xs"
+          present={Boolean(invalid && invalidMessage)}
+        >
           {invalidMessage}
         </Ark.Presence>
       </label>

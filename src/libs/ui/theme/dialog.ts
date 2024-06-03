@@ -1,10 +1,21 @@
 import { VariantProps, tv } from "tailwind-variants"
 
 export const dialog = tv({
-  base: "bg-component border border-line shadow p-4 rounded relative w-full space-y-4 h-fit data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out",
+  base: [
+    "bg-component border border-line shadow p-4 rounded relative w-full space-y-4 h-fit",
+    "data-[state=open]:animate-in",
+    "data-[state=open]:fade-in",
+    "data-[state=closed]:animate-out",
+    "data-[state=closed]:fade-out",
+  ],
   slots: {
-    backdrop:
-      "fixed inset-0 bg-background/60 backdrop-blur data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out",
+    backdrop: [
+      "fixed inset-0 bg-background/60 backdrop-blur",
+      "data-[state=open]:animate-in",
+      "data-[state=open]:fade-in",
+      "data-[state=closed]:animate-out",
+      "data-[state=closed]:fade-out",
+    ],
     positioner: "flex fixed inset-0 p-4",
     title: "text-sm font-medium",
     close: "absolute top-0 right-4",

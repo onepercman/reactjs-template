@@ -13,8 +13,12 @@ function transformToNumber(value: string): string {
   return ""
 }
 
-export const InputNumber = React.forwardRef<HTMLInputElement, InputProps>(function ({ ...props }, ref) {
-  return <Input ref={ref} type="text" transform={transformToNumber} {...props} />
-})
+export const InputNumber = React.forwardRef<HTMLInputElement, InputProps>(
+  function ({ ...props }, ref) {
+    return (
+      <Input ref={ref} type="text" transform={transformToNumber} {...props} />
+    )
+  },
+)
 
 InputNumber.displayName = "InputNumber"

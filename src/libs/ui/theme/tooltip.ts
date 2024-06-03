@@ -1,7 +1,13 @@
 import { VariantProps, tv } from "tailwind-variants"
 
 export const tooltip = tv({
-  base: "px-3 py-2 bg-component shadow-lg rounded border border-line z-[var(--z-index)] data-[state=open]:animate-in data-[state=open]:fade-in",
+  base: [
+    "px-3 py-2 bg-component shadow-lg rounded border border-line z-[var(--z-index)]",
+    "data-[state=open]:animate-in",
+    "data-[state=open]:fade-in",
+    "data-[state=closed]:animate-out",
+    "data-[state=closed]:fade-out",
+  ],
   slots: {
     arrow: "!bg-component border-line border-l border-t",
   },

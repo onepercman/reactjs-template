@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 
-export function useResizeObserver<T extends HTMLElement = any>(callback?: (size: DOMRect) => void) {
+export function useResizeObserver<T extends HTMLElement = any>(
+  callback?: (size: DOMRect) => void,
+) {
   const ref = React.useRef<T>(null)
 
   const [size, setSize] = useState<DOMRect>()
