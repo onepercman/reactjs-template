@@ -19,7 +19,7 @@
 - [x] Number Input
 - [x] Pagination
 - [ ] Pin Input
-- [ ] Popover
+- [x] Popover
 - [ ] Progress - Circular
 - [ ] Progress - Linear
 - [x] Radio Group
