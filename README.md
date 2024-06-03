@@ -16,7 +16,7 @@
 - [x] Hover Card
 - [x] Input
 - [x] Menu
-- [ ] Number Input
+- [x] Number Input
 - [x] Pagination
 - [ ] Pin Input
 - [ ] Popover

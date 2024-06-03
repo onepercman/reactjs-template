@@ -1,3 +1,4 @@
+import { cn } from "@/libs/tailwind-variants"
 import { InputSlotsClasses, InputVariantProps, input } from "@/libs/ui/theme"
 import { useComposedRefs } from "@/libs/ui/utils/ref"
 import * as Ark from "@ark-ui/react"
@@ -5,13 +6,7 @@ import React from "react"
 import { HiEye, HiEyeOff } from "react-icons/hi"
 import { LuX } from "react-icons/lu"
 
-export interface InputProps
-  extends Omit<
-      React.InputHTMLAttributes<HTMLInputElement>,
-      "prefix" | "suffix" | "size"
-    >,
-    InputVariantProps,
-    InputSlotsClasses {
+export interface InputFieldProps {
   label?: React.ReactNode
   required?: boolean
   prefix?: React.ReactNode | React.ReactElement
@@ -23,6 +18,15 @@ export interface InputProps
   clearable?: boolean
   transform?(value: string): string
 }
+
+export interface InputProps
+  extends Omit<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      "prefix" | "suffix" | "size"
+    >,
+    InputVariantProps,
+    InputSlotsClasses,
+    InputFieldProps {}
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
@@ -180,7 +184,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         </div>
         <div
           className={classes.group({
-            className: addonBefore ? "pl-0" : addonAfter ? "pr-0" : "",
+            className: cn(addonBefore && "pl-0", addonAfter && "pr-0"),
             class: classNames?.group,
           })}
         >
