@@ -1,8 +1,8 @@
 import { VariantProps, tv } from "tailwind-variants"
 
 export const avatar = tv({
+  base: "rounded-full aspect-square flex overflow-hidden flex-none relative",
   slots: {
-    base: "rounded-full aspect-square flex overflow-hidden flex-none relative",
     fallback: "m-auto",
     image: "object-cover inset-0",
   },

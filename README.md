@@ -3,36 +3,36 @@
 - [x] Accordion
 - [x] Avatar
 - [x] Button
-- [ ] Carousel
+- [ ] Carousel - (soon)
 - [x] Checkbox
-- [ ] Clipboard
-- [ ] Collapsible
-- [ ] Color Picker
+- [ ] Clipboard - (soon)
+- [ ] Collapsible - (soon)
+- [ ] Color Picker - (soon)
 - [x] Combobox
-- [ ] Date Picker
+- [ ] Date Picker - (soon)
 - [x] Dialog
-- [ ] Editable
-- [ ] File Upload
+- [ ] Editable - (soon)
+- [ ] File Upload - (soon)
 - [x] Hover Card
 - [x] Input
 - [x] Menu
 - [x] Number Input
 - [x] Pagination
-- [ ] Pin Input
+- [ ] Pin Input - (soon)
 - [x] Popover
-- [ ] Progress - Circular
-- [ ] Progress - Linear
+- [ ] Progress - Circular - (soon)
+- [ ] Progress - Linear - (soon)
 - [x] Radio Group
-- [ ] Rating Group
-- [ ] Segment Group
+- [ ] Rating Group - (soon)
+- [ ] Segment Group - (soon)
 - [x] Select
-- [ ] Slider
-- [ ] Splitter
-- [ ] Switch
-- [ ] Tabs
+- [ ] Slider - TODO
+- [ ] Splitter - (soon)
+- [x] Switch
+- [ ] Tabs - TODO
 - [x] Table
-- [ ] Tags Input
+- [ ] Tags Input - (soon)
 - [x] Toast
-- [ ] Toggle Group
+- [ ] Toggle Group - (soon)
 - [x] Tooltip
-- [ ] Tree View
+- [ ] Tree View - (soon)

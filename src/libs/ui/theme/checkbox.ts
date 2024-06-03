@@ -1,8 +1,8 @@
 import { VariantProps, tv } from "tailwind-variants"
 
 export const checkbox = tv({
+  base: "inline-flex items-center gap-2 cursor-pointer",
   slots: {
-    base: "inline-flex items-center gap-2 cursor-pointer",
     label: "",
     control: [
       "rounded flex border-2 border-line hover:border-primary transition-colors text-primary",
