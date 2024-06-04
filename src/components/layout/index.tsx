@@ -1,4 +1,4 @@
-import { Button } from "@/libs/one-ui/components/button"
+import { Button } from "@/libs/one-ui"
 import { useTheme } from "next-themes"
 import { FC, Fragment } from "react"
 import { LuMoon, LuSun } from "react-icons/lu"

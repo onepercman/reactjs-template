@@ -1,4 +1,4 @@
-import { Container } from "@/libs/one-ui/components/container"
+import { Container } from "@/libs/one-ui"
 
 export default function () {
   return (

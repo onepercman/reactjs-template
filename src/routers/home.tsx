@@ -1,4 +1,4 @@
-import { Container } from "@/libs/one-ui/components"
+import { Container } from "@/libs/one-ui"
 
 export default function Home() {
   return <Container></Container>
