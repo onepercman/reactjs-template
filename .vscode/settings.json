@@ -3,23 +3,12 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "scss.lint.unknownAtRules": "ignore",
   "tailwindCSS.emmetCompletions": true,
-  "tailwindCSS.classAttributes": [
-    "class",
-    "className",
-    "enter",
-    "enterFrom",
-    "enterTo",
-    "leave",
-    "leaveFrom",
-    "leaveTo",
-    ".*classNames.*"
-  ],
+  "tailwindCSS.classAttributes": ["class", "className", ".*classNames.*"],
   "tailwindCSS.experimental.classRegex": [
     ["tv\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["resetCSS\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["extendVariants\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
-    ["apply\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+    ["resetCSS\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["extendVariants\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
