@@ -1,5 +1,5 @@
+import { cn } from "@/libs/cn"
 import { useResizeObserver } from "@/libs/custom-hooks/use-resize-observer"
-import { cn } from "@/libs/tailwind-variants"
 import { useComposedRefs } from "@/libs/ui/utils/ref"
 import React from "react"
 

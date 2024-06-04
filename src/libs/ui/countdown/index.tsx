@@ -1,4 +1,4 @@
-import { cn } from "@/libs/tailwind-variants"
+import { cn } from "@/libs/cn"
 import React from "react"
 
 type BaseProps = React.HTMLAttributes<HTMLSpanElement>

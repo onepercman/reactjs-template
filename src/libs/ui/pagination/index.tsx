@@ -1,4 +1,4 @@
-import { cn } from "@/libs/tailwind-variants"
+import { cn } from "@/libs/cn"
 import { Button, ButtonVariantProps } from "@/libs/ui/button"
 import * as Ark from "@ark-ui/react"
 import React from "react"

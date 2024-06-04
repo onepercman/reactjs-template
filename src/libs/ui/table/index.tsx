@@ -1,4 +1,4 @@
-import { cn } from "@/libs/tailwind-variants"
+import { cn } from "@/libs/cn"
 import { Empty } from "@/libs/ui/empty"
 import { Loader } from "@/libs/ui/loader"
 import { Pagination, PaginationProps } from "@/libs/ui/pagination"

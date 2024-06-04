@@ -1,4 +1,4 @@
-import { cn } from "@/libs/tailwind-variants"
+import { cn } from "@/libs/cn"
 import { Button } from "@/libs/ui/button/button"
 import React from "react"
 

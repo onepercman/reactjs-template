@@ -1,4 +1,4 @@
-import { cn } from "@/libs/tailwind-variants"
+import { cn } from "@/libs/cn"
 import { InputSlotsClasses, InputVariantProps, input } from "@/libs/ui/theme"
 import { useComposedRefs } from "@/libs/ui/utils/ref"
 import * as Ark from "@ark-ui/react"
@@ -180,11 +180,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       >
         <div className={classes.label({ class: classNames?.label })}>
           <span>{label}</span>
-          {required ? <span className="text-error text-xs">(*)</span> : null}
+          {required ? <span className="text-error text-xs">*</span> : null}
         </div>
         <div
           className={classes.group({
-            className: cn(addonBefore && "pl-0", addonAfter && "pr-0"),
+            className: cn({ "pl-0": addonBefore, "pr-0": addonAfter }),
             class: classNames?.group,
           })}
         >
