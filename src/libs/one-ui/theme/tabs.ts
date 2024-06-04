@@ -5,7 +5,7 @@ export const tabs = tv({
   slots: {
     list: "inline-flex items-center gap-2 relative",
     trigger:
-      "relative text-secondary data-[selected]:text-foreground hover:text-foreground transition-colors",
+      "relative text-secondary data-[selected]:text-foreground hover:text-foreground transition-colors select-none",
     indicator: "",
     content: "",
   },

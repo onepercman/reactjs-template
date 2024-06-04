@@ -3,7 +3,7 @@ import { VariantProps, tv } from "tailwind-variants"
 export const segmentGroup = tv({
   base: "inline-flex items-center gap-2 relative",
   slots: {
-    item: "relative text-secondary data-[selected]:text-foreground hover:text-foreground transition-colors cursor-pointer",
+    item: "relative text-secondary data-[selected]:text-foreground hover:text-foreground transition-colors cursor-pointer select-none",
     indicator: "",
   },
   variants: {
