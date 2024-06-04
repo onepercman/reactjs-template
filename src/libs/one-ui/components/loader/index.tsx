@@ -3,24 +3,27 @@ import { cn } from "@/libs/one-ui/utils"
 import React from "react"
 
 interface Loader extends ForwardedRefComponent {
-  <Tag extends ReactTag>(
-    props: ForwardRefWithAsProps<Tag, object>,
+  <As extends ReactTag>(
+    props: ForwardRefWithAsProps<As, object>,
   ): React.ReactElement | null
 }
 
-function _constructor<Tag extends ReactTag>(
-  render: <Tag extends ReactTag>(
-    props: PropsWithAsAttributes<object, Tag>,
-    ref: React.ForwardedRef<Tag>,
+function _constructor<As extends ReactTag>(
+  render: <As extends ReactTag>(
+    props: PropsWithAsAttributes<object, As>,
+    ref: React.ForwardedRef<As>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<Tag, PropsWithAsAttributes<object, Tag>>(
+  return React.forwardRef<As, PropsWithAsAttributes<object, As>>(
     render,
   ) as unknown as Loader
 }
 
-export const Loader = _constructor(function ({ as, className, ...props }, ref) {
-  const Tag = as || ("div" as ReactTag)
+export const Loader = _constructor(function (
+  { as = "div", className, ...props },
+  ref,
+) {
+  const Tag = as
 
   const _className = cn(
     "flex w-full items-center justify-center p-4 text-xl min-h-56",

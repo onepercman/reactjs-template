@@ -2,18 +2,18 @@ import { cn } from "@/libs/one-ui/utils"
 import React from "react"
 
 interface Skeleton extends ForwardedRefComponent {
-  <Tag extends ReactTag>(
-    props: ForwardRefWithAsProps<Tag, object>,
+  <As extends ReactTag>(
+    props: ForwardRefWithAsProps<As, object>,
   ): React.ReactElement | null
 }
 
-function _constructor<Tag extends ReactTag>(
-  render: <Tag extends ReactTag>(
-    props: ForwardRefWithAsProps<Tag, object>,
-    ref: React.ForwardedRef<Tag>,
+function _constructor<As extends ReactTag>(
+  render: <As extends ReactTag>(
+    props: ForwardRefWithAsProps<As, object>,
+    ref: React.ForwardedRef<As>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<Tag, ForwardRefWithAsProps<Tag, object>>(
+  return React.forwardRef<As, ForwardRefWithAsProps<As, object>>(
     render,
   ) as unknown as Skeleton
 }
