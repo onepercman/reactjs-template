@@ -1,44 +1,41 @@
 import { VariantProps, tv } from "tailwind-variants"
 
-export const tabs = tv({
-  base: "",
+export const segmentGroup = tv({
+  base: "inline-flex items-center gap-2 relative",
   slots: {
-    list: "inline-flex items-center gap-2 relative",
-    trigger:
-      "relative text-secondary data-[selected]:text-foreground hover:text-foreground transition-colors",
+    item: "relative text-secondary data-[selected]:text-foreground hover:text-foreground transition-colors cursor-pointer",
     indicator: "",
-    content: "",
   },
   variants: {
     size: {
       sm: {
-        trigger: "text-sm px-2 py-1",
+        item: "text-sm px-2 py-1",
       },
       md: {
-        trigger: "text-base px-2 py-1",
+        item: "text-base px-2 py-1",
       },
       lg: {
-        trigger: "text-base px-3 py-2",
+        item: "text-base px-3 py-2",
       },
     },
     variant: {
       solid: {
-        list: "rounded p-1 bg-line",
+        base: "rounded p-1 bg-line",
         indicator:
           "absolute left-[var(--left)] w-[var(--width)] bottom-1 h-[var(--height)] bg-default rounded",
       },
       underlined: {
-        list: "",
+        base: "",
         indicator:
           "absolute left-[var(--left)] w-[var(--width)] bottom-0 h-1 bg-foreground rounded",
       },
       bordered: {
-        list: "rounded p-1 border border-line",
+        base: "rounded p-1 border border-line",
         indicator:
           "absolute left-[var(--left)] w-[var(--width)] bottom-1 h-[var(--height)] bg-default rounded",
       },
       light: {
-        list: "",
+        base: "",
         indicator:
           "absolute left-[var(--left)] w-[var(--width)] bottom-0 h-[var(--height)] bg-default rounded",
       },
@@ -50,7 +47,7 @@ export const tabs = tv({
   },
 })
 
-export type TabsVariantProps = VariantProps<typeof tabs>
-export type TabsReturnType = ReturnType<typeof tabs>
-export type TabsSlots = keyof TabsReturnType
-export type TabsSlotsClasses = SlotsClasses<TabsSlots>
+export type SegmentGroupVariantProps = VariantProps<typeof segmentGroup>
+export type SegmentGroupReturnType = ReturnType<typeof segmentGroup>
+export type SegmentGroupSlots = keyof SegmentGroupReturnType
+export type SegmentGroupSlotsClasses = SlotsClasses<SegmentGroupSlots>

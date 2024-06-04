@@ -9,7 +9,7 @@
 - [ ] Collapsible - (soon)
 - [ ] Color Picker - (soon)
 - [x] Combobox
-- [ ] Date Picker - (soon)
+- [ ] Date Picker - TODO
 - [x] Dialog
 - [ ] Editable - (soon)
 - [ ] File Upload - (soon)
@@ -24,7 +24,7 @@
 - [ ] Progress - Linear - (soon)
 - [x] Radio Group
 - [ ] Rating Group - (soon)
-- [ ] Segment Group - (soon)
+- [x] Segment Group
 - [x] Select
 - [ ] Slider - TODO
 - [ ] Splitter - (soon)
