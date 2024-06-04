@@ -29,7 +29,7 @@
 - [ ] Slider - TODO
 - [ ] Splitter - (soon)
 - [x] Switch
-- [ ] Tabs - TODO
+- [x] Tabs
 - [x] Table
 - [ ] Tags Input - (soon)
 - [x] Toast

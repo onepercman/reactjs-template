@@ -3,18 +3,18 @@ import React from "react"
 
 export interface ContainerProps extends ContainerVariantProps {}
 interface Container extends ForwardedRefComponent {
-  <Tag extends ReactTag>(
-    props: ForwardRefWithAsProps<Tag, ContainerProps>,
+  <As extends ReactTag>(
+    props: ForwardRefWithAsProps<As, ContainerProps>,
   ): React.ReactElement | null
 }
 
-function _constructor<Tag extends ReactTag>(
-  render: <Tag extends ReactTag>(
-    props: ForwardRefWithAsProps<Tag, ContainerProps>,
-    ref: React.ForwardedRef<Tag>,
+function _constructor<As extends ReactTag>(
+  render: <As extends ReactTag>(
+    props: ForwardRefWithAsProps<As, ContainerProps>,
+    ref: React.ForwardedRef<As>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<Tag, ForwardRefWithAsProps<Tag, ContainerProps>>(
+  return React.forwardRef<As, ForwardRefWithAsProps<As, ContainerProps>>(
     render,
   ) as unknown as Container
 }
