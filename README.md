@@ -26,7 +26,7 @@
 - [ ] Rating Group - (soon)
 - [x] Segment Group
 - [x] Select
-- [ ] Slider - TODO
+- [x] Slider
 - [ ] Splitter - (soon)
 - [x] Switch
 - [x] Tabs
