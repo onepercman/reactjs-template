@@ -166,7 +166,7 @@ export const Select = _constructor(function (
         </Ark.Select.Trigger>
       </Ark.Select.Control>
       <Ark.Presence
-        className="text-error animate-in fade-in text-xs"
+        className="text-xs text-error animate-in fade-in"
         present={Boolean(invalid && invalidMessage)}
       >
         {invalidMessage}

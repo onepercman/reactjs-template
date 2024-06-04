@@ -77,7 +77,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         }
         return (
           <HiEyeOff
-            className="text-secondary ml-2"
+            className="ml-2 text-secondary"
             onClick={() => {
               if (internalRef.current) {
                 internalRef.current.type = "text"
@@ -93,7 +93,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       if (showClear && clearable) {
         return (
           <LuX
-            className="text-secondary cursor-pointer"
+            className="cursor-pointer text-secondary"
             onClick={function () {
               if (internalRef.current) {
                 setShowClear(false)
@@ -184,7 +184,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       >
         <div className={classes.label({ class: classNames?.label })}>
           <span>{label}</span>
-          {required ? <span className="text-error text-xs">*</span> : null}
+          {required ? <span className="text-xs text-error">*</span> : null}
         </div>
         <div
           className={classes.group({
@@ -206,7 +206,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {_renderAddonAfter()}
         </div>
         <Ark.Presence
-          className="text-error animate-in fade-in text-xs"
+          className="text-xs text-error animate-in fade-in"
           present={Boolean(invalid && invalidMessage)}
         >
           {invalidMessage}

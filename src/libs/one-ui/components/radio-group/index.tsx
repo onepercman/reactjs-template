@@ -80,7 +80,7 @@ export const RadioGroup = _constructor(function (
         </Ark.RadioGroup.Item>
       ))}
       <Ark.Presence
-        className="text-error animate-in fade-in text-xs"
+        className="text-xs text-error animate-in fade-in"
         present={Boolean(invalid && invalidMessage)}
       >
         {invalidMessage}

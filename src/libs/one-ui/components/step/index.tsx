@@ -32,7 +32,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(function (
             {index + 1}
           </Button>
           <p className="px-2 text-lg font-bold uppercase">{item.title}</p>
-          <p className="text-secondary px-2 text-sm">{item.description}</p>
+          <p className="px-2 text-sm text-secondary">{item.description}</p>
           {index < steps.length - 1 && (
             <div
               className={cn(

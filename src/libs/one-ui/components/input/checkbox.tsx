@@ -43,7 +43,7 @@ export const Checkbox = React.forwardRef<HTMLLabelElement, CheckboxProps>(
         <Ark.Checkbox.Control
           className={classes.control({ class: classNames?.control })}
         >
-          <Ark.Checkbox.Indicator className="data-[state=checked]:animate-in data-[state=checked]:zoom-in data-[state=unchecked]:animate-out data-[state=unchecked]:zoom-out m-auto duration-300">
+          <Ark.Checkbox.Indicator className="m-auto duration-300 data-[state=checked]:animate-in data-[state=unchecked]:animate-out data-[state=checked]:zoom-in data-[state=unchecked]:zoom-out">
             {indeterminate ? (
               <LuMinus strokeWidth={6} />
             ) : (

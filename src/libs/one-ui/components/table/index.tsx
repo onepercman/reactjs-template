@@ -287,7 +287,7 @@ const Table = _constructor(function (
           </thead>
         ) : null}
 
-        <tbody className="divide-line relative divide-y text-left">
+        <tbody className="relative divide-y divide-line text-left">
           {_renderContainer()}
           {pagination && (
             <tr className={classes.tr({ class: classNames?.tr })}>
