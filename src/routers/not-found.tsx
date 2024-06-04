@@ -1,4 +1,4 @@
-import { Container } from "@/libs/ui/container"
+import { Container } from "@/libs/ui/components/container"
 
 export default function () {
   return (
