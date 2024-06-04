@@ -9,7 +9,7 @@
 - [ ] Collapsible - (soon)
 - [ ] Color Picker - (soon)
 - [x] Combobox
-- [ ] Date Picker - TODO
+- [x] Date Picker
 - [x] Dialog
 - [ ] Editable - (soon)
 - [ ] File Upload - (soon)

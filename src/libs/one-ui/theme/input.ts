@@ -1,7 +1,7 @@
 import { VariantProps, tv } from "tailwind-variants"
 
 export const input = tv({
-  base: "flex flex-col gap-1 group",
+  base: "flex flex-col gap-1 group w-fit",
   slots: {
     label: "text-xs space-y-2 text-secondary",
     group:

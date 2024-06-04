@@ -1,4 +1,5 @@
 import { Checkbox, CheckboxProps } from "./checkbox"
+import { DatePicker, DatePickerProps } from "./date-picker"
 import { InputFieldProps, InputProps, Input as InternalInput } from "./input"
 import { NumberInput } from "./number-input"
 import { Radio, RadioProps } from "./radio"
@@ -16,12 +17,14 @@ interface Input
   Radio: typeof Radio
   Range: typeof Range
   Switch: typeof Switch
+  DatePicker: typeof DatePicker
 }
 const Input = InternalInput as Input
 
 export { Input }
 export type {
   CheckboxProps,
+  DatePickerProps,
   InputFieldProps,
   InputProps,
   RadioProps,
@@ -34,3 +37,4 @@ Input.Checkbox = Checkbox
 Input.Radio = Radio
 Input.Range = Range
 Input.Switch = Switch
+Input.DatePicker = DatePicker
