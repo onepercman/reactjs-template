@@ -36,7 +36,7 @@
     "valtio": "^1.13.2"
   },
   "devDependencies": {
-    "@ark-ui/react": "^3.0.2",
+    "@mojaui/react": "^0.1.5",
     "@nextui-org/react": "^2.4.1",
     "@testing-library/react": "^14.2.2",
     "@types/node": "^20.11.30",

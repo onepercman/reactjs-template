@@ -1,5 +1,5 @@
-import { Loader, ToasterContainer } from "@/libs/one-ui"
 import { queryClient } from "@/libs/react-query"
+import { ToasterContainer, VariantsProvider } from "@mojaui/react"
 import { QueryClientProvider } from "@tanstack/react-query"
 import { ThemeProvider } from "next-themes"
 import { RouterProvider } from "react-router-dom"
@@ -11,7 +11,9 @@ export default function App() {
     <ThemeProvider defaultTheme="dark">
       <QueryClientProvider client={queryClient}>
         <ToasterContainer />
-        <RouterProvider router={router} fallbackElement={<Loader />} />
+        <VariantsProvider>
+          <RouterProvider router={router} />
+        </VariantsProvider>
       </QueryClientProvider>
     </ThemeProvider>
   )
