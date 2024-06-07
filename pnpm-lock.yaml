@@ -47,8 +47,8 @@ dependencies:
 
 devDependencies:
   '@mojaui/react':
-    specifier: ^0.1.9
-    version: 0.1.9(@internationalized/date@3.5.4)(@types/react@18.2.67)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
+    specifier: ^0.2.1
+    version: 0.2.1(@internationalized/date@3.5.4)(@types/react@18.2.67)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
   '@nextui-org/react':
     specifier: ^2.4.1
     version: 2.4.1(@types/react@18.2.67)(framer-motion@11.2.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
@@ -884,8 +884,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@mojaui/react@0.1.9(@internationalized/date@3.5.4)(@types/react@18.2.67)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-rgMyvOyN8YckxIl/SrXVd+8MIhlShGt4OSWwNseeOog7itTwSqYFx8ykHj33yzUO6eRbkukDzn0WYvQe3wxm6Q==}
+  /@mojaui/react@0.2.1(@internationalized/date@3.5.4)(@types/react@18.2.67)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-jOoHYtRjm4+lGH37BxZSLMU38ja2io1CbxBdIJ8z3u7c3qRhZ901jsae5YCmh5tDHg4GXCGOyli276/i25f9fQ==}
     peerDependencies:
       react: 18.2.0
       react-dom: 18.2.0
