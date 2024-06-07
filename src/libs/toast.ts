@@ -1,4 +1,4 @@
-import { createToaster } from "@mojaui/react"
+import { createToaster } from "mojaui"
 
 export const toaster = createToaster({
   placement: "bottom-end",

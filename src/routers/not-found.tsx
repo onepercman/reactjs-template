@@ -1,4 +1,4 @@
-import { Container } from "@mojaui/react"
+import { Container } from "mojaui"
 
 export default function () {
   return (

@@ -1,5 +1,9 @@
-import { Container } from "@mojaui/react"
+import { Button, Container } from "mojaui"
 
 export default function Home() {
-  return <Container></Container>
+  return (
+    <Container>
+      <Button>Button</Button>
+    </Container>
+  )
 }

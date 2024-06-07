@@ -22,7 +22,7 @@ import {
   textarea,
   toast,
   tooltip,
-} from "@mojaui/react"
+} from "mojaui"
 
 import { tv } from "tailwind-variants"
 

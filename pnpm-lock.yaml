@@ -46,9 +46,6 @@ dependencies:
     version: 1.13.2(@types/react@18.2.67)(react@18.2.0)
 
 devDependencies:
-  '@mojaui/react':
-    specifier: ^0.2.1
-    version: 0.2.1(@internationalized/date@3.5.4)(@types/react@18.2.67)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
   '@nextui-org/react':
     specifier: ^2.4.1
     version: 2.4.1(@types/react@18.2.67)(framer-motion@11.2.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
@@ -94,6 +91,9 @@ devDependencies:
   lint-staged:
     specifier: ^15.2.2
     version: 15.2.2
+  mojaui:
+    specifier: ^0.0.2
+    version: 0.0.2(@internationalized/date@3.5.4)(@types/react@18.2.67)(tailwindcss@3.4.1)
   postcss:
     specifier: ^8.4.38
     version: 8.4.38
@@ -882,25 +882,6 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
-    dev: true
-
-  /@mojaui/react@0.2.1(@internationalized/date@3.5.4)(@types/react@18.2.67)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-jOoHYtRjm4+lGH37BxZSLMU38ja2io1CbxBdIJ8z3u7c3qRhZ901jsae5YCmh5tDHg4GXCGOyli276/i25f9fQ==}
-    peerDependencies:
-      react: 18.2.0
-      react-dom: 18.2.0
-    dependencies:
-      '@ark-ui/react': 3.2.0(@internationalized/date@3.5.4)(react-dom@18.2.0)(react@18.2.0)
-      clsx: 2.1.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-textarea-autosize: 8.5.3(@types/react@18.2.67)(react@18.2.0)
-      tailwind-merge: 2.3.0
-      tailwind-variants: 0.2.1(tailwindcss@3.4.1)
-    transitivePeerDependencies:
-      - '@internationalized/date'
-      - '@types/react'
-      - tailwindcss
     dev: true
 
   /@nextui-org/accordion@2.0.34(@nextui-org/system@2.2.1)(@nextui-org/theme@2.2.5)(framer-motion@11.2.4)(react-dom@18.2.0)(react@18.2.0):
@@ -3695,7 +3676,6 @@ packages:
   /@remix-run/router@1.15.3:
     resolution: {integrity: sha512-Oy8rmScVrVxWZVOpEF57ovlnhpZ8CCPlnIIumVcV9nFdiSIrus99+Lw78ekXyGvVDlIsFJbSfmSovJUhCWYV3w==}
     engines: {node: '>=14.0.0'}
-    dev: false
 
   /@rollup/plugin-inject@5.0.5:
     resolution: {integrity: sha512-2+DEJbNBoPROPkgTDNe8/1YXWcqxbN5DTjASVIOx8HS+pITXushyNiBV56RB08zuptzz8gT3YfkqriTBVycepg==}
@@ -7454,6 +7434,27 @@ packages:
       ufo: 1.5.3
     dev: true
 
+  /mojaui@0.0.2(@internationalized/date@3.5.4)(@types/react@18.2.67)(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-y26ZSWxM5q0ZPW2VeW/sJ/BqJizcNdVLSB6yIGyKfwWtVT+mqbSUUTaG9uAQ+8G763DiHnAlrhQ1KhjfXaqItg==}
+    engines: {node: '>=16'}
+    requiresBuild: true
+    dependencies:
+      '@ark-ui/react': 3.2.0(@internationalized/date@3.5.4)(react-dom@18.2.0)(react@18.2.0)
+      clsx: 2.1.1
+      next-themes: 0.3.0(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-icons: 5.0.1(react@18.2.0)
+      react-router-dom: 6.22.3(react-dom@18.2.0)(react@18.2.0)
+      react-textarea-autosize: 8.5.3(@types/react@18.2.67)(react@18.2.0)
+      tailwind-merge: 2.3.0
+      tailwind-variants: 0.2.1(tailwindcss@3.4.1)
+    transitivePeerDependencies:
+      - '@internationalized/date'
+      - '@types/react'
+      - tailwindcss
+    dev: true
+
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
     dev: true
@@ -7484,7 +7485,6 @@ packages:
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-    dev: false
 
   /no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
@@ -8113,7 +8113,6 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-router: 6.22.3(react@18.2.0)
-    dev: false
 
   /react-router@6.22.3(react@18.2.0):
     resolution: {integrity: sha512-dr2eb3Mj5zK2YISHK++foM9w4eBnO23eKnZEDs7c880P6oKbrjz/Svg9+nxqtHQK+oMW4OtjZca0RqPglXxguQ==}
@@ -8123,7 +8122,6 @@ packages:
     dependencies:
       '@remix-run/router': 1.15.3
       react: 18.2.0
-    dev: false
 
   /react-style-singleton@2.2.1(@types/react@18.2.67)(react@18.2.0):
     resolution: {integrity: sha512-ZWj0fHEMyWkHzKYUr2Bs/4zU6XLmq9HsgBURm7g5pAVfyn49DgUiNgY2d4lXRlYSiCif9YBGpQleewkcqddc7g==}
