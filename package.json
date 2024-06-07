@@ -36,7 +36,7 @@
     "valtio": "^1.13.2"
   },
   "devDependencies": {
-    "@mojaui/react": "^0.1.5",
+    "@mojaui/react": "^0.1.9",
     "@nextui-org/react": "^2.4.1",
     "@testing-library/react": "^14.2.2",
     "@types/node": "^20.11.30",
@@ -57,7 +57,6 @@
     "prettier-plugin-organize-imports": "^3.2.4",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "react-icons": "^5.0.1",
-    "react-textarea-autosize": "^8.5.3",
     "sass": "^1.72.0",
     "tailwind-merge": "^2.3.0",
     "tailwind-schemes": "^1.5.3",
