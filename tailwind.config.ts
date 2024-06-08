@@ -8,10 +8,7 @@ import defaultTheme from "tailwindcss/defaultTheme"
 const config: Config = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
-    //  Un-comment this line if using mojaui
     "./node_modules/mojaui/dist/**/*.{js,ts,jsx,tsx}",
-    //  Un-comment this line if using nextui
-    // "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: ["class", '[data-theme="dark"]'],
   theme: {

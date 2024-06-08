@@ -24,7 +24,6 @@
     "@tanstack/react-query": "^5.28.6",
     "axios": "^1.6.8",
     "dayjs": "^1.11.10",
-    "framer-motion": "^11.2.4",
     "humps": "^2.0.1",
     "jwt-decode": "^4.0.0",
     "next-themes": "^0.3.0",
@@ -36,7 +35,6 @@
     "valtio": "^1.13.2"
   },
   "devDependencies": {
-    "@nextui-org/react": "^2.4.1",
     "@testing-library/react": "^14.2.2",
     "@types/node": "^20.11.30",
     "@types/react": "^18.2.67",
@@ -51,7 +49,7 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "mojaui": "^0.0.3",
+    "mojaui": "^0.0.4",
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.4",
