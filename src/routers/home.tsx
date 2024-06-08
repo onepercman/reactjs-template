@@ -1,9 +1,5 @@
-import { Button, Container } from "mojaui"
+import { Container } from "mojaui"
 
 export default function Home() {
-  return (
-    <Container>
-      <Button>Button</Button>
-    </Container>
-  )
+  return <Container></Container>
 }
