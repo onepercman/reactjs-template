@@ -1,5 +1,5 @@
-import { API_URL } from "@/config/endpoints.config"
-import userStore from "@/stores/user.store"
+import userStore from "@/features/user/user.store"
+import { API_URL } from "@/shared/config/endpoints.config"
 import axios, {
   AxiosError,
   AxiosInstance,

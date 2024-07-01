@@ -1,6 +1,6 @@
-import { storageKeys } from "@/config/storage.config"
 import { createStore } from "@/libs/valtio"
-import { UserModel } from "@/models/user.model"
+import { storageKeys } from "@/shared/config/storage.config"
+import { UserModel } from "./user.model"
 
 const userStore = createStore(new UserModel(), { key: storageKeys.user })
 

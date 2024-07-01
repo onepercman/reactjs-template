@@ -1,9 +1,9 @@
-import { _DEV_ } from "@/config/mode.config"
-import { storageKeys } from "@/config/storage.config"
-import { version } from "@/config/version.config"
 import { createStore } from "@/libs/valtio"
-import { AppSettingModel } from "@/models/app-setting.model"
+import { _DEV_ } from "@/shared/config/mode.config"
+import { storageKeys } from "@/shared/config/storage.config"
+import { version } from "@/shared/config/version.config"
 import { devtools } from "valtio/utils"
+import { AppSettingModel } from "./app-setting.model"
 
 const appSettingStore = createStore(new AppSettingModel(), {
   key: storageKeys.appSettings,

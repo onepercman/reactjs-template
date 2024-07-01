@@ -1,7 +1,7 @@
-import { Layout } from "@/components/layout"
 import Home from "@/routers/home"
 import NotFound from "@/routers/not-found"
 import { createBrowserRouter } from "react-router-dom"
+import { Layout } from "./shared/layout"
 
 export const router = createBrowserRouter([
   {

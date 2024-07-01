@@ -1,4 +1,4 @@
-import { pad } from "@/utils/number"
+import { pad } from "@/shared/utils/number"
 import { useEffect, useMemo, useState } from "react"
 
 export interface UseCountdownStates<T extends number | string = number> {

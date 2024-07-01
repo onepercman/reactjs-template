@@ -1,4 +1,4 @@
-import { _DEV_ } from "@/config/mode.config"
+import { _DEV_ } from "@/shared/config/mode.config"
 
 export class Logger {
   static info(statement: string, message: any, ...optionalParams: any[]) {
