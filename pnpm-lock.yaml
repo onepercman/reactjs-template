@@ -86,8 +86,8 @@ devDependencies:
     specifier: ^15.2.7
     version: 15.2.7
   mojaui:
-    specifier: ^0.0.8
-    version: 0.0.8(@internationalized/date@3.5.4)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(tailwind-variants@0.2.1)(tailwindcss@3.4.4)
+    specifier: ^0.1.0
+    version: 0.1.0(@ark-ui/react@3.5.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(tailwind-variants@0.2.1)(tailwindcss@3.4.4)
   postcss:
     specifier: ^8.4.39
     version: 8.4.39
@@ -2894,10 +2894,11 @@ packages:
       ufo: 1.5.3
     dev: true
 
-  /mojaui@0.0.8(@internationalized/date@3.5.4)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(tailwind-variants@0.2.1)(tailwindcss@3.4.4):
-    resolution: {integrity: sha512-RZFOtgUm6zb1joNSIteBYiqg9O78Mvps1Ox/vWfewYUoIe3jx/CgwYgkuBEYWIe2SIFyOzoTgFRN0rrk799vaw==}
+  /mojaui@0.1.0(@ark-ui/react@3.5.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(tailwind-variants@0.2.1)(tailwindcss@3.4.4):
+    resolution: {integrity: sha512-yvOuaDG5a+3qkxzeRoOgCRiVNYWTljB15jOCMpmAu/6ic+7OhSLjsWBZvey8ZophOnSOlflo9KNYUMsD/mTXbg==}
     engines: {node: '>=16'}
     peerDependencies:
+      '@ark-ui/react': ^3.2.0
       react: ^18.2.0
       react-dom: ^18.2.0
       tailwind-variants: ^0.2.1
@@ -2912,10 +2913,10 @@ packages:
       react-router-dom: 6.24.0(react-dom@18.3.1)(react@18.3.1)
       react-textarea-autosize: 8.5.3(@types/react@18.3.3)(react@18.3.1)
       tailwind-merge: 2.3.0
+      tailwind-schemes: 1.5.3(tailwindcss@3.4.4)
       tailwind-variants: 0.2.1(tailwindcss@3.4.4)
       tailwindcss: 3.4.4(ts-node@10.9.2)
     transitivePeerDependencies:
-      - '@internationalized/date'
       - '@types/react'
     dev: true
 

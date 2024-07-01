@@ -1,5 +1,9 @@
-import { Container } from "mojaui"
+import { Button } from "mojaui"
 
 export default function Home() {
-  return <Container></Container>
+  return (
+    <div className="p-6">
+      <Button color="primary">Button</Button>
+    </div>
+  )
 }
