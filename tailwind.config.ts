@@ -14,7 +14,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["DM Sans", ...defaultTheme.fontFamily.sans],
+        sans: [...defaultTheme.fontFamily.sans],
       },
       fontSize: {
         "2xs": "0.625rem",

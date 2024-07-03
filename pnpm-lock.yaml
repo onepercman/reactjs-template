@@ -45,7 +45,7 @@ dependencies:
 devDependencies:
   '@testing-library/react':
     specifier: ^16.0.0
-    version: 16.0.0(@testing-library/dom@10.2.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)
+    version: 16.0.0(@testing-library/dom@10.3.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)
   '@types/node':
     specifier: ^20.14.9
     version: 20.14.9
@@ -86,8 +86,8 @@ devDependencies:
     specifier: ^15.2.7
     version: 15.2.7
   mojaui:
-    specifier: ^0.1.0
-    version: 0.1.0(@ark-ui/react@3.5.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(tailwind-variants@0.2.1)(tailwindcss@3.4.4)
+    specifier: ^0.1.4
+    version: 0.1.4(@ark-ui/react@3.5.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(tailwind-variants@0.2.1)(tailwindcss@3.4.4)
   postcss:
     specifier: ^8.4.39
     version: 8.4.39
@@ -902,8 +902,8 @@ packages:
       react: 18.3.1
     dev: false
 
-  /@testing-library/dom@10.2.0:
-    resolution: {integrity: sha512-CytIvb6tVOADRngTHGWNxH8LPgO/3hi/BdCEHOf7Qd2GvZVClhVP0Wo/QHzWhpki49Bk0b4VT6xpt3fx8HTSIw==}
+  /@testing-library/dom@10.3.0:
+    resolution: {integrity: sha512-pT/TYB2+IyMYkkB6lqpkzD7VFbsR0JBJtflK3cS68sCNWxmOhWwRm1XvVHlseNEorsNcxkYsb4sRDV3aNIpttg==}
     engines: {node: '>=18'}
     dependencies:
       '@babel/code-frame': 7.24.7
@@ -916,7 +916,7 @@ packages:
       pretty-format: 27.5.1
     dev: true
 
-  /@testing-library/react@16.0.0(@testing-library/dom@10.2.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1):
+  /@testing-library/react@16.0.0(@testing-library/dom@10.3.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-guuxUKRWQ+FgNX0h0NS0FIq3Q3uLtWVpBzcLOggmfMoUpgBnzBzvLLd4fbm6yS8ydJd94cIfY4yP9qUQjM2KwQ==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -932,7 +932,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.24.7
-      '@testing-library/dom': 10.2.0
+      '@testing-library/dom': 10.3.0
       '@types/react': 18.3.3
       '@types/react-dom': 18.3.0
       react: 18.3.1
@@ -2894,8 +2894,8 @@ packages:
       ufo: 1.5.3
     dev: true
 
-  /mojaui@0.1.0(@ark-ui/react@3.5.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(tailwind-variants@0.2.1)(tailwindcss@3.4.4):
-    resolution: {integrity: sha512-yvOuaDG5a+3qkxzeRoOgCRiVNYWTljB15jOCMpmAu/6ic+7OhSLjsWBZvey8ZophOnSOlflo9KNYUMsD/mTXbg==}
+  /mojaui@0.1.4(@ark-ui/react@3.5.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(tailwind-variants@0.2.1)(tailwindcss@3.4.4):
+    resolution: {integrity: sha512-D8qq9JkPuEjgA7jcHvnMG9Pcxvxc7/SKUBDHaBdQ09m4izBp0InrAQp+H2GPJns6UuuslWFIDpAr68ceMUnwDw==}
     engines: {node: '>=16'}
     peerDependencies:
       '@ark-ui/react': ^3.2.0

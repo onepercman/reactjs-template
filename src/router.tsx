@@ -1,6 +1,6 @@
-import Home from "@/routers/home"
-import NotFound from "@/routers/not-found"
 import { createBrowserRouter } from "react-router-dom"
+import Home from "./features/home"
+import { Empty } from "./shared/components/empty"
 import { Layout } from "./shared/layout"
 
 export const router = createBrowserRouter([
@@ -10,7 +10,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "*",
-        element: <NotFound />,
+        element: <Empty />,
       },
       {
         index: true,
