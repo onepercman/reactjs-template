@@ -13,7 +13,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(function (
   { children, content, size, className, classNames, ...props },
   ref,
 ) {
-  const classes = popover({ size, className })
+  const styles = popover({ size, className })
 
   return (
     <Ark.Popover.Root {...props}>
@@ -21,7 +21,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(function (
       <Ark.Popover.Positioner>
         <Ark.Popover.Content
           ref={ref}
-          className={classes.base({ class: classNames?.base })}
+          className={styles.base({ class: classNames?.base })}
         >
           <Ark.Popover.Arrow
             style={
@@ -32,7 +32,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(function (
             }
           >
             <Ark.Popover.ArrowTip
-              className={classes.arrow({ class: classNames?.arrow })}
+              className={styles.arrow({ class: classNames?.arrow })}
             />
           </Ark.Popover.Arrow>
           {content}

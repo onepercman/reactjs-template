@@ -52,7 +52,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     },
     ref,
   ) => {
-    const classes = textarea({ variant, size, invalid, className })
+    const styles = textarea({ variant, size, invalid, className })
 
     const internalRef = React.useRef<HTMLTextAreaElement>(null)
     const composedRef = useComposedRefs(ref, internalRef)
@@ -111,14 +111,14 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       if (!element) return null
       if (typeof element === "object" && "type" in element)
         return React.cloneElement(element, {
-          className: classes.addonBefore({
+          className: styles.addonBefore({
             className: element.props.className,
             class: classNames?.addonBefore,
           }),
         })
       return (
         <span
-          className={classes.addonBefore({ class: classNames?.addonBefore })}
+          className={styles.addonBefore({ class: classNames?.addonBefore })}
         >
           {element}
         </span>
@@ -130,13 +130,13 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       if (!element) return null
       if (typeof element === "object" && "type" in element)
         return React.cloneElement(element, {
-          className: classes.addonAfter({
+          className: styles.addonAfter({
             className: element.props.className,
             class: classNames?.addonAfter,
           }),
         })
       return (
-        <span className={classes.addonAfter({ class: classNames?.addonAfter })}>
+        <span className={styles.addonAfter({ class: classNames?.addonAfter })}>
           {element}
         </span>
       )
@@ -147,14 +147,14 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <label
         role="input"
-        className={classes.base({ className, class: classNames?.base })}
+        className={styles.base({ className, class: classNames?.base })}
       >
-        <div className={classes.label({ class: classNames?.label })}>
+        <div className={styles.label({ class: classNames?.label })}>
           <span>{label}</span>
           {required ? <span className="text-xs text-error">(*)</span> : null}
         </div>
         <div
-          className={classes.group({
+          className={styles.group({
             className: addonBefore ? "pl-0" : addonAfter ? "pr-0" : "",
             class: classNames?.group,
           })}
@@ -164,7 +164,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           <Component
             ref={composedRef}
             onChange={handleChange}
-            className={classes.textarea({
+            className={styles.textarea({
               autoSize,
               class: classNames?.textarea,
             })}

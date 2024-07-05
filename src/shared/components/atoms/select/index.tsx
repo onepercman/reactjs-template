@@ -77,16 +77,16 @@ export const Select = _constructor(function (
   },
   ref,
 ) {
-  const classes = select({ invalid, size })
+  const styles = select({ invalid, size })
 
   function _renderOption(option: SelectOptionProps<any>, offset = 0) {
     if (option.children?.length)
       return (
         <Ark.Select.ItemGroup
-          className={classes.group({ class: classNames?.group })}
+          className={styles.group({ class: classNames?.group })}
         >
           <Ark.Select.ItemGroupLabel
-            className={classes.groupLabel({ class: classNames?.groupLabel })}
+            className={styles.groupLabel({ class: classNames?.groupLabel })}
           >
             <span style={{ paddingLeft: offset * indent }}>{option.label}</span>
           </Ark.Select.ItemGroupLabel>
@@ -102,16 +102,16 @@ export const Select = _constructor(function (
       <Ark.Select.Item
         key={option.value}
         item={option}
-        className={classes.item({ class: classNames?.item })}
+        className={styles.item({ class: classNames?.item })}
       >
         <Ark.Select.ItemText
-          className={classes.itemText({ class: classNames?.itemText })}
+          className={styles.itemText({ class: classNames?.itemText })}
           style={{ paddingLeft: offset * indent }}
         >
           {option.label}
         </Ark.Select.ItemText>
         <Ark.Select.ItemIndicator
-          className={classes.itemIndicator({
+          className={styles.itemIndicator({
             class: classNames?.itemIndicator,
           })}
         >
@@ -132,10 +132,10 @@ export const Select = _constructor(function (
         sameWidth: true,
         ...props.positioning,
       }}
-      className={classes.base({ className, class: classNames?.base })}
+      className={styles.base({ className, class: classNames?.base })}
       {...props}
     >
-      <Ark.Select.Label className={classes.label({ class: classNames?.label })}>
+      <Ark.Select.Label className={styles.label({ class: classNames?.label })}>
         {label}
       </Ark.Select.Label>
       <Ark.Select.Control>
@@ -144,7 +144,7 @@ export const Select = _constructor(function (
             size={size}
             variant={variant}
             color={color}
-            className={classes.trigger({ class: classNames?.trigger })}
+            className={styles.trigger({ class: classNames?.trigger })}
             rightIcon={
               <Fragment>
                 {allowClear ? (
@@ -154,7 +154,7 @@ export const Select = _constructor(function (
                       variant="default"
                       shape="circle"
                       leftIcon={<LuX />}
-                      className={classes.clear({ class: classNames?.clear })}
+                      className={styles.clear({ class: classNames?.clear })}
                     />
                   </Ark.Select.ClearTrigger>
                 ) : null}
@@ -177,7 +177,7 @@ export const Select = _constructor(function (
       <Ark.Portal>
         <Ark.Select.Positioner>
           <Ark.Select.Content
-            className={classes.list({ class: classNames?.list })}
+            className={styles.list({ class: classNames?.list })}
           >
             {options.map((option) => _renderOption(option))}
           </Ark.Select.Content>

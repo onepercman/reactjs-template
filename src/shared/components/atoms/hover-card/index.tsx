@@ -12,7 +12,7 @@ export interface HoverCardProps
 
 export const HoverCard = React.forwardRef<HTMLDivElement, HoverCardProps>(
   function ({ children, content, size, className, classNames, ...props }, ref) {
-    const classes = hoverCard({ size, className })
+    const styles = hoverCard({ size, className })
 
     return (
       <Ark.HoverCard.Root openDelay={200} closeDelay={200} {...props}>
@@ -21,7 +21,7 @@ export const HoverCard = React.forwardRef<HTMLDivElement, HoverCardProps>(
           <Ark.HoverCard.Positioner>
             <Ark.HoverCard.Content
               ref={ref}
-              className={classes.base({ class: classNames?.base })}
+              className={styles.base({ class: classNames?.base })}
             >
               <Ark.HoverCard.Arrow
                 style={
@@ -32,7 +32,7 @@ export const HoverCard = React.forwardRef<HTMLDivElement, HoverCardProps>(
                 }
               >
                 <Ark.HoverCard.ArrowTip
-                  className={classes.arrow({ class: classNames?.arrow })}
+                  className={styles.arrow({ class: classNames?.arrow })}
                 />
               </Ark.HoverCard.Arrow>
               {content}

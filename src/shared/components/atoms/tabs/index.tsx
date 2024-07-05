@@ -47,19 +47,19 @@ export const Tabs = _constructor(function (
 ) {
   const Tag = as
 
-  const classes = tabs({ size, variant, className })
+  const styles = tabs({ size, variant, className })
 
   return (
     <Ark.Tabs.Root asChild {...props}>
-      <Tag ref={ref} className={classes.base({ class: classNames?.base })}>
-        <Ark.Tabs.List className={classes.list({ class: classNames?.list })}>
+      <Tag ref={ref} className={styles.base({ class: classNames?.base })}>
+        <Ark.Tabs.List className={styles.list({ class: classNames?.list })}>
           <Ark.Tabs.Indicator
-            className={classes.indicator({ class: classNames?.indicator })}
+            className={styles.indicator({ class: classNames?.indicator })}
           />
           {tabList.map(({ className, ...tab }) => (
             <Ark.Tabs.Trigger
               key={tab.value}
-              className={classes.trigger({
+              className={styles.trigger({
                 className,
                 class: classNames?.trigger(),
               })}
@@ -73,7 +73,7 @@ export const Tabs = _constructor(function (
               asChild
               value={tabList[index]?.value}
               key={index}
-              className={classes.content({ class: classNames?.content })}
+              className={styles.content({ class: classNames?.content })}
             >
               {el}
             </Ark.Tabs.Content>
@@ -82,7 +82,7 @@ export const Tabs = _constructor(function (
           <Ark.Tabs.Content
             asChild
             value={tabList[0]?.value}
-            className={classes.content({ class: classNames?.content })}
+            className={styles.content({ class: classNames?.content })}
           >
             {children}
           </Ark.Tabs.Content>

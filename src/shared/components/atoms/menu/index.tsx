@@ -47,7 +47,7 @@ export const Menu = _constructor(function (
   },
   ref,
 ) {
-  const classes = menu({ size })
+  const styles = menu({ size })
 
   function _renderOption(
     option: MenuOption<true> | MenuOption<false>,
@@ -58,7 +58,7 @@ export const Menu = _constructor(function (
         option as MenuOption<true>
       return (
         <Ark.Menu.Separator
-          className={classes.separator({
+          className={styles.separator({
             className,
             class: classNames?.separator,
           })}
@@ -70,10 +70,10 @@ export const Menu = _constructor(function (
     if (option.items?.length)
       return (
         <Ark.Menu.ItemGroup
-          className={classes.group({ class: classNames?.group })}
+          className={styles.group({ class: classNames?.group })}
         >
           <Ark.Menu.ItemGroupLabel
-            className={classes.groupLabel({ class: classNames?.groupLabel })}
+            className={styles.groupLabel({ class: classNames?.groupLabel })}
           >
             <span style={{ paddingLeft: offset * indent }}>{option.label}</span>
           </Ark.Menu.ItemGroupLabel>
@@ -86,14 +86,14 @@ export const Menu = _constructor(function (
       return (
         <Ark.Menu.Root>
           <Ark.Menu.TriggerItem
-            className={classes.item({ class: classNames?.item })}
+            className={styles.item({ class: classNames?.item })}
           >
             {option.label} <LuChevronRight />
           </Ark.Menu.TriggerItem>
           <Ark.Portal>
             <Ark.Menu.Positioner>
               <Ark.Menu.Content
-                className={classes.list({ class: classNames?.list })}
+                className={styles.list({ class: classNames?.list })}
               >
                 {option.children.map((children) => _renderOption(children))}
               </Ark.Menu.Content>
@@ -104,7 +104,7 @@ export const Menu = _constructor(function (
     return (
       <Ark.Menu.Item
         {...option}
-        className={classes.item({ class: classNames?.item })}
+        className={styles.item({ class: classNames?.item })}
       >
         {option.label}
       </Ark.Menu.Item>
@@ -125,7 +125,7 @@ export const Menu = _constructor(function (
         <Ark.Menu.Positioner>
           <Ark.Menu.Content
             ref={ref}
-            className={classes.list({ className, class: classNames?.list })}
+            className={styles.list({ className, class: classNames?.list })}
           >
             {options.map((option) => _renderOption(option))}
           </Ark.Menu.Content>

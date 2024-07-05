@@ -44,16 +44,16 @@ export const RadioGroup = _constructor(function (
   },
   ref,
 ) {
-  const classes = radioGroup({ size, invalid, className })
+  const styles = radioGroup({ size, invalid, className })
 
   return (
     <Ark.RadioGroup.Root
       ref={ref}
-      className={classes.base({ class: classNames?.base })}
+      className={styles.base({ class: classNames?.base })}
       {...props}
     >
       <Ark.RadioGroup.Label
-        className={classes.label({ class: classNames?.label })}
+        className={styles.label({ class: classNames?.label })}
       >
         {label}
       </Ark.RadioGroup.Label>
@@ -62,13 +62,13 @@ export const RadioGroup = _constructor(function (
         <Ark.RadioGroup.Item
           key={item.value}
           {...item}
-          className={classes.item({ class: classNames?.item })}
+          className={styles.item({ class: classNames?.item })}
         >
           <Ark.RadioGroup.ItemControl
-            className={classes.control({ class: classNames?.control })}
+            className={styles.control({ class: classNames?.control })}
           />
           <Ark.RadioGroup.ItemText
-            className={classes.itemText({ class: classNames?.itemText })}
+            className={styles.itemText({ class: classNames?.itemText })}
           >
             {label}
           </Ark.RadioGroup.ItemText>

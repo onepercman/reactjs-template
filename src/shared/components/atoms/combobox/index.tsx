@@ -76,16 +76,16 @@ export const Combobox = _constructor(function (
   },
   ref,
 ) {
-  const classes = combobox({ size })
+  const styles = combobox({ size })
 
   function _renderOption(option: ComboboxOptionProps<any>, offset = 0) {
     if (option.children?.length)
       return (
         <Ark.Combobox.ItemGroup
-          className={classes.group({ className: classNames?.group })}
+          className={styles.group({ className: classNames?.group })}
         >
           <Ark.Combobox.ItemGroupLabel
-            className={classes.groupLabel({ class: classNames?.groupLabel })}
+            className={styles.groupLabel({ class: classNames?.groupLabel })}
           >
             <span style={{ paddingLeft: offset * indent }}>{option.label}</span>
           </Ark.Combobox.ItemGroupLabel>
@@ -101,16 +101,16 @@ export const Combobox = _constructor(function (
       <Ark.Combobox.Item
         key={option.value}
         item={option}
-        className={classes.item({ class: classNames?.item })}
+        className={styles.item({ class: classNames?.item })}
       >
         <Ark.Combobox.ItemText
-          className={classes.itemText({ class: classNames?.itemText })}
+          className={styles.itemText({ class: classNames?.itemText })}
           style={{ paddingLeft: offset * indent }}
         >
           {option.label}
         </Ark.Combobox.ItemText>
         <Ark.Combobox.ItemIndicator
-          className={classes.itemIndicator({
+          className={styles.itemIndicator({
             class: classNames?.itemIndicator,
           })}
         >
@@ -131,11 +131,11 @@ export const Combobox = _constructor(function (
         sameWidth: true,
         ...props.positioning,
       }}
-      className={classes.base({ className, class: classNames?.base })}
+      className={styles.base({ className, class: classNames?.base })}
       {...props}
     >
       <Ark.Combobox.Label
-        className={classes.label({ class: classNames?.label })}
+        className={styles.label({ class: classNames?.label })}
       >
         {label}
       </Ark.Combobox.Label>
@@ -144,7 +144,7 @@ export const Combobox = _constructor(function (
           <Input
             size={size}
             variant={variant}
-            className={classes.trigger({ class: classNames?.trigger })}
+            className={styles.trigger({ class: classNames?.trigger })}
             placeholder={placeholder}
             invalid={invalid}
             invalidMessage={invalidMessage}
@@ -157,7 +157,7 @@ export const Combobox = _constructor(function (
                       variant="default"
                       shape="circle"
                       leftIcon={<LuX />}
-                      className={classes.clear({ class: classNames?.clear })}
+                      className={styles.clear({ class: classNames?.clear })}
                     />
                   </Ark.Combobox.ClearTrigger>
                 ) : null}
@@ -172,7 +172,7 @@ export const Combobox = _constructor(function (
       <Ark.Portal>
         <Ark.Combobox.Positioner>
           <Ark.Combobox.Content
-            className={classes.list({ class: classNames?.list })}
+            className={styles.list({ class: classNames?.list })}
           >
             {options.map((option) => _renderOption(option))}
           </Ark.Combobox.Content>

@@ -85,7 +85,7 @@ export const Table = _constructor(function (
   },
   ref,
 ) {
-  const classes = table({ selectionMode, className })
+  const styles = table({ selectionMode, className })
 
   const [selected, setSelected] = useState<any[]>(defaultSelectedKeys)
   const [sortDescriptor, setSortDescriptor] = useState<TableSort>()
@@ -172,7 +172,7 @@ export const Table = _constructor(function (
         <tr>
           <td
             colSpan={columns?.length || 1}
-            className={classes.td({ class: classNames?.td })}
+            className={styles.td({ class: classNames?.td })}
           >
             <div className="min-h-24 w-full">
               <Spinner />
@@ -186,7 +186,7 @@ export const Table = _constructor(function (
         <tr>
           <td
             colSpan={columns?.length || 1}
-            className={classes.td({ class: classNames?.td })}
+            className={styles.td({ class: classNames?.td })}
           ></td>
         </tr>
       )
@@ -195,7 +195,7 @@ export const Table = _constructor(function (
     return data.map((row, index) => (
       <tr
         key={row.key || index}
-        className={classes.tr({
+        className={styles.tr({
           className: _isSelected(row) ? "bg-default" : "",
           class: classNames?.tr,
         })}
@@ -211,7 +211,7 @@ export const Table = _constructor(function (
           ) => (
             <td
               key={key || columnIndex}
-              className={classes.td({ class: classNames?.td })}
+              className={styles.td({ class: classNames?.td })}
               align={align || dataAlign}
               {...column}
             >
@@ -226,15 +226,15 @@ export const Table = _constructor(function (
   }
 
   return (
-    <div className={classes.base({ class: classNames?.base })}>
+    <div className={styles.base({ class: classNames?.base })}>
       <table
         ref={ref}
-        className={classes.table({ class: classNames?.table })}
+        className={styles.table({ class: classNames?.table })}
         {...props}
       >
         {columns?.filter((c) => !!c.label).length ? (
           <thead>
-            <tr className={classes.trHead({ class: classNames?.trHead })}>
+            <tr className={styles.trHead({ class: classNames?.trHead })}>
               {columns.map(
                 (
                   {
@@ -252,7 +252,7 @@ export const Table = _constructor(function (
                 ) => (
                   <th
                     key={key || (dataIndex as string) || index}
-                    className={classes.th({ class: classNames?.th })}
+                    className={styles.th({ class: classNames?.th })}
                     align={align ?? headAlign}
                     {...column}
                   >
@@ -287,10 +287,10 @@ export const Table = _constructor(function (
         <tbody className="relative divide-y divide-line text-left">
           {_renderContainer()}
           {pagination && (
-            <tr className={classes.tr({ class: classNames?.tr })}>
+            <tr className={styles.tr({ class: classNames?.tr })}>
               <td
                 colSpan={columns?.length || 1}
-                className={classes.td({ class: classNames?.td })}
+                className={styles.td({ class: classNames?.td })}
               >
                 <div className="flex w-full justify-end">
                   <div className="sticky left-0 right-0 w-fit px-4 py-2">

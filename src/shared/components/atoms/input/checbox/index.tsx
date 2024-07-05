@@ -23,21 +23,21 @@ export const Checkbox = React.forwardRef<HTMLLabelElement, CheckboxProps>(
     },
     ref,
   ) {
-    const classes = checkbox({ size, placement, indeterminate, className })
+    const styles = checkbox({ size, placement, indeterminate, className })
 
     return (
       <Ark.Checkbox.Root
         ref={ref}
         {...props}
-        className={classes.base({ class: classNames?.base })}
+        className={styles.base({ class: classNames?.base })}
       >
         <Ark.Checkbox.Label
-          className={classes.label({ class: classNames?.label })}
+          className={styles.label({ class: classNames?.label })}
         >
           {children}
         </Ark.Checkbox.Label>
         <Ark.Checkbox.Control
-          className={classes.control({ class: classNames?.control })}
+          className={styles.control({ class: classNames?.control })}
         >
           <Ark.Checkbox.Indicator className="m-auto duration-300 data-[state=checked]:animate-in data-[state=unchecked]:animate-out data-[state=checked]:zoom-in data-[state=unchecked]:zoom-out">
             {indeterminate ? (

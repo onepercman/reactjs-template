@@ -13,20 +13,20 @@ export const Avatar = React.forwardRef<HTMLImageElement, AvatarProps>(function (
   { size, fallback, className, classNames, ...props },
   ref,
 ) {
-  const classes = avatar({ size })
+  const styles = avatar({ size })
 
   return (
     <Ark.Avatar.Root
-      className={classes.base({ className, class: classNames?.base })}
+      className={styles.base({ className, class: classNames?.base })}
     >
       <Ark.Avatar.Fallback
-        className={classes.fallback({ className: classNames?.fallback })}
+        className={styles.fallback({ className: classNames?.fallback })}
       >
         {fallback}
       </Ark.Avatar.Fallback>
       <Ark.Avatar.Image
         ref={ref}
-        className={classes.image({ className: classNames?.image })}
+        className={styles.image({ className: classNames?.image })}
         {...props}
       />
     </Ark.Avatar.Root>

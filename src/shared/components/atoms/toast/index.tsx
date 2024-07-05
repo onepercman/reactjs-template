@@ -23,15 +23,15 @@ function getIcon(type?: "success" | "error" | "loading" | "info" | any) {
 export const ToasterContainer: FC<{
   toaster: ReturnType<typeof Ark.createToaster>
 }> = ({ toaster }) => {
-  const classes = toast()
+  const styles = toast()
 
   return (
-    <Ark.Toaster toaster={toaster} className={classes.container()}>
+    <Ark.Toaster toaster={toaster} className={styles.container()}>
       {({ id, title, description, type }) => {
         return (
           <Ark.Toast.Root
             key={id}
-            className={classes.base()}
+            className={styles.base()}
             style={
               {
                 "--scale": "calc(1 - var(--index) * 0.1)",
@@ -41,18 +41,18 @@ export const ToasterContainer: FC<{
               } as React.CSSProperties
             }
           >
-            <Ark.Toast.Title className={classes.title()}>
+            <Ark.Toast.Title className={styles.title()}>
               {getIcon(type)}
               {title}
             </Ark.Toast.Title>
-            <Ark.Toast.Description className={classes.description()}>
+            <Ark.Toast.Description className={styles.description()}>
               {description}
             </Ark.Toast.Description>
             <Ark.Toast.CloseTrigger asChild>
               <Button
                 size="xs"
                 shape="circle"
-                className={classes.dismiss()}
+                className={styles.dismiss()}
                 leftIcon={<LuX />}
               />
             </Ark.Toast.CloseTrigger>

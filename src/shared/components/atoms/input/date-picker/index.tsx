@@ -31,7 +31,7 @@ export const DatePicker = _constructor(function (
   { classNames, ...props },
   ref,
 ) {
-  const classes = datePicker()
+  const styles = datePicker()
 
   return (
     <Ark.DatePicker.Root asChild {...props}>
@@ -57,14 +57,14 @@ export const DatePicker = _constructor(function (
         <Ark.Portal>
           <Ark.DatePicker.Positioner>
             <Ark.DatePicker.Content
-              className={classes.base({ class: classNames?.base })}
+              className={styles.base({ class: classNames?.base })}
             >
               <Ark.DatePicker.View view="day">
                 <Ark.DatePicker.Context>
                   {(datePicker) => (
                     <>
                       <Ark.DatePicker.ViewControl
-                        className={classes.viewControl({
+                        className={styles.viewControl({
                           class: classNames?.viewControl,
                         })}
                       >
@@ -86,7 +86,7 @@ export const DatePicker = _constructor(function (
                             {datePicker.weekDays.map((weekDay, id) => (
                               <Ark.DatePicker.TableHeader
                                 key={id}
-                                className={classes.header({
+                                className={styles.header({
                                   class: classNames?.header,
                                 })}
                               >
@@ -104,7 +104,7 @@ export const DatePicker = _constructor(function (
                                     <Button
                                       size="xs"
                                       variant="ghost"
-                                      className={classes.cell({
+                                      className={styles.cell({
                                         class: classNames?.cell,
                                       })}
                                     >
@@ -126,7 +126,7 @@ export const DatePicker = _constructor(function (
                   {(datePicker) => (
                     <>
                       <Ark.DatePicker.ViewControl
-                        className={classes.viewControl({
+                        className={styles.viewControl({
                           class: classNames?.viewControl,
                         })}
                       >
@@ -157,7 +157,7 @@ export const DatePicker = _constructor(function (
                                       <Button
                                         size="xs"
                                         variant="ghost"
-                                        className={classes.cell({
+                                        className={styles.cell({
                                           class: classNames?.cell,
                                         })}
                                       >
@@ -179,7 +179,7 @@ export const DatePicker = _constructor(function (
                   {(datePicker) => (
                     <>
                       <Ark.DatePicker.ViewControl
-                        className={classes.viewControl({
+                        className={styles.viewControl({
                           class: classNames?.viewControl,
                         })}
                       >
@@ -210,7 +210,7 @@ export const DatePicker = _constructor(function (
                                       <Button
                                         size="xs"
                                         variant="ghost"
-                                        className={classes.cell({
+                                        className={styles.cell({
                                           class: classNames?.cell,
                                         })}
                                       >

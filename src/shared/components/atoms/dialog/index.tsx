@@ -50,7 +50,7 @@ export const Dialog = _constructor(function (
   },
   ref,
 ) {
-  const classes = dialog({ size, placement, className })
+  const styles = dialog({ size, placement, className })
 
   return (
     <Ark.Dialog.Root {...props}>
@@ -59,19 +59,19 @@ export const Dialog = _constructor(function (
       ) : null}
       <Ark.Portal>
         <Ark.Dialog.Backdrop
-          className={classes.backdrop({ class: classNames?.backdrop })}
+          className={styles.backdrop({ class: classNames?.backdrop })}
         />
         <Ark.Dialog.Positioner
-          className={classes.positioner({ class: classNames?.positioner })}
+          className={styles.positioner({ class: classNames?.positioner })}
           style={{ zIndex: "var(--z-index-modal)" }}
         >
           <Ark.Dialog.Content
             ref={ref}
-            className={classes.base({ class: classNames?.base })}
+            className={styles.base({ class: classNames?.base })}
           >
             {title ? (
               <Ark.Dialog.Title
-                className={classes.title({ class: classNames?.title })}
+                className={styles.title({ class: classNames?.title })}
               >
                 {title}
               </Ark.Dialog.Title>
@@ -83,7 +83,7 @@ export const Dialog = _constructor(function (
                     size="xs"
                     shape="circle"
                     leftIcon={<LuX />}
-                    className={classes.close({ class: classNames?.close })}
+                    className={styles.close({ class: classNames?.close })}
                   />
                 ) : (
                   closeTrigger

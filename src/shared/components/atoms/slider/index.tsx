@@ -38,33 +38,33 @@ export const Slider = _constructor(function (
 ) {
   const Tag = as
 
-  const classes = slider({ size, className })
+  const styles = slider({ size, className })
 
   return (
     <Ark.Slider.Root asChild {...props}>
-      <Tag ref={ref} className={classes.base({ class: classNames?.base })}>
+      <Tag ref={ref} className={styles.base({ class: classNames?.base })}>
         <Ark.Slider.Label
-          className={classes.label({ class: classNames?.label })}
+          className={styles.label({ class: classNames?.label })}
         >
           <span>{label}</span>
           <Ark.Slider.ValueText
-            className={classes.valueText({ class: classNames?.valueText })}
+            className={styles.valueText({ class: classNames?.valueText })}
           />
         </Ark.Slider.Label>
 
         <Ark.Slider.Control
-          className={classes.control({ class: classNames?.control })}
+          className={styles.control({ class: classNames?.control })}
         >
           <Ark.Slider.Track
-            className={classes.track({ class: classNames?.track })}
+            className={styles.track({ class: classNames?.track })}
           >
             <Ark.Slider.Range
-              className={classes.range({ class: classNames?.range })}
+              className={styles.range({ class: classNames?.range })}
             />
           </Ark.Slider.Track>
           <Ark.Slider.Thumb
             index={0}
-            className={classes.thumb({ class: classNames?.thumb })}
+            className={styles.thumb({ class: classNames?.thumb })}
           >
             <Ark.Slider.HiddenInput />
           </Ark.Slider.Thumb>
@@ -75,7 +75,7 @@ export const Slider = _constructor(function (
             {markers.map((marker) => (
               <Ark.Slider.Marker
                 key={marker.value}
-                className={classes.marker({ class: classNames?.marker })}
+                className={styles.marker({ class: classNames?.marker })}
                 {...marker}
               />
             ))}

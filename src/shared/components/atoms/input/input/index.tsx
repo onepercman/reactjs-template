@@ -50,7 +50,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
-    const classes = input({ size, variant, invalid })
+    const styles = input({ size, variant, invalid })
 
     const internalRef = React.useRef<HTMLInputElement>(null)
     const composedRef = useComposedRefs(ref, internalRef)
@@ -139,14 +139,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       if (!element) return null
       if (typeof element === "object" && "type" in element)
         return React.cloneElement(element, {
-          className: classes.addonBefore({
+          className: styles.addonBefore({
             className: element.props.className,
             class: classNames?.addonBefore,
           }),
         })
       return (
         <span
-          className={classes.addonBefore({ class: classNames?.addonBefore })}
+          className={styles.addonBefore({ class: classNames?.addonBefore })}
         >
           {element}
         </span>
@@ -158,13 +158,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       if (!element) return null
       if (typeof element === "object" && "type" in element)
         return React.cloneElement(element, {
-          className: classes.addonAfter({
+          className: styles.addonAfter({
             className: element.props.className,
             class: classNames?.addonAfter,
           }),
         })
       return (
-        <span className={classes.addonAfter({ class: classNames?.addonAfter })}>
+        <span className={styles.addonAfter({ class: classNames?.addonAfter })}>
           {element}
         </span>
       )
@@ -173,17 +173,17 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <label
         role="input"
-        className={classes.base({ className, class: classNames?.base })}
+        className={styles.base({ className, class: classNames?.base })}
         onClick={function (e) {
           e.currentTarget.getElementsByTagName("input")[0].focus()
         }}
       >
-        <div className={classes.label({ class: classNames?.label })}>
+        <div className={styles.label({ class: classNames?.label })}>
           <span>{label}</span>
           {required ? <span className="text-xs text-error">*</span> : null}
         </div>
         <div
-          className={classes.group({
+          className={styles.group({
             className: cn({ "pl-0": addonBefore, "pr-0": addonAfter }),
             class: classNames?.group,
           })}
@@ -193,7 +193,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <input
             ref={composedRef}
             onChange={handleChange}
-            className={classes.input({ class: classNames?.input })}
+            className={styles.input({ class: classNames?.input })}
             {...props}
           />
           {getClear()}

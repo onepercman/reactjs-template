@@ -14,7 +14,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(function (
   { children, content, size, className, classNames, ...props },
   ref,
 ) {
-  const classes = tooltip({ size, className })
+  const styles = tooltip({ size, className })
 
   return (
     <Ark.Tooltip.Root openDelay={200} closeDelay={200} {...props}>
@@ -22,7 +22,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(function (
       <Ark.Tooltip.Positioner>
         <Ark.Tooltip.Content
           ref={ref}
-          className={classes.base({ class: classNames?.base })}
+          className={styles.base({ class: classNames?.base })}
         >
           <Ark.Tooltip.Arrow
             style={
@@ -33,7 +33,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(function (
             }
           >
             <Ark.Tooltip.ArrowTip
-              className={classes.arrow({ class: classNames?.arrow })}
+              className={styles.arrow({ class: classNames?.arrow })}
             />
           </Ark.Tooltip.Arrow>
           {content}

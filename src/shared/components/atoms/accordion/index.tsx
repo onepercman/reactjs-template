@@ -38,23 +38,23 @@ export const Accordion = _constructor(function (
   { items, className, ...props },
   ref,
 ) {
-  const classes = accordion({ className })
+  const styles = accordion({ className })
 
   return (
-    <ArkAccordion.Root ref={ref} className={classes.base()} {...props}>
+    <ArkAccordion.Root ref={ref} className={styles.base()} {...props}>
       {items?.map(({ trigger, content, ...item }) => (
         <ArkAccordion.Item {...item}>
           <ArkAccordion.ItemTrigger
-            className={classes.trigger({ className: trigger?.className })}
+            className={styles.trigger({ className: trigger?.className })}
             {...trigger}
           >
             {trigger?.children}
             <ArkAccordion.ItemIndicator asChild>
-              <LuChevronDown className={classes.indicator()} />
+              <LuChevronDown className={styles.indicator()} />
             </ArkAccordion.ItemIndicator>
           </ArkAccordion.ItemTrigger>
           <ArkAccordion.ItemContent
-            className={classes.content({ className: content?.className })}
+            className={styles.content({ className: content?.className })}
             {...content}
           />
         </ArkAccordion.Item>

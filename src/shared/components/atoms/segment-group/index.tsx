@@ -46,18 +46,18 @@ export const SegmentGroup = _constructor(function (
 ) {
   const Tag = as
 
-  const classes = segmentGroup({ size, variant, className })
+  const styles = segmentGroup({ size, variant, className })
 
   return (
     <Ark.SegmentGroup.Root asChild {...props}>
-      <Tag ref={ref} className={classes.base({ class: classNames?.base })}>
+      <Tag ref={ref} className={styles.base({ class: classNames?.base })}>
         <Ark.SegmentGroup.Indicator
-          className={classes.indicator({ class: classNames?.indicator })}
+          className={styles.indicator({ class: classNames?.indicator })}
         />
         {items.map(({ children, className, ...tab }) => (
           <Ark.SegmentGroup.Item
             key={tab.value}
-            className={classes.item({
+            className={styles.item({
               className,
               class: classNames?.item,
             })}
