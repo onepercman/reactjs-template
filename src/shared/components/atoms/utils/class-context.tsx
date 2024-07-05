@@ -6,7 +6,8 @@ import {
   type ElementType,
   type ExoticComponent,
 } from "react"
-import { TV, VariantProps } from "tailwind-variants"
+import { TV } from "tailwind-variants"
+import { ComposedTVProps } from "../types"
 import { cn } from "./cn"
 
 type ProviderComponentProps<ComponentProps extends object> =
@@ -30,33 +31,31 @@ export function createClassContext<
   })
 
   function withClassProvider<C extends ElementType>(Component: C, slot?: Slot) {
-    const Comp = forwardRef(
-      (
-        props: ComponentProps<C> & VariantProps<TVFN> & ClassNamesProps<TVFN>,
-        ref,
-      ) => {
-        const className = tvFn(props) as any
-        const variantClassNames = className[slot ?? ""]?.()
-        return (
-          <StyleContext.Provider
-            value={{ variants: className, classes: props.classNames }}
-          >
-            <Component
-              ref={ref}
-              className={cn(variantClassNames, props.className)}
-              {...(props as any)}
-            />
-          </StyleContext.Provider>
-        )
-      },
-    )
+    const Comp = forwardRef(function (
+      props: ComponentProps<C> & ComposedTVProps<TVFN>,
+      ref,
+    ) {
+      const className = tvFn(props) as any
+      const variantClassNames = className[slot ?? ""]?.()
+      return (
+        <StyleContext.Provider
+          value={{ variants: className, classes: props.classNames }}
+        >
+          <Component
+            ref={ref}
+            className={cn(variantClassNames, props.className)}
+            {...(props as any)}
+          />
+        </StyleContext.Provider>
+      )
+    })
     Comp.displayName =
       (Component as any).displayName || (Component as any).name || "Component"
     return Comp
   }
 
   function withClassContext<C extends ElementType>(Component: C, slot?: Slot) {
-    const Comp = forwardRef((props: ComponentProps<C>, ref) => {
+    const Comp = forwardRef(function (props: ComponentProps<C>, ref) {
       const ctx = useContext(StyleContext) as any
       const variantClassNames = ctx.variants?.[slot ?? ""]?.(
         slot && ctx.classes ? { class: ctx.classes[slot] } : undefined,
