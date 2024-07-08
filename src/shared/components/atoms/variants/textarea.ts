@@ -3,7 +3,6 @@ import { tv } from "tailwind-variants"
 export const textarea = tv({
   base: "flex flex-col gap-1 group",
   slots: {
-    label: "text-xs space-y-2 text-secondary",
     group: [
       "border-2 rounded px-2 transition-all text-ellipsis inline-flex items-center overflow-hidden cursor-text gap-2 py-2",
       "focus-within:border-primary",

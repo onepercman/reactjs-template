@@ -25,8 +25,6 @@ export interface ComboboxProps<Value>
   readonly options?: ComboboxOptionProps<Value>[]
   placeholder?: string
   allowClear?: boolean
-  invalid?: boolean
-  invalidMessage?: React.ReactNode
   indent?: number
 }
 
@@ -68,7 +66,6 @@ export const Combobox = _constructor(function (
     variant,
     allowClear,
     invalid,
-    invalidMessage,
     indent = 16,
     className,
     classNames,
@@ -134,11 +131,6 @@ export const Combobox = _constructor(function (
       className={styles.base({ className, class: classNames?.base })}
       {...props}
     >
-      <Ark.Combobox.Label
-        className={styles.label({ class: classNames?.label })}
-      >
-        {label}
-      </Ark.Combobox.Label>
       <Ark.Combobox.Control>
         <Ark.Combobox.Input asChild>
           <Input
@@ -147,7 +139,6 @@ export const Combobox = _constructor(function (
             className={styles.trigger({ class: classNames?.trigger })}
             placeholder={placeholder}
             invalid={invalid}
-            invalidMessage={invalidMessage}
             suffix={
               <div className="inline-flex items-center gap-1">
                 {allowClear ? (

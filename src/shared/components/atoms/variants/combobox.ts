@@ -3,7 +3,6 @@ import { tv } from "tailwind-variants"
 export const combobox = tv({
   base: "flex flex-col gap-1 w-fit",
   slots: {
-    label: "text-sm text-secondary",
     trigger:
       "min-w-full justify-between data-[placeholder-shown]:text-secondary",
     clear: "text-secondary text-xs flex-none",

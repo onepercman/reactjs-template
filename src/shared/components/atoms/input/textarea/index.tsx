@@ -1,10 +1,10 @@
-import * as Ark from "@ark-ui/react"
 import React from "react"
 import { LuX } from "react-icons/lu"
 import TextAreaAutoSize, {
   TextareaAutosizeProps,
 } from "react-textarea-autosize"
 import { ComposedTVProps } from "../../types"
+import { cn } from "../../utils/cn"
 import { useComposedRefs } from "../../utils/ref"
 import { textarea } from "../../variants"
 
@@ -15,14 +15,10 @@ export interface TextareaProps<AutoSize extends boolean = true>
     >,
     ComposedTVProps<typeof textarea> {
   autoSize?: AutoSize
-  label?: React.ReactNode
-  required?: boolean
   prefix?: React.ReactNode | React.ReactElement
   suffix?: React.ReactNode | React.ReactElement
   addonBefore?: React.ReactNode | React.ReactElement
   addonAfter?: React.ReactNode | React.ReactElement
-  invalid?: boolean
-  invalidMessage?: React.ReactNode
   clearable?: boolean
   transform?(value: string): string
   autoSizeOptions?: AutoSize extends true ? TextareaAutosizeProps : undefined
@@ -40,9 +36,6 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       invalid,
       clearable,
       autoSize,
-      label,
-      required,
-      invalidMessage,
       autoSizeOptions,
       onChange,
       transform,
@@ -147,40 +140,28 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <label
         role="input"
-        className={styles.base({ className, class: classNames?.base })}
+        className={styles.base({
+          className: cn(className, classNames?.base, {
+            "pl-0": addonBefore,
+            "pr-0": addonAfter,
+          }),
+        })}
       >
-        <div className={styles.label({ class: classNames?.label })}>
-          <span>{label}</span>
-          {required ? <span className="text-xs text-error">(*)</span> : null}
-        </div>
-        <div
-          className={styles.group({
-            className: addonBefore ? "pl-0" : addonAfter ? "pr-0" : "",
-            class: classNames?.group,
+        {_renderAddonBefore()}
+        {_renderPrefix()}
+        <Component
+          ref={composedRef}
+          onChange={handleChange}
+          className={styles.textarea({
+            autoSize,
+            class: classNames?.textarea,
           })}
-        >
-          {_renderAddonBefore()}
-          {_renderPrefix()}
-          <Component
-            ref={composedRef}
-            onChange={handleChange}
-            className={styles.textarea({
-              autoSize,
-              class: classNames?.textarea,
-            })}
-            {...props}
-            {...autoSizeOptions}
-          />
-          {getClear()}
-          {_renderSuffix()}
-          {_renderAddonAfter()}
-        </div>
-        <Ark.Presence
-          className="text-xs text-error animate-in fade-in"
-          present={Boolean(invalid && invalidMessage)}
-        >
-          {invalidMessage}
-        </Ark.Presence>
+          {...props}
+          {...autoSizeOptions}
+        />
+        {getClear()}
+        {_renderSuffix()}
+        {_renderAddonAfter()}
       </label>
     )
   },

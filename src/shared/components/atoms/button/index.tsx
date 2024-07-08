@@ -17,6 +17,12 @@ export interface ButtonProps
     Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "color">,
     ComposedTVProps<typeof button> {}
 
+const _styledShadow = (color: any) =>
+  ({
+    "--color": `rgba(var(--tw-schemes-${color}), 0.5)`,
+    "--shadow-color": `rgba(var(--tw-schemes-${color}-700), 1)`,
+  }) as React.CSSProperties
+
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function (
   {
     children,
@@ -31,6 +37,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function (
     color,
     size,
     shape,
+    shadow,
     onClick,
     ...props
   },
@@ -60,6 +67,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function (
     variant,
     color,
     size,
+    shadow,
     className,
     shape,
     disabled: _disabled,
@@ -73,6 +81,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function (
       disabled={_disabled}
       onClick={_onClick}
       data-loading={_loading}
+      style={{
+        ...props.style,
+        ..._styledShadow(color),
+      }}
       {...props}
     >
       {_loading && (

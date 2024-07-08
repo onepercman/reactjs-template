@@ -3,9 +3,9 @@ import { tv } from "tailwind-variants"
 export const button = tv({
   base: [
     "inline-flex items-center justify-center gap-2 font-medium whitespace-nowrap",
-    "border-transparent ring ring-transparent transition-all cursor-pointer border-2 outline-none",
+    "border-transparent ring ring-transparent transition-all cursor-pointer border-0 outline-none",
     "hover:brightness-90",
-    "active:scale-105",
+    "active:scale-95",
   ],
   variants: {
     size: {
@@ -15,7 +15,7 @@ export const button = tv({
       lg: "h-[3rem] min-h-[3rem] min-w-[3rem] px-4",
     },
     variant: {
-      default: "border-transparent",
+      default: "border-0",
       outlined: "border-2",
       ghost: "border-0 bg-transparent",
       light: "border-0",
@@ -28,6 +28,9 @@ export const button = tv({
       success: "",
       warning: "",
       error: "",
+    },
+    shadow: {
+      true: "shadow-button",
     },
     shape: {
       normal: "rounded",

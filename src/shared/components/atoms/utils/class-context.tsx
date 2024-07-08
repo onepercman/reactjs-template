@@ -6,20 +6,19 @@ import {
   type ElementType,
   type ExoticComponent,
 } from "react"
-import { TV } from "tailwind-variants"
-import { ComposedTVProps } from "../types"
+import { ComposedTVProps, Recipe } from "../types"
 import { cn } from "./cn"
 
 type ProviderComponentProps<ComponentProps extends object> =
   | ExoticComponent<ComponentProps>
   | ((prop: ComponentProps) => JSX.Element)
 
-type ClassNamesProps<T extends TV> = {
+type ClassNamesProps<T extends Recipe> = {
   classNames?: keyof ReturnType<T>
 }
 
 export function createClassContext<
-  TVFN extends TV,
+  TVFN extends Recipe,
   Slot extends keyof ReturnType<TVFN>,
 >(tvFn: TVFN) {
   const StyleContext = createContext<{

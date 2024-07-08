@@ -25,8 +25,6 @@ export interface SelectProps<Value>
   readonly options?: SelectOptionProps<Value>[]
   placeholder?: string
   allowClear?: boolean
-  invalid?: boolean
-  invalidMessage?: React.ReactNode
   indent?: number
 }
 
@@ -69,7 +67,6 @@ export const Select = _constructor(function (
     color,
     allowClear,
     invalid,
-    invalidMessage,
     indent = 16,
     className,
     classNames,
@@ -135,9 +132,6 @@ export const Select = _constructor(function (
       className={styles.base({ className, class: classNames?.base })}
       {...props}
     >
-      <Ark.Select.Label className={styles.label({ class: classNames?.label })}>
-        {label}
-      </Ark.Select.Label>
       <Ark.Select.Control>
         <Ark.Select.Trigger asChild>
           <Button
@@ -168,12 +162,6 @@ export const Select = _constructor(function (
           </Button>
         </Ark.Select.Trigger>
       </Ark.Select.Control>
-      <Ark.Presence
-        className="text-xs text-error animate-in fade-in"
-        present={Boolean(invalid && invalidMessage)}
-      >
-        {invalidMessage}
-      </Ark.Presence>
       <Ark.Portal>
         <Ark.Select.Positioner>
           <Ark.Select.Content

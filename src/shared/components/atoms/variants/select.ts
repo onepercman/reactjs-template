@@ -3,7 +3,6 @@ import { tv } from "tailwind-variants"
 export const select = tv({
   base: "flex flex-col gap-1 w-fit",
   slots: {
-    label: "text-sm text-secondary",
     trigger:
       "min-w-full justify-between data-[placeholder-shown]:text-secondary data-[placeholder-shown]:font-normal relative",
     clear: "text-secondary text-xs absolute top-1/2 right-3 -translate-y-1/2",

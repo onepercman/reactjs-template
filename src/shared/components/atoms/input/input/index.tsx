@@ -1,4 +1,3 @@
-import * as Ark from "@ark-ui/react"
 import React from "react"
 import { HiEye, HiEyeOff } from "react-icons/hi"
 import { LuX } from "react-icons/lu"
@@ -8,14 +7,10 @@ import { useComposedRefs } from "../../utils/ref"
 import { input } from "../../variants"
 
 export interface InputFieldProps {
-  label?: React.ReactNode
-  required?: boolean
   prefix?: React.ReactNode | React.ReactElement
   suffix?: React.ReactNode | React.ReactElement
   addonBefore?: React.ReactNode | React.ReactElement
   addonAfter?: React.ReactNode | React.ReactElement
-  invalid?: boolean
-  invalidMessage?: React.ReactNode
   clearable?: boolean
   transform?(value: string): string
 }
@@ -31,7 +26,6 @@ export interface InputProps
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      label,
       prefix,
       suffix,
       addonBefore,
@@ -39,8 +33,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       size,
       variant,
       invalid,
-      invalidMessage,
-      required,
       clearable,
       onChange,
       transform,
@@ -173,40 +165,28 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <label
         role="input"
-        className={styles.base({ className, class: classNames?.base })}
+        className={styles.base({
+          className: cn(className, classNames?.base, {
+            "pl-0": addonBefore,
+            "pr-0": addonAfter,
+          }),
+        })}
         onClick={function (e) {
           e.currentTarget.getElementsByTagName("input")[0].focus()
         }}
       >
-        <div className={styles.label({ class: classNames?.label })}>
-          <span>{label}</span>
-          {required ? <span className="text-xs text-error">*</span> : null}
-        </div>
-        <div
-          className={styles.group({
-            className: cn({ "pl-0": addonBefore, "pr-0": addonAfter }),
-            class: classNames?.group,
-          })}
-        >
-          {_renderAddonBefore()}
-          {_renderPrefix()}
-          <input
-            ref={composedRef}
-            onChange={handleChange}
-            className={styles.input({ class: classNames?.input })}
-            {...props}
-          />
-          {getClear()}
-          {getTogglePassword()}
-          {_renderSuffix()}
-          {_renderAddonAfter()}
-        </div>
-        <Ark.Presence
-          className="text-xs text-error animate-in fade-in"
-          present={Boolean(invalid && invalidMessage)}
-        >
-          {invalidMessage}
-        </Ark.Presence>
+        {_renderAddonBefore()}
+        {_renderPrefix()}
+        <input
+          ref={composedRef}
+          onChange={handleChange}
+          className={styles.input({ class: classNames?.input })}
+          {...props}
+        />
+        {getClear()}
+        {getTogglePassword()}
+        {_renderSuffix()}
+        {_renderAddonAfter()}
       </label>
     )
   },

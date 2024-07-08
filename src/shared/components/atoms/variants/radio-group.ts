@@ -3,7 +3,6 @@ import { tv } from "tailwind-variants"
 export const radioGroup = tv({
   base: "flex flex-col gap-2",
   slots: {
-    label: "text-sm text-secondary",
     item: "inline-flex items-center gap-2 cursor-pointer",
     itemText: "",
     control:

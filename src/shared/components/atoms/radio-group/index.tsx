@@ -12,8 +12,6 @@ export interface RadioGroupProps
     ComposedTVProps<typeof radioGroup> {
   label?: React.ReactNode
   options?: RadioGroupOption[]
-  invalid?: boolean
-  invalidMessage?: React.ReactNode
 }
 
 interface RadioGroup extends ForwardedRefComponent {
@@ -32,16 +30,7 @@ function _constructor(
 }
 
 export const RadioGroup = _constructor(function (
-  {
-    options,
-    label,
-    size,
-    invalid,
-    invalidMessage,
-    className,
-    classNames,
-    ...props
-  },
+  { options, label, size, invalid, className, classNames, ...props },
   ref,
 ) {
   const styles = radioGroup({ size, invalid, className })
@@ -52,11 +41,6 @@ export const RadioGroup = _constructor(function (
       className={styles.base({ class: classNames?.base })}
       {...props}
     >
-      <Ark.RadioGroup.Label
-        className={styles.label({ class: classNames?.label })}
-      >
-        {label}
-      </Ark.RadioGroup.Label>
       <Ark.RadioGroup.Indicator />
       {options?.map(({ label, ...item }) => (
         <Ark.RadioGroup.Item
@@ -75,12 +59,6 @@ export const RadioGroup = _constructor(function (
           <Ark.RadioGroup.ItemHiddenInput />
         </Ark.RadioGroup.Item>
       ))}
-      <Ark.Presence
-        className="text-xs text-error animate-in fade-in"
-        present={Boolean(invalid && invalidMessage)}
-      >
-        {invalidMessage}
-      </Ark.Presence>
     </Ark.RadioGroup.Root>
   )
 })
