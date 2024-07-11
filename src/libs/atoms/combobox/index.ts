@@ -1,1 +1,1 @@
-export * from "./combobox"
+export * as Combobox from "./combobox"

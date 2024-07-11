@@ -4,20 +4,7 @@ import { LuCheck, LuX } from "react-icons/lu"
 import { RiArrowDownSFill } from "react-icons/ri"
 import { Button, ButtonBaseProps } from "../button"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createComponentCtx } from "../utils/component-ctx"
 import { button, select } from "../variants"
-
-const { withRoot, withSlot } = createComponentCtx(select)
-
-const SelectRoot = withRoot(Ark.Select.Root, "base")
-const SelectItemGroup = withSlot(Ark.Select.ItemGroup, "group")
-const SelectClearTrigger = withSlot(Ark.Select.ClearTrigger, "clear")
-const SelectGroupLabel = withSlot(Ark.Select.ItemGroupLabel, "groupLabel")
-const SelectItem = withSlot(Ark.Select.Item, "item")
-const SelectItemIndicator = withSlot(Ark.Select.ItemIndicator, "itemIndicator")
-const SelectItemText = withSlot(Ark.Select.ItemText, "itemText")
-const SelectContent = withSlot(Ark.Select.Content, "list")
-const SelectTrigger = withSlot(Ark.Select.Trigger, "trigger")
 
 export interface SelectOptionProps<Value> {
   label?: React.ReactNode
@@ -45,26 +32,6 @@ export interface SelectProps<Value>
 
 export interface Select extends ForwardedRefComponent {
   <Value>(props: SelectProps<Value>): React.ReactElement | null
-
-  Root: typeof SelectRoot
-  RootProvider: typeof Ark.Select.RootProvider
-  ClearTrigger: typeof SelectClearTrigger
-  Content: typeof SelectContent
-  Context: typeof Ark.Select.Context
-  Control: typeof Ark.Select.Control
-  HiddenSelect: typeof Ark.Select.HiddenSelect
-  Indicator: typeof Ark.Select.Indicator
-  Item: typeof SelectItem
-  ItemContext: typeof Ark.Select.ItemContext
-  ItemGroup: typeof SelectItemGroup
-  ItemGroupLabel: typeof SelectGroupLabel
-  ItemIndicator: typeof SelectItemIndicator
-  ItemText: typeof SelectItemText
-  Label: typeof Ark.Select.Label
-  List: typeof Ark.Select.List
-  Positioner: typeof Ark.Select.Positioner
-  Trigger: typeof SelectTrigger
-  ValueText: typeof Ark.Select.ValueText
 }
 
 function _constructor<Value = any>(
@@ -216,25 +183,5 @@ export const Select = _constructor(function (
     </Ark.Select.Root>
   )
 })
-
-Select.Root = SelectRoot
-Select.RootProvider = Ark.Select.RootProvider
-Select.ClearTrigger = SelectClearTrigger
-Select.Content = SelectContent
-Select.Context = Ark.Select.Context
-Select.Control = Ark.Select.Control
-Select.HiddenSelect = Ark.Select.HiddenSelect
-Select.Indicator = Ark.Select.Indicator
-Select.Item = SelectItem
-Select.ItemContext = Ark.Select.ItemContext
-Select.ItemGroup = SelectItemGroup
-Select.ItemGroupLabel = SelectGroupLabel
-Select.ItemIndicator = SelectItemIndicator
-Select.ItemText = SelectItemText
-Select.Label = Ark.Select.Label
-Select.List = Ark.Select.List
-Select.Positioner = Ark.Select.Positioner
-Select.Trigger = SelectTrigger
-Select.ValueText = Ark.Select.ValueText
 
 Select.displayName = "Select"

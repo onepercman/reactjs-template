@@ -171,7 +171,7 @@ export const Table = _constructor(function (
       {
         label: (
           <div onClick={toggleAll}>
-            <Checkbox
+            <Checkbox.Compact
               size="sm"
               checked={!!selected.length}
               indeterminate={data.length !== selected.length}
@@ -179,7 +179,7 @@ export const Table = _constructor(function (
           </div>
         ),
         render(_, row) {
-          return <Checkbox size="sm" checked={_isSelected(row)} />
+          return <Checkbox.Compact size="sm" checked={_isSelected(row)} />
         },
       },
       ...columns,
