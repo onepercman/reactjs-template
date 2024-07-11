@@ -1,12 +1,11 @@
 import { tv } from "tailwind-variants"
 
 export const collapsible = tv({
-  base: "flex flex-col duration-500",
+  base: "flex flex-col",
   slots: {
-    trigger:
-      "bg-component w-full p-2 rounded inline-flex justify-between gap-2 items-center",
+    trigger: "w-full rounded inline-flex justify-between gap-2 items-center",
     content: [
-      "overflow-hidden",
+      "overflow-hidden !duration-150",
       "data-[state=open]:animate-collapse",
       "data-[state=closed]:animate-collapse data-[state=closed]:direction-reverse",
     ],
