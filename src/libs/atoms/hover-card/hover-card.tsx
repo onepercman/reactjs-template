@@ -23,14 +23,7 @@ export const HoverCard = React.forwardRef<HTMLDivElement, HoverCardProps>(
               ref={ref}
               className={styles.base({ class: classNames?.base })}
             >
-              <Ark.HoverCard.Arrow
-                style={
-                  {
-                    "--arrow-size": "6px",
-                    "--arrow-offset": "-3px",
-                  } as React.CSSProperties
-                }
-              >
+              <Ark.HoverCard.Arrow>
                 <Ark.HoverCard.ArrowTip
                   className={styles.arrow({ class: classNames?.arrow })}
                 />

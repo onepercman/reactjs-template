@@ -2,6 +2,8 @@ import { tv } from "tailwind-variants"
 
 export const hoverCard = tv({
   base: [
+    "[--arrow-size]:[6px]",
+    "[--arrow-offset]:[-3px]",
     "px-3 py-2 bg-component shadow-lg rounded border border-line z-[var(--z-index)]",
     "data-[state=open]:animate-in",
     "data-[state=open]:fade-in",
