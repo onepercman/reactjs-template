@@ -171,9 +171,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             "pr-2": addonAfter,
           }),
         })}
-        onClick={function (e) {
-          e.currentTarget.getElementsByTagName("input")[0].focus()
-        }}
       >
         {_renderAddonBefore()}
         {_renderPrefix()}

@@ -11,7 +11,7 @@ export const menu = tv({
     ],
     group: "flex flex-col",
     groupLabel: "w-full px-2 py-1 text-xs text-secondary",
-    item: "inline-flex relative gap-2 justify-between items-center cursor-pointer hover:bg-foreground/5 px-3 py-2 rounded",
+    item: "inline-flex relative gap-2 justify-between items-center cursor-pointer hover:bg-foreground/5 px-3 py-2 rounded font-medium",
     itemIndicator: [
       "h-full absolute right-2 top-0 items-center",
       "data-[state=checked]:flex",
@@ -22,7 +22,7 @@ export const menu = tv({
     size: {
       xs: { item: "text-xs py-1" },
       sm: { item: "text-sm py-1" },
-      md: { item: "text-base" },
+      md: { item: "text-sm" },
       lg: { item: "text-lg" },
     },
   },

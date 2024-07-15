@@ -4,6 +4,8 @@ export const table = tv({
   base: "w-full overflow-auto rounded text-sm",
   slots: {
     table: "w-full border-separate border-spacing-y-1",
+    thead: "",
+    tbody: "relative divide-y divide-line text-left",
     trHead: "",
     th: "text-secondary px-4 py-2 bg-component first:rounded-l last:rounded-r uppercase text-xs font-bold",
     tr: "group transition-colors group",

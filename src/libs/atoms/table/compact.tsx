@@ -1,7 +1,6 @@
 import { Empty } from "@/shared/components/empty"
 import React, { useEffect, useState } from "react"
 import { LuArrowDown } from "react-icons/lu"
-import { twc } from "react-twc"
 import { Checkbox } from "../checkbox"
 import { Pagination, PaginationProps } from "../pagination"
 import { Spinner } from "../spinner"
@@ -11,17 +10,7 @@ import {
   ForwardedRefComponent,
 } from "../types"
 import { cn } from "../utils/cn"
-import { createComponentCtx } from "../utils/component-ctx"
 import { table } from "../variants"
-
-const { withRoot, withSlot } = createComponentCtx(table)
-
-const TableWrapper = withRoot("div", "base")
-const TableRoot = withSlot("table", "table")
-const TableTh = withSlot(twc("th").attrs({ align: "left" })``, "th")
-const TableTrHead = withSlot("tr", "trHead")
-const TableTr = withSlot("tr", "tr")
-const TableTd = withSlot("td", "td")
 
 export interface TableRow extends Readonly<Record<string, unknown>> {
   key?: string
@@ -65,12 +54,6 @@ interface Table extends ForwardedRefComponent {
   <Row extends TableRow>(
     props: ForwardRefWithAsProps<"div", TableProps<Row>>,
   ): React.ReactElement | null
-  Wrapper: typeof TableWrapper
-  Root: typeof TableRoot
-  Th: typeof TableTh
-  TrHead: typeof TableTrHead
-  Tr: typeof TableTr
-  Td: typeof TableTd
 }
 
 function _constructor<Row extends TableRow>(
@@ -258,7 +241,7 @@ export const Table = _constructor(function (
         {...props}
       >
         {columns?.filter((c) => !!c.label).length ? (
-          <thead>
+          <thead className={styles.thead({ className: classNames?.thead })}>
             <tr className={styles.trHead({ className: classNames?.trHead })}>
               {columns.map(
                 (
@@ -309,7 +292,7 @@ export const Table = _constructor(function (
           </thead>
         ) : null}
 
-        <tbody className="relative divide-y divide-line text-left">
+        <tbody className={styles.tbody({ className: classNames?.tbody })}>
           {_renderContainer()}
           {pagination && (
             <tr className={styles.tr({ className: classNames?.tr })}>
@@ -332,10 +315,4 @@ export const Table = _constructor(function (
   )
 })
 
-Table.Wrapper = TableWrapper
-Table.Root = TableRoot
-Table.Th = TableTh
-Table.TrHead = TableTrHead
-Table.Tr = TableTr
-Table.Td = TableTd
 Table.displayName = "Table"
