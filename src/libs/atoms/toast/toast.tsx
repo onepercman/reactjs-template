@@ -29,18 +29,7 @@ export const ToasterContainer: FC<{
     <Ark.Toaster toaster={toaster} className={styles.container()}>
       {({ id, title, description, type }) => {
         return (
-          <Ark.Toast.Root
-            key={id}
-            className={styles.base()}
-            style={
-              {
-                "--scale": "calc(1 - var(--index) * 0.1)",
-                "--delta": "var(--index) * var(--gap)",
-                "--opacity": "calc(1 - var(--index) * 0.15)",
-                zIndex: "var(--z-index)",
-              } as React.CSSProperties
-            }
-          >
+          <Ark.Toast.Root key={id} className={styles.base()}>
             <Ark.Toast.Title className={styles.title()}>
               {getIcon(type)}
               {title}

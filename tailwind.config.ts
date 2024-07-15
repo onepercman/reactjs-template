@@ -12,14 +12,7 @@ const config: Config = {
     extend: {
       fontFamily: { sans: [...defaultTheme.fontFamily.sans] },
       keyframes: {
-        collapse: {
-          from: {
-            height: "0px",
-          },
-          to: {
-            height: "var(--height)",
-          },
-        },
+        collapse: { from: { height: "0px" }, to: { height: "var(--height)" } },
       },
       animation: {
         collapse: "collapse",
