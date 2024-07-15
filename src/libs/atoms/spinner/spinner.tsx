@@ -7,18 +7,12 @@ export const Spinner: FC<SVGAttributes<SVGElement>> = function ({ ...props }) {
       height="1em"
       stroke="currentColor"
       viewBox="0 0 24 24"
+      strokeWidth="4"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <g>
-        <circle
-          cx="12"
-          cy="12"
-          r="9.5"
-          fill="none"
-          strokeWidth="5"
-          strokeLinecap="round"
-        >
+        <circle cx="12" cy="12" r="9.5" fill="none" strokeLinecap="round">
           <animate
             attributeName="stroke-dasharray"
             dur="1.5s"
