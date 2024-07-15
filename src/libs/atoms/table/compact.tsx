@@ -46,7 +46,7 @@ export interface TableProps<Row extends TableRow>
   sort?: TableSort
   emptyElement?: React.ReactNode
   onSort?(sort?: TableSort): void
-  extractKey?(row: Row): any
+  extractKey?(row: Row, index: number): any
   onSelectRow?(row: Row[]): void
 }
 
@@ -93,8 +93,8 @@ export const Table = _constructor(function (
   const [selected, setSelected] = useState<any[]>(defaultSelectedKeys)
   const [sortDescriptor, setSortDescriptor] = useState<TableSort>()
 
-  function _isSelected(row: any) {
-    return selected.includes(extractKey(row))
+  function _isSelected(row: any, index: number) {
+    return selected.includes(extractKey(row, index))
   }
 
   function _onSort(column: string) {
@@ -114,10 +114,10 @@ export const Table = _constructor(function (
     })
   }
 
-  function _selectRow(row: any) {
+  function _selectRow(row: any, index: number) {
     if (!selectionMode) return
     setSelected(function (prev) {
-      const key = extractKey(row)
+      const key = extractKey(row, index)
       let value
       if (selectionMode === "multiple") {
         value = prev.includes(key)
@@ -133,7 +133,7 @@ export const Table = _constructor(function (
 
   function toggleAll() {
     setSelected(function (prev) {
-      const allKeys = data.map((el) => extractKey(el as any))
+      const allKeys = data.map((el, index) => extractKey(el as any, index))
       const isAll = prev.length && prev.every((el) => allKeys.includes(el))
       const value = isAll ? [] : allKeys
       onSelectRow && onSelectRow(value)
@@ -161,8 +161,10 @@ export const Table = _constructor(function (
             />
           </div>
         ),
-        render(_, row) {
-          return <Checkbox.Compact size="sm" checked={_isSelected(row)} />
+        render(_, row, index) {
+          return (
+            <Checkbox.Compact size="sm" checked={_isSelected(row, index)} />
+          )
         },
       },
       ...columns,
@@ -206,7 +208,7 @@ export const Table = _constructor(function (
         style={{
           animationDelay: index / 20 + "s",
         }}
-        onClick={() => _selectRow(row)}
+        onClick={() => _selectRow(row, index)}
       >
         {columns?.map(
           (
@@ -217,7 +219,10 @@ export const Table = _constructor(function (
               key={key || columnIndex}
               className={styles.td({
                 className: cn(classNames?.td, {
-                  "bg-primary/10 group-hover:bg-primary/20": _isSelected(row),
+                  "bg-primary/10 group-hover:bg-primary/20": _isSelected(
+                    row,
+                    index,
+                  ),
                 }),
               })}
               align={align || dataAlign}
