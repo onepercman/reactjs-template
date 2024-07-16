@@ -2,9 +2,9 @@ import * as Ark from "@ark-ui/react"
 import React, { Fragment } from "react"
 import { LuCheck, LuX } from "react-icons/lu"
 import { RiArrowDownSFill } from "react-icons/ri"
-import { Button, ButtonBaseProps } from "../button"
+import { Button, button, ButtonBaseProps } from "../button"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { button, select } from "../variants"
+import { select } from "./variants"
 
 export interface SelectOptionProps<Value> {
   label?: React.ReactNode

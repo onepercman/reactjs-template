@@ -1,7 +1,7 @@
 import * as Ark from "@ark-ui/react"
 import React from "react"
 import { ComposedTVProps } from "../types"
-import { popover } from "../variants"
+import { popover } from "./variants"
 export interface PopoverProps
   extends Ark.PopoverRootProps,
     ComposedTVProps<typeof popover> {

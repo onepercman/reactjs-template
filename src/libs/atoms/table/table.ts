@@ -1,5 +1,5 @@
 import { createComponentCtx } from "../utils"
-import { table } from "../variants"
+import { table } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(table)
 

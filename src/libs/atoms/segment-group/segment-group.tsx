@@ -6,7 +6,7 @@ import {
   ForwardedRefComponent,
   ReactTag,
 } from "../types"
-import { segmentGroup } from "../variants"
+import { segmentGroup } from "./variants"
 
 export interface SegmentGroupProps
   extends Ark.SegmentGroupRootProps,

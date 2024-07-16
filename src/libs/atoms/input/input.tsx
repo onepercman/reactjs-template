@@ -4,7 +4,7 @@ import { LuX } from "react-icons/lu"
 import { ComposedTVProps } from "../types"
 import { cn } from "../utils/cn"
 import { useComposedRefs } from "../utils/ref"
-import { input } from "../variants"
+import { input } from "./variants"
 
 export interface InputFieldProps {
   prefix?: React.ReactNode | React.ReactElement

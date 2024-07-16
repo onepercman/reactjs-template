@@ -1,6 +1,6 @@
 import { Avatar } from "@ark-ui/react"
 import { createComponentCtx } from "../utils/component-ctx"
-import { avatar } from "../variants"
+import { avatar } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(avatar)
 

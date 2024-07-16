@@ -6,7 +6,7 @@ import {
   ForwardedRefComponent,
   ReactTag,
 } from "../types"
-import { slider } from "../variants"
+import { slider } from "./variants"
 
 export interface SliderProps
   extends Ark.SliderRootProps,

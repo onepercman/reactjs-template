@@ -2,7 +2,7 @@ import React from "react"
 import { Spinner } from "../spinner"
 import { ComposedTVProps } from "../types"
 import { cn } from "../utils/cn"
-import { button } from "../variants"
+import { button } from "./variants"
 
 export interface ButtonBaseProps {
   loading?: boolean

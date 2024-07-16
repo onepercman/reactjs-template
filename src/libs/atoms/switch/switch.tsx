@@ -1,7 +1,7 @@
 import * as Ark from "@ark-ui/react"
 import React from "react"
 import { ComposedTVProps } from "../types"
-import { switchVariants } from "../variants"
+import { switchVariants } from "./variants"
 
 export interface SwitchProps
   extends Ark.SwitchRootProps,

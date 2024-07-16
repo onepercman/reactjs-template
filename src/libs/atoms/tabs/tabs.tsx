@@ -6,7 +6,7 @@ import {
   ForwardedRefComponent,
   ReactTag,
 } from "../types"
-import { tabs } from "../variants"
+import { tabs } from "./variants"
 
 export interface TabsProps
   extends Ark.TabsRootProps,

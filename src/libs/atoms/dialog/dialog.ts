@@ -1,5 +1,5 @@
 import { createComponentCtx } from "../utils"
-import { dialog } from "../variants"
+import { dialog } from "./variants"
 
 import { Dialog } from "@ark-ui/react"
 

@@ -1,10 +1,9 @@
 import * as Ark from "@ark-ui/react"
 import React from "react"
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
-import { Button, ButtonProps } from "../button"
+import { button, Button, ButtonProps } from "../button"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
 import { cn } from "../utils/cn"
-import { button } from "../variants"
 
 export interface PaginationProps
   extends Omit<Ark.PaginationRootProps, "color">,

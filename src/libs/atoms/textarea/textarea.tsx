@@ -6,7 +6,7 @@ import TextAreaAutoSize, {
 import { ComposedTVProps } from "../types"
 import { cn } from "../utils/cn"
 import { useComposedRefs } from "../utils/ref"
-import { textarea } from "../variants"
+import { textarea } from "./variants"
 
 export interface TextareaProps<AutoSize extends boolean = true>
   extends Omit<

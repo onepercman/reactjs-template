@@ -1,7 +1,7 @@
 import * as Ark from "@ark-ui/react"
 import React from "react"
 import { ComposedTVProps } from "../types"
-import { tooltip } from "../variants"
+import { tooltip } from "./variants"
 
 export interface TooltipProps
   extends Ark.TooltipRootProps,

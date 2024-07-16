@@ -2,7 +2,7 @@ import { Accordion } from "@ark-ui/react"
 import React from "react"
 import { LuChevronDown } from "react-icons/lu"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { accordion } from "../variants"
+import { accordion } from "./variants"
 
 export interface AccordionCompactItemProps
   extends Omit<Accordion.ItemProps, "content"> {

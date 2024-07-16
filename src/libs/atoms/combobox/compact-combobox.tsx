@@ -3,9 +3,9 @@ import React from "react"
 import { LuCheck, LuChevronsUpDown, LuX } from "react-icons/lu"
 import { VariantProps } from "tailwind-variants"
 import { Button } from "../button"
-import { Input } from "../input"
+import { Input, input } from "../input"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { combobox, input } from "../variants"
+import { combobox } from "./variants"
 
 export interface ComboboxOptionProps<Value> {
   label?: React.ReactNode

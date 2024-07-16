@@ -2,7 +2,7 @@ import * as Ark from "@ark-ui/react"
 import React from "react"
 import { LuCheck, LuMinus } from "react-icons/lu"
 import { ComposedTVProps } from "../types"
-import { checkbox } from "../variants"
+import { checkbox } from "./variants"
 
 export interface CheckboxProps
   extends Ark.CheckboxRootProps,

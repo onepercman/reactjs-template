@@ -1,6 +1,6 @@
 import { Collapsible } from "@ark-ui/react"
 import { createComponentCtx } from "../utils/component-ctx"
-import { collapsible } from "../variants/collapsible"
+import { collapsible } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(collapsible)
 

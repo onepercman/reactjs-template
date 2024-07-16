@@ -3,7 +3,7 @@ import { FC } from "react"
 import { LuCheck, LuInfo, LuX, LuXCircle } from "react-icons/lu"
 import { Button } from "../button"
 import { Spinner } from "../spinner"
-import { toast } from "../variants"
+import { toast } from "./variants"
 
 function getIcon(type?: "success" | "error" | "loading" | "info" | any) {
   switch (type) {

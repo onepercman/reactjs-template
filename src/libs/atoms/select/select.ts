@@ -1,6 +1,6 @@
 import { Select } from "@ark-ui/react"
 import { createComponentCtx } from "../utils"
-import { select } from "../variants"
+import { select } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(select)
 

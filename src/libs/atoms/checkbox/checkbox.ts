@@ -1,6 +1,6 @@
 import { Checkbox } from "@ark-ui/react"
 import { createComponentCtx } from "../utils"
-import { checkbox } from "../variants"
+import { checkbox } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(checkbox)
 

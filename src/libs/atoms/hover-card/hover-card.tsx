@@ -1,7 +1,7 @@
 import * as Ark from "@ark-ui/react"
 import React from "react"
 import { ComposedTVProps } from "../types"
-import { hoverCard } from "../variants"
+import { hoverCard } from "./variants"
 
 export interface HoverCardProps
   extends Ark.HoverCardRootProps,

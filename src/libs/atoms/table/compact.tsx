@@ -10,7 +10,7 @@ import {
   ForwardedRefComponent,
 } from "../types"
 import { cn } from "../utils/cn"
-import { table } from "../variants"
+import { table } from "./variants"
 
 export interface TableRow extends Readonly<Record<string, unknown>> {
   key?: string

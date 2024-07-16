@@ -1,7 +1,7 @@
 import * as Ark from "@ark-ui/react"
 import React from "react"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { radioGroup } from "../variants"
+import { radioGroup } from "./variants"
 
 export interface RadioGroupOption extends Ark.RadioGroup.ItemProps {
   label?: React.ReactNode

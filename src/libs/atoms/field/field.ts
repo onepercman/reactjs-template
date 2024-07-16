@@ -1,6 +1,6 @@
 import * as Ark from "@ark-ui/react"
 import { createComponentCtx } from "../utils/component-ctx"
-import { field } from "../variants/field"
+import { field } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(field)
 

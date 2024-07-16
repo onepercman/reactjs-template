@@ -2,7 +2,7 @@ import * as Ark from "@ark-ui/react"
 import React from "react"
 import { LuChevronRight } from "react-icons/lu"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { menu } from "../variants"
+import { menu } from "./variants"
 
 export interface MenuOptionProps extends Omit<Ark.MenuItemProps, "children"> {
   label?: React.ReactNode

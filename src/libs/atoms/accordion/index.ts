@@ -4,3 +4,4 @@ export {
   type AccordionCompactItemProps,
   type AccordionCompactProps,
 } from "./compact"
+export * from "./variants"

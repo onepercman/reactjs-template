@@ -1,7 +1,7 @@
 import { Avatar, AvatarImageProps } from "@ark-ui/react"
 import React from "react"
 import { ComposedTVProps } from "../types"
-import { avatar } from "../variants"
+import { avatar } from "./variants"
 
 export interface AvatarCompactProps
   extends AvatarImageProps,

@@ -3,9 +3,9 @@ import React, { Fragment } from "react"
 import { LuCalendar, LuChevronLeft, LuChevronRight } from "react-icons/lu"
 import { VariantProps } from "tailwind-variants"
 import { Button } from "../button"
-import { Input, InputFieldProps } from "../input"
+import { input, Input, InputFieldProps } from "../input"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { datePicker, input } from "../variants"
+import { datePicker } from "./variants"
 export interface DatePickerProps
   extends Ark.DatePickerRootProps,
     Omit<InputFieldProps, "prefix">,

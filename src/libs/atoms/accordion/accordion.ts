@@ -1,6 +1,6 @@
 import { Accordion } from "@ark-ui/react"
 import { createComponentCtx } from "../utils/component-ctx"
-import { accordion } from "../variants"
+import { accordion } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(accordion)
 

@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client"
 import { LuX } from "react-icons/lu"
 import { Button, ButtonProps } from "../button"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { dialog } from "../variants"
+import { dialog } from "./variants"
 
 export interface DialogProps
   extends Omit<Ark.DialogRootProps, "children">,

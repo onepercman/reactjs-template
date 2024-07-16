@@ -1,6 +1,6 @@
 import { Combobox } from "@ark-ui/react"
 import { createComponentCtx } from "../utils"
-import { combobox } from "../variants"
+import { combobox } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(combobox)
 

@@ -2,9 +2,8 @@ import * as Ark from "@ark-ui/react"
 import React from "react"
 import { LuMinus, LuPlus } from "react-icons/lu"
 import { Button } from "../button"
-import { Input, InputFieldProps } from "../input"
+import { Input, input, InputFieldProps } from "../input"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { input } from "../variants"
 
 export interface NumberInputProps
   extends Ark.NumberInputRootProps,
