@@ -6,6 +6,7 @@ export const button = tv({
     "border-transparent ring ring-transparent transition-all cursor-pointer border-0 outline-none",
     "[&:not(:disabled)]:active:scale-95",
     "h-[var(--button-size)] min-h-[var(--button-size)] min-w-[var(--button-size)] px-2 text-xs",
+    "[&:not(:disabled)]:hover:brightness-110",
   ],
   variants: {
     size: {
@@ -28,9 +29,6 @@ export const button = tv({
       success: "",
       warning: "",
       error: "",
-    },
-    shadow: {
-      true: "shadow-button [&:not(:disabled)]:hover:shadow-none",
     },
     shape: {
       normal: "rounded",
