@@ -22,4 +22,4 @@ export const List = withSlot(Combobox.List)
 export const Positioner = withSlot(Combobox.Positioner)
 export const Trigger = withSlot(Combobox.Trigger, "trigger")
 
-export { Combobox as Compact } from "./compact-combobox"
+export { Combobox as Compact } from "./compact"

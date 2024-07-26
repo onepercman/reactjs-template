@@ -24,4 +24,4 @@ export const RootProvider = withSlot(Select.RootProvider)
 export const Trigger = withSlot(Select.Trigger, "trigger")
 export const ValueText = withSlot(Select.ValueText)
 
-export { Select as Compact } from "./compact-select"
+export { Select as Compact } from "./compact"

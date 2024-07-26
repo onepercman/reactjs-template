@@ -1,7 +1,6 @@
+import { Dialog } from "@ark-ui/react"
 import { createComponentCtx } from "../utils"
 import { dialog } from "./variants"
-
-import { Dialog } from "@ark-ui/react"
 
 const { withRoot, withSlot } = createComponentCtx(dialog)
 
@@ -16,4 +15,5 @@ export const RootProvider = withSlot(Dialog.RootProvider)
 export const Title = withSlot(Dialog.Title, "title")
 export const Trigger = withSlot(Dialog.Trigger)
 
-export { Dialog as Compact } from "./compact-dialog"
+export { Dialog as Compact } from "./compact"
+export * from "./fn"

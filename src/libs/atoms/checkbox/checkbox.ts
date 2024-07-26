@@ -13,4 +13,4 @@ export const Indicator = withSlot(Checkbox.Indicator)
 export const Label = withSlot(Checkbox.Label, "label")
 export const RootProvider = withSlot(Checkbox.RootProvider)
 
-export { Checkbox as Compact } from "./compact-checkbox"
+export { Checkbox as Compact } from "./compact"
