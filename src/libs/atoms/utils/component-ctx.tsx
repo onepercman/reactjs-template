@@ -46,11 +46,7 @@ export function createComponentCtx<
 
   function withSlot<C extends ElementType>(Component: C, slot?: Slot) {
     const Comp = forwardRef(function (
-      {
-        className,
-        classNames,
-        ...props
-      }: ComponentProps<C> & ComposedTVProps<TVFN>,
+      { className, ...props }: ComponentProps<C> & ComposedTVProps<TVFN>,
       ref,
     ) {
       const ctx = useCtx()
