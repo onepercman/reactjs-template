@@ -49,7 +49,11 @@ function flattenOptions<T>(
   options: SelectOptionProps<T>[],
 ): SelectOptionProps<T>[] {
   const result: SelectOptionProps<T>[] = []
-  function flatten({ children, ...option }: SelectOptionProps<T>): void {
+  function flatten({
+    children,
+    label: _,
+    ...option
+  }: SelectOptionProps<T>): void {
     result.push({ ...option })
     if (children?.length) {
       children.forEach(flatten)
