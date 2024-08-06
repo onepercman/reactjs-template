@@ -9,7 +9,8 @@ export const popover = tv({
     "data-[state=closed]:fade-out",
   ],
   slots: {
-    arrow: "!bg-component border-line border-l border-t",
+    arrow: "[--arrow-size:6px] [--arrow-offset:-3px]",
+    arrowTip: "!bg-component border-line border-l border-t",
   },
   variants: {
     size: {

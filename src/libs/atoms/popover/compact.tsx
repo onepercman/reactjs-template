@@ -24,15 +24,10 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(function (
           className={styles.base({ class: classNames?.base })}
         >
           <Ark.Popover.Arrow
-            style={
-              {
-                "--arrow-size": "6px",
-                "--arrow-offset": "-3px",
-              } as React.CSSProperties
-            }
+            className={styles.arrow({ class: classNames?.arrow })}
           >
             <Ark.Popover.ArrowTip
-              className={styles.arrow({ class: classNames?.arrow })}
+              className={styles.arrowTip({ class: classNames?.arrowTip })}
             />
           </Ark.Popover.Arrow>
           {content}
