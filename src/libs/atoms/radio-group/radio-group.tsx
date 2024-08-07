@@ -1,66 +1,32 @@
-import * as Ark from "@ark-ui/react"
+import { RadioGroup } from "@ark-ui/react"
 import React from "react"
-import { ComposedTVProps, ForwardedRefComponent } from "../types"
+import { createComponentCtx } from "../utils"
 import { radioGroup } from "./variants"
 
-export interface RadioGroupOption extends Ark.RadioGroup.ItemProps {
-  label?: React.ReactNode
-}
+const { withRoot, withSlot } = createComponentCtx(radioGroup)
 
-export interface RadioGroupProps
-  extends Ark.RadioGroupRootProps,
-    ComposedTVProps<typeof radioGroup> {
-  label?: React.ReactNode
-  options?: RadioGroupOption[]
-}
+export const Root = withRoot(RadioGroup.Root, "base")
+export const RootProvider = withRoot(RadioGroup.RootProvider)
+export const Context = withSlot(RadioGroup.Context)
+export const Indicator = withSlot(RadioGroup.Indicator)
+export const ItemPrimitive = withSlot(RadioGroup.Item, "item")
+export const ItemContext = withSlot(RadioGroup.ItemContext)
+export const ItemControl = withSlot(RadioGroup.ItemControl, "control")
+export const ItemHiddenInput = withSlot(RadioGroup.ItemHiddenInput)
+export const ItemText = withSlot(RadioGroup.ItemText, "itemText")
+export const Label = withSlot(RadioGroup.Label)
 
-interface RadioGroup extends ForwardedRefComponent {
-  (props: RadioGroupProps): React.ReactElement | null
-}
-
-function _constructor(
-  render: (
-    props: RadioGroupProps,
-    ref: React.ForwardedRef<HTMLDivElement>,
-  ) => React.ReactElement | null,
-) {
-  return React.forwardRef<HTMLDivElement, RadioGroupProps>(
-    render,
-  ) as unknown as RadioGroup
-}
-
-export const RadioGroup = _constructor(function (
-  { options, label, size, invalid, className, classNames, ...props },
-  ref,
-) {
-  const styles = radioGroup({ size, invalid, className })
-
+export const Item = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof ItemPrimitive>
+>(function ({ children, ...props }, ref) {
   return (
-    <Ark.RadioGroup.Root
-      ref={ref}
-      className={styles.base({ class: classNames?.base })}
-      {...props}
-    >
-      <Ark.RadioGroup.Indicator />
-      {options?.map(({ label, ...item }) => (
-        <Ark.RadioGroup.Item
-          key={item.value}
-          {...item}
-          className={styles.item({ class: classNames?.item })}
-        >
-          <Ark.RadioGroup.ItemControl
-            className={styles.control({ class: classNames?.control })}
-          />
-          <Ark.RadioGroup.ItemText
-            className={styles.itemText({ class: classNames?.itemText })}
-          >
-            {label}
-          </Ark.RadioGroup.ItemText>
-          <Ark.RadioGroup.ItemHiddenInput />
-        </Ark.RadioGroup.Item>
-      ))}
-    </Ark.RadioGroup.Root>
+    <Item ref={ref} {...props}>
+      <ItemControl />
+      <ItemText>{children}</ItemText>
+      <ItemHiddenInput />
+    </Item>
   )
 })
 
-RadioGroup.displayName = "RadioGroup"
+Item.displayName = "Item"

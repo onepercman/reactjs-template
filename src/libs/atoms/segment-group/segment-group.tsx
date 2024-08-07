@@ -1,76 +1,46 @@
-import * as Ark from "@ark-ui/react"
+import { SegmentGroup } from "@ark-ui/react"
 import React from "react"
-import {
-  ComposedTVProps,
-  ForwardRefWithAsProps,
-  ForwardedRefComponent,
-  ReactTag,
-} from "../types"
+import { createComponentCtx } from "../utils"
 import { segmentGroup } from "./variants"
 
-export interface SegmentGroupProps
-  extends Ark.SegmentGroupRootProps,
-    ComposedTVProps<typeof segmentGroup> {
-  items?: Ark.SegmentGroupItemProps[]
-}
+const { withRoot, withSlot } = createComponentCtx(segmentGroup)
 
-interface SegmentGroup extends ForwardedRefComponent {
-  <As extends ReactTag>(
-    props: ForwardRefWithAsProps<As, SegmentGroupProps>,
-  ): React.ReactElement | null
-}
+export const RootPrimitive = withRoot(SegmentGroup.Root, "base")
+export const RootProvider = withRoot(SegmentGroup.RootProvider, "base")
+export const Context = withSlot(SegmentGroup.Context)
+export const Indicator = withSlot(SegmentGroup.Indicator, "indicator")
+export const ItemPrimitive = withSlot(SegmentGroup.Item, "item")
+export const ItemContext = withSlot(SegmentGroup.ItemContext)
+export const ItemControl = withSlot(SegmentGroup.ItemControl)
+export const ItemHiddenInput = withSlot(SegmentGroup.ItemHiddenInput)
+export const ItemText = withSlot(SegmentGroup.ItemText)
+export const Label = withSlot(SegmentGroup.Label)
 
-function _constructor<As extends ReactTag>(
-  render: <As extends ReactTag>(
-    props: ForwardRefWithAsProps<As, SegmentGroupProps>,
-    ref: React.ForwardedRef<As>,
-  ) => React.ReactElement | null,
-) {
-  return React.forwardRef<As, ForwardRefWithAsProps<As, SegmentGroupProps>>(
-    render,
-  ) as unknown as SegmentGroup
-}
-
-export const SegmentGroup = _constructor(function (
-  {
-    as = "div",
-    items = [],
-    children,
-    variant,
-    size,
-    className,
-    classNames,
-    ...props
-  },
-  ref,
-) {
-  const Tag = as
-
-  const styles = segmentGroup({ size, variant, className })
-
+export const Root = React.forwardRef<
+  HTMLElement,
+  React.ComponentPropsWithoutRef<typeof RootPrimitive>
+>(function ({ children, ...props }, ref) {
   return (
-    <Ark.SegmentGroup.Root asChild {...props}>
-      <Tag ref={ref} className={styles.base({ class: classNames?.base })}>
-        <Ark.SegmentGroup.Indicator
-          className={styles.indicator({ class: classNames?.indicator })}
-        />
-        {items.map(({ children, className, ...tab }) => (
-          <Ark.SegmentGroup.Item
-            key={tab.value}
-            className={styles.item({
-              className,
-              class: classNames?.item,
-            })}
-            {...tab}
-          >
-            <Ark.SegmentGroup.ItemText>{children}</Ark.SegmentGroup.ItemText>
-            <Ark.SegmentGroup.ItemControl />
-            <Ark.SegmentGroup.ItemHiddenInput />
-          </Ark.SegmentGroup.Item>
-        ))}
-      </Tag>
-    </Ark.SegmentGroup.Root>
+    <RootPrimitive ref={ref} {...props}>
+      <Indicator />
+      {children}
+    </RootPrimitive>
   )
 })
 
-SegmentGroup.displayName = "SegmentGroup"
+Root.displayName = "Root"
+
+export const Item = React.forwardRef<
+  HTMLElement,
+  React.ComponentPropsWithoutRef<typeof ItemPrimitive>
+>(function ({ children, ...props }, ref) {
+  return (
+    <ItemPrimitive ref={ref} {...props}>
+      <ItemText>{children}</ItemText>
+      <ItemControl />
+      <ItemHiddenInput />
+    </ItemPrimitive>
+  )
+})
+
+Item.displayName = "Item"

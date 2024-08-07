@@ -1,2 +1,2 @@
-export * from "./date-picker"
+export * as DatePicker from "./date-picker"
 export * from "./variants"

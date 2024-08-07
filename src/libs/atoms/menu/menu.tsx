@@ -1,138 +1,46 @@
-import * as Ark from "@ark-ui/react"
+import { Menu, Portal } from "@ark-ui/react"
 import React from "react"
-import { LuChevronRight } from "react-icons/lu"
-import { ComposedTVProps, ForwardedRefComponent } from "../types"
+import { createComponentCtx } from "../utils"
 import { menu } from "./variants"
 
-export interface MenuOptionProps extends Omit<Ark.MenuItemProps, "children"> {
-  label?: React.ReactNode
-  children?: MenuOptionProps[]
-  items?: MenuOptionProps[]
-}
+const { withRoot, withSlot } = createComponentCtx(menu)
 
-export type MenuOption<IsSeparator extends boolean> = IsSeparator extends true
-  ? Ark.Menu.SeparatorProps & { isSeparator: IsSeparator }
-  : MenuOptionProps
+export const Root = withRoot(Menu.Root)
+export const RootProvider = withRoot(Menu.RootProvider)
+export const Arrow = withSlot(Menu.Arrow)
+export const ArrowTip = withSlot(Menu.ArrowTip)
+export const CheckboxItem = withSlot(Menu.CheckboxItem)
+export const Context = withSlot(Menu.Context)
+export const ContextTrigger = withSlot(Menu.ContextTrigger)
+export const Indicator = withSlot(Menu.Indicator)
+export const Item = withSlot(Menu.Item, "item")
+export const ItemContext = withSlot(Menu.ItemContext)
+export const ItemGroup = withSlot(Menu.ItemGroup, "itemGroup")
+export const ItemGroupLabel = withSlot(Menu.ItemGroupLabel, "itemGroupLabel")
+export const ItemIndicator = withSlot(Menu.ItemIndicator, "itemIndicator")
+export const ItemText = withSlot(Menu.ItemText)
+export const Positioner = withSlot(Menu.Positioner)
+export const RadioItem = withSlot(Menu.RadioItem, "item")
+export const RadioItemGroup = withSlot(Menu.RadioItemGroup, "itemGroup")
+export const Separator = withSlot(Menu.Separator, "separator")
+export const Trigger = withSlot(Menu.Trigger)
+export const TriggerItem = withSlot(Menu.TriggerItem)
 
-export interface MenuProps
-  extends Ark.MenuRootProps,
-    ComposedTVProps<typeof menu> {
-  readonly options?: Array<MenuOption<true> | MenuOption<false>>
-  indent?: number
-  className?: string
-}
+export const ContentPrimitive = withSlot(Menu.Content, "content")
 
-export interface Menu extends ForwardedRefComponent {
-  (props: MenuProps): React.ReactElement | null
-}
-
-function _constructor(
-  render: (
-    props: MenuProps,
-    ref: React.ForwardedRef<HTMLDivElement>,
-  ) => React.ReactElement | null,
-) {
-  return React.forwardRef<HTMLDivElement, MenuProps>(render) as unknown as Menu
-}
-
-export const Menu = _constructor(function (
-  {
-    children,
-    options = [],
-    indent = 16,
-    size,
-    className,
-    classNames,
-    ...props
-  },
-  ref,
-) {
-  const styles = menu({ size })
-
-  function _renderOption(
-    option: MenuOption<true> | MenuOption<false>,
-    offset = 0,
-  ) {
-    if ((option as MenuOption<true>).isSeparator === true) {
-      const { isSeparator, className, ...separator } =
-        option as MenuOption<true>
-      return (
-        <Ark.Menu.Separator
-          className={styles.separator({
-            className,
-            class: classNames?.separator,
-          })}
-          {...separator}
-        />
-      )
-    }
-    option = option as MenuOption<false>
-    if (option.items?.length)
-      return (
-        <Ark.Menu.ItemGroup
-          className={styles.group({ class: classNames?.group })}
-        >
-          <Ark.Menu.ItemGroupLabel
-            className={styles.groupLabel({ class: classNames?.groupLabel })}
-          >
-            <span style={{ paddingLeft: offset * indent }}>{option.label}</span>
-          </Ark.Menu.ItemGroupLabel>
-          {option.items.map((items) =>
-            _renderOption(items, items.items?.length ? offset + 1 : offset),
-          )}
-        </Ark.Menu.ItemGroup>
-      )
-    if (option.children?.length)
-      return (
-        <Ark.Menu.Root>
-          <Ark.Menu.TriggerItem
-            className={styles.item({ class: classNames?.item })}
-          >
-            {option.label} <LuChevronRight />
-          </Ark.Menu.TriggerItem>
-          <Ark.Portal>
-            <Ark.Menu.Positioner>
-              <Ark.Menu.Content
-                className={styles.list({ class: classNames?.list })}
-              >
-                {option.children.map((children) => _renderOption(children))}
-              </Ark.Menu.Content>
-            </Ark.Menu.Positioner>
-          </Ark.Portal>
-        </Ark.Menu.Root>
-      )
-    return (
-      <Ark.Menu.Item
-        {...option}
-        className={styles.item({ class: classNames?.item })}
-      >
-        {option.label}
-      </Ark.Menu.Item>
-    )
-  }
-
+export const Content = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof ContentPrimitive>
+>(function ({ children, ...props }, ref) {
   return (
-    <Ark.Menu.Root
-      unmountOnExit
-      positioning={{
-        sameWidth: true,
-        ...props.positioning,
-      }}
-      {...props}
-    >
-      <Ark.Menu.Trigger asChild>{children}</Ark.Menu.Trigger>
-      <Ark.Portal>
-        <Ark.Menu.Positioner>
-          <Ark.Menu.Content
-            ref={ref}
-            className={styles.list({ className, class: classNames?.list })}
-          >
-            {options.map((option) => _renderOption(option))}
-          </Ark.Menu.Content>
-        </Ark.Menu.Positioner>
-      </Ark.Portal>
-    </Ark.Menu.Root>
+    <Portal>
+      <Positioner>
+        <ContentPrimitive ref={ref} {...props}>
+          {children}
+        </ContentPrimitive>
+      </Positioner>
+    </Portal>
   )
 })
 
-Menu.displayName = "Menu"
+Content.displayName = "Content"

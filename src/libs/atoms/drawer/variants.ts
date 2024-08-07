@@ -1,11 +1,10 @@
 import { tv } from "tailwind-variants"
 
 export const drawer = tv({
-  base: "",
   slots: {
     overlay: "bg-background/50 backdrop-blur fixed inset-0",
     handle: "bg-foreground/50",
-    close: "absolute top-4 right-4 text-secondary",
+    closeTrigger: "absolute top-4 right-4 text-secondary",
     content: [
       "bg-component fixed p-4 rounded",
       "[&[vaul-drawer-direction=left]]:left-0 min-w-52",

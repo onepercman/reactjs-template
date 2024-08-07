@@ -35,7 +35,7 @@
     "valtio": "^1.13.2"
   },
   "devDependencies": {
-    "@ark-ui/react": "^3.5.0",
+    "@ark-ui/react": "^3.6.2",
     "@testing-library/react": "^16.0.0",
     "@types/humps": "^2.0.6",
     "@types/node": "^20.14.9",

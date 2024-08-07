@@ -63,7 +63,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       size,
       className,
       shape,
-      disabled: _disabled,
     })
 
     return (

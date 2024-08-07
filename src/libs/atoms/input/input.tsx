@@ -167,8 +167,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         role="input"
         className={styles.base({
           className: cn(className, classNames?.base, {
-            "pl-2": addonBefore,
-            "pr-2": addonAfter,
+            "pl-0": !!addonBefore,
+            "pr-0": !!addonAfter,
           }),
         })}
       >

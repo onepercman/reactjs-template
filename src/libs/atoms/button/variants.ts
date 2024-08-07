@@ -7,6 +7,7 @@ export const button = tv({
     "[&:not(:disabled)]:active:scale-95",
     "h-[var(--button-size)] min-h-[var(--button-size)] min-w-[var(--button-size)] px-2 text-xs",
     "[&:not(:disabled)]:hover:brightness-110",
+    "disabled:saturate-0 disabled:opacity-75 disabled:cursor-not-allowed disabled:data-[loading]:saturate-50",
   ],
   variants: {
     size: {
@@ -35,9 +36,6 @@ export const button = tv({
       pill: "rounded-full",
       circle: "rounded-full aspect-square p-0",
       square: "aspect-square p-0 rounded",
-    },
-    disabled: {
-      true: "saturate-0 opacity-75 cursor-not-allowed data-[loading]:saturate-50",
     },
   },
   compoundVariants: [

@@ -1,40 +1,51 @@
-import * as Ark from "@ark-ui/react"
+import { HoverCard, HoverCardRootProps, Portal } from "@ark-ui/react"
 import React from "react"
 import { ComposedTVProps } from "../types"
+import { createComponentCtx } from "../utils"
 import { hoverCard } from "./variants"
 
+const { withRoot, withSlot } = createComponentCtx(hoverCard)
+
+export const Root = withRoot(HoverCard.Root)
+export const RootProvider = withRoot(HoverCard.RootProvider)
+export const Context = withSlot(HoverCard.Context)
+export const Positioner = withSlot(HoverCard.Positioner)
+export const Trigger = withSlot(HoverCard.Trigger)
+
+export const ArrowPrimitive = withSlot(HoverCard.Arrow)
+export const ArrowTipPrimitive = withSlot(HoverCard.ArrowTip, "arrowTip")
+export const ContentPrimitive = withSlot(HoverCard.Content, "content")
+
 export interface HoverCardProps
-  extends Ark.HoverCardRootProps,
-    ComposedTVProps<typeof hoverCard> {
-  className?: string
-  content?: React.ReactNode
-}
+  extends HoverCardRootProps,
+    ComposedTVProps<typeof hoverCard> {}
 
-export const HoverCard = React.forwardRef<HTMLDivElement, HoverCardProps>(
-  function ({ children, content, size, className, classNames, ...props }, ref) {
-    const styles = hoverCard({ size, className })
+export const Content = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof ContentPrimitive>
+>(function ({ children, ...props }, ref) {
+  return (
+    <Portal>
+      <Positioner>
+        <ContentPrimitive ref={ref} {...props}>
+          {children}
+        </ContentPrimitive>
+      </Positioner>
+    </Portal>
+  )
+})
 
-    return (
-      <Ark.HoverCard.Root openDelay={200} closeDelay={200} {...props}>
-        <Ark.HoverCard.Trigger asChild>{children}</Ark.HoverCard.Trigger>
-        <Ark.Portal>
-          <Ark.HoverCard.Positioner>
-            <Ark.HoverCard.Content
-              ref={ref}
-              className={styles.base({ class: classNames?.base })}
-            >
-              <Ark.HoverCard.Arrow>
-                <Ark.HoverCard.ArrowTip
-                  className={styles.arrow({ class: classNames?.arrow })}
-                />
-              </Ark.HoverCard.Arrow>
-              {content}
-            </Ark.HoverCard.Content>
-          </Ark.HoverCard.Positioner>
-        </Ark.Portal>
-      </Ark.HoverCard.Root>
-    )
-  },
-)
+Content.displayName = "HoverCarContent"
 
-HoverCard.displayName = "HoverCard"
+export const Arrow = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof ArrowPrimitive>
+>(function ({ children, ...props }, ref) {
+  return (
+    <ArrowPrimitive ref={ref} {...props}>
+      <ArrowTipPrimitive />
+    </ArrowPrimitive>
+  )
+})
+
+Content.displayName = "HoverCarContent"

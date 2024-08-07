@@ -1,2 +1,2 @@
-export * from "./segment-group"
+export * as SegmentGroup from "./segment-group"
 export * from "./variants"

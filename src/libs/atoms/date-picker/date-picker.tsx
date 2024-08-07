@@ -1,238 +1,252 @@
-import * as Ark from "@ark-ui/react"
+import { DatePicker, DatePickerRootProps, Portal } from "@ark-ui/react"
 import React, { Fragment } from "react"
-import { LuCalendar, LuChevronLeft, LuChevronRight } from "react-icons/lu"
-import { VariantProps } from "tailwind-variants"
+import {
+  LuArrowRightCircle,
+  LuCalendar,
+  LuChevronLeft,
+  LuChevronRight,
+} from "react-icons/lu"
 import { Button } from "../button"
-import { input, Input, InputFieldProps } from "../input"
+import { Input as AtomInput, InputProps } from "../input"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
+import { createComponentCtx } from "../utils"
 import { datePicker } from "./variants"
-export interface DatePickerProps
-  extends Ark.DatePickerRootProps,
-    Omit<InputFieldProps, "prefix">,
-    VariantProps<typeof input>,
-    ComposedTVProps<typeof datePicker> {}
+
+const { withRoot, withSlot } = createComponentCtx(datePicker)
+
+export const Root = withRoot(DatePicker.Root)
+export const RootProvider = withRoot(DatePicker.RootProvider)
+export const ClearTrigger = withSlot(DatePicker.ClearTrigger)
+export const Content = withSlot(DatePicker.Content, "content")
+export const Context = withSlot(DatePicker.Context)
+export const Control = withSlot(DatePicker.Control, "control")
+export const Input = withSlot(DatePicker.Input)
+export const Label = withSlot(DatePicker.Label)
+export const MonthSelect = withSlot(DatePicker.MonthSelect)
+export const NextTrigger = withSlot(DatePicker.NextTrigger)
+export const Positioner = withSlot(DatePicker.Positioner)
+export const PresetTrigger = withSlot(DatePicker.PresetTrigger)
+export const PrevTrigger = withSlot(DatePicker.PrevTrigger)
+export const RangeText = withSlot(DatePicker.RangeText)
+export const Table = withSlot(DatePicker.Table, "table")
+export const TableBody = withSlot(DatePicker.TableBody)
+export const TableCell = withSlot(DatePicker.TableCell)
+export const TableCellTrigger = withSlot(
+  DatePicker.TableCellTrigger,
+  "tableCellTrigger",
+)
+export const TableHead = withSlot(DatePicker.TableHead)
+export const TableHeader = withSlot(DatePicker.TableHeader, "tableHeader")
+export const TableRow = withSlot(DatePicker.TableRow)
+export const Trigger = withSlot(DatePicker.Trigger)
+export const View = withSlot(DatePicker.View)
+export const ViewControl = withSlot(DatePicker.ViewControl, "viewControl")
+export const ViewTrigger = withSlot(DatePicker.ViewTrigger)
+export const YearSelect = withSlot(DatePicker.YearSelect)
+
+export interface DatePickerCompactProps
+  extends DatePickerRootProps,
+    ComposedTVProps<typeof datePicker> {
+  inputProps?: InputProps
+}
 
 export interface DatePicker extends ForwardedRefComponent {
-  (props: DatePickerProps): React.ReactElement | null
+  (props: DatePickerCompactProps): React.ReactElement | null
 }
 
 function _constructor(
   render: (
-    props: DatePickerProps,
+    props: DatePickerCompactProps,
     ref: React.ForwardedRef<HTMLInputElement>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLInputElement, DatePickerProps>(
+  return React.forwardRef<HTMLInputElement, DatePickerCompactProps>(
     render,
   ) as unknown as DatePicker
 }
 
-export const DatePicker = _constructor(function (
-  { classNames, ...props },
+export const Compact = _constructor(function (
+  { inputProps = {}, positioning, ...props },
   ref,
 ) {
-  const styles = datePicker()
-
   return (
-    <Ark.DatePicker.Root asChild {...props}>
+    <Root
+      ref={ref}
+      asChild
+      positioning={{ placement: "bottom-end", ...positioning }}
+      {...props}
+    >
       <Fragment>
-        <Ark.DatePicker.Control asChild>
-          <Ark.DatePicker.Input asChild>
-            <Input
-              ref={ref}
-              suffix={
-                <Ark.DatePicker.Trigger
-                  onClick={function (e) {
-                    e.stopPropagation()
-                  }}
-                >
-                  <LuCalendar />
-                </Ark.DatePicker.Trigger>
-              }
-              {...props}
-            />
-          </Ark.DatePicker.Input>
-        </Ark.DatePicker.Control>
+        {props.selectionMode === "range" ? (
+          <Control>
+            <Input asChild index={0}>
+              <AtomInput {...inputProps} />
+            </Input>
+            <LuArrowRightCircle className="text-secondary" />
+            <Input asChild index={1}>
+              <AtomInput {...inputProps} />
+            </Input>
+            <Trigger asChild onClick={(e) => e.stopPropagation()}>
+              <Button
+                shape="square"
+                leftIcon={<LuCalendar className="text-secondary" />}
+              />
+            </Trigger>
+          </Control>
+        ) : (
+          <Control>
+            <Input asChild>
+              <AtomInput
+                suffix={
+                  <Trigger onClick={(e) => e.stopPropagation()}>
+                    <LuCalendar className="text-secondary" />
+                  </Trigger>
+                }
+                {...inputProps}
+              />
+            </Input>
+          </Control>
+        )}
 
-        <Ark.Portal>
-          <Ark.DatePicker.Positioner>
-            <Ark.DatePicker.Content
-              className={styles.base({ class: classNames?.base })}
-            >
-              <Ark.DatePicker.View view="day">
-                <Ark.DatePicker.Context>
+        <Portal>
+          <Positioner>
+            <Content>
+              {/* VIEW DAY */}
+              <View view="day">
+                <Context>
                   {(datePicker) => (
                     <>
-                      <Ark.DatePicker.ViewControl
-                        className={styles.viewControl({
-                          class: classNames?.viewControl,
-                        })}
-                      >
-                        <Ark.DatePicker.PrevTrigger asChild>
+                      <ViewControl>
+                        <PrevTrigger asChild>
                           <Button size="xs" leftIcon={<LuChevronLeft />} />
-                        </Ark.DatePicker.PrevTrigger>
-                        <Ark.DatePicker.ViewTrigger>
+                        </PrevTrigger>
+                        <ViewTrigger asChild>
                           <Button size="xs">
-                            <Ark.DatePicker.RangeText />
+                            <RangeText />
                           </Button>
-                        </Ark.DatePicker.ViewTrigger>
-                        <Ark.DatePicker.NextTrigger asChild>
+                        </ViewTrigger>
+                        <NextTrigger asChild>
                           <Button size="xs" leftIcon={<LuChevronRight />} />
-                        </Ark.DatePicker.NextTrigger>
-                      </Ark.DatePicker.ViewControl>
-                      <Ark.DatePicker.Table>
-                        <Ark.DatePicker.TableHead>
-                          <Ark.DatePicker.TableRow>
+                        </NextTrigger>
+                      </ViewControl>
+                      <Table>
+                        <TableHead>
+                          <TableRow>
                             {datePicker.weekDays.map((weekDay, id) => (
-                              <Ark.DatePicker.TableHeader
-                                key={id}
-                                className={styles.header({
-                                  class: classNames?.header,
-                                })}
-                              >
-                                {weekDay.short}
-                              </Ark.DatePicker.TableHeader>
+                              <TableHeader key={id}>
+                                {weekDay.narrow}
+                              </TableHeader>
                             ))}
-                          </Ark.DatePicker.TableRow>
-                        </Ark.DatePicker.TableHead>
-                        <Ark.DatePicker.TableBody>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
                           {datePicker.weeks.map((week, id) => (
-                            <Ark.DatePicker.TableRow key={id}>
+                            <TableRow key={id}>
                               {week.map((day, id) => (
-                                <Ark.DatePicker.TableCell key={id} value={day}>
-                                  <Ark.DatePicker.TableCellTrigger asChild>
-                                    <Button
-                                      size="xs"
-                                      variant="ghost"
-                                      className={styles.cell({
-                                        class: classNames?.cell,
-                                      })}
-                                    >
+                                <TableCell key={id} value={day}>
+                                  <TableCellTrigger asChild>
+                                    <Button size="xs" variant="ghost">
                                       {day.day}
                                     </Button>
-                                  </Ark.DatePicker.TableCellTrigger>
-                                </Ark.DatePicker.TableCell>
+                                  </TableCellTrigger>
+                                </TableCell>
                               ))}
-                            </Ark.DatePicker.TableRow>
+                            </TableRow>
                           ))}
-                        </Ark.DatePicker.TableBody>
-                      </Ark.DatePicker.Table>
+                        </TableBody>
+                      </Table>
                     </>
                   )}
-                </Ark.DatePicker.Context>
-              </Ark.DatePicker.View>
-              <Ark.DatePicker.View view="month">
-                <Ark.DatePicker.Context>
+                </Context>
+              </View>
+              {/* VIEW MONTH */}
+              <View view="month">
+                <Context>
                   {(datePicker) => (
                     <>
-                      <Ark.DatePicker.ViewControl
-                        className={styles.viewControl({
-                          class: classNames?.viewControl,
-                        })}
-                      >
-                        <Ark.DatePicker.PrevTrigger asChild>
+                      <ViewControl>
+                        <PrevTrigger asChild>
                           <Button size="xs" leftIcon={<LuChevronLeft />} />
-                        </Ark.DatePicker.PrevTrigger>
-                        <Ark.DatePicker.ViewTrigger>
+                        </PrevTrigger>
+                        <ViewTrigger asChild>
                           <Button size="xs">
-                            <Ark.DatePicker.RangeText />
+                            <RangeText />
                           </Button>
-                        </Ark.DatePicker.ViewTrigger>
-                        <Ark.DatePicker.NextTrigger asChild>
+                        </ViewTrigger>
+                        <NextTrigger asChild>
                           <Button size="xs" leftIcon={<LuChevronRight />} />
-                        </Ark.DatePicker.NextTrigger>
-                      </Ark.DatePicker.ViewControl>
-                      <Ark.DatePicker.Table>
-                        <Ark.DatePicker.TableBody>
+                        </NextTrigger>
+                      </ViewControl>
+                      <Table>
+                        <TableBody>
                           {datePicker
                             .getMonthsGrid({ columns: 4, format: "short" })
                             .map((months, id) => (
-                              <Ark.DatePicker.TableRow key={id}>
+                              <TableRow key={id}>
                                 {months.map((month, id) => (
-                                  <Ark.DatePicker.TableCell
-                                    key={id}
-                                    value={month.value}
-                                  >
-                                    <Ark.DatePicker.TableCellTrigger asChild>
-                                      <Button
-                                        size="xs"
-                                        variant="ghost"
-                                        className={styles.cell({
-                                          class: classNames?.cell,
-                                        })}
-                                      >
+                                  <TableCell key={id} value={month.value}>
+                                    <TableCellTrigger asChild>
+                                      <Button size="xs" variant="ghost">
                                         {month.label}
                                       </Button>
-                                    </Ark.DatePicker.TableCellTrigger>
-                                  </Ark.DatePicker.TableCell>
+                                    </TableCellTrigger>
+                                  </TableCell>
                                 ))}
-                              </Ark.DatePicker.TableRow>
+                              </TableRow>
                             ))}
-                        </Ark.DatePicker.TableBody>
-                      </Ark.DatePicker.Table>
+                        </TableBody>
+                      </Table>
                     </>
                   )}
-                </Ark.DatePicker.Context>
-              </Ark.DatePicker.View>
-              <Ark.DatePicker.View view="year">
-                <Ark.DatePicker.Context>
+                </Context>
+              </View>
+              {/* VIEW YEAR */}
+              <View view="year">
+                <Context>
                   {(datePicker) => (
                     <>
-                      <Ark.DatePicker.ViewControl
-                        className={styles.viewControl({
-                          class: classNames?.viewControl,
-                        })}
-                      >
-                        <Ark.DatePicker.PrevTrigger asChild>
+                      <ViewControl>
+                        <PrevTrigger asChild>
                           <Button size="xs" leftIcon={<LuChevronLeft />} />
-                        </Ark.DatePicker.PrevTrigger>
-                        <Ark.DatePicker.ViewTrigger>
+                        </PrevTrigger>
+                        <ViewTrigger asChild>
                           <Button size="xs">
-                            <Ark.DatePicker.RangeText />
+                            <RangeText />
                           </Button>
-                        </Ark.DatePicker.ViewTrigger>
-                        <Ark.DatePicker.NextTrigger asChild>
+                        </ViewTrigger>
+                        <NextTrigger asChild>
                           <Button size="xs" leftIcon={<LuChevronRight />} />
-                        </Ark.DatePicker.NextTrigger>
-                      </Ark.DatePicker.ViewControl>
-                      <Ark.DatePicker.Table>
-                        <Ark.DatePicker.TableBody>
+                        </NextTrigger>
+                      </ViewControl>
+                      <Table>
+                        <TableBody>
                           {datePicker
                             .getYearsGrid({ columns: 4 })
                             .map((years, id) => (
-                              <Ark.DatePicker.TableRow key={id}>
+                              <TableRow key={id}>
                                 {years.map((year, id) => (
-                                  <Ark.DatePicker.TableCell
-                                    key={id}
-                                    value={year.value}
-                                  >
-                                    <Ark.DatePicker.TableCellTrigger asChild>
-                                      <Button
-                                        size="xs"
-                                        variant="ghost"
-                                        className={styles.cell({
-                                          class: classNames?.cell,
-                                        })}
-                                      >
+                                  <TableCell key={id} value={year.value}>
+                                    <TableCellTrigger asChild>
+                                      <Button size="xs" variant="ghost">
                                         {year.label}
                                       </Button>
-                                    </Ark.DatePicker.TableCellTrigger>
-                                  </Ark.DatePicker.TableCell>
+                                    </TableCellTrigger>
+                                  </TableCell>
                                 ))}
-                              </Ark.DatePicker.TableRow>
+                              </TableRow>
                             ))}
-                        </Ark.DatePicker.TableBody>
-                      </Ark.DatePicker.Table>
+                        </TableBody>
+                      </Table>
                     </>
                   )}
-                </Ark.DatePicker.Context>
-              </Ark.DatePicker.View>
-            </Ark.DatePicker.Content>
-          </Ark.DatePicker.Positioner>
-        </Ark.Portal>
+                </Context>
+              </View>
+            </Content>
+          </Positioner>
+        </Portal>
       </Fragment>
-    </Ark.DatePicker.Root>
+    </Root>
   )
 })
 
-DatePicker.displayName = "DatePicker"
+Compact.displayName = "DatePicker"

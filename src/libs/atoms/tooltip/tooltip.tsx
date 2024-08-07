@@ -1,46 +1,44 @@
-import * as Ark from "@ark-ui/react"
+import { Tooltip } from "@ark-ui/react"
 import React from "react"
-import { ComposedTVProps } from "../types"
+import { createComponentCtx } from "../utils"
 import { tooltip } from "./variants"
 
-export interface TooltipProps
-  extends Ark.TooltipRootProps,
-    ComposedTVProps<typeof tooltip> {
-  className?: string
-  content?: React.ReactNode
-}
+const { withRoot, withSlot } = createComponentCtx(tooltip)
 
-export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(function (
-  { children, content, size, className, classNames, ...props },
-  ref,
-) {
-  const styles = tooltip({ size, className })
+export const Root = withRoot(Tooltip.Root)
+export const RootProvider = withRoot(Tooltip.RootProvider)
+export const Context = withSlot(Tooltip.Context)
+export const Positioner = withSlot(Tooltip.Positioner)
+export const Trigger = withSlot(Tooltip.Trigger)
 
+export const ArrowPrimitive = withSlot(Tooltip.Arrow)
+export const ArrowTipPrimitive = withSlot(Tooltip.ArrowTip, "arrowTip")
+export const ContentPrimitive = withSlot(Tooltip.Content, "content")
+
+export const Content = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof ContentPrimitive>
+>(function ({ children, ...props }, ref) {
   return (
-    <Ark.Tooltip.Root openDelay={200} closeDelay={200} {...props}>
-      <Ark.Tooltip.Trigger asChild>{children}</Ark.Tooltip.Trigger>
-      <Ark.Tooltip.Positioner>
-        <Ark.Tooltip.Content
-          ref={ref}
-          className={styles.base({ class: classNames?.base })}
-        >
-          <Ark.Tooltip.Arrow
-            style={
-              {
-                "--arrow-size": "6px",
-                "--arrow-offset": "-3px",
-              } as React.CSSProperties
-            }
-          >
-            <Ark.Tooltip.ArrowTip
-              className={styles.arrow({ class: classNames?.arrow })}
-            />
-          </Ark.Tooltip.Arrow>
-          {content}
-        </Ark.Tooltip.Content>
-      </Ark.Tooltip.Positioner>
-    </Ark.Tooltip.Root>
+    <Positioner>
+      <ContentPrimitive ref={ref} {...props}>
+        {children}
+      </ContentPrimitive>
+    </Positioner>
   )
 })
 
-Tooltip.displayName = "Tooltip"
+Content.displayName = "Content"
+
+export const Arrow = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof ArrowPrimitive>
+>(function ({ children, ...props }, ref) {
+  return (
+    <ArrowPrimitive ref={ref} {...props}>
+      <ArrowTipPrimitive />
+    </ArrowPrimitive>
+  )
+})
+
+Content.displayName = "HoverCarContent"

@@ -1,19 +1,12 @@
-import {
-  Portal,
-  Select,
-  SelectCollectionItem,
-  SelectRootProps,
-} from "@ark-ui/react"
+import { Portal, Select } from "@ark-ui/react"
 import React from "react"
 import { LuChevronDown } from "react-icons/lu"
-import { ButtonProps } from "../button"
-import { ComposedTVProps, ForwardedRefComponent } from "../types"
 import { createComponentCtx } from "../utils"
 import { select } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(select)
 
-export const Root = withRoot(Select.Root)
+export const RootPrimitive = withRoot(Select.Root)
 export const RootProvider = withRoot(Select.RootProvider)
 export const Context = withSlot(Select.Context)
 export const ItemContext = withSlot(Select.ItemContext)
@@ -33,36 +26,14 @@ export const Item = withSlot(Select.Item, "item")
 export const ItemText = withSlot(Select.ItemText, "itemText")
 export const ItemIndicator = withSlot(Select.ItemIndicator, "itemIndicator")
 
-export type SelectCompactProps<T extends SelectCollectionItem> =
-  SelectRootProps<T> &
-    ComposedTVProps<typeof select> &
-    ButtonProps & {
-      placeholder?: string
-    }
-
-export interface SelectCompact extends ForwardedRefComponent {
-  <T extends SelectCollectionItem>(
-    props: SelectCompactProps<T>,
-  ): React.ReactElement | null
-}
-
-function _constructor<T extends SelectCollectionItem>(
-  render: (
-    props: SelectCompactProps<T>,
-    ref: React.ForwardedRef<HTMLDivElement>,
-  ) => React.ReactElement | null,
-) {
-  return React.forwardRef<HTMLDivElement, SelectCompactProps<T>>(
-    render,
-  ) as unknown as SelectCompact
-}
-
-export const Compact = _constructor(function (
-  { children, placeholder, positioning, className, ...props },
-  ref,
-) {
+export const Root = React.forwardRef<
+  any,
+  React.ComponentPropsWithoutRef<typeof RootPrimitive> & {
+    placeholder?: string
+  }
+>(function ({ children, placeholder, positioning, className, ...props }, ref) {
   return (
-    <Root
+    <RootPrimitive
       ref={ref}
       positioning={{ sameWidth: true, ...positioning }}
       unmountOnExit
@@ -82,8 +53,8 @@ export const Compact = _constructor(function (
         </Positioner>
       </Portal>
       <HiddenSelect />
-    </Root>
+    </RootPrimitive>
   )
 })
 
-Compact.displayName = "Select"
+Root.displayName = "Root"
