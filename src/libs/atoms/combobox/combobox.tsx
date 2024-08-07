@@ -1,7 +1,9 @@
-import { Combobox, Portal } from "@ark-ui/react"
+import { Combobox, ComboboxRootProps, Portal } from "@ark-ui/react"
+import { CollectionItem } from "node_modules/@ark-ui/react/dist/types"
 import React from "react"
 import { LuChevronsUpDown } from "react-icons/lu"
 import { Input as AtomInput, InputProps } from "../input"
+import { ComposedTVProps, ForwardedRefComponent } from "../types"
 import { createComponentCtx } from "../utils"
 import { combobox } from "./variants"
 
@@ -28,13 +30,29 @@ export const Item = withSlot(Combobox.Item, "item")
 export const ItemText = withSlot(Combobox.ItemText, "itemText")
 export const ItemIndicator = withSlot(Combobox.ItemIndicator, "itemIndicator")
 
-export const Root = React.forwardRef<
-  any,
-  React.ComponentPropsWithoutRef<typeof RootPrimitive> & {
-    placeholder?: string
-    renderInput?(props: InputProps): React.ReactNode
-  }
->(function (
+export interface ComboboxProps<T extends CollectionItem>
+  extends ComboboxRootProps<T>,
+    ComposedTVProps<typeof combobox> {
+  placeholder?: string
+  renderInput?(props: InputProps): React.ReactNode
+}
+
+export interface Combobox extends ForwardedRefComponent {
+  <T extends CollectionItem>(props: ComboboxProps<T>): React.ReactElement | null
+}
+
+function _bootstrap<T extends CollectionItem>(
+  render: (
+    props: ComboboxProps<T>,
+    ref: React.ForwardedRef<HTMLDivElement>,
+  ) => React.ReactElement | null,
+) {
+  return React.forwardRef<HTMLDivElement, ComboboxProps<T>>(
+    render,
+  ) as unknown as Combobox
+}
+
+export const Root = _bootstrap(function (
   {
     children,
     placeholder,

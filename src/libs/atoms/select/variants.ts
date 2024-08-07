@@ -3,7 +3,7 @@ import { tv } from "tailwind-variants"
 export const select = tv({
   slots: {
     trigger: [
-      "rounded bg-default inline-flex items-center gap-2 justify-between",
+      "rounded bg-default inline-flex items-center gap-2 justify-between w-full",
       "h-[var(--button-size)] min-h-[var(--button-size)] min-w-[var(--button-size)]",
       "data-[placeholder-shown]:text-secondary",
     ],

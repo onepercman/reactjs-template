@@ -1,6 +1,8 @@
-import { Portal, Select } from "@ark-ui/react"
+import { Portal, Select, SelectRootProps } from "@ark-ui/react"
+import { CollectionItem } from "node_modules/@ark-ui/react/dist/types"
 import React from "react"
 import { LuChevronDown } from "react-icons/lu"
+import { ComposedTVProps, ForwardedRefComponent } from "../types"
 import { createComponentCtx } from "../utils"
 import { select } from "./variants"
 
@@ -26,12 +28,31 @@ export const Item = withSlot(Select.Item, "item")
 export const ItemText = withSlot(Select.ItemText, "itemText")
 export const ItemIndicator = withSlot(Select.ItemIndicator, "itemIndicator")
 
-export const Root = React.forwardRef<
-  any,
-  React.ComponentPropsWithoutRef<typeof RootPrimitive> & {
-    placeholder?: string
-  }
->(function ({ children, placeholder, positioning, className, ...props }, ref) {
+export interface SelectProps<T extends CollectionItem>
+  extends SelectRootProps<T>,
+    ComposedTVProps<typeof select> {
+  placeholder?: string
+}
+
+export interface Select extends ForwardedRefComponent {
+  <T extends CollectionItem>(props: SelectProps<T>): React.ReactElement | null
+}
+
+function _constructor<T extends CollectionItem>(
+  render: (
+    props: SelectProps<T>,
+    ref: React.ForwardedRef<HTMLDivElement>,
+  ) => React.ReactElement | null,
+) {
+  return React.forwardRef<HTMLDivElement, SelectProps<T>>(
+    render,
+  ) as unknown as Select
+}
+
+export const Root = _constructor(function (
+  { children, placeholder, positioning, className, ...props },
+  ref,
+) {
   return (
     <RootPrimitive
       ref={ref}
