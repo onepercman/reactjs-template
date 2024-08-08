@@ -23,6 +23,8 @@ export interface Checkbox extends ForwardedRefComponent {
 
 export const Component = Root as any as Checkbox
 
+Component.displayName = "Collapsible"
+
 Component.Root = Root
 Component.Content = Content
 Component.Context = Context

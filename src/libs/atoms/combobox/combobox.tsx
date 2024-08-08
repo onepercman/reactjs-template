@@ -9,7 +9,7 @@ import { combobox } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(combobox)
 
-const RootPrimitive = withRoot(Combobox.Root, "base")
+const Root = withRoot(Combobox.Root, "base")
 const RootProvider = withRoot(Combobox.RootProvider, "base")
 const Context = withSlot(Combobox.Context)
 const ItemContext = withSlot(Combobox.ItemContext)
@@ -36,7 +36,7 @@ export interface ComboboxProps<T extends CollectionItem>
 
 export interface Combobox extends ForwardedRefComponent {
   <T extends CollectionItem>(props: ComboboxProps<T>): React.ReactElement | null
-  RootPrimitive: typeof RootPrimitive
+  Root: typeof Root
   RootProvider: typeof RootProvider
   Context: typeof Context
   ItemContext: typeof ItemContext
@@ -61,7 +61,7 @@ function _bootstrap<T extends CollectionItem>(
   return React.forwardRef<HTMLDivElement, ComboboxProps<T>>(render) as unknown as Combobox
 }
 
-export const Root = _bootstrap(function (
+export const Component = _bootstrap(function (
   {
     children,
     placeholder,
@@ -84,7 +84,7 @@ export const Root = _bootstrap(function (
   ref,
 ) {
   return (
-    <RootPrimitive ref={ref} unmountOnExit positioning={{ sameWidth: true, ...positioning }} {...props}>
+    <Root ref={ref} unmountOnExit positioning={{ sameWidth: true, ...positioning }} {...props}>
       <Control>
         <Input asChild>{renderInput({ placeholder })}</Input>
       </Control>
@@ -93,26 +93,26 @@ export const Root = _bootstrap(function (
           <Content>{children}</Content>
         </Positioner>
       </Portal>
-    </RootPrimitive>
+    </Root>
   )
 })
 
-Root.displayName = "Combobox"
+Component.displayName = "Combobox"
 
-Root.RootPrimitive = RootPrimitive
-Root.RootProvider = RootProvider
-Root.Context = Context
-Root.ItemContext = ItemContext
-Root.Label = Label
-Root.Control = Control
-Root.Trigger = Trigger
-Root.Input = Input
-Root.ClearTrigger = ClearTrigger
-Root.Positioner = Positioner
-Root.List = List
-Root.Content = Content
-Root.ItemGroup = ItemGroup
-Root.ItemGroupLabel = ItemGroupLabel
-Root.Item = Item
-Root.ItemText = ItemText
-Root.ItemIndicator = ItemIndicator
+Component.Root = Root
+Component.RootProvider = RootProvider
+Component.Context = Context
+Component.ItemContext = ItemContext
+Component.Label = Label
+Component.Control = Control
+Component.Trigger = Trigger
+Component.Input = Input
+Component.ClearTrigger = ClearTrigger
+Component.Positioner = Positioner
+Component.List = List
+Component.Content = Content
+Component.ItemGroup = ItemGroup
+Component.ItemGroupLabel = ItemGroupLabel
+Component.Item = Item
+Component.ItemText = ItemText
+Component.ItemIndicator = ItemIndicator

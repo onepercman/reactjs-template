@@ -67,6 +67,8 @@ export interface Popover extends ForwardedRefComponent {
 
 export const Component = Root as any as Popover
 
+Component.displayName = "Popover"
+
 Component.Root = Root
 Component.RootProvider = RootProvider
 Component.Anchor = Anchor

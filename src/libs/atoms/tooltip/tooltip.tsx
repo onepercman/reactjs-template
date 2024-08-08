@@ -57,6 +57,8 @@ export interface Tooltip extends ForwardedRefComponent {
 
 export const Component = Root as any as Tooltip
 
+Component.displayName = "Tooltip"
+
 Component.Root = Root
 Component.RootProvider = RootProvider
 Component.Context = Context

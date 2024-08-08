@@ -59,6 +59,8 @@ export interface HoverCard extends ForwardedRefComponent {
 
 export const Component = Root as any as HoverCard
 
+Component.displayName = "HoverCard"
+
 Component.Root = Root
 Component.RootProvider = RootProvider
 Component.Context = Context

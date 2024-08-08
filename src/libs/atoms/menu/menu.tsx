@@ -71,6 +71,8 @@ export interface Menu extends ForwardedRefComponent {
 
 export const Component = Root as any as Menu
 
+Component.displayName = "Menu"
+
 Component.Root = Root
 Component.RootProvider = RootProvider
 Component.Arrow = Arrow

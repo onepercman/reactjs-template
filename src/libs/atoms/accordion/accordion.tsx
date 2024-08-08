@@ -6,7 +6,7 @@ import { accordion } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(accordion)
 
-const RootPrimitive = withRoot(Accordion.Root, "base")
+const Root = withRoot(Accordion.Root, "base")
 const RootProvider = withSlot(Accordion.RootProvider, "base")
 const Context = withSlot(Accordion.Context)
 const ItemContext = withSlot(Accordion.ItemContext)
@@ -17,7 +17,7 @@ const ItemIndicator = withSlot(Accordion.ItemIndicator, "itemIndicator")
 
 export interface Accordion extends ForwardedRefComponent {
   (props: AccordionRootProps): React.ReactElement | null
-  RootPrimitive: typeof RootPrimitive
+  Root: typeof Root
   RootProvider: typeof RootProvider
   Context: typeof Context
   ItemContext: typeof ItemContext
@@ -27,19 +27,11 @@ export interface Accordion extends ForwardedRefComponent {
   ItemIndicator: typeof ItemIndicator
 }
 
-function _bootstrap(
-  render: (props: AccordionRootProps, ref: React.ForwardedRef<HTMLDivElement>) => React.ReactElement | null,
-) {
-  return React.forwardRef<HTMLDivElement, AccordionRootProps>(render) as unknown as Accordion
-}
-
-export const Component = _bootstrap(function ({ ...props }, ref) {
-  return <RootPrimitive ref={ref} {...props} />
-})
+export const Component = Root as any as Accordion
 
 Component.displayName = "Accordion"
 
-Component.RootPrimitive = RootPrimitive
+Component.Root = Root
 Component.RootProvider = RootProvider
 Component.Context = Context
 Component.ItemContext = ItemContext

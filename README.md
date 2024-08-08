@@ -6,7 +6,7 @@
 - [ ] Carousel - (soon)
 - [x] Checkbox
 - [ ] Clipboard - (soon)
-- [ ] Collapsible - (soon)
+- [x] Collapsible
 - [ ] Color Picker - (soon)
 - [x] Combobox
 - [x] Date Picker

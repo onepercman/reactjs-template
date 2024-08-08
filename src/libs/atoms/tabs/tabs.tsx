@@ -41,6 +41,8 @@ export interface Tabs extends ForwardedRefComponent {
 
 export const Component = Root as any as Tabs
 
+Component.displayName = "Tabs"
+
 Component.Root = Root
 Component.Content = Content
 Component.Context = Context

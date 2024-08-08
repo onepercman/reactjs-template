@@ -68,6 +68,8 @@ export interface Dialog extends ForwardedRefComponent {
 
 export const Component = Root as any as Dialog
 
+Component.displayName = "Dialog"
+
 Component.Root = Root
 Component.RootProvider = RootProvider
 Component.Backdrop = Backdrop

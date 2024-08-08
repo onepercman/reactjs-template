@@ -69,6 +69,8 @@ export interface Drawer extends ForwardedRefComponent {
 
 export const Component = Root as any as Drawer
 
+Component.displayName = "Drawer"
+
 Component.Root = Root
 Component.NestedRoot = NestedRoot
 Component.Description = Description

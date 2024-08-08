@@ -30,6 +30,8 @@ export interface Field extends ForwardedRefComponent {
 
 export const Component = Root as any as Field
 
+Component.displayName = "Field"
+
 Component.Context = Context
 Component.ErrorText = ErrorText
 Component.HelperText = HelperText

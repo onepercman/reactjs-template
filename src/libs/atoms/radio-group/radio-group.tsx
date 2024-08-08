@@ -48,6 +48,8 @@ export interface RadioGroup extends ForwardedRefComponent {
 
 export const Component = Root as any as RadioGroup
 
+Component.displayName = "RadioGroup"
+
 Component.Root = Root
 Component.RootProvider = RootProvider
 Component.Context = Context
