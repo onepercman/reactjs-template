@@ -20,8 +20,7 @@
 - [x] Pagination
 - [ ] Pin Input - (soon)
 - [x] Popover
-- [ ] Progress - Circular - (soon)
-- [ ] Progress - Linear - (soon)
+- [x] Progress
 - [x] Radio Group
 - [ ] Rating Group - (soon)
 - [x] Segment Group
