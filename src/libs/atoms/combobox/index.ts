@@ -1,2 +1,2 @@
-export { Root as Combobox } from "./combobox"
+export { Component as Combobox } from "./combobox"
 export * from "./variants"
