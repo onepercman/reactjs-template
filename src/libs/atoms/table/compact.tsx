@@ -49,7 +49,7 @@ interface Table extends ForwardedRefComponent {
   <Row extends TableRow>(props: ForwardRefWithAsProps<"div", TableProps<Row>>): React.ReactElement | null
 }
 
-function _constructor<Row extends TableRow>(
+function _bootstrap<Row extends TableRow>(
   render: <Row extends TableRow>(
     props: TableProps<Row> & React.HTMLAttributes<HTMLTableElement>,
     ref: React.ForwardedRef<HTMLTableElement>,
@@ -58,7 +58,7 @@ function _constructor<Row extends TableRow>(
   return React.forwardRef<HTMLTableElement, TableProps<Row>>(render) as unknown as Table
 }
 
-export const Table = _constructor(function (
+export const Table = _bootstrap(function (
   {
     children,
     columns,

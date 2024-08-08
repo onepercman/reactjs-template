@@ -14,13 +14,13 @@ interface Pagination extends ForwardedRefComponent {
   (props: PaginationProps): React.ReactElement | null
 }
 
-function _constructor(
+function _bootstrap(
   render: (props: PaginationProps, ref: React.ForwardedRef<HTMLDivElement>) => React.ReactElement | null,
 ) {
   return React.forwardRef<HTMLDivElement, PaginationProps>(render) as unknown as Pagination
 }
 
-export const Pagination = _constructor(function (
+export const Pagination = _bootstrap(function (
   { className, size, variant, color, activeProps = { color: "primary" }, inactiveProps, ...props },
   ref,
 ) {

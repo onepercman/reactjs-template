@@ -16,13 +16,13 @@ export interface NumberInput extends ForwardedRefComponent {
   (props: NumberInputProps): React.ReactElement | null
 }
 
-function _constructor(
+function _bootstrap(
   render: (props: NumberInputProps, ref: React.ForwardedRef<HTMLInputElement>) => React.ReactElement | null,
 ) {
   return React.forwardRef<HTMLInputElement, NumberInputProps>(render) as unknown as NumberInput
 }
 
-export const NumberInput = _constructor(function ({ classNames, ...props }, ref) {
+export const NumberInput = _bootstrap(function ({ classNames, ...props }, ref) {
   return (
     <Ark.NumberInput.Root className="w-fit" {...props}>
       <Ark.NumberInput.Scrubber />
