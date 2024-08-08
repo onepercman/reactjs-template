@@ -9,26 +9,23 @@ import { combobox } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(combobox)
 
-export const RootPrimitive = withRoot(Combobox.Root, "base")
-export const RootProvider = withRoot(Combobox.RootProvider, "base")
-export const Context = withSlot(Combobox.Context)
-export const ItemContext = withSlot(Combobox.ItemContext)
-export const Label = withSlot(Combobox.Label)
-export const Control = withSlot(Combobox.Control)
-export const Trigger = withSlot(Combobox.Trigger, "trigger")
-export const Input = withSlot(Combobox.Input, "input")
-export const ClearTrigger = withSlot(Combobox.ClearTrigger, "clearTrigger")
-export const Positioner = withSlot(Combobox.Positioner)
-export const List = withSlot(Combobox.List)
-export const Content = withSlot(Combobox.Content, "content")
-export const ItemGroup = withSlot(Combobox.ItemGroup, "itemGroup")
-export const ItemGroupLabel = withSlot(
-  Combobox.ItemGroupLabel,
-  "ItemGroupLabel",
-)
-export const Item = withSlot(Combobox.Item, "item")
-export const ItemText = withSlot(Combobox.ItemText, "itemText")
-export const ItemIndicator = withSlot(Combobox.ItemIndicator, "itemIndicator")
+const RootPrimitive = withRoot(Combobox.Root, "base")
+const RootProvider = withRoot(Combobox.RootProvider, "base")
+const Context = withSlot(Combobox.Context)
+const ItemContext = withSlot(Combobox.ItemContext)
+const Label = withSlot(Combobox.Label)
+const Control = withSlot(Combobox.Control)
+const Trigger = withSlot(Combobox.Trigger, "trigger")
+const Input = withSlot(Combobox.Input, "input")
+const ClearTrigger = withSlot(Combobox.ClearTrigger, "clearTrigger")
+const Positioner = withSlot(Combobox.Positioner)
+const List = withSlot(Combobox.List)
+const Content = withSlot(Combobox.Content, "content")
+const ItemGroup = withSlot(Combobox.ItemGroup, "itemGroup")
+const ItemGroupLabel = withSlot(Combobox.ItemGroupLabel, "ItemGroupLabel")
+const Item = withSlot(Combobox.Item, "item")
+const ItemText = withSlot(Combobox.ItemText, "itemText")
+const ItemIndicator = withSlot(Combobox.ItemIndicator, "itemIndicator")
 
 export interface ComboboxProps<T extends CollectionItem>
   extends ComboboxRootProps<T>,
@@ -39,17 +36,29 @@ export interface ComboboxProps<T extends CollectionItem>
 
 export interface Combobox extends ForwardedRefComponent {
   <T extends CollectionItem>(props: ComboboxProps<T>): React.ReactElement | null
+  RootPrimitive: typeof RootPrimitive
+  RootProvider: typeof RootProvider
+  Context: typeof Context
+  ItemContext: typeof ItemContext
+  Label: typeof Label
+  Control: typeof Control
+  Trigger: typeof Trigger
+  Input: typeof Input
+  ClearTrigger: typeof ClearTrigger
+  Positioner: typeof Positioner
+  List: typeof List
+  Content: typeof Content
+  ItemGroup: typeof ItemGroup
+  ItemGroupLabel: typeof ItemGroupLabel
+  Item: typeof Item
+  ItemText: typeof ItemText
+  ItemIndicator: typeof ItemIndicator
 }
 
 function _bootstrap<T extends CollectionItem>(
-  render: (
-    props: ComboboxProps<T>,
-    ref: React.ForwardedRef<HTMLDivElement>,
-  ) => React.ReactElement | null,
+  render: (props: ComboboxProps<T>, ref: React.ForwardedRef<HTMLDivElement>) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLDivElement, ComboboxProps<T>>(
-    render,
-  ) as unknown as Combobox
+  return React.forwardRef<HTMLDivElement, ComboboxProps<T>>(render) as unknown as Combobox
 }
 
 export const Root = _bootstrap(function (
@@ -75,12 +84,7 @@ export const Root = _bootstrap(function (
   ref,
 ) {
   return (
-    <RootPrimitive
-      ref={ref}
-      unmountOnExit
-      positioning={{ sameWidth: true, ...positioning }}
-      {...props}
-    >
+    <RootPrimitive ref={ref} unmountOnExit positioning={{ sameWidth: true, ...positioning }} {...props}>
       <Control>
         <Input asChild>{renderInput({ placeholder })}</Input>
       </Control>
@@ -92,3 +96,23 @@ export const Root = _bootstrap(function (
     </RootPrimitive>
   )
 })
+
+Root.displayName = "Combobox"
+
+Root.RootPrimitive = RootPrimitive
+Root.RootProvider = RootProvider
+Root.Context = Context
+Root.ItemContext = ItemContext
+Root.Label = Label
+Root.Control = Control
+Root.Trigger = Trigger
+Root.Input = Input
+Root.ClearTrigger = ClearTrigger
+Root.Positioner = Positioner
+Root.List = List
+Root.Content = Content
+Root.ItemGroup = ItemGroup
+Root.ItemGroupLabel = ItemGroupLabel
+Root.Item = Item
+Root.ItemText = ItemText
+Root.ItemIndicator = ItemIndicator

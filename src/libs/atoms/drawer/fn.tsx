@@ -1,13 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import { Button, ButtonProps } from "../button"
-import { Content, Root } from "./drawer"
+import { Component as Drawer } from "./drawer"
+import { DialogProps } from "./types"
 
-export function open({
-  children,
-  onClose,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof Root>): {
+export function open({ children, onClose, ...props }: DialogProps): {
   close(): void
 } {
   const container = document.createDocumentFragment()
@@ -16,14 +13,14 @@ export function open({
 
   function close() {
     root.render(
-      <Root open={false} {...props}>
-        <Content>{children}</Content>
-      </Root>,
+      <Drawer.Root open={false} {...props}>
+        <Drawer.Content>{children}</Drawer.Content>
+      </Drawer.Root>,
     )
   }
 
   root.render(
-    <Root
+    <Drawer.Root
       open={true}
       onClose={function () {
         onClose && onClose()
@@ -31,8 +28,8 @@ export function open({
       }}
       {...props}
     >
-      <Content>{children}</Content>
-    </Root>,
+      <Drawer.Content>{children}</Drawer.Content>
+    </Drawer.Root>,
   )
 
   return {
@@ -45,7 +42,7 @@ export async function confirm({
   confirmProps,
   cancelProps,
   ...props
-}: React.ComponentPropsWithoutRef<typeof Root> & {
+}: DialogProps & {
   question?: React.ReactNode
   confirmProps?: ButtonProps
   cancelProps?: ButtonProps
@@ -64,9 +61,7 @@ export async function confirm({
               size="sm"
               {...cancelProps}
               onClick={async function (e) {
-                if (
-                  cancelProps?.onClick?.constructor.name === "AsyncFunction"
-                ) {
+                if (cancelProps?.onClick?.constructor.name === "AsyncFunction") {
                   await cancelProps.onClick(e)
                 } else {
                   cancelProps?.onClick && cancelProps.onClick(e)
@@ -83,9 +78,7 @@ export async function confirm({
               color="primary"
               {...confirmProps}
               onClick={async function (e) {
-                if (
-                  confirmProps?.onClick?.constructor.name === "AsyncFunction"
-                ) {
+                if (confirmProps?.onClick?.constructor.name === "AsyncFunction") {
                   await confirmProps?.onClick(e)
                 } else if (confirmProps?.onClick) {
                   confirmProps?.onClick(e)

@@ -1,2 +1,2 @@
-export * as Accordion from "./accordion"
+export { Component as Accordion } from "./accordion"
 export * from "./variants"

@@ -1,11 +1,5 @@
 import userStore from "@/features/user/user.store"
-import axios, {
-  AxiosError,
-  AxiosInstance,
-  AxiosResponse,
-  CreateAxiosDefaults,
-  InternalAxiosRequestConfig,
-} from "axios"
+import axios, { AxiosError, AxiosInstance, AxiosResponse, CreateAxiosDefaults, InternalAxiosRequestConfig } from "axios"
 import { camelizeKeys, decamelizeKeys } from "humps"
 import { API_URL } from "../config/endpoints.config"
 
@@ -15,10 +9,7 @@ const requestHandler = {
     if (jwt && config.headers.Authorization) {
       config.headers.Authorization = `Bearer ${jwt}`
     }
-    if (
-      config.params?.transformCase === false ||
-      config.data?.transformCase === false
-    ) {
+    if (config.params?.transformCase === false || config.data?.transformCase === false) {
       delete config.params?.transformCase
       delete config.data?.transformCase
       return config
@@ -41,12 +32,9 @@ const responseHandler = {
         pagination: response.data.pagination,
       }
     }
-    response.data = camelizeKeys(
-      response.data.data ?? response.data,
-      function (key, convert) {
-        return /^[A-Z0-9_]+$/.test(key) ? key : convert(key)
-      },
-    )
+    response.data = camelizeKeys(response.data.data ?? response.data, function (key, convert) {
+      return /^[A-Z0-9_]+$/.test(key) ? key : convert(key)
+    })
     return Promise.resolve(response)
   },
   onRejected(error: AxiosError) {
@@ -73,9 +61,6 @@ export class BaseService {
     })
 
     this.http.interceptors.request.use(requestHandler.onFulfilled)
-    this.http.interceptors.response.use(
-      responseHandler.onFulfilled,
-      responseHandler.onRejected,
-    )
+    this.http.interceptors.response.use(responseHandler.onFulfilled, responseHandler.onRejected)
   }
 }

@@ -1,2 +1,2 @@
-export * as Checkbox from "./checkbox"
+export { Component as Checkbox } from "./checkbox"
 export * from "./variants"

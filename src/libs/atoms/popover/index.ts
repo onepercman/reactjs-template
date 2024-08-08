@@ -1,2 +1,2 @@
-export * as Popover from "./popover"
+export { Component as Popover } from "./popover"
 export * from "./variants"

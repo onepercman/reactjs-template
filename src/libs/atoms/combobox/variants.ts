@@ -9,8 +9,7 @@ export const combobox = tv({
       "data-[placeholder-shown]:text-secondary",
     ],
     input: "min-w-6 w-full",
-    clearTrigger:
-      "text-secondary text-xs absolute top-1/2 right-3 -translate-y-1/2",
+    clearTrigger: "text-secondary text-xs absolute top-1/2 right-3 -translate-y-1/2",
     content: [
       "flex flex-col w-full rounded overflow-hidden bg-component shadow-lg p-2",
       "data-[state=open]:animate-in",
@@ -22,8 +21,7 @@ export const combobox = tv({
     ItemGroupLabel: "w-full px-2 py-1 text-xs text-secondary",
     item: "inline-flex relative gap-2 justify-between items-start cursor-pointer hover:bg-foreground/5 pl-3 py-2 pr-8 rounded data-[state=checked]:text-primary font-medium",
     itemText: "grow",
-    itemIndicator:
-      "h-full absolute right-2 top-0 data-[state=checked]:flex items-center text-xs text-primary",
+    itemIndicator: "h-full absolute right-2 top-0 data-[state=checked]:flex items-center text-xs text-primary",
   },
   variants: {
     size: {

@@ -1,51 +1,69 @@
 import { HoverCard, HoverCardRootProps, Portal } from "@ark-ui/react"
 import React from "react"
-import { ComposedTVProps } from "../types"
+import { ForwardedRefComponent } from "../types"
 import { createComponentCtx } from "../utils"
 import { hoverCard } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(hoverCard)
 
-export const Root = withRoot(HoverCard.Root)
-export const RootProvider = withRoot(HoverCard.RootProvider)
-export const Context = withSlot(HoverCard.Context)
-export const Positioner = withSlot(HoverCard.Positioner)
-export const Trigger = withSlot(HoverCard.Trigger)
+const Root = withRoot(HoverCard.Root)
+const RootProvider = withRoot(HoverCard.RootProvider)
+const Context = withSlot(HoverCard.Context)
+const Positioner = withSlot(HoverCard.Positioner)
+const Trigger = withSlot(HoverCard.Trigger)
+const Arrow = withSlot(HoverCard.Arrow)
+const ArrowTip = withSlot(HoverCard.ArrowTip, "arrowTip")
+const Content = withSlot(HoverCard.Content, "content")
 
-export const ArrowPrimitive = withSlot(HoverCard.Arrow)
-export const ArrowTipPrimitive = withSlot(HoverCard.ArrowTip, "arrowTip")
-export const ContentPrimitive = withSlot(HoverCard.Content, "content")
-
-export interface HoverCardProps
-  extends HoverCardRootProps,
-    ComposedTVProps<typeof hoverCard> {}
-
-export const Content = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentPropsWithoutRef<typeof ContentPrimitive>
->(function ({ children, ...props }, ref) {
+const CustomContent = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<typeof Content>>(function (
+  { children, ...props },
+  ref,
+) {
   return (
     <Portal>
       <Positioner>
-        <ContentPrimitive ref={ref} {...props}>
+        <Content ref={ref} {...props}>
           {children}
-        </ContentPrimitive>
+        </Content>
       </Positioner>
     </Portal>
   )
 })
 
-Content.displayName = "HoverCarContent"
+CustomContent.displayName = "Content"
 
-export const Arrow = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentPropsWithoutRef<typeof ArrowPrimitive>
->(function ({ children, ...props }, ref) {
+const CustomArrow = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<typeof Arrow>>(function (
+  { children, ...props },
+  ref,
+) {
   return (
-    <ArrowPrimitive ref={ref} {...props}>
-      <ArrowTipPrimitive />
-    </ArrowPrimitive>
+    <Arrow ref={ref} {...props}>
+      <ArrowTip />
+    </Arrow>
   )
 })
 
-Content.displayName = "HoverCarContent"
+CustomArrow.displayName = "Arrow"
+
+export interface HoverCard extends ForwardedRefComponent {
+  (props: HoverCardRootProps): React.ReactElement | null
+  Root: typeof Root
+  RootProvider: typeof RootProvider
+  Context: typeof Context
+  Positioner: typeof Positioner
+  Trigger: typeof Trigger
+  Arrow: typeof CustomArrow
+  ArrowTip: typeof ArrowTip
+  Content: typeof CustomContent
+}
+
+export const Component = Root as any as HoverCard
+
+Component.Root = Root
+Component.RootProvider = RootProvider
+Component.Context = Context
+Component.Positioner = Positioner
+Component.Trigger = Trigger
+Component.Arrow = CustomArrow
+Component.ArrowTip = ArrowTip
+Component.Content = CustomContent

@@ -7,13 +7,8 @@ export const ADDRESSES = {
   },
 }
 
-export function getContractAddresses<Address extends string>(
-  chainId: number,
-): Record<keyof typeof ADDRESSES, Address> {
+export function getContractAddresses<Address extends string>(chainId: number): Record<keyof typeof ADDRESSES, Address> {
   return Object.fromEntries(
-    Object.entries(ADDRESSES).map(([key, object]) => [
-      key,
-      object[chainId as keyof typeof object],
-    ]),
+    Object.entries(ADDRESSES).map(([key, object]) => [key, object[chainId as keyof typeof object]]),
   ) as Record<keyof typeof ADDRESSES, Address>
 }

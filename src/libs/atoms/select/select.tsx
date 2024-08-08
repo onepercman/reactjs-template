@@ -8,58 +8,62 @@ import { select } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(select)
 
-export const RootPrimitive = withRoot(Select.Root)
-export const RootProvider = withRoot(Select.RootProvider)
-export const Context = withSlot(Select.Context)
-export const ItemContext = withSlot(Select.ItemContext)
-export const Label = withSlot(Select.Label)
-export const Control = withSlot(Select.Control)
-export const Trigger = withSlot(Select.Trigger, "trigger")
-export const ValueText = withSlot(Select.ValueText, "valueText")
-export const ClearTrigger = withSlot(Select.ClearTrigger, "clearTrigger")
-export const Indicator = withSlot(Select.Indicator, "indicator")
-export const HiddenSelect = withSlot(Select.HiddenSelect)
-export const Positioner = withSlot(Select.Positioner)
-export const List = withSlot(Select.List)
-export const Content = withSlot(Select.Content, "content")
-export const ItemGroup = withSlot(Select.ItemGroup, "itemGroup")
-export const ItemGroupLabel = withSlot(Select.ItemGroupLabel, "ItemGroupLabel")
-export const Item = withSlot(Select.Item, "item")
-export const ItemText = withSlot(Select.ItemText, "itemText")
-export const ItemIndicator = withSlot(Select.ItemIndicator, "itemIndicator")
+const Root = withRoot(Select.Root)
+const RootProvider = withRoot(Select.RootProvider)
+const Context = withSlot(Select.Context)
+const ItemContext = withSlot(Select.ItemContext)
+const Label = withSlot(Select.Label)
+const Control = withSlot(Select.Control)
+const Trigger = withSlot(Select.Trigger, "trigger")
+const ValueText = withSlot(Select.ValueText, "valueText")
+const ClearTrigger = withSlot(Select.ClearTrigger, "clearTrigger")
+const Indicator = withSlot(Select.Indicator, "indicator")
+const HiddenSelect = withSlot(Select.HiddenSelect)
+const Positioner = withSlot(Select.Positioner)
+const List = withSlot(Select.List)
+const Content = withSlot(Select.Content, "content")
+const ItemGroup = withSlot(Select.ItemGroup, "itemGroup")
+const ItemGroupLabel = withSlot(Select.ItemGroupLabel, "ItemGroupLabel")
+const Item = withSlot(Select.Item, "item")
+const ItemText = withSlot(Select.ItemText, "itemText")
+const ItemIndicator = withSlot(Select.ItemIndicator, "itemIndicator")
 
-export interface SelectProps<T extends CollectionItem>
-  extends SelectRootProps<T>,
-    ComposedTVProps<typeof select> {
+export interface SelectProps<T extends CollectionItem> extends SelectRootProps<T>, ComposedTVProps<typeof select> {
   placeholder?: string
 }
 
 export interface Select extends ForwardedRefComponent {
   <T extends CollectionItem>(props: SelectProps<T>): React.ReactElement | null
+  Root: typeof Root
+  RootProvider: typeof RootProvider
+  Context: typeof Context
+  ItemContext: typeof ItemContext
+  Label: typeof Label
+  Control: typeof Control
+  Trigger: typeof Trigger
+  ValueText: typeof ValueText
+  ClearTrigger: typeof ClearTrigger
+  Indicator: typeof Indicator
+  HiddenSelect: typeof HiddenSelect
+  Positioner: typeof Positioner
+  List: typeof List
+  Content: typeof Content
+  ItemGroup: typeof ItemGroup
+  ItemGroupLabel: typeof ItemGroupLabel
+  Item: typeof Item
+  ItemText: typeof ItemText
+  ItemIndicator: typeof ItemIndicator
 }
 
-function _constructor<T extends CollectionItem>(
-  render: (
-    props: SelectProps<T>,
-    ref: React.ForwardedRef<HTMLDivElement>,
-  ) => React.ReactElement | null,
+function _bootstrap<T extends CollectionItem>(
+  render: (props: SelectProps<T>, ref: React.ForwardedRef<HTMLDivElement>) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLDivElement, SelectProps<T>>(
-    render,
-  ) as unknown as Select
+  return React.forwardRef<HTMLDivElement, SelectProps<T>>(render) as unknown as Select
 }
 
-export const Root = _constructor(function (
-  { children, placeholder, positioning, className, ...props },
-  ref,
-) {
+export const Component = _bootstrap(function ({ children, placeholder, positioning, className, ...props }, ref) {
   return (
-    <RootPrimitive
-      ref={ref}
-      positioning={{ sameWidth: true, ...positioning }}
-      unmountOnExit
-      {...props}
-    >
+    <Root ref={ref} positioning={{ sameWidth: true, ...positioning }} unmountOnExit {...props}>
       <Control>
         <Trigger className={className}>
           <ValueText placeholder={placeholder} />
@@ -74,8 +78,28 @@ export const Root = _constructor(function (
         </Positioner>
       </Portal>
       <HiddenSelect />
-    </RootPrimitive>
+    </Root>
   )
 })
 
-Root.displayName = "Root"
+Component.displayName = "Select"
+
+Component.Root = Root
+Component.RootProvider = RootProvider
+Component.Context = Context
+Component.ItemContext = ItemContext
+Component.Label = Label
+Component.Control = Control
+Component.Trigger = Trigger
+Component.ValueText = ValueText
+Component.ClearTrigger = ClearTrigger
+Component.Indicator = Indicator
+Component.HiddenSelect = HiddenSelect
+Component.Positioner = Positioner
+Component.List = List
+Component.Content = Content
+Component.ItemGroup = ItemGroup
+Component.ItemGroupLabel = ItemGroupLabel
+Component.Item = Item
+Component.ItemText = ItemText
+Component.ItemIndicator = ItemIndicator

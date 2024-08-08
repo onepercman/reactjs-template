@@ -1,2 +1,2 @@
-export * as Dialog from "./dialog"
+export { Component as Dialog } from "./dialog"
 export * from "./variants"

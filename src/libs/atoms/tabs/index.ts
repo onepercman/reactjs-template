@@ -1,2 +1,2 @@
-export * as Tabs from "./tabs"
+export { Component as Tabs } from "./tabs"
 export * from "./variants"

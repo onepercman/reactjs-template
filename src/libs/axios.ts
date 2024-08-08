@@ -1,11 +1,6 @@
 import userStore from "@/features/user/user.store"
 import { API_URL } from "@/shared/config/endpoints.config"
-import axios, {
-  AxiosError,
-  AxiosInstance,
-  AxiosResponse,
-  InternalAxiosRequestConfig,
-} from "axios"
+import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from "axios"
 
 const requestHandler = {
   onFulfilled(config: InternalAxiosRequestConfig) {
@@ -42,7 +37,4 @@ export const api: AxiosInstance = axios.create({
 })
 
 api.interceptors.request.use(requestHandler.onFulfilled)
-api.interceptors.response.use(
-  responseHandler.onFulfilled,
-  responseHandler.onRejected,
-)
+api.interceptors.response.use(responseHandler.onFulfilled, responseHandler.onRejected)

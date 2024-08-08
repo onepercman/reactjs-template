@@ -1,2 +1,2 @@
-export * from "./hover-card"
+export { Component as HoverCard } from "./hover-card"
 export * from "./variants"

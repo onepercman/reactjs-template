@@ -1,2 +1,2 @@
-export * as Select from "./select"
+export { Component as Select } from "./select"
 export * from "./variants"

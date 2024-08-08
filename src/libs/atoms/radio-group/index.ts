@@ -1,2 +1,2 @@
-export * as RadioGroup from "./radio-group"
+export { Component as RadioGroup } from "./radio-group"
 export * from "./variants"

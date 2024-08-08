@@ -34,16 +34,9 @@ export const ToasterContainer: FC<{
               {getIcon(type)}
               {title}
             </Ark.Toast.Title>
-            <Ark.Toast.Description className={styles.description()}>
-              {description}
-            </Ark.Toast.Description>
+            <Ark.Toast.Description className={styles.description()}>{description}</Ark.Toast.Description>
             <Ark.Toast.CloseTrigger asChild>
-              <Button
-                size="xs"
-                shape="circle"
-                className={styles.dismiss()}
-                leftIcon={<LuX />}
-              />
+              <Button size="xs" shape="circle" className={styles.dismiss()} leftIcon={<LuX />} />
             </Ark.Toast.CloseTrigger>
           </Ark.Toast.Root>
         )

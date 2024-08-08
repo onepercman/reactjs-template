@@ -5,9 +5,7 @@ import { button, Button, ButtonProps } from "../button"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
 import { cn } from "../utils/cn"
 
-export interface PaginationProps
-  extends Omit<Ark.PaginationRootProps, "color">,
-    ComposedTVProps<typeof button> {
+export interface PaginationProps extends Omit<Ark.PaginationRootProps, "color">, ComposedTVProps<typeof button> {
   activeProps?: ButtonProps
   inactiveProps?: ButtonProps
 }
@@ -17,41 +15,19 @@ interface Pagination extends ForwardedRefComponent {
 }
 
 function _constructor(
-  render: (
-    props: PaginationProps,
-    ref: React.ForwardedRef<HTMLDivElement>,
-  ) => React.ReactElement | null,
+  render: (props: PaginationProps, ref: React.ForwardedRef<HTMLDivElement>) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLDivElement, PaginationProps>(
-    render,
-  ) as unknown as Pagination
+  return React.forwardRef<HTMLDivElement, PaginationProps>(render) as unknown as Pagination
 }
 
 export const Pagination = _constructor(function (
-  {
-    className,
-    size,
-    variant,
-    color,
-    activeProps = { color: "primary" },
-    inactiveProps,
-    ...props
-  },
+  { className, size, variant, color, activeProps = { color: "primary" }, inactiveProps, ...props },
   ref,
 ) {
   return (
-    <Ark.Pagination.Root
-      ref={ref}
-      className={cn("inline-flex items-center gap-2", className)}
-      {...props}
-    >
+    <Ark.Pagination.Root ref={ref} className={cn("inline-flex items-center gap-2", className)} {...props}>
       <Ark.Pagination.PrevTrigger asChild>
-        <Button
-          size={size}
-          variant={variant}
-          color={color}
-          leftIcon={<LuChevronLeft />}
-        />
+        <Button size={size} variant={variant} color={color} leftIcon={<LuChevronLeft />} />
       </Ark.Pagination.PrevTrigger>
 
       <Ark.Pagination.Context>
@@ -63,21 +39,14 @@ export const Pagination = _constructor(function (
                   size={size}
                   variant={variant}
                   color={color}
-                  {...(pagination.page === page.value
-                    ? activeProps
-                    : inactiveProps)}
+                  {...(pagination.page === page.value ? activeProps : inactiveProps)}
                 >
                   {page.value}
                 </Button>
               </Ark.Pagination.Item>
             ) : (
               <Ark.Pagination.Ellipsis asChild key={index} index={index}>
-                <Button
-                  size={size}
-                  variant={variant}
-                  color={color}
-                  className="pointer-events-none"
-                >
+                <Button size={size} variant={variant} color={color} className="pointer-events-none">
                   &#8230;
                 </Button>
               </Ark.Pagination.Ellipsis>
@@ -87,12 +56,7 @@ export const Pagination = _constructor(function (
       </Ark.Pagination.Context>
 
       <Ark.Pagination.NextTrigger asChild>
-        <Button
-          size={size}
-          variant={variant}
-          color={color}
-          leftIcon={<LuChevronRight />}
-        />
+        <Button size={size} variant={variant} color={color} leftIcon={<LuChevronRight />} />
       </Ark.Pagination.NextTrigger>
     </Ark.Pagination.Root>
   )

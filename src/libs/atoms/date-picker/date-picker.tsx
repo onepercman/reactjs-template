@@ -1,11 +1,6 @@
 import { DatePicker, DatePickerRootProps, Portal } from "@ark-ui/react"
 import React, { Fragment } from "react"
-import {
-  LuArrowRightCircle,
-  LuCalendar,
-  LuChevronLeft,
-  LuChevronRight,
-} from "react-icons/lu"
+import { LuArrowRightCircle, LuCalendar, LuChevronLeft, LuChevronRight } from "react-icons/lu"
 import { Button } from "../button"
 import { Input as AtomInput, InputProps } from "../input"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
@@ -14,68 +9,76 @@ import { datePicker } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(datePicker)
 
-export const Root = withRoot(DatePicker.Root)
-export const RootProvider = withRoot(DatePicker.RootProvider)
-export const ClearTrigger = withSlot(DatePicker.ClearTrigger)
-export const Content = withSlot(DatePicker.Content, "content")
-export const Context = withSlot(DatePicker.Context)
-export const Control = withSlot(DatePicker.Control, "control")
-export const Input = withSlot(DatePicker.Input)
-export const Label = withSlot(DatePicker.Label)
-export const MonthSelect = withSlot(DatePicker.MonthSelect)
-export const NextTrigger = withSlot(DatePicker.NextTrigger)
-export const Positioner = withSlot(DatePicker.Positioner)
-export const PresetTrigger = withSlot(DatePicker.PresetTrigger)
-export const PrevTrigger = withSlot(DatePicker.PrevTrigger)
-export const RangeText = withSlot(DatePicker.RangeText)
-export const Table = withSlot(DatePicker.Table, "table")
-export const TableBody = withSlot(DatePicker.TableBody)
-export const TableCell = withSlot(DatePicker.TableCell)
-export const TableCellTrigger = withSlot(
-  DatePicker.TableCellTrigger,
-  "tableCellTrigger",
-)
-export const TableHead = withSlot(DatePicker.TableHead)
-export const TableHeader = withSlot(DatePicker.TableHeader, "tableHeader")
-export const TableRow = withSlot(DatePicker.TableRow)
-export const Trigger = withSlot(DatePicker.Trigger)
-export const View = withSlot(DatePicker.View)
-export const ViewControl = withSlot(DatePicker.ViewControl, "viewControl")
-export const ViewTrigger = withSlot(DatePicker.ViewTrigger)
-export const YearSelect = withSlot(DatePicker.YearSelect)
+const Root = withRoot(DatePicker.Root)
+const RootProvider = withRoot(DatePicker.RootProvider)
+const ClearTrigger = withSlot(DatePicker.ClearTrigger)
+const Content = withSlot(DatePicker.Content, "content")
+const Context = withSlot(DatePicker.Context)
+const Control = withSlot(DatePicker.Control, "control")
+const Input = withSlot(DatePicker.Input)
+const Label = withSlot(DatePicker.Label)
+const MonthSelect = withSlot(DatePicker.MonthSelect)
+const NextTrigger = withSlot(DatePicker.NextTrigger)
+const Positioner = withSlot(DatePicker.Positioner)
+const PresetTrigger = withSlot(DatePicker.PresetTrigger)
+const PrevTrigger = withSlot(DatePicker.PrevTrigger)
+const RangeText = withSlot(DatePicker.RangeText)
+const Table = withSlot(DatePicker.Table, "table")
+const TableBody = withSlot(DatePicker.TableBody)
+const TableCell = withSlot(DatePicker.TableCell)
+const TableCellTrigger = withSlot(DatePicker.TableCellTrigger, "tableCellTrigger")
+const TableHead = withSlot(DatePicker.TableHead)
+const TableHeader = withSlot(DatePicker.TableHeader, "tableHeader")
+const TableRow = withSlot(DatePicker.TableRow)
+const Trigger = withSlot(DatePicker.Trigger)
+const View = withSlot(DatePicker.View)
+const ViewControl = withSlot(DatePicker.ViewControl, "viewControl")
+const ViewTrigger = withSlot(DatePicker.ViewTrigger)
+const YearSelect = withSlot(DatePicker.YearSelect)
 
-export interface DatePickerCompactProps
-  extends DatePickerRootProps,
-    ComposedTVProps<typeof datePicker> {
+export interface DatePickerCompactProps extends DatePickerRootProps, ComposedTVProps<typeof datePicker> {
   inputProps?: InputProps
 }
 
 export interface DatePicker extends ForwardedRefComponent {
   (props: DatePickerCompactProps): React.ReactElement | null
+  Root: typeof Root
+  RootProvider: typeof RootProvider
+  ClearTrigger: typeof ClearTrigger
+  Content: typeof Content
+  Context: typeof Context
+  Control: typeof Control
+  Input: typeof Input
+  Label: typeof Label
+  MonthSelect: typeof MonthSelect
+  NextTrigger: typeof NextTrigger
+  Positioner: typeof Positioner
+  PresetTrigger: typeof PresetTrigger
+  PrevTrigger: typeof PrevTrigger
+  RangeText: typeof RangeText
+  Table: typeof Table
+  TableBody: typeof TableBody
+  TableCell: typeof TableCell
+  TableCellTrigger: typeof TableCellTrigger
+  TableHead: typeof TableHead
+  TableHeader: typeof TableHeader
+  TableRow: typeof TableRow
+  Trigger: typeof Trigger
+  View: typeof View
+  ViewControl: typeof ViewControl
+  ViewTrigger: typeof ViewTrigger
+  YearSelect: typeof YearSelect
 }
 
-function _constructor(
-  render: (
-    props: DatePickerCompactProps,
-    ref: React.ForwardedRef<HTMLInputElement>,
-  ) => React.ReactElement | null,
+function _bootstrap(
+  render: (props: DatePickerCompactProps, ref: React.ForwardedRef<HTMLInputElement>) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLInputElement, DatePickerCompactProps>(
-    render,
-  ) as unknown as DatePicker
+  return React.forwardRef<HTMLInputElement, DatePickerCompactProps>(render) as unknown as DatePicker
 }
 
-export const Compact = _constructor(function (
-  { inputProps = {}, positioning, ...props },
-  ref,
-) {
+export const Component = _bootstrap(function ({ inputProps = {}, positioning, ...props }, ref) {
   return (
-    <Root
-      ref={ref}
-      asChild
-      positioning={{ placement: "bottom-end", ...positioning }}
-      {...props}
-    >
+    <Root ref={ref} asChild positioning={{ placement: "bottom-end", ...positioning }} {...props}>
       <Fragment>
         {props.selectionMode === "range" ? (
           <Control>
@@ -87,10 +90,7 @@ export const Compact = _constructor(function (
               <AtomInput {...inputProps} />
             </Input>
             <Trigger asChild onClick={(e) => e.stopPropagation()}>
-              <Button
-                shape="square"
-                leftIcon={<LuCalendar className="text-secondary" />}
-              />
+              <Button shape="square" leftIcon={<LuCalendar className="text-secondary" />} />
             </Trigger>
           </Control>
         ) : (
@@ -133,9 +133,7 @@ export const Compact = _constructor(function (
                         <TableHead>
                           <TableRow>
                             {datePicker.weekDays.map((weekDay, id) => (
-                              <TableHeader key={id}>
-                                {weekDay.narrow}
-                              </TableHeader>
+                              <TableHeader key={id}>{weekDay.narrow}</TableHeader>
                             ))}
                           </TableRow>
                         </TableHead>
@@ -179,21 +177,19 @@ export const Compact = _constructor(function (
                       </ViewControl>
                       <Table>
                         <TableBody>
-                          {datePicker
-                            .getMonthsGrid({ columns: 4, format: "short" })
-                            .map((months, id) => (
-                              <TableRow key={id}>
-                                {months.map((month, id) => (
-                                  <TableCell key={id} value={month.value}>
-                                    <TableCellTrigger asChild>
-                                      <Button size="xs" variant="ghost">
-                                        {month.label}
-                                      </Button>
-                                    </TableCellTrigger>
-                                  </TableCell>
-                                ))}
-                              </TableRow>
-                            ))}
+                          {datePicker.getMonthsGrid({ columns: 4, format: "short" }).map((months, id) => (
+                            <TableRow key={id}>
+                              {months.map((month, id) => (
+                                <TableCell key={id} value={month.value}>
+                                  <TableCellTrigger asChild>
+                                    <Button size="xs" variant="ghost">
+                                      {month.label}
+                                    </Button>
+                                  </TableCellTrigger>
+                                </TableCell>
+                              ))}
+                            </TableRow>
+                          ))}
                         </TableBody>
                       </Table>
                     </>
@@ -220,21 +216,19 @@ export const Compact = _constructor(function (
                       </ViewControl>
                       <Table>
                         <TableBody>
-                          {datePicker
-                            .getYearsGrid({ columns: 4 })
-                            .map((years, id) => (
-                              <TableRow key={id}>
-                                {years.map((year, id) => (
-                                  <TableCell key={id} value={year.value}>
-                                    <TableCellTrigger asChild>
-                                      <Button size="xs" variant="ghost">
-                                        {year.label}
-                                      </Button>
-                                    </TableCellTrigger>
-                                  </TableCell>
-                                ))}
-                              </TableRow>
-                            ))}
+                          {datePicker.getYearsGrid({ columns: 4 }).map((years, id) => (
+                            <TableRow key={id}>
+                              {years.map((year, id) => (
+                                <TableCell key={id} value={year.value}>
+                                  <TableCellTrigger asChild>
+                                    <Button size="xs" variant="ghost">
+                                      {year.label}
+                                    </Button>
+                                  </TableCellTrigger>
+                                </TableCell>
+                              ))}
+                            </TableRow>
+                          ))}
                         </TableBody>
                       </Table>
                     </>
@@ -249,4 +243,31 @@ export const Compact = _constructor(function (
   )
 })
 
-Compact.displayName = "DatePicker"
+Component.displayName = "DatePicker"
+
+Component.Root = Root
+Component.RootProvider = RootProvider
+Component.ClearTrigger = ClearTrigger
+Component.Content = Content
+Component.Context = Context
+Component.Control = Control
+Component.Input = Input
+Component.Label = Label
+Component.MonthSelect = MonthSelect
+Component.NextTrigger = NextTrigger
+Component.Positioner = Positioner
+Component.PresetTrigger = PresetTrigger
+Component.PrevTrigger = PrevTrigger
+Component.RangeText = RangeText
+Component.Table = Table
+Component.TableBody = TableBody
+Component.TableCell = TableCell
+Component.TableCellTrigger = TableCellTrigger
+Component.TableHead = TableHead
+Component.TableHeader = TableHeader
+Component.TableRow = TableRow
+Component.Trigger = Trigger
+Component.View = View
+Component.ViewControl = ViewControl
+Component.ViewTrigger = ViewTrigger
+Component.YearSelect = YearSelect

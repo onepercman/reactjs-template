@@ -1,32 +1,35 @@
 import { Avatar, AvatarImageProps } from "@ark-ui/react"
 import React from "react"
-import { ComposedTVProps } from "../types"
+import { ComposedTVProps, ForwardedRefComponent } from "../types"
 import { createComponentCtx } from "../utils/component-ctx"
 import { avatar } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(avatar)
 
-export const Root = withRoot(Avatar.Root, "base")
-export const RootProvider = withSlot(Avatar.RootProvider, "base")
-export const Context = withSlot(Avatar.Context)
-export const Image = withSlot(Avatar.Image, "image")
-export const Fallback = withSlot(Avatar.Fallback, "fallback")
+const Root = withRoot(Avatar.Root, "base")
+const RootProvider = withSlot(Avatar.RootProvider, "base")
+const Context = withSlot(Avatar.Context)
+const Image = withSlot(Avatar.Image, "image")
+const Fallback = withSlot(Avatar.Fallback, "fallback")
 
-export interface AvatarCompactProps
-  extends AvatarImageProps,
-    ComposedTVProps<typeof avatar> {
+export interface AvatarProps extends AvatarImageProps, ComposedTVProps<typeof avatar> {
   fallback?: React.ReactNode
 }
+export interface Avatar extends ForwardedRefComponent {
+  (props: AvatarProps): React.ReactElement | null
+  Root: typeof Root
+  RootProvider: typeof RootProvider
+  Context: typeof Context
+  Image: typeof Image
+  Fallback: typeof Fallback
+}
 
-export const Compact = React.forwardRef<HTMLImageElement, AvatarCompactProps>(
-  function ({ fallback, ...props }, ref) {
-    return (
-      <Root ref={ref} {...props}>
-        <Fallback>{fallback}</Fallback>
-        <Image {...props} />
-      </Root>
-    )
-  },
-)
+export const Component = Root as any as Avatar
 
-Compact.displayName = "Avatar"
+Component.displayName = "Avatar"
+
+Component.Root = Root
+Component.RootProvider = RootProvider
+Component.Context = Context
+Component.Image = Image
+Component.Fallback = Fallback

@@ -4,11 +4,7 @@ import { LuArrowDown } from "react-icons/lu"
 import { Checkbox } from "../checkbox"
 import { Pagination, PaginationProps } from "../pagination"
 import { Spinner } from "../spinner"
-import {
-  ComposedTVProps,
-  ForwardRefWithAsProps,
-  ForwardedRefComponent,
-} from "../types"
+import { ComposedTVProps, ForwardRefWithAsProps, ForwardedRefComponent } from "../types"
 import { cn } from "../utils/cn"
 import { table } from "./variants"
 
@@ -21,8 +17,7 @@ export interface TableSort {
   direction: "asc" | "desc"
 }
 
-export interface TableColumnProps<Row extends TableRow>
-  extends React.ThHTMLAttributes<HTMLTableCellElement> {
+export interface TableColumnProps<Row extends TableRow> extends React.ThHTMLAttributes<HTMLTableCellElement> {
   label: React.ReactNode
   key: string
   dataIndex: keyof Row
@@ -51,9 +46,7 @@ export interface TableProps<Row extends TableRow>
 }
 
 interface Table extends ForwardedRefComponent {
-  <Row extends TableRow>(
-    props: ForwardRefWithAsProps<"div", TableProps<Row>>,
-  ): React.ReactElement | null
+  <Row extends TableRow>(props: ForwardRefWithAsProps<"div", TableProps<Row>>): React.ReactElement | null
 }
 
 function _constructor<Row extends TableRow>(
@@ -62,9 +55,7 @@ function _constructor<Row extends TableRow>(
     ref: React.ForwardedRef<HTMLTableElement>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLTableElement, TableProps<Row>>(
-    render,
-  ) as unknown as Table
+  return React.forwardRef<HTMLTableElement, TableProps<Row>>(render) as unknown as Table
 }
 
 export const Table = _constructor(function (
@@ -101,13 +92,7 @@ export const Table = _constructor(function (
     setSortDescriptor(function (prev) {
       const value: TableSort = {
         column,
-        direction: !prev
-          ? "asc"
-          : prev.column !== column
-            ? "asc"
-            : prev.direction === "asc"
-              ? "desc"
-              : "asc",
+        direction: !prev ? "asc" : prev.column !== column ? "asc" : prev.direction === "asc" ? "desc" : "asc",
       }
       onSort && onSort(value)
       return value
@@ -120,9 +105,7 @@ export const Table = _constructor(function (
       const key = extractKey(row, index)
       let value
       if (selectionMode === "multiple") {
-        value = prev.includes(key)
-          ? prev.filter((e) => e !== key)
-          : prev.concat(key)
+        value = prev.includes(key) ? prev.filter((e) => e !== key) : prev.concat(key)
       } else {
         value = prev.includes(key) ? [] : [key]
       }
@@ -154,17 +137,11 @@ export const Table = _constructor(function (
       {
         label: (
           <div onClick={toggleAll}>
-            <Checkbox.Compact
-              size="sm"
-              checked={!!selected.length}
-              indeterminate={data.length !== selected.length}
-            />
+            <Checkbox size="sm" checked={!!selected.length} indeterminate={data.length !== selected.length} />
           </div>
         ),
         render(_, row, index) {
-          return (
-            <Checkbox.Compact size="sm" checked={_isSelected(row, index)} />
-          )
+          return <Checkbox size="sm" checked={_isSelected(row, index)} />
         },
       },
       ...columns,
@@ -175,10 +152,7 @@ export const Table = _constructor(function (
     if (loading) {
       return (
         <tr>
-          <td
-            colSpan={columns?.length || 1}
-            className={styles.td({ className: classNames?.td })}
-          >
+          <td colSpan={columns?.length || 1} className={styles.td({ className: classNames?.td })}>
             <div className="min-h-24 w-full">
               <Spinner />
             </div>
@@ -189,10 +163,7 @@ export const Table = _constructor(function (
     if (!data?.length) {
       return (
         <tr>
-          <td
-            colSpan={columns?.length || 1}
-            className={styles.td({ className: classNames?.td })}
-          >
+          <td colSpan={columns?.length || 1} className={styles.td({ className: classNames?.td })}>
             {emptyElement}
           </td>
         </tr>
@@ -210,41 +181,27 @@ export const Table = _constructor(function (
         }}
         onClick={() => _selectRow(row, index)}
       >
-        {columns?.map(
-          (
-            { key, className, dataIndex, render, align, dataAlign, ...column },
-            columnIndex,
-          ) => (
-            <td
-              key={key || columnIndex}
-              className={styles.td({
-                className: cn(classNames?.td, {
-                  "bg-primary/10 group-hover:bg-primary/20": _isSelected(
-                    row,
-                    index,
-                  ),
-                }),
-              })}
-              align={align || dataAlign}
-              {...column}
-            >
-              {render
-                ? render(row[dataIndex!], row, index)
-                : (row[dataIndex || ""] as React.ReactNode)}{" "}
-            </td>
-          ),
-        )}
+        {columns?.map(({ key, className, dataIndex, render, align, dataAlign, ...column }, columnIndex) => (
+          <td
+            key={key || columnIndex}
+            className={styles.td({
+              className: cn(classNames?.td, {
+                "bg-primary/10 group-hover:bg-primary/20": _isSelected(row, index),
+              }),
+            })}
+            align={align || dataAlign}
+            {...column}
+          >
+            {render ? render(row[dataIndex!], row, index) : (row[dataIndex || ""] as React.ReactNode)}{" "}
+          </td>
+        ))}
       </tr>
     ))
   }
 
   return (
     <div className={styles.base({ className: classNames?.base })}>
-      <table
-        ref={ref}
-        className={styles.table({ className: classNames?.table })}
-        {...props}
-      >
+      <table ref={ref} className={styles.table({ className: classNames?.table })} {...props}>
         {columns?.filter((c) => !!c.label).length ? (
           <thead className={styles.thead({ className: classNames?.thead })}>
             <tr className={styles.trHead({ className: classNames?.trHead })}>
@@ -278,12 +235,8 @@ export const Table = _constructor(function (
                         <LuArrowDown
                           className={cn(
                             "inline-block transition-transform",
-                            sortDescriptor?.column === key
-                              ? "opacity-100"
-                              : "opacity-0",
-                            sortDescriptor?.direction === "desc"
-                              ? "-scale-y-100"
-                              : "",
+                            sortDescriptor?.column === key ? "opacity-100" : "opacity-0",
+                            sortDescriptor?.direction === "desc" ? "-scale-y-100" : "",
                           )}
                         />
                       </div>
@@ -301,10 +254,7 @@ export const Table = _constructor(function (
           {_renderContainer()}
           {pagination && (
             <tr className={styles.tr({ className: classNames?.tr })}>
-              <td
-                colSpan={columns?.length || 1}
-                className={styles.td({ className: classNames?.td })}
-              >
+              <td colSpan={columns?.length || 1} className={styles.td({ className: classNames?.td })}>
                 <div className="flex w-full justify-end">
                   <div className="sticky left-0 right-0 w-fit px-4 py-2">
                     <Pagination {...pagination} />

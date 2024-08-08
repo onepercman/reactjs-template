@@ -18,8 +18,7 @@ export const checkbox = tv({
     },
     indeterminate: {
       true: {
-        control:
-          "data-[state=checked]:bg-primary data-[state=checked]:text-white",
+        control: "data-[state=checked]:bg-primary data-[state=checked]:text-white",
       },
     },
     placement: {

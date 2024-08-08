@@ -1,46 +1,75 @@
-import { SegmentGroup } from "@ark-ui/react"
+import { SegmentGroup, SegmentGroupRootProps } from "@ark-ui/react"
 import React from "react"
+import { ForwardedRefComponent } from "../types"
 import { createComponentCtx } from "../utils"
 import { segmentGroup } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(segmentGroup)
 
-export const RootPrimitive = withRoot(SegmentGroup.Root, "base")
-export const RootProvider = withRoot(SegmentGroup.RootProvider, "base")
-export const Context = withSlot(SegmentGroup.Context)
-export const Indicator = withSlot(SegmentGroup.Indicator, "indicator")
-export const ItemPrimitive = withSlot(SegmentGroup.Item, "item")
-export const ItemContext = withSlot(SegmentGroup.ItemContext)
-export const ItemControl = withSlot(SegmentGroup.ItemControl)
-export const ItemHiddenInput = withSlot(SegmentGroup.ItemHiddenInput)
-export const ItemText = withSlot(SegmentGroup.ItemText)
-export const Label = withSlot(SegmentGroup.Label)
+const Root = withRoot(SegmentGroup.Root, "base")
+const RootProvider = withRoot(SegmentGroup.RootProvider, "base")
+const Context = withSlot(SegmentGroup.Context)
+const Indicator = withSlot(SegmentGroup.Indicator, "indicator")
+const Item = withSlot(SegmentGroup.Item, "item")
+const ItemContext = withSlot(SegmentGroup.ItemContext)
+const ItemControl = withSlot(SegmentGroup.ItemControl)
+const ItemHiddenInput = withSlot(SegmentGroup.ItemHiddenInput)
+const ItemText = withSlot(SegmentGroup.ItemText)
+const Label = withSlot(SegmentGroup.Label)
 
-export const Root = React.forwardRef<
-  HTMLElement,
-  React.ComponentPropsWithoutRef<typeof RootPrimitive>
->(function ({ children, ...props }, ref) {
+const CustomItem = React.forwardRef<HTMLElement, React.ComponentPropsWithoutRef<typeof Item>>(function (
+  { children, ...props },
+  ref,
+) {
   return (
-    <RootPrimitive ref={ref} {...props}>
-      <Indicator />
-      {children}
-    </RootPrimitive>
-  )
-})
-
-Root.displayName = "Root"
-
-export const Item = React.forwardRef<
-  HTMLElement,
-  React.ComponentPropsWithoutRef<typeof ItemPrimitive>
->(function ({ children, ...props }, ref) {
-  return (
-    <ItemPrimitive ref={ref} {...props}>
+    <Item ref={ref} {...props}>
       <ItemText>{children}</ItemText>
       <ItemControl />
       <ItemHiddenInput />
-    </ItemPrimitive>
+    </Item>
   )
 })
 
-Item.displayName = "Item"
+CustomItem.displayName = "Item"
+
+interface SegmentGroup extends ForwardedRefComponent {
+  (props: SegmentGroupRootProps): React.ReactElement | null
+  Root: typeof Root
+  RootProvider: typeof RootProvider
+  Context: typeof Context
+  Indicator: typeof Indicator
+  Item: typeof CustomItem
+  ItemContext: typeof ItemContext
+  ItemControl: typeof ItemControl
+  ItemHiddenInput: typeof ItemHiddenInput
+  ItemText: typeof ItemText
+  Label: typeof Label
+}
+
+function _bootstrap(
+  render: (props: SegmentGroupRootProps, ref: React.ForwardedRef<HTMLDivElement>) => React.ReactElement | null,
+) {
+  return React.forwardRef<HTMLDivElement, SegmentGroupRootProps>(render) as unknown as SegmentGroup
+}
+
+export const Component = _bootstrap(function ({ children, ...props }, ref) {
+  return (
+    <Root ref={ref} {...props}>
+      <Indicator />
+      {children}
+    </Root>
+  )
+})
+
+Component.displayName = "SegmentGroup"
+
+Component.Root = Root
+Component.RootProvider = RootProvider
+Component.Context = Context
+Component.Indicator = Indicator
+Component.Item = CustomItem
+Component.ItemContext = ItemContext
+Component.ItemControl = ItemControl
+Component.ItemHiddenInput = ItemHiddenInput
+Component.ItemText = ItemText
+Component.Label = Label

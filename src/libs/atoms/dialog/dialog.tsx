@@ -1,55 +1,83 @@
-import { Dialog, Portal } from "@ark-ui/react"
+import { Dialog, DialogRootProps, Portal } from "@ark-ui/react"
 import React from "react"
 import { LuX } from "react-icons/lu"
+import { ForwardedRefComponent } from "../types"
 import { createComponentCtx } from "../utils"
+import { confirm, open } from "./fn"
 import { dialog } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(dialog)
 
-export const Root = withRoot(Dialog.Root)
-export const RootProvider = withSlot(Dialog.RootProvider)
-export const Backdrop = withSlot(Dialog.Backdrop, "backdrop")
-export const Context = withSlot(Dialog.Context)
-export const Description = withSlot(Dialog.Description, "description")
-export const Positioner = withSlot(Dialog.Positioner, "positioner")
-export const Title = withSlot(Dialog.Title, "title")
-export const Trigger = withSlot(Dialog.Trigger)
+const Root = withRoot(Dialog.Root)
+const RootProvider = withSlot(Dialog.RootProvider)
+const Backdrop = withSlot(Dialog.Backdrop, "backdrop")
+const Context = withSlot(Dialog.Context)
+const Description = withSlot(Dialog.Description, "description")
+const Positioner = withSlot(Dialog.Positioner, "positioner")
+const Title = withSlot(Dialog.Title, "title")
+const Trigger = withSlot(Dialog.Trigger)
+const Content = withSlot(Dialog.Content, "content")
+const CloseTrigger = withSlot(Dialog.CloseTrigger, "closeTrigger")
 
-export const ContentPrimitive = withSlot(Dialog.Content, "content")
-export const CloseTriggerPrimitive = withSlot(
-  Dialog.CloseTrigger,
-  "closeTrigger",
-)
-
-export const Content = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentPropsWithoutRef<typeof ContentPrimitive>
->(function ({ children, ...props }, ref) {
+const CustomContent = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<typeof Content>>(function (
+  { children, ...props },
+  ref,
+) {
   return (
     <Portal>
       <Backdrop />
       <Positioner>
-        <ContentPrimitive ref={ref} {...props}>
+        <Content ref={ref} {...props}>
           {children}
-        </ContentPrimitive>
+        </Content>
       </Positioner>
     </Portal>
   )
 })
 
-Content.displayName = "Content"
+CustomContent.displayName = "Content"
 
-export const CloseTrigger = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentPropsWithoutRef<typeof CloseTriggerPrimitive>
->(function ({ children, ...props }, ref) {
-  return (
-    <CloseTriggerPrimitive ref={ref} asChild {...props}>
-      <LuX role="button" className="text-secondary" />
-    </CloseTriggerPrimitive>
-  )
-})
+const CustomCloseTrigger = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<typeof CloseTrigger>>(
+  function ({ children, ...props }, ref) {
+    return (
+      <CloseTrigger ref={ref} asChild {...props}>
+        <LuX role="button" className="text-secondary" />
+      </CloseTrigger>
+    )
+  },
+)
 
-CloseTrigger.displayName = "CloseTrigger"
+CustomCloseTrigger.displayName = "CloseTrigger"
 
-export * from "./fn"
+export interface Dialog extends ForwardedRefComponent {
+  (props: DialogRootProps): React.ReactElement | null
+  Root: typeof Root
+  RootProvider: typeof RootProvider
+  Backdrop: typeof Backdrop
+  Context: typeof Context
+  Description: typeof Description
+  Positioner: typeof Positioner
+  Title: typeof Title
+  Trigger: typeof Trigger
+  Content: typeof CustomContent
+  CloseTrigger: typeof CustomCloseTrigger
+
+  open: typeof open
+  confirm: typeof confirm
+}
+
+export const Component = Root as any as Dialog
+
+Component.Root = Root
+Component.RootProvider = RootProvider
+Component.Backdrop = Backdrop
+Component.Context = Context
+Component.Description = Description
+Component.Positioner = Positioner
+Component.Title = Title
+Component.Trigger = Trigger
+Component.Content = CustomContent
+Component.CloseTrigger = CustomCloseTrigger
+
+Component.open = open
+Component.confirm = confirm
