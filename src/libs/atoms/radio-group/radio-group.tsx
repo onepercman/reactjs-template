@@ -1,7 +1,6 @@
-import { RadioGroup, RadioGroupRootProps } from "@ark-ui/react"
+import { RadioGroup } from "@ark-ui/react"
 import React from "react"
-import { ForwardedRefComponent } from "../types"
-import { createComponentCtx } from "../utils"
+import { createComponentCtx, createRootComponent } from "../utils"
 import { radioGroup } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(radioGroup)
@@ -32,31 +31,17 @@ const CustomItem = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutR
 
 Item.displayName = "Item"
 
-export interface RadioGroup extends ForwardedRefComponent {
-  (props: RadioGroupRootProps): React.ReactElement | null
-  Root: typeof Root
-  RootProvider: typeof RootProvider
-  Context: typeof Context
-  Indicator: typeof Indicator
-  Item: typeof CustomItem
-  ItemContext: typeof ItemContext
-  ItemControl: typeof ItemControl
-  ItemHiddenInput: typeof ItemHiddenInput
-  ItemText: typeof ItemText
-  Label: typeof Label
-}
-
-export const Component = Root as any as RadioGroup
+export const Component = createRootComponent(Root, {
+  Root,
+  RootProvider,
+  Context,
+  Indicator,
+  Item: CustomItem,
+  ItemContext,
+  ItemControl,
+  ItemHiddenInput,
+  ItemText,
+  Label,
+})
 
 Component.displayName = "RadioGroup"
-
-Component.Root = Root
-Component.RootProvider = RootProvider
-Component.Context = Context
-Component.Indicator = Indicator
-Component.Item = CustomItem
-Component.ItemContext = ItemContext
-Component.ItemControl = ItemControl
-Component.ItemHiddenInput = ItemHiddenInput
-Component.ItemText = ItemText
-Component.Label = Label

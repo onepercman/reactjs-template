@@ -4,7 +4,7 @@ import React from "react"
 import { LuChevronsUpDown } from "react-icons/lu"
 import { Input as AtomInput, InputProps } from "../input"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createComponentCtx } from "../utils"
+import { createComponentCtx, createRootComponent } from "../utils"
 import { combobox } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(combobox)
@@ -36,23 +36,6 @@ export interface ComboboxProps<T extends CollectionItem>
 
 export interface Combobox extends ForwardedRefComponent {
   <T extends CollectionItem>(props: ComboboxProps<T>): React.ReactElement | null
-  Root: typeof Root
-  RootProvider: typeof RootProvider
-  Context: typeof Context
-  ItemContext: typeof ItemContext
-  Label: typeof Label
-  Control: typeof Control
-  Trigger: typeof Trigger
-  Input: typeof Input
-  ClearTrigger: typeof ClearTrigger
-  Positioner: typeof Positioner
-  List: typeof List
-  Content: typeof Content
-  ItemGroup: typeof ItemGroup
-  ItemGroupLabel: typeof ItemGroupLabel
-  Item: typeof Item
-  ItemText: typeof ItemText
-  ItemIndicator: typeof ItemIndicator
 }
 
 function _bootstrap<T extends CollectionItem>(
@@ -61,7 +44,7 @@ function _bootstrap<T extends CollectionItem>(
   return React.forwardRef<HTMLDivElement, ComboboxProps<T>>(render) as unknown as Combobox
 }
 
-export const Component = _bootstrap(function (
+export const CustomRoot = _bootstrap(function (
   {
     children,
     placeholder,
@@ -97,22 +80,24 @@ export const Component = _bootstrap(function (
   )
 })
 
-Component.displayName = "Combobox"
+export const Component = createRootComponent(CustomRoot, {
+  Root,
+  RootProvider,
+  Context,
+  ItemContext,
+  Label,
+  Control,
+  Trigger,
+  Input,
+  ClearTrigger,
+  Positioner,
+  List,
+  Content,
+  ItemGroup,
+  ItemGroupLabel,
+  Item,
+  ItemText,
+  ItemIndicator,
+})
 
-Component.Root = Root
-Component.RootProvider = RootProvider
-Component.Context = Context
-Component.ItemContext = ItemContext
-Component.Label = Label
-Component.Control = Control
-Component.Trigger = Trigger
-Component.Input = Input
-Component.ClearTrigger = ClearTrigger
-Component.Positioner = Positioner
-Component.List = List
-Component.Content = Content
-Component.ItemGroup = ItemGroup
-Component.ItemGroupLabel = ItemGroupLabel
-Component.Item = Item
-Component.ItemText = ItemText
-Component.ItemIndicator = ItemIndicator
+Component.displayName = "Combobox"

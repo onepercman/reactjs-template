@@ -1,7 +1,6 @@
-import { HoverCard, HoverCardRootProps, Portal } from "@ark-ui/react"
+import { HoverCard, Portal } from "@ark-ui/react"
 import React from "react"
-import { ForwardedRefComponent } from "../types"
-import { createComponentCtx } from "../utils"
+import { createComponentCtx, createRootComponent } from "../utils"
 import { hoverCard } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(hoverCard)
@@ -45,27 +44,15 @@ const CustomArrow = React.forwardRef<HTMLDivElement, React.ComponentPropsWithout
 
 CustomArrow.displayName = "Arrow"
 
-export interface HoverCard extends ForwardedRefComponent {
-  (props: HoverCardRootProps): React.ReactElement | null
-  Root: typeof Root
-  RootProvider: typeof RootProvider
-  Context: typeof Context
-  Positioner: typeof Positioner
-  Trigger: typeof Trigger
-  Arrow: typeof CustomArrow
-  ArrowTip: typeof ArrowTip
-  Content: typeof CustomContent
-}
-
-export const Component = Root as any as HoverCard
+export const Component = createRootComponent(Root, {
+  Root,
+  RootProvider,
+  Context,
+  Positioner,
+  Trigger,
+  Arrow: CustomArrow,
+  ArrowTip,
+  Content: CustomContent,
+})
 
 Component.displayName = "HoverCard"
-
-Component.Root = Root
-Component.RootProvider = RootProvider
-Component.Context = Context
-Component.Positioner = Positioner
-Component.Trigger = Trigger
-Component.Arrow = CustomArrow
-Component.ArrowTip = ArrowTip
-Component.Content = CustomContent

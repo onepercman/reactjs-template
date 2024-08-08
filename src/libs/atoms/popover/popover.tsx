@@ -1,7 +1,6 @@
-import { Popover, PopoverRootProps } from "@ark-ui/react"
+import { Popover } from "@ark-ui/react"
 import React from "react"
-import { ForwardedRefComponent } from "../types"
-import { createComponentCtx } from "../utils"
+import { createComponentCtx, createRootComponent } from "../utils"
 import { popover } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(popover)
@@ -48,37 +47,20 @@ const CustomArrow = React.forwardRef<HTMLDivElement, React.ComponentPropsWithout
 
 CustomArrow.displayName = "Arrow"
 
-export interface Popover extends ForwardedRefComponent {
-  (props: PopoverRootProps): React.ReactElement | null
-  Root: typeof Root
-  RootProvider: typeof RootProvider
-  Anchor: typeof Anchor
-  Arrow: typeof CustomArrow
-  ArrowTip: typeof ArrowTip
-  CloseTrigger: typeof CloseTrigger
-  Context: typeof Context
-  Content: typeof CustomContent
-  Description: typeof Description
-  Indicator: typeof Indicator
-  Positioner: typeof Positioner
-  Title: typeof Title
-  Trigger: typeof Trigger
-}
-
-export const Component = Root as any as Popover
+export const Component = createRootComponent(Root, {
+  Root,
+  RootProvider,
+  Anchor,
+  Arrow: CustomArrow,
+  ArrowTip,
+  CloseTrigger,
+  Context,
+  Content: CustomContent,
+  Description,
+  Indicator,
+  Positioner,
+  Title,
+  Trigger,
+})
 
 Component.displayName = "Popover"
-
-Component.Root = Root
-Component.RootProvider = RootProvider
-Component.Anchor = Anchor
-Component.Arrow = CustomArrow
-Component.ArrowTip = ArrowTip
-Component.CloseTrigger = CloseTrigger
-Component.Context = Context
-Component.Content = CustomContent
-Component.Description = Description
-Component.Indicator = Indicator
-Component.Positioner = Positioner
-Component.Title = Title
-Component.Trigger = Trigger

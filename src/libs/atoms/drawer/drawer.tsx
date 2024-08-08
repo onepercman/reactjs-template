@@ -1,10 +1,8 @@
 import React from "react"
 import { LuX } from "react-icons/lu"
 import { Drawer } from "vaul"
-import { ForwardedRefComponent } from "../types"
-import { createComponentCtx } from "../utils"
+import { createComponentCtx, createRootComponent } from "../utils"
 import { open } from "./fn"
-import { DialogProps } from "./types"
 import { drawer } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(drawer)
@@ -50,37 +48,19 @@ const CustomCloseTrigger = React.forwardRef<HTMLDivElement, React.ComponentProps
 
 CloseTrigger.displayName = "CloseTrigger"
 
-export interface Drawer extends ForwardedRefComponent {
-  (props: DialogProps): React.ReactElement | null
-  Root: typeof Root
-  NestedRoot: typeof NestedRoot
-  Description: typeof Description
-  Handle: typeof Handle
-  Overlay: typeof Overlay
-  Portal: typeof Portal
-  Title: typeof Title
-  Trigger: typeof Trigger
-  Content: typeof CustomContent
-  CloseTrigger: typeof CustomCloseTrigger
-
-  open: typeof open
-  confirm: typeof confirm
-}
-
-export const Component = Root as any as Drawer
+export const Component = createRootComponent(Root, {
+  Root,
+  NestedRoot,
+  Description,
+  Handle,
+  Overlay,
+  Portal,
+  Title,
+  Trigger,
+  Content: CustomContent,
+  CloseTrigger: CustomCloseTrigger,
+  open,
+  confirm,
+})
 
 Component.displayName = "Drawer"
-
-Component.Root = Root
-Component.NestedRoot = NestedRoot
-Component.Description = Description
-Component.Handle = Handle
-Component.Overlay = Overlay
-Component.Portal = Portal
-Component.Title = Title
-Component.Trigger = Trigger
-Component.Content = CustomContent
-Component.CloseTrigger = CustomCloseTrigger
-
-Component.open = open
-Component.confirm = confirm

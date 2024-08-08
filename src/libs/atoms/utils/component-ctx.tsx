@@ -1,5 +1,5 @@
 import React, { forwardRef, type ComponentProps, type ElementType } from "react"
-import { ComposedTVProps, Recipe } from "../types"
+import { ComposedTVProps, ForwardedRefComponent, Recipe } from "../types"
 import { cn } from "./cn"
 
 export function createComponentCtx<TVFN extends Recipe, Slot extends keyof ReturnType<TVFN>>(tvFn: TVFN) {
@@ -60,4 +60,19 @@ export function createComponentCtx<TVFN extends Recipe, Slot extends keyof Retur
     withRoot,
     withSlot,
   }
+}
+
+interface RootComponent<C extends ElementType> extends ForwardedRefComponent {
+  (props: React.ComponentProps<C>): React.ReactElement | null
+}
+
+export function createRootComponent<
+  C extends ElementType,
+  K extends Record<string, ElementType | ((...args: any) => any)>,
+>(Component: C, children: Readonly<K>) {
+  const c = Component as any
+  Object.keys(children).forEach(function (key) {
+    c[key] = children[key]
+  })
+  return c as RootComponent<C> & K
 }

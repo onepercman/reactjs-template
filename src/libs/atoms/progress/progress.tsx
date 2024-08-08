@@ -1,6 +1,5 @@
-import { Progress, ProgressRootProps } from "@ark-ui/react"
-import { ForwardedRefComponent } from "../types"
-import { createComponentCtx } from "../utils"
+import { Progress } from "@ark-ui/react"
+import { createComponentCtx, createRootComponent } from "../utils"
 import { progress } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(progress)
@@ -17,33 +16,18 @@ const Track = withSlot(Progress.Track, "track")
 const ValueText = withSlot(Progress.ValueText)
 const View = withSlot(Progress.View)
 
-export interface Progress extends ForwardedRefComponent {
-  (props: ProgressRootProps): React.ReactElement | null
-  Root: typeof Root
-  RootProvider: typeof RootProvider
-  Circle: typeof Circle
-  CircleRange: typeof CircleRange
-  CircleTrack: typeof CircleTrack
-  Context: typeof Context
-  Label: typeof Label
-  Range: typeof Range
-  Track: typeof Track
-  ValueText: typeof ValueText
-  View: typeof View
-}
-
-export const Component = Root as any as Progress
+export const Component = createRootComponent(Root, {
+  Root,
+  RootProvider,
+  Circle,
+  CircleRange,
+  CircleTrack,
+  Context,
+  Label,
+  Range,
+  Track,
+  ValueText,
+  View,
+})
 
 Component.displayName = "Progress"
-
-Component.Root = Root
-Component.RootProvider = RootProvider
-Component.Circle = Circle
-Component.CircleRange = CircleRange
-Component.CircleTrack = CircleTrack
-Component.Context = Context
-Component.Label = Label
-Component.Range = Range
-Component.Track = Track
-Component.ValueText = ValueText
-Component.View = View

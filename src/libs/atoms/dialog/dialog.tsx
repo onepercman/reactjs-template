@@ -1,8 +1,7 @@
-import { Dialog, DialogRootProps, Portal } from "@ark-ui/react"
+import { Dialog, Portal } from "@ark-ui/react"
 import React from "react"
 import { LuX } from "react-icons/lu"
-import { ForwardedRefComponent } from "../types"
-import { createComponentCtx } from "../utils"
+import { createComponentCtx, createRootComponent } from "../utils"
 import { confirm, open } from "./fn"
 import { dialog } from "./variants"
 
@@ -49,37 +48,19 @@ const CustomCloseTrigger = React.forwardRef<HTMLDivElement, React.ComponentProps
 
 CustomCloseTrigger.displayName = "CloseTrigger"
 
-export interface Dialog extends ForwardedRefComponent {
-  (props: DialogRootProps): React.ReactElement | null
-  Root: typeof Root
-  RootProvider: typeof RootProvider
-  Backdrop: typeof Backdrop
-  Context: typeof Context
-  Description: typeof Description
-  Positioner: typeof Positioner
-  Title: typeof Title
-  Trigger: typeof Trigger
-  Content: typeof CustomContent
-  CloseTrigger: typeof CustomCloseTrigger
-
-  open: typeof open
-  confirm: typeof confirm
-}
-
-export const Component = Root as any as Dialog
+export const Component = createRootComponent(Root, {
+  Root,
+  RootProvider,
+  Backdrop,
+  Context,
+  Description,
+  Positioner,
+  Title,
+  Trigger,
+  Content: CustomContent,
+  CloseTrigger: CustomCloseTrigger,
+  open,
+  confirm,
+})
 
 Component.displayName = "Dialog"
-
-Component.Root = Root
-Component.RootProvider = RootProvider
-Component.Backdrop = Backdrop
-Component.Context = Context
-Component.Description = Description
-Component.Positioner = Positioner
-Component.Title = Title
-Component.Trigger = Trigger
-Component.Content = CustomContent
-Component.CloseTrigger = CustomCloseTrigger
-
-Component.open = open
-Component.confirm = confirm

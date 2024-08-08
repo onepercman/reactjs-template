@@ -4,7 +4,7 @@ import { LuArrowRightCircle, LuCalendar, LuChevronLeft, LuChevronRight } from "r
 import { Button } from "../button"
 import { Input as AtomInput, InputProps } from "../input"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createComponentCtx } from "../utils"
+import { createComponentCtx, createRootComponent } from "../utils"
 import { datePicker } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(datePicker)
@@ -42,32 +42,6 @@ export interface DatePickerCompactProps extends DatePickerRootProps, ComposedTVP
 
 export interface DatePicker extends ForwardedRefComponent {
   (props: DatePickerCompactProps): React.ReactElement | null
-  Root: typeof Root
-  RootProvider: typeof RootProvider
-  ClearTrigger: typeof ClearTrigger
-  Content: typeof Content
-  Context: typeof Context
-  Control: typeof Control
-  Input: typeof Input
-  Label: typeof Label
-  MonthSelect: typeof MonthSelect
-  NextTrigger: typeof NextTrigger
-  Positioner: typeof Positioner
-  PresetTrigger: typeof PresetTrigger
-  PrevTrigger: typeof PrevTrigger
-  RangeText: typeof RangeText
-  Table: typeof Table
-  TableBody: typeof TableBody
-  TableCell: typeof TableCell
-  TableCellTrigger: typeof TableCellTrigger
-  TableHead: typeof TableHead
-  TableHeader: typeof TableHeader
-  TableRow: typeof TableRow
-  Trigger: typeof Trigger
-  View: typeof View
-  ViewControl: typeof ViewControl
-  ViewTrigger: typeof ViewTrigger
-  YearSelect: typeof YearSelect
 }
 
 function _bootstrap(
@@ -76,7 +50,7 @@ function _bootstrap(
   return React.forwardRef<HTMLInputElement, DatePickerCompactProps>(render) as unknown as DatePicker
 }
 
-export const Component = _bootstrap(function ({ inputProps = {}, positioning, ...props }, ref) {
+export const CustomRoot = _bootstrap(function ({ inputProps = {}, positioning, ...props }, ref) {
   return (
     <Root ref={ref} asChild positioning={{ placement: "bottom-end", ...positioning }} {...props}>
       <Fragment>
@@ -243,31 +217,33 @@ export const Component = _bootstrap(function ({ inputProps = {}, positioning, ..
   )
 })
 
-Component.displayName = "DatePicker"
+export const Component = createRootComponent(CustomRoot, {
+  Root,
+  RootProvider,
+  ClearTrigger,
+  Content,
+  Context,
+  Control,
+  Input,
+  Label,
+  MonthSelect,
+  NextTrigger,
+  Positioner,
+  PresetTrigger,
+  PrevTrigger,
+  RangeText,
+  Table,
+  TableBody,
+  TableCell,
+  TableCellTrigger,
+  TableHead,
+  TableHeader,
+  TableRow,
+  Trigger,
+  View,
+  ViewControl,
+  ViewTrigger,
+  YearSelect,
+})
 
-Component.Root = Root
-Component.RootProvider = RootProvider
-Component.ClearTrigger = ClearTrigger
-Component.Content = Content
-Component.Context = Context
-Component.Control = Control
-Component.Input = Input
-Component.Label = Label
-Component.MonthSelect = MonthSelect
-Component.NextTrigger = NextTrigger
-Component.Positioner = Positioner
-Component.PresetTrigger = PresetTrigger
-Component.PrevTrigger = PrevTrigger
-Component.RangeText = RangeText
-Component.Table = Table
-Component.TableBody = TableBody
-Component.TableCell = TableCell
-Component.TableCellTrigger = TableCellTrigger
-Component.TableHead = TableHead
-Component.TableHeader = TableHeader
-Component.TableRow = TableRow
-Component.Trigger = Trigger
-Component.View = View
-Component.ViewControl = ViewControl
-Component.ViewTrigger = ViewTrigger
-Component.YearSelect = YearSelect
+Component.displayName = "DatePicker"

@@ -2,7 +2,7 @@ import { Checkbox, CheckboxRootProps } from "@ark-ui/react"
 import React from "react"
 import { LuCheck, LuMinus } from "react-icons/lu"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createComponentCtx } from "../utils"
+import { createComponentCtx, createRootComponent } from "../utils"
 import { checkbox } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(checkbox)
@@ -20,14 +20,6 @@ export interface CheckboxProps extends CheckboxRootProps, ComposedTVProps<typeof
 
 export interface Checkbox extends ForwardedRefComponent {
   (props: CheckboxProps): React.ReactElement | null
-  Root: typeof Root
-  RootProvider: typeof RootProvider
-  Context: typeof Context
-  Control: typeof Control
-  Group: typeof Group
-  HiddenInput: typeof HiddenInput
-  Indicator: typeof Indicator
-  Label: typeof Label
 }
 
 function _bootstrap(
@@ -36,7 +28,7 @@ function _bootstrap(
   return React.forwardRef<HTMLDivElement, CheckboxProps>(render) as unknown as Checkbox
 }
 
-export const Component = _bootstrap(function ({ children, ...props }, ref) {
+export const CustomRoot = _bootstrap(function ({ children, ...props }, ref) {
   return (
     <Root ref={ref} {...props}>
       <Label>{children}</Label>
@@ -50,13 +42,15 @@ export const Component = _bootstrap(function ({ children, ...props }, ref) {
   )
 })
 
-Component.displayName = "Checkbox"
+export const Component = createRootComponent(CustomRoot, {
+  Root,
+  RootProvider,
+  Context,
+  Control,
+  Group,
+  HiddenInput,
+  Indicator,
+  Label,
+})
 
-Component.Root = Root
-Component.RootProvider = RootProvider
-Component.Context = Context
-Component.Control = Control
-Component.Group = Group
-Component.HiddenInput = HiddenInput
-Component.Indicator = Indicator
-Component.Label = Label
+Component.displayName = "Checkbox"

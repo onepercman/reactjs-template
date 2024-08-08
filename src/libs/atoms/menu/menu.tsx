@@ -1,7 +1,6 @@
-import { Menu, MenuRootProps, Portal } from "@ark-ui/react"
+import { Menu, Portal } from "@ark-ui/react"
 import React from "react"
-import { ForwardedRefComponent } from "../types"
-import { createComponentCtx } from "../utils"
+import { createComponentCtx, createRootComponent } from "../utils"
 import { menu } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(menu)
@@ -27,6 +26,7 @@ const Separator = withSlot(Menu.Separator, "separator")
 const Trigger = withSlot(Menu.Trigger)
 const TriggerItem = withSlot(Menu.TriggerItem)
 const Content = withSlot(Menu.Content, "content")
+
 const CustomContent = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<typeof Content>>(function (
   { children, ...props },
   ref,
@@ -44,53 +44,28 @@ const CustomContent = React.forwardRef<HTMLDivElement, React.ComponentPropsWitho
 
 CustomContent.displayName = "Content"
 
-export interface Menu extends ForwardedRefComponent {
-  (props: MenuRootProps): React.ReactElement | null
-  Root: typeof Root
-  RootProvider: typeof RootProvider
-  Arrow: typeof Arrow
-  ArrowTip: typeof ArrowTip
-  CheckboxItem: typeof CheckboxItem
-  Context: typeof Context
-  ContextTrigger: typeof ContextTrigger
-  Indicator: typeof Indicator
-  Item: typeof Item
-  ItemContext: typeof ItemContext
-  ItemGroup: typeof ItemGroup
-  ItemGroupLabel: typeof ItemGroupLabel
-  ItemIndicator: typeof ItemIndicator
-  ItemText: typeof ItemText
-  Positioner: typeof Positioner
-  RadioItem: typeof RadioItem
-  RadioItemGroup: typeof RadioItemGroup
-  Separator: typeof Separator
-  Trigger: typeof Trigger
-  TriggerItem: typeof TriggerItem
-  Content: typeof CustomContent
-}
-
-export const Component = Root as any as Menu
+export const Component = createRootComponent(Root, {
+  Root,
+  RootProvider,
+  Arrow,
+  ArrowTip,
+  CheckboxItem,
+  Context,
+  ContextTrigger,
+  Indicator,
+  Item,
+  ItemContext,
+  ItemGroup,
+  ItemGroupLabel,
+  ItemIndicator,
+  ItemText,
+  Positioner,
+  RadioItem,
+  RadioItemGroup,
+  Separator,
+  Trigger,
+  TriggerItem,
+  Content: CustomContent,
+})
 
 Component.displayName = "Menu"
-
-Component.Root = Root
-Component.RootProvider = RootProvider
-Component.Arrow = Arrow
-Component.ArrowTip = ArrowTip
-Component.CheckboxItem = CheckboxItem
-Component.Context = Context
-Component.ContextTrigger = ContextTrigger
-Component.Indicator = Indicator
-Component.Item = Item
-Component.ItemContext = ItemContext
-Component.ItemGroup = ItemGroup
-Component.ItemGroupLabel = ItemGroupLabel
-Component.ItemIndicator = ItemIndicator
-Component.ItemText = ItemText
-Component.Positioner = Positioner
-Component.RadioItem = RadioItem
-Component.RadioItemGroup = RadioItemGroup
-Component.Separator = Separator
-Component.Trigger = Trigger
-Component.TriggerItem = TriggerItem
-Component.Content = CustomContent

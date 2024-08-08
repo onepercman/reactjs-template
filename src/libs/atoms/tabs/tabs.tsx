@@ -1,7 +1,6 @@
-import { Tabs, TabsRootProps } from "@ark-ui/react"
+import { Tabs } from "@ark-ui/react"
 import React from "react"
-import { ForwardedRefComponent } from "../types"
-import { createComponentCtx } from "../utils"
+import { createComponentCtx, createRootComponent } from "../utils"
 import { tabs } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(tabs)
@@ -28,25 +27,14 @@ const CustomList = React.forwardRef<HTMLElement, React.ComponentPropsWithoutRef<
 
 CustomList.displayName = "List"
 
-export interface Tabs extends ForwardedRefComponent {
-  (props: TabsRootProps): React.ReactElement | null
-  Root: typeof Root
-  Content: typeof Content
-  Context: typeof Context
-  Indicator: typeof Indicator
-  List: typeof CustomList
-  RootProvider: typeof RootProvider
-  Trigger: typeof Trigger
-}
-
-export const Component = Root as any as Tabs
+export const Component = createRootComponent(Root, {
+  Root,
+  Content,
+  Context,
+  Indicator,
+  List: CustomList,
+  RootProvider,
+  Trigger,
+})
 
 Component.displayName = "Tabs"
-
-Component.Root = Root
-Component.Content = Content
-Component.Context = Context
-Component.Indicator = Indicator
-Component.List = CustomList
-Component.RootProvider = RootProvider
-Component.Trigger = Trigger

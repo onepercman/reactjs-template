@@ -3,7 +3,7 @@ import { CollectionItem } from "node_modules/@ark-ui/react/dist/types"
 import React from "react"
 import { LuChevronDown } from "react-icons/lu"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createComponentCtx } from "../utils"
+import { createComponentCtx, createRootComponent } from "../utils"
 import { select } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(select)
@@ -34,25 +34,6 @@ export interface SelectProps<T extends CollectionItem> extends SelectRootProps<T
 
 export interface Select extends ForwardedRefComponent {
   <T extends CollectionItem>(props: SelectProps<T>): React.ReactElement | null
-  Root: typeof Root
-  RootProvider: typeof RootProvider
-  Context: typeof Context
-  ItemContext: typeof ItemContext
-  Label: typeof Label
-  Control: typeof Control
-  Trigger: typeof Trigger
-  ValueText: typeof ValueText
-  ClearTrigger: typeof ClearTrigger
-  Indicator: typeof Indicator
-  HiddenSelect: typeof HiddenSelect
-  Positioner: typeof Positioner
-  List: typeof List
-  Content: typeof Content
-  ItemGroup: typeof ItemGroup
-  ItemGroupLabel: typeof ItemGroupLabel
-  Item: typeof Item
-  ItemText: typeof ItemText
-  ItemIndicator: typeof ItemIndicator
 }
 
 function _bootstrap<T extends CollectionItem>(
@@ -61,7 +42,7 @@ function _bootstrap<T extends CollectionItem>(
   return React.forwardRef<HTMLDivElement, SelectProps<T>>(render) as unknown as Select
 }
 
-export const Component = _bootstrap(function ({ children, placeholder, positioning, className, ...props }, ref) {
+export const CustomRoot = _bootstrap(function ({ children, placeholder, positioning, className, ...props }, ref) {
   return (
     <Root ref={ref} positioning={{ sameWidth: true, ...positioning }} unmountOnExit {...props}>
       <Control>
@@ -82,24 +63,26 @@ export const Component = _bootstrap(function ({ children, placeholder, positioni
   )
 })
 
-Component.displayName = "Select"
+export const Component = createRootComponent(CustomRoot, {
+  Root,
+  RootProvider,
+  Context,
+  ItemContext,
+  Label,
+  Control,
+  Trigger,
+  ValueText,
+  ClearTrigger,
+  Indicator,
+  HiddenSelect,
+  Positioner,
+  List,
+  Content,
+  ItemGroup,
+  ItemGroupLabel,
+  Item,
+  ItemText,
+  ItemIndicator,
+})
 
-Component.Root = Root
-Component.RootProvider = RootProvider
-Component.Context = Context
-Component.ItemContext = ItemContext
-Component.Label = Label
-Component.Control = Control
-Component.Trigger = Trigger
-Component.ValueText = ValueText
-Component.ClearTrigger = ClearTrigger
-Component.Indicator = Indicator
-Component.HiddenSelect = HiddenSelect
-Component.Positioner = Positioner
-Component.List = List
-Component.Content = Content
-Component.ItemGroup = ItemGroup
-Component.ItemGroupLabel = ItemGroupLabel
-Component.Item = Item
-Component.ItemText = ItemText
-Component.ItemIndicator = ItemIndicator
+Component.displayName = "Select"

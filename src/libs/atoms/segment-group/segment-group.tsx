@@ -1,7 +1,7 @@
 import { SegmentGroup, SegmentGroupRootProps } from "@ark-ui/react"
 import React from "react"
 import { ForwardedRefComponent } from "../types"
-import { createComponentCtx } from "../utils"
+import { createComponentCtx, createRootComponent } from "../utils"
 import { segmentGroup } from "./variants"
 
 const { withRoot, withSlot } = createComponentCtx(segmentGroup)
@@ -34,16 +34,6 @@ CustomItem.displayName = "Item"
 
 interface SegmentGroup extends ForwardedRefComponent {
   (props: SegmentGroupRootProps): React.ReactElement | null
-  Root: typeof Root
-  RootProvider: typeof RootProvider
-  Context: typeof Context
-  Indicator: typeof Indicator
-  Item: typeof CustomItem
-  ItemContext: typeof ItemContext
-  ItemControl: typeof ItemControl
-  ItemHiddenInput: typeof ItemHiddenInput
-  ItemText: typeof ItemText
-  Label: typeof Label
 }
 
 function _bootstrap(
@@ -52,7 +42,7 @@ function _bootstrap(
   return React.forwardRef<HTMLDivElement, SegmentGroupRootProps>(render) as unknown as SegmentGroup
 }
 
-export const Component = _bootstrap(function ({ children, ...props }, ref) {
+export const CustomRoot = _bootstrap(function ({ children, ...props }, ref) {
   return (
     <Root ref={ref} {...props}>
       <Indicator />
@@ -61,15 +51,17 @@ export const Component = _bootstrap(function ({ children, ...props }, ref) {
   )
 })
 
-Component.displayName = "SegmentGroup"
+export const Component = createRootComponent(CustomRoot, {
+  Root,
+  RootProvider,
+  Context,
+  Indicator,
+  Item,
+  ItemContext,
+  ItemControl,
+  ItemHiddenInput,
+  ItemText,
+  Label,
+})
 
-Component.Root = Root
-Component.RootProvider = RootProvider
-Component.Context = Context
-Component.Indicator = Indicator
-Component.Item = CustomItem
-Component.ItemContext = ItemContext
-Component.ItemControl = ItemControl
-Component.ItemHiddenInput = ItemHiddenInput
-Component.ItemText = ItemText
-Component.Label = Label
+Component.displayName = "SegmentGroup"
