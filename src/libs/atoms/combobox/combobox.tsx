@@ -1,5 +1,4 @@
-import { Combobox, ComboboxRootProps, Portal } from "@ark-ui/react"
-import { CollectionItem } from "node_modules/@ark-ui/react/dist/types"
+import { Combobox, ComboboxCollectionItem, ComboboxRootProps, Portal } from "@ark-ui/react"
 import React from "react"
 import { LuChevronsUpDown } from "react-icons/lu"
 import { Input as AtomInput, InputProps } from "../input"
@@ -27,7 +26,7 @@ const Item = withSlot(Combobox.Item, "item")
 const ItemText = withSlot(Combobox.ItemText, "itemText")
 const ItemIndicator = withSlot(Combobox.ItemIndicator, "itemIndicator")
 
-export interface ComboboxProps<T extends CollectionItem>
+export interface ComboboxProps<T extends ComboboxCollectionItem>
   extends ComboboxRootProps<T>,
     ComposedTVProps<typeof combobox> {
   placeholder?: string
@@ -35,10 +34,10 @@ export interface ComboboxProps<T extends CollectionItem>
 }
 
 export interface Combobox extends ForwardedRefComponent {
-  <T extends CollectionItem>(props: ComboboxProps<T>): React.ReactElement | null
+  <T extends ComboboxCollectionItem>(props: ComboboxProps<T>): React.ReactElement | null
 }
 
-function _bootstrap<T extends CollectionItem>(
+function _bootstrap<T extends ComboboxCollectionItem>(
   render: (props: ComboboxProps<T>, ref: React.ForwardedRef<HTMLDivElement>) => React.ReactElement | null,
 ) {
   return React.forwardRef<HTMLDivElement, ComboboxProps<T>>(render) as unknown as Combobox

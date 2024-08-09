@@ -1,6 +1,4 @@
-import { Portal, Select, SelectRootProps } from "@ark-ui/react"
-import { ValueTextProps } from "node_modules/@ark-ui/react/dist/components/color-picker/color-picker"
-import { CollectionItem } from "node_modules/@ark-ui/react/dist/types"
+import { Portal, Select, SelectCollectionItem, SelectRootProps, SelectValueTextProps } from "@ark-ui/react"
 import React from "react"
 import { LuChevronDown } from "react-icons/lu"
 import { Button, ButtonProps } from "../button"
@@ -30,31 +28,29 @@ const Item = withSlot(Select.Item, "item")
 const ItemText = withSlot(Select.ItemText, "itemText")
 const ItemIndicator = withSlot(Select.ItemIndicator, "itemIndicator")
 
-export interface SelectProps<T extends CollectionItem> extends SelectRootProps<T>, ComposedTVProps<typeof select> {
+export interface SelectProps<T extends SelectCollectionItem>
+  extends SelectRootProps<T>,
+    ComposedTVProps<typeof select> {
   trigger?: ButtonProps
-  valueText?: ValueTextProps
+  valueText?: SelectValueTextProps
 }
 
 export interface Select extends ForwardedRefComponent {
-  <T extends CollectionItem>(props: SelectProps<T>): React.ReactElement | null
+  <T extends SelectCollectionItem>(props: SelectProps<T>): React.ReactElement | null
 }
 
-function _bootstrap<T extends CollectionItem>(
+function _bootstrap<T extends SelectCollectionItem>(
   render: (props: SelectProps<T>, ref: React.ForwardedRef<HTMLDivElement>) => React.ReactElement | null,
 ) {
   return React.forwardRef<HTMLDivElement, SelectProps<T>>(render) as unknown as Select
 }
 
-export const CustomRoot = _bootstrap(function (
-  { children, positioning, trigger, valueText, className, ...props },
-  ref,
-) {
+export const CustomRoot = _bootstrap(function ({ children, positioning, trigger, valueText, ...props }, ref) {
   return (
     <Root ref={ref} positioning={{ sameWidth: true, ...positioning }} unmountOnExit {...props}>
       <Control>
         <Trigger
           asChild
-          className={className}
           rightIcon={
             <Indicator asChild>
               <LuChevronDown />
