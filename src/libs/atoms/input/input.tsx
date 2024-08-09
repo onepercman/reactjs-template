@@ -2,8 +2,7 @@ import React from "react"
 import { HiEye, HiEyeOff } from "react-icons/hi"
 import { LuX } from "react-icons/lu"
 import { ComposedTVProps } from "../types"
-import { cn } from "../utils/cn"
-import { useComposedRefs } from "../utils/ref"
+import { cn, useComposedRefs } from "../utils"
 import { input } from "./variants"
 
 export interface InputFieldProps {
@@ -151,10 +150,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <label
         role="input"
         className={styles.base({
-          className: cn(className, classNames?.base, {
-            "pl-0": !!addonBefore,
-            "pr-0": !!addonAfter,
-          }),
+          className: cn(className, classNames?.base, { "pl-0": !!addonBefore, "pr-0": !!addonAfter }),
         })}
       >
         {_renderAddonBefore()}

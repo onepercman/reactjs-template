@@ -3,7 +3,7 @@ import React from "react"
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 import { button, Button, ButtonProps } from "../button"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { cn } from "../utils/cn"
+import { cn } from "../utils"
 
 export interface PaginationProps extends Omit<Ark.PaginationRootProps, "color">, ComposedTVProps<typeof button> {
   activeProps?: ButtonProps

@@ -5,7 +5,7 @@ import { Checkbox } from "../checkbox"
 import { Pagination, PaginationProps } from "../pagination"
 import { Spinner } from "../spinner"
 import { ComposedTVProps, ForwardRefWithAsProps, ForwardedRefComponent } from "../types"
-import { cn } from "../utils/cn"
+import { cn } from "../utils"
 import { table } from "./variants"
 
 export interface TableRow extends Readonly<Record<string, unknown>> {

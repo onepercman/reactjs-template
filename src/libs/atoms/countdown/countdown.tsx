@@ -1,5 +1,5 @@
 import React from "react"
-import { cn } from "../utils/cn"
+import { cn } from "../utils"
 
 type BaseProps = React.HTMLAttributes<HTMLSpanElement>
 export interface CountdownProps extends BaseProps {

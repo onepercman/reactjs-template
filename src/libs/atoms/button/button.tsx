@@ -1,7 +1,7 @@
 import React from "react"
 import { Spinner } from "../spinner"
 import { ComposedTVProps } from "../types"
-import { cn } from "../utils/cn"
+import { cn } from "../utils"
 import { button } from "./variants"
 
 export interface ButtonBaseProps {

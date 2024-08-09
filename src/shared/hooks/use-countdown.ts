@@ -1,5 +1,8 @@
-import { pad } from "@/shared/utils/number"
 import { useEffect, useMemo, useState } from "react"
+
+export function pad(d: number): string {
+  return d < 10 ? "0" + d.toString() : d.toString()
+}
 
 export interface UseCountdownStates<T extends number | string = number> {
   days: T

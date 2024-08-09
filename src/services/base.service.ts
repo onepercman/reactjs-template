@@ -1,7 +1,7 @@
+import { API_URL } from "@/config/endpoints.config"
 import userStore from "@/features/user/user.store"
 import axios, { AxiosError, AxiosInstance, AxiosResponse, CreateAxiosDefaults, InternalAxiosRequestConfig } from "axios"
 import { camelizeKeys, decamelizeKeys } from "humps"
-import { API_URL } from "../config/endpoints.config"
 
 const requestHandler = {
   onFulfilled(config: InternalAxiosRequestConfig) {
