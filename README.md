@@ -1,39 +1,44 @@
 # Ark UI components kit
 
+- [ ] Color Picker
+- [ ] Pin Input
+- [ ] Rating Group
+- [ ] Tags Input
 - [x] Accordion
 - [x] Avatar
+- [x] Button
 - [x] Button
 - [x] Carousel
 - [x] Checkbox
 - [x] Clipboard
 - [x] Collapsible
-- [ ] Color Picker
 - [x] Combobox
 - [x] Date Picker
 - [x] Dialog
 - [x] Editable
+- [x] Empty
 - [x] File Upload
 - [x] Hover Card
 - [x] Input
+- [x] Input
+- [x] Loader
 - [x] Menu
 - [x] Number Input
 - [x] Pagination
-- [ ] Pin Input
 - [x] Popover
 - [x] Progress
+- [x] QRCode
 - [x] Radio Group
-- [ ] Rating Group
 - [x] Segment Group
 - [x] Select
+- [x] SignaturePad
 - [x] Slider
 - [x] Splitter
-- [x] SignaturePad
 - [x] Switch
-- [x] Tabs
 - [x] Table
-- [ ] Tags Input
+- [x] Tabs
+- [x] Textarea
 - [x] Toast
 - [x] Toggle Group
 - [x] Tooltip
-- [x] QRCode
 - [x] Tree View

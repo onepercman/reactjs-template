@@ -1,9 +1,9 @@
-import { Empty } from "@/shared/components/empty"
 import React, { useEffect, useState } from "react"
 import { LuArrowDown } from "react-icons/lu"
 import { Checkbox } from "../checkbox"
+import { Empty } from "../empty"
+import { Loader } from "../loader"
 import { Pagination, PaginationProps } from "../pagination"
-import { Spinner } from "../spinner"
 import { ComposedTVProps, ForwardRefWithAsProps, ForwardedRefComponent } from "../types"
 import { cn } from "../utils"
 import { table } from "./variants"
@@ -40,6 +40,7 @@ export interface TableProps<Row extends TableRow>
   selectedKeys?: any[]
   sort?: TableSort
   emptyElement?: React.ReactNode
+  loadingElement?: React.ReactNode
   onSort?(sort?: TableSort): void
   extractKey?(row: Row, index: number): any
   onSelectRow?(row: Row[]): void
@@ -69,7 +70,8 @@ export const Table = _bootstrap(function (
     selectedKeys,
     defaultSelectedKeys = [],
     sort,
-    emptyElement = <Empty>No results found</Empty>,
+    emptyElement = <Empty />,
+    loadingElement = <Loader />,
     onSort,
     extractKey = (r) => r.key,
     onSelectRow,
@@ -153,9 +155,7 @@ export const Table = _bootstrap(function (
       return (
         <tr>
           <td colSpan={columns?.length || 1} className={styles.td({ className: classNames?.td })}>
-            <div className="min-h-24 w-full">
-              <Spinner />
-            </div>
+            <Loader />
           </td>
         </tr>
       )
