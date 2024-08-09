@@ -1,7 +1,7 @@
-import { createComponentCtx } from "../utils"
+import { createCtx } from "../utils"
 import { table } from "./variants"
 
-const { withRoot, withSlot } = createComponentCtx(table)
+const { withRoot, withSlot } = createCtx(table)
 
 export const Wrapper = withRoot("div", "base")
 export const Table = withSlot("table", "table")

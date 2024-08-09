@@ -1,3 +1,3 @@
 export * from "./cn"
-export * from "./component-ctx"
+export * from "./component-factory"
 export * from "./ref"

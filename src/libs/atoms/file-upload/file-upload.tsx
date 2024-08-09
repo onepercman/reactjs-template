@@ -1,8 +1,8 @@
 import { FileUpload } from "@ark-ui/react"
-import { createComponentCtx, createRootComponent } from "../utils"
+import { createCtx, createFactory } from "../utils"
 import { fileUpload } from "./variants"
 
-const { withRoot, withSlot } = createComponentCtx(fileUpload)
+const { withRoot, withSlot } = createCtx(fileUpload)
 
 const Root = withRoot(FileUpload.Root)
 const RootProvider = withRoot(FileUpload.RootProvider)
@@ -19,7 +19,7 @@ const ItemSizeText = withSlot(FileUpload.ItemSizeText)
 const Label = withSlot(FileUpload.Label)
 const Trigger = withSlot(FileUpload.Trigger)
 
-export const Component = createRootComponent(Root, {
+export const Component = createFactory(Root, {
   Root,
   RootProvider,
   Context,

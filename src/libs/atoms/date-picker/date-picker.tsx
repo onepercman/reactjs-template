@@ -4,10 +4,10 @@ import { LuArrowRightCircle, LuCalendar, LuChevronLeft, LuChevronRight } from "r
 import { Button } from "../button"
 import { Input as AtomInput, InputProps } from "../input"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createComponentCtx, createRootComponent } from "../utils"
+import { createCtx, createFactory } from "../utils"
 import { datePicker } from "./variants"
 
-const { withRoot, withSlot } = createComponentCtx(datePicker)
+const { withRoot, withSlot } = createCtx(datePicker)
 
 const Root = withRoot(DatePicker.Root)
 const RootProvider = withRoot(DatePicker.RootProvider)
@@ -217,7 +217,7 @@ export const CustomRoot = _bootstrap(function ({ inputProps = {}, positioning, .
   )
 })
 
-export const Component = createRootComponent(CustomRoot, {
+export const Component = createFactory(CustomRoot, {
   Root,
   RootProvider,
   ClearTrigger,

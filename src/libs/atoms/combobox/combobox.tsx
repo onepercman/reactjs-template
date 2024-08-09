@@ -4,10 +4,10 @@ import React from "react"
 import { LuChevronsUpDown } from "react-icons/lu"
 import { Input as AtomInput, InputProps } from "../input"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createComponentCtx, createRootComponent } from "../utils"
+import { createCtx, createFactory } from "../utils"
 import { combobox } from "./variants"
 
-const { withRoot, withSlot } = createComponentCtx(combobox)
+const { withRoot, withSlot } = createCtx(combobox)
 
 const Root = withRoot(Combobox.Root, "base")
 const RootProvider = withRoot(Combobox.RootProvider, "base")
@@ -80,7 +80,7 @@ export const CustomRoot = _bootstrap(function (
   )
 })
 
-export const Component = createRootComponent(CustomRoot, {
+export const Component = createFactory(CustomRoot, {
   Root,
   RootProvider,
   Context,

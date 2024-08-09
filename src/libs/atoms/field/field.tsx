@@ -1,8 +1,8 @@
 import { Field } from "@ark-ui/react"
-import { createComponentCtx, createRootComponent } from "../utils/component-ctx"
+import { createCtx, createFactory } from "../utils"
 import { field } from "./variants"
 
-const { withRoot, withSlot } = createComponentCtx(field)
+const { withRoot, withSlot } = createCtx(field)
 
 const Context = withSlot(Field.Context)
 const ErrorText = withSlot(Field.ErrorText, "errorText")
@@ -14,7 +14,7 @@ const RootProvider = withSlot(Field.RootProvider)
 const Select = withSlot(Field.Select)
 const Textarea = withSlot(Field.Textarea)
 
-export const Component = createRootComponent(Root, {
+export const Component = createFactory(Root, {
   Context,
   ErrorText,
   HelperText,

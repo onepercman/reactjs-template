@@ -1,8 +1,8 @@
 import { Editable } from "@ark-ui/react"
-import { createComponentCtx, createRootComponent } from "../utils"
+import { createCtx, createFactory } from "../utils"
 import { editable } from "./variants"
 
-const { withRoot, withSlot } = createComponentCtx(editable)
+const { withRoot, withSlot } = createCtx(editable)
 
 const Root = withRoot(Editable.Root)
 const RootProvider = withRoot(Editable.RootProvider)
@@ -16,7 +16,7 @@ const Label = withSlot(Editable.Label)
 const Preview = withSlot(Editable.Preview)
 const SubmitTrigger = withSlot(Editable.SubmitTrigger)
 
-export const Component = createRootComponent(Root, {
+export const Component = createFactory(Root, {
   Root,
   RootProvider,
   Context,

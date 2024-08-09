@@ -1,8 +1,8 @@
 import { SignaturePad } from "@ark-ui/react"
-import { createComponentCtx, createRootComponent } from "../utils"
+import { createCtx, createFactory } from "../utils"
 import { signaturePad } from "./variants"
 
-const { withRoot, withSlot } = createComponentCtx(signaturePad)
+const { withRoot, withSlot } = createCtx(signaturePad)
 
 const Root = withRoot(SignaturePad.Root)
 const RootProvider = withRoot(SignaturePad.RootProvider)
@@ -14,7 +14,7 @@ const HiddenInput = withSlot(SignaturePad.HiddenInput)
 const Label = withSlot(SignaturePad.Label)
 const Segment = withSlot(SignaturePad.Segment)
 
-export const Component = createRootComponent(Root, {
+export const Component = createFactory(Root, {
   Root,
   RootProvider,
   ClearTrigger,

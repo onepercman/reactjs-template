@@ -1,10 +1,10 @@
 import { SegmentGroup, SegmentGroupRootProps } from "@ark-ui/react"
 import React from "react"
 import { ForwardedRefComponent } from "../types"
-import { createComponentCtx, createRootComponent } from "../utils"
+import { createCtx, createFactory } from "../utils"
 import { segmentGroup } from "./variants"
 
-const { withRoot, withSlot } = createComponentCtx(segmentGroup)
+const { withRoot, withSlot } = createCtx(segmentGroup)
 
 const Root = withRoot(SegmentGroup.Root, "base")
 const RootProvider = withRoot(SegmentGroup.RootProvider, "base")
@@ -51,7 +51,7 @@ export const CustomRoot = _bootstrap(function ({ children, ...props }, ref) {
   )
 })
 
-export const Component = createRootComponent(CustomRoot, {
+export const Component = createFactory(CustomRoot, {
   Root,
   RootProvider,
   Context,

@@ -1,9 +1,9 @@
 import { HoverCard, Portal } from "@ark-ui/react"
 import React from "react"
-import { createComponentCtx, createRootComponent } from "../utils"
+import { createCtx, createFactory } from "../utils"
 import { hoverCard } from "./variants"
 
-const { withRoot, withSlot } = createComponentCtx(hoverCard)
+const { withRoot, withSlot } = createCtx(hoverCard)
 
 const Root = withRoot(HoverCard.Root)
 const RootProvider = withRoot(HoverCard.RootProvider)
@@ -44,7 +44,7 @@ const CustomArrow = React.forwardRef<HTMLDivElement, React.ComponentPropsWithout
 
 CustomArrow.displayName = "Arrow"
 
-export const Component = createRootComponent(Root, {
+export const Component = createFactory(Root, {
   Root,
   RootProvider,
   Context,

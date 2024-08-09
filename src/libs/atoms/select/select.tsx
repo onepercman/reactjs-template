@@ -1,15 +1,17 @@
 import { Portal, Select, SelectRootProps } from "@ark-ui/react"
+import { ValueTextProps } from "node_modules/@ark-ui/react/dist/components/color-picker/color-picker"
 import { CollectionItem } from "node_modules/@ark-ui/react/dist/types"
 import React from "react"
 import { LuChevronDown } from "react-icons/lu"
+import { Button, ButtonProps } from "../button"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createComponentCtx, createRootComponent } from "../utils"
+import { createCtx, createFactory } from "../utils"
 import { select } from "./variants"
 
-const { withRoot, withSlot } = createComponentCtx(select)
+const { withRoot, withSlot } = createCtx(select)
 
-const Root = withRoot(Select.Root)
-const RootProvider = withRoot(Select.RootProvider)
+const Root = withRoot(Select.Root, "base")
+const RootProvider = withRoot(Select.RootProvider, "base")
 const Context = withSlot(Select.Context)
 const ItemContext = withSlot(Select.ItemContext)
 const Label = withSlot(Select.Label)
@@ -23,13 +25,14 @@ const Positioner = withSlot(Select.Positioner)
 const List = withSlot(Select.List)
 const Content = withSlot(Select.Content, "content")
 const ItemGroup = withSlot(Select.ItemGroup, "itemGroup")
-const ItemGroupLabel = withSlot(Select.ItemGroupLabel, "ItemGroupLabel")
+const ItemGroupLabel = withSlot(Select.ItemGroupLabel, "itemGroupLabel")
 const Item = withSlot(Select.Item, "item")
 const ItemText = withSlot(Select.ItemText, "itemText")
 const ItemIndicator = withSlot(Select.ItemIndicator, "itemIndicator")
 
 export interface SelectProps<T extends CollectionItem> extends SelectRootProps<T>, ComposedTVProps<typeof select> {
-  placeholder?: string
+  trigger?: ButtonProps
+  valueText?: ValueTextProps
 }
 
 export interface Select extends ForwardedRefComponent {
@@ -42,15 +45,26 @@ function _bootstrap<T extends CollectionItem>(
   return React.forwardRef<HTMLDivElement, SelectProps<T>>(render) as unknown as Select
 }
 
-export const CustomRoot = _bootstrap(function ({ children, placeholder, positioning, className, ...props }, ref) {
+export const CustomRoot = _bootstrap(function (
+  { children, positioning, trigger, valueText, className, ...props },
+  ref,
+) {
   return (
     <Root ref={ref} positioning={{ sameWidth: true, ...positioning }} unmountOnExit {...props}>
       <Control>
-        <Trigger className={className}>
-          <ValueText placeholder={placeholder} />
-          <Indicator asChild>
-            <LuChevronDown />
-          </Indicator>
+        <Trigger
+          asChild
+          className={className}
+          rightIcon={
+            <Indicator asChild>
+              <LuChevronDown />
+            </Indicator>
+          }
+          {...trigger}
+        >
+          <Button>
+            <ValueText {...valueText} />
+          </Button>
         </Trigger>
       </Control>
       <Portal>
@@ -63,7 +77,7 @@ export const CustomRoot = _bootstrap(function ({ children, placeholder, position
   )
 })
 
-export const Component = createRootComponent(CustomRoot, {
+export const Component = createFactory(CustomRoot, {
   Root,
   RootProvider,
   Context,

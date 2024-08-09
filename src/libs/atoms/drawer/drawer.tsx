@@ -1,11 +1,11 @@
 import React from "react"
 import { LuX } from "react-icons/lu"
 import { Drawer } from "vaul"
-import { createComponentCtx, createRootComponent } from "../utils"
+import { createCtx, createFactory } from "../utils"
 import { open } from "./fn"
 import { drawer } from "./variants"
 
-const { withRoot, withSlot } = createComponentCtx(drawer)
+const { withRoot, withSlot } = createCtx(drawer)
 
 const Root = withRoot(Drawer.Root)
 const NestedRoot = withSlot(Drawer.NestedRoot)
@@ -48,7 +48,7 @@ const CustomCloseTrigger = React.forwardRef<HTMLDivElement, React.ComponentProps
 
 CloseTrigger.displayName = "CloseTrigger"
 
-export const Component = createRootComponent(Root, {
+export const Component = createFactory(Root, {
   Root,
   NestedRoot,
   Description,

@@ -1,6 +1,7 @@
 import { tv } from "tailwind-variants"
 
 export const select = tv({
+  base: "",
   slots: {
     trigger: [
       "rounded bg-default inline-flex items-center gap-2 justify-between w-full",
@@ -18,7 +19,7 @@ export const select = tv({
       "data-[state=closed]:fade-out",
     ],
     itemGroup: "flex flex-col",
-    ItemGroupLabel: "w-full px-2 py-1 text-xs text-secondary",
+    itemGroupLabel: "w-full px-2 py-1 text-xs text-secondary",
     item: "inline-flex relative gap-2 justify-between items-start cursor-pointer hover:bg-foreground/5 pl-3 py-2 pr-8 rounded data-[state=checked]:text-primary font-medium",
     itemText: "grow",
     itemIndicator: "h-full absolute right-2 top-0 data-[state=checked]:flex items-center text-xs text-primary",

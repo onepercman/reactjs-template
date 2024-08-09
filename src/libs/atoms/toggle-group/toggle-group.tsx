@@ -1,15 +1,15 @@
 import { ToggleGroup } from "@ark-ui/react"
-import { createComponentCtx, createRootComponent } from "../utils"
+import { createCtx, createFactory } from "../utils"
 import { toggleGroup } from "./variants"
 
-const { withRoot, withSlot } = createComponentCtx(toggleGroup)
+const { withRoot, withSlot } = createCtx(toggleGroup)
 
 const Root = withRoot(ToggleGroup.Root)
 const RootProvider = withRoot(ToggleGroup.RootProvider)
 const Context = withSlot(ToggleGroup.Context)
 const Item = withSlot(ToggleGroup.Item)
 
-export const Component = createRootComponent(Root, {
+export const Component = createFactory(Root, {
   RootProvider,
   Context,
   Item,

@@ -1,8 +1,8 @@
 import { TreeView } from "@ark-ui/react"
-import { createComponentCtx, createRootComponent } from "../utils"
+import { createCtx, createFactory } from "../utils"
 import { treeView } from "./variants"
 
-const { withRoot, withSlot } = createComponentCtx(treeView)
+const { withRoot, withSlot } = createCtx(treeView)
 
 const Root = withRoot(TreeView.Root)
 const RootProvider = withRoot(TreeView.RootProvider)
@@ -20,7 +20,7 @@ const ItemText = withSlot(TreeView.ItemText)
 const Label = withSlot(TreeView.Label)
 const Tree = withSlot(TreeView.Tree)
 
-export const Component = createRootComponent(Root, {
+export const Component = createFactory(Root, {
   Root,
   RootProvider,
   Context,

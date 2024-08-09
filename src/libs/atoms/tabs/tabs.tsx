@@ -1,9 +1,9 @@
 import { Tabs } from "@ark-ui/react"
 import React from "react"
-import { createComponentCtx, createRootComponent } from "../utils"
+import { createCtx, createFactory } from "../utils"
 import { tabs } from "./variants"
 
-const { withRoot, withSlot } = createComponentCtx(tabs)
+const { withRoot, withSlot } = createCtx(tabs)
 
 const Root = withRoot(Tabs.Root, "base")
 const Content = withSlot(Tabs.Content, "content")
@@ -27,7 +27,7 @@ const CustomList = React.forwardRef<HTMLElement, React.ComponentPropsWithoutRef<
 
 CustomList.displayName = "List"
 
-export const Component = createRootComponent(Root, {
+export const Component = createFactory(Root, {
   Root,
   Content,
   Context,
