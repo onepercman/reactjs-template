@@ -5,17 +5,26 @@ import { Empty } from "../empty"
 import { Loader } from "../loader"
 import { Pagination, PaginationProps } from "../pagination"
 import { ComposedTVProps, ForwardRefWithAsProps, ForwardedRefComponent } from "../types"
-import { cn } from "../utils"
+import { cn, createCtx, createFactory } from "../utils"
 import { table } from "./variants"
 
-export interface TableRow extends Readonly<Record<string, unknown>> {
-  key?: string
-}
+const { withRoot, withSlot } = createCtx(table)
+
+const Root = withRoot("div", "base")
+const Table = withSlot("table", "table")
+const THead = withSlot("thead")
+const TBody = withSlot("tbody")
+const TrHead = withSlot("tr", "trHead")
+const Th = withSlot("th", "th")
+const Tr = withSlot("tr", "tr")
+const Td = withSlot("td", "td")
 
 export interface TableSort {
   column: string
   direction: "asc" | "desc"
 }
+
+type TableRow = Record<string, any>
 
 export interface TableColumnProps<Row extends TableRow> extends React.ThHTMLAttributes<HTMLTableCellElement> {
   label: React.ReactNode
@@ -34,7 +43,6 @@ export interface TableProps<Row extends TableRow>
   columns?: readonly Partial<TableColumnProps<Row>>[]
   data?: readonly Row[]
   loading?: boolean
-  className?: string
   pagination?: PaginationProps
   defaultSelectedKeys?: any[]
   selectedKeys?: any[]
@@ -59,7 +67,7 @@ function _bootstrap<Row extends TableRow>(
   return React.forwardRef<HTMLTableElement, TableProps<Row>>(render) as unknown as Table
 }
 
-export const Table = _bootstrap(function (
+const Compact = _bootstrap(function (
   {
     children,
     columns,
@@ -81,8 +89,6 @@ export const Table = _bootstrap(function (
   },
   ref,
 ) {
-  const styles = table({ selectionMode, className })
-
   const [selected, setSelected] = useState<any[]>(defaultSelectedKeys)
   const [sortDescriptor, setSortDescriptor] = useState<TableSort>()
 
@@ -153,58 +159,43 @@ export const Table = _bootstrap(function (
   function _renderContainer() {
     if (loading) {
       return (
-        <tr>
-          <td colSpan={columns?.length || 1} className={styles.td({ className: classNames?.td })}>
+        <Tr>
+          <Td colSpan={columns?.length || 1}>
             <Loader />
-          </td>
-        </tr>
+          </Td>
+        </Tr>
       )
     }
     if (!data?.length) {
       return (
-        <tr>
-          <td colSpan={columns?.length || 1} className={styles.td({ className: classNames?.td })}>
-            {emptyElement}
-          </td>
-        </tr>
+        <Tr>
+          <Td colSpan={columns?.length || 1}>{emptyElement}</Td>
+        </Tr>
       )
     }
 
     return data.map((row, index) => (
-      <tr
-        key={row.key || index}
-        className={styles.tr({
-          className: classNames?.tr,
-        })}
-        style={{
-          animationDelay: index / 20 + "s",
-        }}
-        onClick={() => _selectRow(row, index)}
-      >
+      <Tr key={row.key || index} style={{ animationDelay: index / 20 + "s" }} onClick={() => _selectRow(row, index)}>
         {columns?.map(({ key, className, dataIndex, render, align, dataAlign, ...column }, columnIndex) => (
-          <td
+          <Td
             key={key || columnIndex}
-            className={styles.td({
-              className: cn(classNames?.td, {
-                "bg-primary/10 group-hover:bg-primary/20": _isSelected(row, index),
-              }),
-            })}
             align={align || dataAlign}
             {...column}
+            data-selected={selected.includes(extractKey(row as any, index))}
           >
             {render ? render(row[dataIndex!], row, index) : (row[dataIndex || ""] as React.ReactNode)}{" "}
-          </td>
+          </Td>
         ))}
-      </tr>
+      </Tr>
     ))
   }
 
   return (
-    <div className={styles.base({ className: classNames?.base })}>
-      <table ref={ref} className={styles.table({ className: classNames?.table })} {...props}>
+    <Root classNames={classNames} className={className} selectionMode={selectionMode}>
+      <Table ref={ref} {...props}>
         {columns?.filter((c) => !!c.label).length ? (
-          <thead className={styles.thead({ className: classNames?.thead })}>
-            <tr className={styles.trHead({ className: classNames?.trHead })}>
+          <THead>
+            <Tr>
               {columns.map(
                 (
                   {
@@ -220,12 +211,7 @@ export const Table = _bootstrap(function (
                   },
                   index,
                 ) => (
-                  <th
-                    key={key || (dataIndex as string) || index}
-                    className={styles.th({ className: classNames?.th })}
-                    align={align ?? headAlign}
-                    {...column}
-                  >
+                  <Th key={key || (dataIndex as string) || index} align={align ?? headAlign} {...column}>
                     {sort && key && enableSort ? (
                       <div
                         className="inline-flex cursor-pointer select-none items-center gap-2"
@@ -243,31 +229,42 @@ export const Table = _bootstrap(function (
                     ) : (
                       label
                     )}
-                  </th>
+                  </Th>
                 ),
               )}
-            </tr>
-          </thead>
+            </Tr>
+          </THead>
         ) : null}
 
-        <tbody className={styles.tbody({ className: classNames?.tbody })}>
+        <TBody>
           {_renderContainer()}
           {pagination && (
-            <tr className={styles.tr({ className: classNames?.tr })}>
-              <td colSpan={columns?.length || 1} className={styles.td({ className: classNames?.td })}>
+            <Tr>
+              <Td colSpan={columns?.length || 1}>
                 <div className="flex w-full justify-end">
                   <div className="sticky left-0 right-0 w-fit px-4 py-2">
                     <Pagination {...pagination} />
                   </div>
                 </div>
-              </td>
-            </tr>
+              </Td>
+            </Tr>
           )}
-        </tbody>
+        </TBody>
         {children}
-      </table>
-    </div>
+      </Table>
+    </Root>
   )
 })
 
-Table.displayName = "Table"
+export const Component = createFactory(Compact, {
+  Root,
+  Table,
+  THead,
+  TBody,
+  TrHead,
+  Th,
+  Tr,
+  Td,
+})
+
+Root.displayName = "Table"

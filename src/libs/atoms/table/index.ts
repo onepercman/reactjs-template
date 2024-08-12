@@ -1,2 +1,2 @@
-export * as Table from "./table"
+export { Component as Table } from "./table"
 export * from "./variants"

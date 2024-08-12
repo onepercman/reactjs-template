@@ -1,15 +1,23 @@
-import { Select } from "@/libs/atoms"
+import { Table } from "@/libs/atoms"
 
 export default function () {
   return (
     <div className="p-4">
-      <Select items={dummy} itemToString={(i) => i.name} itemToValue={(i) => i.id}>
-        {dummy.map((item) => (
-          <Select.Item key={item.id} item={item}>
-            {item.name}
-          </Select.Item>
-        ))}
-      </Select>
+      <Table
+        selectionMode="single"
+        extractKey={(d) => d.id}
+        data={dummy}
+        columns={[
+          {
+            label: "Id",
+            dataIndex: "id",
+          },
+          {
+            label: "Name",
+            dataIndex: "name",
+          },
+        ]}
+      />
     </div>
   )
 }
