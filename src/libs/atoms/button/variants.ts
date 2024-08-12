@@ -4,9 +4,8 @@ export const button = tv({
   base: [
     "inline-flex items-center justify-center gap-2 whitespace-nowrap font-semibold",
     "border-transparent ring ring-transparent transition-all cursor-pointer border-0 outline-none",
-    "[&:not(:disabled)]:active:brightness-105",
     "h-[var(--button-size)] min-h-[var(--button-size)] min-w-[var(--button-size)] px-2 text-xs",
-    "[&:not(:disabled)]:hover:brightness-110",
+    "[&:not(:disabled)]:active:brightness-105",
     "disabled:saturate-0 disabled:opacity-75 disabled:cursor-not-allowed disabled:data-[loading]:saturate-50",
   ],
   variants: {
@@ -48,32 +47,32 @@ export const button = tv({
     {
       variant: "default",
       color: "primary",
-      class: ["bg-primary", "text-primary-foreground", "[&:not(:disabled)]:hover:bg-primary-200"],
+      class: ["bg-primary", "text-primary-foreground", "[&:not(:disabled)]:hover:bg-primary-600"],
     },
     {
       variant: "default",
       color: "info",
-      class: ["bg-info", "text-success-info", "[&:not(:disabled)]:hover:bg-info-200"],
+      class: ["bg-info", "text-success-info", "[&:not(:disabled)]:hover:bg-info-600"],
     },
     {
       variant: "default",
       color: "success",
-      class: ["bg-success", "text-success-foreground", "[&:not(:disabled)]:hover:bg-success-200"],
+      class: ["bg-success", "text-success-foreground", "[&:not(:disabled)]:hover:bg-success-600"],
     },
     {
       variant: "default",
       color: "warning",
-      class: ["bg-warning", "text-warning-foreground", "[&:not(:disabled)]:hover:bg-warning-200"],
+      class: ["bg-warning", "text-warning-foreground", "[&:not(:disabled)]:hover:bg-warning-600"],
     },
     {
       variant: "default",
       color: "error",
-      class: ["bg-error", "text-error-foreground", "[&:not(:disabled)]:hover:bg-error-200"],
+      class: ["bg-error", "text-error-foreground", "[&:not(:disabled)]:hover:bg-error-600"],
     },
     {
       variant: "default",
       color: "accent",
-      class: ["bg-accent", "text-accent-foreground", "[&:not(:disabled)]:hover:bg-accent-200"],
+      class: ["bg-accent", "text-accent-foreground", "[&:not(:disabled)]:hover:bg-accent-600"],
     },
     // light
     {
