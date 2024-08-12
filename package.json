@@ -18,7 +18,8 @@
     "format": "prettier --write .",
     "tsc": "tsc --pretty --noEmit",
     "test": "vitest",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "prepare": "husky"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.49.2",

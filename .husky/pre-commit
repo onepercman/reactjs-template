@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-npx lint-staged
+# .husky/pre-commit
+npx prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
+npx eslint
+git update-index --again
