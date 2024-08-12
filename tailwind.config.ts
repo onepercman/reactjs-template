@@ -54,7 +54,7 @@ const config: Config = {
           default: colors.gray[800],
           component: colors.gray[900],
           invert: colors.black,
-          line: colors.gray[700],
+          line: colors.gray[800],
           info: colorize(colors.sky, "500", "50"),
           success: colorize(colors.green, "500", "50"),
           warning: colorize(colors.yellow, "500", "50"),

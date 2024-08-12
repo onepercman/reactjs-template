@@ -14,7 +14,6 @@ const Root = withRoot("div", "base")
 const Table = withSlot("table", "table")
 const THead = withSlot("thead")
 const TBody = withSlot("tbody")
-const TrHead = withSlot("tr", "trHead")
 const Th = withSlot("th", "th")
 const Tr = withSlot("tr", "tr")
 const Td = withSlot("td", "td")
@@ -261,7 +260,6 @@ export const Component = createFactory(Compact, {
   Table,
   THead,
   TBody,
-  TrHead,
   Th,
   Tr,
   Td,
