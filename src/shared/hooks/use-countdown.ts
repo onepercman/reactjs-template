@@ -13,7 +13,7 @@ export interface UseCountdownStates<Format extends boolean = false> {
   isFinished: boolean
 }
 
-export function useCountdown(targetDate: number | string, format = false) {
+export function useCountdown<Format extends boolean = false>(targetDate: number | string, format?: Format) {
   const [remaining, setRemaining] = useState<number>(new Date(targetDate).valueOf() - Date.now())
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
@@ -50,6 +50,6 @@ export function useCountdown(targetDate: number | string, format = false) {
       seconds: format ? pad(seconds) : seconds,
       isFinished: remaining <= 0,
       milliseconds: remaining,
-    } as UseCountdownStates<typeof format>
+    } as UseCountdownStates<Format>
   }, [remaining, format])
 }
