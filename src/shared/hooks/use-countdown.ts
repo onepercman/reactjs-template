@@ -1,49 +1,55 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 
 export function pad(d: number): string {
   return d < 10 ? "0" + d.toString() : d.toString()
 }
 
-export interface UseCountdownStates<T extends number | string = number> {
-  days: T
-  hours: T
-  minutes: T
-  seconds: T
-  milliseconds: T
+export interface UseCountdownStates<Format extends boolean = false> {
+  days: Format extends true ? string : number
+  hours: Format extends true ? string : number
+  minutes: Format extends true ? string : number
+  seconds: Format extends true ? string : number
+  milliseconds: Format extends true ? string : number
   isFinished: boolean
 }
 
-const DELTA = 1000 // 1s
-
-export function useCountdown(targetDate: number | string, formatValue?: boolean) {
+export function useCountdown(targetDate: number | string, format = false) {
   const [remaining, setRemaining] = useState<number>(new Date(targetDate).valueOf() - Date.now())
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const valueRemaining = new Date(targetDate).valueOf() - Date.now()
-      if (valueRemaining >= DELTA) {
-        setRemaining(valueRemaining)
-      } else {
-        setRemaining(0)
-        clearInterval(interval)
-      }
-    }, DELTA)
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
-    return () => clearInterval(interval)
+  useEffect(() => {
+    const targetTime = new Date(targetDate).valueOf()
+
+    const updateRemaining = () => {
+      const valueRemaining = targetTime - Date.now()
+      setRemaining(valueRemaining > 0 ? valueRemaining : 0)
+      if (valueRemaining <= 0 && intervalRef.current) {
+        clearInterval(intervalRef.current)
+        intervalRef.current = null
+      }
+    }
+
+    intervalRef.current = setInterval(updateRemaining, 1000)
+
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
   }, [targetDate])
 
   return useMemo(() => {
-    const days = Math.floor(remaining / (1000 * 60 * 60 * 24)) || 0
-    const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) || 0
-    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60)) || 0
-    const seconds = Math.floor((remaining % (1000 * 60)) / 1000) || 0
+    const days = Math.floor(remaining / (1000 * 60 * 60 * 24))
+    const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60))
+    const seconds = Math.floor((remaining % (1000 * 60)) / 1000)
+
     return {
-      days: formatValue ? pad(days) : days,
-      hours: formatValue ? pad(hours) : hours,
-      minutes: formatValue ? pad(minutes) : minutes,
-      seconds: formatValue ? pad(seconds) : seconds,
-      isFinished: days + hours + minutes + seconds === 0,
+      days: format ? pad(days) : days,
+      hours: format ? pad(hours) : hours,
+      minutes: format ? pad(minutes) : minutes,
+      seconds: format ? pad(seconds) : seconds,
+      isFinished: remaining <= 0,
       milliseconds: remaining,
-    } as UseCountdownStates
-  }, [remaining])
+    } as UseCountdownStates<typeof format>
+  }, [remaining, format])
 }
