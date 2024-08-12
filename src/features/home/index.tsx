@@ -1,4 +1,4 @@
-import { Button, Table } from "@/libs/atoms"
+import { Table } from "@/libs/atoms"
 
 export default function () {
   return (
@@ -18,7 +18,6 @@ export default function () {
           },
         ]}
       />
-      <Button color="primary">Button</Button>
     </div>
   )
 }
