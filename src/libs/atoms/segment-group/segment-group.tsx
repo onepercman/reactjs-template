@@ -1,4 +1,4 @@
-import { SegmentGroup, SegmentGroupRootProps } from "@ark-ui/react"
+import { SegmentGroup } from "@ark-ui/react"
 import React from "react"
 import { ForwardedRefComponent } from "../types"
 import { createCtx, createFactory } from "../utils"
@@ -33,13 +33,16 @@ const CustomItem = React.forwardRef<HTMLElement, React.ComponentPropsWithoutRef<
 CustomItem.displayName = "Item"
 
 interface SegmentGroup extends ForwardedRefComponent {
-  (props: SegmentGroupRootProps): React.ReactElement | null
+  (props: React.ComponentProps<typeof Root>): React.ReactElement | null
 }
 
 function _bootstrap(
-  render: (props: SegmentGroupRootProps, ref: React.ForwardedRef<HTMLDivElement>) => React.ReactElement | null,
+  render: (
+    props: React.ComponentProps<typeof Root>,
+    ref: React.ForwardedRef<HTMLDivElement>,
+  ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLDivElement, SegmentGroupRootProps>(render) as unknown as SegmentGroup
+  return React.forwardRef<HTMLDivElement, React.ComponentProps<typeof Root>>(render) as unknown as SegmentGroup
 }
 
 export const CustomRoot = _bootstrap(function ({ children, ...props }, ref) {
@@ -56,7 +59,7 @@ export const Component = createFactory(CustomRoot, {
   RootProvider,
   Context,
   Indicator,
-  Item,
+  Item: CustomItem,
   ItemContext,
   ItemControl,
   ItemHiddenInput,
