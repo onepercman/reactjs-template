@@ -30,6 +30,8 @@ export function useCountdown<Format extends boolean = false>(targetDate: number 
       }
     }
 
+    updateRemaining()
+
     intervalRef.current = setInterval(updateRemaining, 1000)
 
     return () => {
