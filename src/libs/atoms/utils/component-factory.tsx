@@ -1,4 +1,5 @@
 import React from "react"
+import { VariantProps } from "tailwind-variants"
 import { ComposedTVProps, Recipe } from "../types"
 import { cn } from "./cn"
 
@@ -33,7 +34,7 @@ export function createCtx<TVFN extends Recipe, Slot extends keyof ReturnType<TVF
 
   function withSlot<C extends React.ElementType>(Component: C, slot?: Slot) {
     const Comp = React.forwardRef(function (
-      { className, ...props }: React.ComponentProps<C> & ComposedTVProps<TVFN>,
+      { className, ...props }: React.ComponentProps<C> & VariantProps<TVFN>,
       ref,
     ) {
       const ctx = useCtx()

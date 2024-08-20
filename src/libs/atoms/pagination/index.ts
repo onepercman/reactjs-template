@@ -1,1 +1,1 @@
-export * from "./pagination"
+export * as Pagination from "./pagination"

@@ -12,7 +12,7 @@ export default function () {
 
   return (
     <div className="p-4">
-      <Table size="sm">
+      <Table>
         <Table.Header>
           <Table.Column align="left">Id</Table.Column>
           <Table.Column align="left">Name</Table.Column>
@@ -22,7 +22,7 @@ export default function () {
           {isLoading ? (
             Array.from({ length: 10 }).map((_, index) => (
               <Table.Row key={index}>
-                <Table.Cell colSpan={2} className="h-6 animate-pulse" />
+                <Table.Cell colSpan={2} className="h-8 animate-pulse" />
               </Table.Row>
             ))
           ) : !data ? (

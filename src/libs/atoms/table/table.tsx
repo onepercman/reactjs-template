@@ -12,10 +12,10 @@ const Column = withSlot("th", "column")
 const Row = withSlot("tr", "row")
 const Cell = withSlot("td", "cell")
 
-export const Wrapper = React.forwardRef<React.ComponentRef<typeof Table>, React.ComponentProps<typeof Table>>(function (
-  { size, className, classNames, children, ...props },
-  ref,
-) {
+export const Wrapper = React.forwardRef<
+  React.ComponentRef<typeof Table>,
+  React.ComponentProps<typeof Table> & React.ComponentProps<typeof Root>
+>(function ({ size, className, classNames, children, ...props }, ref) {
   return (
     <Root size={size} className={className} classNames={classNames}>
       <Table ref={ref} {...props}>

@@ -1,4 +1,4 @@
-import * as Ark from "@ark-ui/react"
+import { NumberInput, NumberInputRootProps } from "@ark-ui/react"
 import React from "react"
 import { LuMinus, LuPlus } from "react-icons/lu"
 import { Button } from "../button"
@@ -6,7 +6,7 @@ import { Input, input, InputFieldProps } from "../input"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
 
 export interface NumberInputProps
-  extends Ark.NumberInputRootProps,
+  extends NumberInputRootProps,
     Omit<InputFieldProps, "prefix">,
     ComposedTVProps<typeof input> {
   placeholder?: string
@@ -22,26 +22,26 @@ function _bootstrap(
   return React.forwardRef<HTMLInputElement, NumberInputProps>(render) as unknown as NumberInput
 }
 
-export const NumberInput = _bootstrap(function ({ classNames, ...props }, ref) {
+export const Component = _bootstrap(function ({ classNames, ...props }, ref) {
   return (
-    <Ark.NumberInput.Root className="w-fit" {...props}>
-      <Ark.NumberInput.Scrubber />
-      <Ark.NumberInput.Input asChild>
+    <NumberInput.Root className="w-fit" {...props}>
+      <NumberInput.Scrubber />
+      <NumberInput.Input asChild>
         <Input
           ref={ref}
           addonBefore={
-            <Ark.NumberInput.Control asChild>
-              <Ark.NumberInput.DecrementTrigger>
+            <NumberInput.Control asChild>
+              <NumberInput.DecrementTrigger>
                 <Button shape="square" size="sm" leftIcon={<LuMinus />} />
-              </Ark.NumberInput.DecrementTrigger>
-            </Ark.NumberInput.Control>
+              </NumberInput.DecrementTrigger>
+            </NumberInput.Control>
           }
           addonAfter={
-            <Ark.NumberInput.Control asChild>
-              <Ark.NumberInput.IncrementTrigger>
+            <NumberInput.Control asChild>
+              <NumberInput.IncrementTrigger>
                 <Button shape="square" size="sm" leftIcon={<LuPlus />} />
-              </Ark.NumberInput.IncrementTrigger>
-            </Ark.NumberInput.Control>
+              </NumberInput.IncrementTrigger>
+            </NumberInput.Control>
           }
           classNames={{
             input: "text-center",
@@ -49,9 +49,9 @@ export const NumberInput = _bootstrap(function ({ classNames, ...props }, ref) {
           }}
           {...props}
         />
-      </Ark.NumberInput.Input>
-    </Ark.NumberInput.Root>
+      </NumberInput.Input>
+    </NumberInput.Root>
   )
 })
 
-NumberInput.displayName = "NumberInput"
+Component.displayName = "NumberInput"

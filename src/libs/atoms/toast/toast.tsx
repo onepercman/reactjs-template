@@ -1,4 +1,4 @@
-import * as Ark from "@ark-ui/react"
+import { createToaster, Toast, Toaster } from "@ark-ui/react"
 import { FC } from "react"
 import { LuCheck, LuInfo, LuX, LuXCircle } from "react-icons/lu"
 import { Button } from "../button"
@@ -20,27 +20,29 @@ function getIcon(type?: "success" | "error" | "loading" | "info" | any) {
   }
 }
 
-export const ToasterContainer: FC<{
-  toaster: ReturnType<typeof Ark.createToaster>
+export const Component: FC<{
+  toaster: ReturnType<typeof createToaster>
 }> = ({ toaster }) => {
   const styles = toast()
 
   return (
-    <Ark.Toaster toaster={toaster} className={styles.container()}>
+    <Toaster toaster={toaster} className={styles.container()}>
       {({ id, title, description, type }) => {
         return (
-          <Ark.Toast.Root key={id} className={styles.base()}>
-            <Ark.Toast.Title className={styles.title()}>
+          <Toast.Root key={id} className={styles.base()}>
+            <Toast.Title className={styles.title()}>
               {getIcon(type)}
               {title}
-            </Ark.Toast.Title>
-            <Ark.Toast.Description className={styles.description()}>{description}</Ark.Toast.Description>
-            <Ark.Toast.CloseTrigger asChild>
+            </Toast.Title>
+            <Toast.Description className={styles.description()}>{description}</Toast.Description>
+            <Toast.CloseTrigger asChild>
               <Button size="xs" shape="circle" className={styles.dismiss()} leftIcon={<LuX />} />
-            </Ark.Toast.CloseTrigger>
-          </Ark.Toast.Root>
+            </Toast.CloseTrigger>
+          </Toast.Root>
         )
       }}
-    </Ark.Toaster>
+    </Toaster>
   )
 }
+
+Component.displayName = "Toaster"

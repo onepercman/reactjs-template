@@ -1,2 +1,2 @@
-export * from "./switch"
+export * as Switch from "./switch"
 export * from "./variants"
