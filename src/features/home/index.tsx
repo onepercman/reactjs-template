@@ -1,23 +1,42 @@
 import { Table } from "@/libs/atoms"
+import { sleep } from "@/shared/utils/promise"
+import { useQuery } from "@tanstack/react-query"
 
 export default function () {
+  const { data, isLoading } = useQuery({
+    queryKey: ["dummy data"],
+    async queryFn() {
+      return sleep(1000).then(() => dummy)
+    },
+  })
+
   return (
     <div className="p-4">
-      <Table
-        selectionMode="single"
-        extractKey={(d) => d.id}
-        data={dummy}
-        columns={[
-          {
-            label: "Id",
-            dataIndex: "id",
-          },
-          {
-            label: "Name",
-            dataIndex: "name",
-          },
-        ]}
-      />
+      <Table size="sm">
+        <Table.Header>
+          <Table.Column align="left">Id</Table.Column>
+          <Table.Column align="left">Name</Table.Column>
+        </Table.Header>
+
+        <Table.Body>
+          {isLoading ? (
+            Array.from({ length: 10 }).map((_, index) => (
+              <Table.Row key={index}>
+                <Table.Cell colSpan={2} className="h-6 animate-pulse" />
+              </Table.Row>
+            ))
+          ) : !data ? (
+            <Table.Row></Table.Row>
+          ) : (
+            data.map((item) => (
+              <Table.Row key={item.id}>
+                <Table.Cell>{item.id}</Table.Cell>
+                <Table.Cell>{item.name}</Table.Cell>
+              </Table.Row>
+            ))
+          )}
+        </Table.Body>
+      </Table>
     </div>
   )
 }

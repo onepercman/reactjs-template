@@ -1,19 +1,35 @@
 import { tv } from "tailwind-variants"
 
 export const table = tv({
-  base: "w-full overflow-auto text-sm border border-line rounded",
+  base: "overflow-auto rounded text-xs",
   slots: {
-    table: "w-full border-collapse border-spacing-0",
-    thead: "",
-    tbody: "relative divide-y divide-line text-left",
-    th: "text-secondary px-4 py-2 text-xs font-medium border-b border-line",
-    tr: "group transition-colors divide-x divide-line",
-    td: "px-4 py-2 transition-all data-[selected=true]:bg-default data-[selected=true]:group-hover:bg-default border-t border-line",
+    table: "w-full border-spacing-y-1 border-separate",
+    head: "",
+    body: "relative",
+    column: "bg-default font-semibold px-4 py-2 first:rounded-l last:rounded-r",
+    row: "group",
+    cell: "px-4 py-2 first:rounded-l last:rounded-r font-normal bg-component",
   },
   variants: {
-    selectionMode: {
-      single: { td: "cursor-pointer group-hover:bg-default/70" },
-      multiple: { td: "cursor-pointer group-hover:bg-default/70" },
+    size: {
+      sm: {
+        base: "text-xs",
+        column: "px-2 py-1",
+        cell: "px-2 py-1",
+      },
+      md: {
+        base: "text-sm",
+        column: "px-4 py-1.5",
+        cell: "px-4 py-1.5",
+      },
+      lg: {
+        base: "text-base",
+        column: "px-6 py-2",
+        cell: "px-6 py-2",
+      },
     },
+  },
+  defaultVariants: {
+    size: "md",
   },
 })

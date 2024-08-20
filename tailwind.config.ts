@@ -14,6 +14,9 @@ const config: Config = {
       keyframes: {
         collapse: { from: { height: "0px" }, to: { height: "var(--height)" } },
       },
+      borderRadius: {
+        DEFAULT: "6px",
+      },
       animation: {
         collapse: "collapse",
       },
