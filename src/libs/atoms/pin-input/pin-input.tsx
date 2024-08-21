@@ -1,5 +1,5 @@
 import { PinInput } from "@ark-ui/react"
-import { createCtx, createFactory } from "../utils"
+import { createCtx, createNested } from "../utils"
 import { pinInput } from "./variants"
 
 const { withRoot, withSlot } = createCtx(pinInput)
@@ -12,7 +12,7 @@ const HiddenInput = withSlot(PinInput.HiddenInput)
 const Input = withSlot(PinInput.Input)
 const Label = withSlot(PinInput.Label)
 
-export const Component = createFactory(Root, {
+export const Component = createNested(Root, {
   Root,
   RootProvider,
   Context,

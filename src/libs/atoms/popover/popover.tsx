@@ -1,6 +1,6 @@
 import { Popover } from "@ark-ui/react"
 import React from "react"
-import { createCtx, createFactory } from "../utils"
+import { createCtx, createNested } from "../utils"
 import { popover } from "./variants"
 
 const { withRoot, withSlot } = createCtx(popover)
@@ -47,7 +47,7 @@ const CustomArrow = React.forwardRef<HTMLDivElement, React.ComponentPropsWithout
 
 CustomArrow.displayName = "Arrow"
 
-export const Component = createFactory(Root, {
+export const Component = createNested(Root, {
   Root,
   RootProvider,
   Anchor,

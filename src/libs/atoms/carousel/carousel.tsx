@@ -1,5 +1,5 @@
 import { Carousel } from "@ark-ui/react"
-import { createCtx, createFactory } from "../utils"
+import { createCtx, createNested } from "../utils"
 import { carousel } from "./variants"
 
 const { withRoot, withSlot } = createCtx(carousel)
@@ -16,7 +16,7 @@ const NextTrigger = withSlot(Carousel.NextTrigger)
 const PrevTrigger = withSlot(Carousel.PrevTrigger)
 const Viewport = withSlot(Carousel.Viewport)
 
-export const Component = createFactory(Root, {
+export const Component = createNested(Root, {
   Root,
   RootProvider,
   Context,

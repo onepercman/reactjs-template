@@ -66,13 +66,13 @@ export function createCtx<TVFN extends Recipe, Slot extends keyof ReturnType<TVF
   }
 }
 
-export function createFactory<
-  C extends React.ElementType,
-  K extends Record<string, React.ElementType | ((...args: any) => any)>,
->(Component: C, children: Readonly<K>) {
-  const c = Component as any
-  Object.keys(children).forEach(function (key) {
-    c[key] = children[key]
+export function createNested<
+  F extends React.ElementType,
+  N extends Readonly<Record<string, React.ElementType | ((...args: any) => any)>>,
+>(Factory: F, nestedChildren: Readonly<N>) {
+  const c = Factory as any
+  Object.keys(nestedChildren).forEach(function (key) {
+    c[key] = nestedChildren[key]
   })
-  return c as C & K
+  return c as F & N
 }

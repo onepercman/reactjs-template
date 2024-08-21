@@ -1,5 +1,5 @@
 import { Progress } from "@ark-ui/react"
-import { createCtx, createFactory } from "../utils"
+import { createCtx, createNested } from "../utils"
 import { progress } from "./variants"
 
 const { withRoot, withSlot } = createCtx(progress)
@@ -16,7 +16,7 @@ const Track = withSlot(Progress.Track, "track")
 const ValueText = withSlot(Progress.ValueText)
 const View = withSlot(Progress.View)
 
-export const Component = createFactory(Root, {
+export const Component = createNested(Root, {
   Root,
   RootProvider,
   Circle,

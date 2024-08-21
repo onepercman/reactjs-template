@@ -1,5 +1,5 @@
 import { Collapsible } from "@ark-ui/react"
-import { createCtx, createFactory } from "../utils"
+import { createCtx, createNested } from "../utils"
 import { collapsible } from "./variants"
 
 const { withRoot, withSlot } = createCtx(collapsible)
@@ -10,7 +10,7 @@ const Context = withSlot(Collapsible.Context)
 const RootProvider = withSlot(Collapsible.RootProvider)
 const Trigger = withSlot(Collapsible.Trigger, "trigger")
 
-export const Component = createFactory(Root, {
+export const Component = createNested(Root, {
   Root,
   Content,
   Context,

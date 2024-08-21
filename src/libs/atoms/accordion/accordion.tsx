@@ -1,5 +1,5 @@
 import { Accordion } from "@ark-ui/react"
-import { createCtx, createFactory } from "../utils"
+import { createCtx, createNested } from "../utils"
 import { accordion } from "./variants"
 
 const { withRoot, withSlot } = createCtx(accordion)
@@ -13,7 +13,7 @@ const ItemTrigger = withSlot(Accordion.ItemTrigger, "itemTrigger")
 const ItemContent = withSlot(Accordion.ItemContent, "itemContent")
 const ItemIndicator = withSlot(Accordion.ItemIndicator, "itemIndicator")
 
-export const Component = createFactory(Root, {
+export const Component = createNested(Root, {
   Root,
   RootProvider,
   Context,

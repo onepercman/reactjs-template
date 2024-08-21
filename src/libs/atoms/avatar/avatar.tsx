@@ -1,5 +1,5 @@
 import { Avatar } from "@ark-ui/react"
-import { createCtx, createFactory } from "../utils"
+import { createCtx, createNested } from "../utils"
 import { avatar } from "./variants"
 
 const { withRoot, withSlot } = createCtx(avatar)
@@ -10,7 +10,7 @@ const Context = withSlot(Avatar.Context)
 const Image = withSlot(Avatar.Image, "image")
 const Fallback = withSlot(Avatar.Fallback, "fallback")
 
-export const Component = createFactory(Root, {
+export const Component = createNested(Root, {
   Root,
   RootProvider,
   Context,

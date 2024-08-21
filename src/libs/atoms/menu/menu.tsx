@@ -1,6 +1,6 @@
 import { Menu, Portal } from "@ark-ui/react"
 import React from "react"
-import { createCtx, createFactory } from "../utils"
+import { createCtx, createNested } from "../utils"
 import { menu } from "./variants"
 
 const { withRoot, withSlot } = createCtx(menu)
@@ -44,7 +44,7 @@ const CustomContent = React.forwardRef<HTMLDivElement, React.ComponentPropsWitho
 
 CustomContent.displayName = "Content"
 
-export const Component = createFactory(Root, {
+export const Component = createNested(Root, {
   Root,
   RootProvider,
   Arrow,

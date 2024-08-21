@@ -4,7 +4,7 @@ import { LuArrowRightCircle, LuCalendar, LuChevronLeft, LuChevronRight } from "r
 import { Button } from "../button"
 import { Input as AtomInput, InputProps } from "../input"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createCtx, createFactory } from "../utils"
+import { createCtx, createNested } from "../utils"
 import { datePicker } from "./variants"
 
 const { withRoot, withSlot } = createCtx(datePicker)
@@ -217,7 +217,7 @@ export const CustomRoot = _bootstrap(function ({ inputProps = {}, positioning, .
   )
 })
 
-export const Component = createFactory(CustomRoot, {
+export const Component = createNested(CustomRoot, {
   Root,
   RootProvider,
   ClearTrigger,

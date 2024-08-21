@@ -1,7 +1,7 @@
 import { Dialog, Portal } from "@ark-ui/react"
 import React from "react"
 import { LuX } from "react-icons/lu"
-import { createCtx, createFactory } from "../utils"
+import { createCtx, createNested } from "../utils"
 import { confirm, open } from "./fn"
 import { dialog } from "./variants"
 
@@ -48,7 +48,7 @@ const CustomCloseTrigger = React.forwardRef<HTMLDivElement, React.ComponentProps
 
 CustomCloseTrigger.displayName = "CloseTrigger"
 
-export const Component = createFactory(Root, {
+export const Component = createNested(Root, {
   Root,
   RootProvider,
   Backdrop,

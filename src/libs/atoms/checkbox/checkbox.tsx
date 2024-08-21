@@ -2,7 +2,7 @@ import { Checkbox, CheckboxRootProps } from "@ark-ui/react"
 import React from "react"
 import { LuCheck, LuMinus } from "react-icons/lu"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createCtx, createFactory } from "../utils"
+import { createCtx, createNested } from "../utils"
 import { checkbox } from "./variants"
 
 const { withRoot, withSlot } = createCtx(checkbox)
@@ -42,7 +42,7 @@ export const CustomRoot = _bootstrap(function ({ children, ...props }, ref) {
   )
 })
 
-export const Component = createFactory(CustomRoot, {
+export const Component = createNested(CustomRoot, {
   Root,
   RootProvider,
   Context,

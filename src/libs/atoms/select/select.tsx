@@ -3,7 +3,7 @@ import React from "react"
 import { LuChevronDown } from "react-icons/lu"
 import { Button, ButtonProps } from "../button"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createCtx, createFactory } from "../utils"
+import { createCtx, createNested } from "../utils"
 import { select } from "./variants"
 
 const { withRoot, withSlot } = createCtx(select)
@@ -73,7 +73,7 @@ export const CustomRoot = _bootstrap(function ({ children, positioning, trigger,
   )
 })
 
-export const Component = createFactory(CustomRoot, {
+export const Component = createNested(CustomRoot, {
   Root,
   RootProvider,
   Context,

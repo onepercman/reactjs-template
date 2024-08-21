@@ -1,5 +1,5 @@
 import { Fieldset } from "@ark-ui/react"
-import { createCtx, createFactory } from "../utils"
+import { createCtx, createNested } from "../utils"
 import { fieldset } from "./variants"
 
 const { withRoot, withSlot } = createCtx(fieldset)
@@ -11,7 +11,7 @@ const ErrorText = withSlot(Fieldset.ErrorText)
 const HelperText = withSlot(Fieldset.HelperText)
 const Legend = withSlot(Fieldset.Legend)
 
-export const Component = createFactory(Root, {
+export const Component = createNested(Root, {
   Root,
   RootProvider,
   Context,

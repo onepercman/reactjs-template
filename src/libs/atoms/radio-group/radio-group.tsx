@@ -1,6 +1,6 @@
 import { RadioGroup } from "@ark-ui/react"
 import React from "react"
-import { createCtx, createFactory } from "../utils"
+import { createCtx, createNested } from "../utils"
 import { radioGroup } from "./variants"
 
 const { withRoot, withSlot } = createCtx(radioGroup)
@@ -31,7 +31,7 @@ const CustomItem = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutR
 
 Item.displayName = "Item"
 
-export const Component = createFactory(Root, {
+export const Component = createNested(Root, {
   Root,
   RootProvider,
   Context,

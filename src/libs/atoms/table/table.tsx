@@ -1,5 +1,5 @@
 import React from "react"
-import { createCtx, createFactory } from "../utils"
+import { createCtx, createNested } from "../utils"
 import { table } from "./variants"
 
 const { withRoot, withSlot } = createCtx(table)
@@ -36,7 +36,7 @@ export const Header = React.forwardRef<React.ComponentRef<typeof Head>, React.Co
   )
 })
 
-export const Component = createFactory(Wrapper, {
+export const Component = createNested(Wrapper, {
   Root,
   Table,
   Head,
