@@ -1,9 +1,9 @@
 # Ark UI components kit
 
-- [ ] Color Picker
-- [ ] Pin Input
-- [ ] Rating Group
-- [ ] Tags Input
+- [x] Color Picker
+- [x] Pin Input
+- [x] Rating Group
+- [x] Tags Input
 - [x] Accordion
 - [x] Avatar
 - [x] Button
