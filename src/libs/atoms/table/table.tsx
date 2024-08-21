@@ -15,9 +15,9 @@ const Cell = withSlot("td", "cell")
 export const Wrapper = React.forwardRef<
   React.ComponentRef<typeof Table>,
   React.ComponentProps<typeof Table> & React.ComponentProps<typeof Root>
->(function ({ size, className, classNames, children, ...props }, ref) {
+>(function ({ size, highlightRow, className, classNames, children, ...props }, ref) {
   return (
-    <Root size={size} className={className} classNames={classNames}>
+    <Root size={size} highlightRow={highlightRow} className={className} classNames={classNames}>
       <Table ref={ref} {...props}>
         {children}
       </Table>

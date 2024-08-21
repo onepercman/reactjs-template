@@ -1,4 +1,5 @@
 import { Table } from "@/libs/atoms"
+import { toaster } from "@/libs/toaster"
 import { sleep } from "@/shared/utils/promise"
 import { useQuery } from "@tanstack/react-query"
 
@@ -12,7 +13,7 @@ export default function () {
 
   return (
     <div className="p-4">
-      <Table>
+      <Table highlightRow>
         <Table.Header>
           <Table.Column align="left">Id</Table.Column>
           <Table.Column align="left">Name</Table.Column>
@@ -29,7 +30,7 @@ export default function () {
             <Table.Row></Table.Row>
           ) : (
             data.map((item) => (
-              <Table.Row key={item.id}>
+              <Table.Row key={item.id} onClick={() => toaster.create({ title: item.name })}>
                 <Table.Cell>{item.id}</Table.Cell>
                 <Table.Cell>{item.name}</Table.Cell>
               </Table.Row>

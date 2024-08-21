@@ -28,6 +28,11 @@ export const table = tv({
         cell: "px-6 py-2",
       },
     },
+    highlightRow: {
+      true: {
+        cell: "transition-colors group-hover:bg-default cursor-pointer",
+      },
+    },
   },
   defaultVariants: {
     size: "md",
