@@ -1,4 +1,4 @@
-import { Table } from "@/libs/atoms"
+import { Avatar, Table } from "@/libs/atoms"
 import { toaster } from "@/libs/toaster"
 import { sleep } from "@/shared/utils/promise"
 import { useQuery } from "@tanstack/react-query"
@@ -16,6 +16,7 @@ export default function () {
       <Table highlightRow>
         <Table.Header>
           <Table.Column align="left">Id</Table.Column>
+          <Table.Column align="left">Avatar</Table.Column>
           <Table.Column align="left">Name</Table.Column>
         </Table.Header>
 
@@ -23,7 +24,7 @@ export default function () {
           {isLoading ? (
             Array.from({ length: 10 }).map((_, index) => (
               <Table.Row key={index}>
-                <Table.Cell colSpan={2} className="h-8 animate-pulse" />
+                <Table.Cell colSpan={3} className="h-8 animate-pulse" />
               </Table.Row>
             ))
           ) : !data ? (
@@ -32,6 +33,9 @@ export default function () {
             data.map((item) => (
               <Table.Row key={item.id} onClick={() => toaster.create({ title: item.name })}>
                 <Table.Cell>{item.id}</Table.Cell>
+                <Table.Cell>
+                  <Avatar size="xs" seed={item.name} />
+                </Table.Cell>
                 <Table.Cell>{item.name}</Table.Cell>
               </Table.Row>
             ))
