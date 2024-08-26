@@ -1,9 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import React from "react"
 import { useForm, UseFormProps, UseFormReturn } from "react-hook-form"
-import { z, ZodObject } from "zod"
+import { z, ZodType } from "zod"
 
-export function createFormCtx<Schema extends ZodObject<any>, DTO extends z.infer<Schema>>(
+export function createFormCtx<Schema extends ZodType, DTO extends z.infer<Schema>>(
   schema: Schema,
   options: UseFormProps<DTO> = {},
 ) {
