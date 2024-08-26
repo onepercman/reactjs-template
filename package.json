@@ -22,6 +22,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@tanstack/react-query": "^5.52.1",
     "axios": "^1.7.5",
     "dayjs": "^1.11.13",
@@ -33,7 +34,8 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.0",
     "react-router-dom": "^6.26.1",
-    "valtio": "^1.13.2"
+    "valtio": "^1.13.2",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@ark-ui/react": "^3.9.0",
