@@ -8,6 +8,7 @@ export const checkbox = tv({
       "rounded flex border-2 border-line hover:border-primary transition-colors text-primary",
       "data-[state=checked]:border-primary",
     ],
+    indicator: "m-auto",
   },
   variants: {
     size: {

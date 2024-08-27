@@ -1,6 +1,7 @@
 import { Checkbox, CheckboxRootProps } from "@ark-ui/react"
 import React from "react"
-import { LuCheck, LuMinus } from "react-icons/lu"
+import { LuMinus } from "react-icons/lu"
+import { Check } from "../check"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
 import { createCtx, createNested } from "../utils"
 import { checkbox } from "./variants"
@@ -13,7 +14,7 @@ const Context = withSlot(Checkbox.Context)
 const Control = withSlot(Checkbox.Control, "control")
 const Group = withSlot(Checkbox.Group)
 const HiddenInput = withSlot(Checkbox.HiddenInput)
-const Indicator = withSlot(Checkbox.Indicator)
+const Indicator = withSlot(Checkbox.Indicator, "indicator")
 const Label = withSlot(Checkbox.Label, "label")
 
 export interface CheckboxProps extends CheckboxRootProps, ComposedTVProps<typeof checkbox> {}
@@ -31,13 +32,17 @@ function _bootstrap(
 export const CustomRoot = _bootstrap(function ({ children, ...props }, ref) {
   return (
     <Root ref={ref} {...props}>
-      <Label>{children}</Label>
-      <Control>
-        <Indicator className="m-auto duration-300 data-[state=checked]:animate-in data-[state=unchecked]:animate-out data-[state=checked]:zoom-in data-[state=unchecked]:zoom-out">
-          {props.indeterminate ? <LuMinus strokeWidth={6} /> : <LuCheck strokeWidth={4} />}
-        </Indicator>
-      </Control>
-      <HiddenInput />
+      <Context>
+        {({ checked }) => (
+          <>
+            <Label>{children}</Label>
+            <Control>
+              <Indicator>{checked ? props.indeterminate ? <LuMinus strokeWidth={6} /> : <Check /> : null}</Indicator>
+            </Control>
+            <HiddenInput />
+          </>
+        )}
+      </Context>
     </Root>
   )
 })
