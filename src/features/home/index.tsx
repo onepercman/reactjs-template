@@ -37,7 +37,7 @@ export default exampleForm.withProvider(function () {
           )}
         />
 
-        <Button type="submit" color="primary">
+        <Button type="submit" color="primary" className="w-full">
           Submit
         </Button>
       </form>
