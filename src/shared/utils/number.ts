@@ -1,9 +1,10 @@
-export function formatNumber(value: number, maximumFractionDigits = 6, compact = false) {
-  if (typeof value !== "number" || isNaN(value)) return value
+export function formatNumber(value: number | string, options: Intl.NumberFormatOptions = {}): string {
+  if (typeof value === "string") value = Number(value)
+  if (typeof value !== "number" || isNaN(value)) return ""
   return new Intl.NumberFormat("en", {
     minimumFractionDigits: 0,
-    maximumFractionDigits,
-    notation: compact ? "compact" : "standard",
+    maximumFractionDigits: 2,
     compactDisplay: "short",
+    ...options,
   }).format(value)
 }
