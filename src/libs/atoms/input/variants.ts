@@ -6,8 +6,10 @@ export const input = tv({
     "h-[var(--input-size)] min-h-[var(--input-size)] min-w-[var(--input-size)] px-2 text-xs",
   ],
   slots: {
-    input:
-      "grow bg-transparent border-transparent focus:outline-none focus:ring-transparent p-0 self-stretch overflow-hidden text-ellipsis h-full placeholder:text-muted",
+    input: [
+      "grow bg-transparent border-transparent p-0 self-stretch overflow-hidden text-ellipsis h-full",
+      "placeholder:text-muted focus:outline-none focus:ring-transparent autofill:[-webkit-background-clip:text]",
+    ],
     addonBefore: "rounded-r-none",
     addonAfter: "rounded-l-none",
   },
