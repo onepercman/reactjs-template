@@ -47,43 +47,75 @@ export const button = tv({
     {
       variant: "default",
       color: "primary",
-      class: ["bg-primary", "text-primary-foreground", "[&:not(:disabled)]:hover:bg-primary-600"],
+      class: [
+        "bg-primary",
+        "text-primary-foreground",
+        "[&:not(:disabled)]:hover:bg-primary-600",
+      ],
     },
     {
       variant: "default",
       color: "info",
-      class: ["bg-info", "text-success-info", "[&:not(:disabled)]:hover:bg-info-600"],
+      class: [
+        "bg-info",
+        "text-success-info",
+        "[&:not(:disabled)]:hover:bg-info-600",
+      ],
     },
     {
       variant: "default",
       color: "success",
-      class: ["bg-success", "text-success-foreground", "[&:not(:disabled)]:hover:bg-success-600"],
+      class: [
+        "bg-success",
+        "text-success-foreground",
+        "[&:not(:disabled)]:hover:bg-success-600",
+      ],
     },
     {
       variant: "default",
       color: "warning",
-      class: ["bg-warning", "text-warning-foreground", "[&:not(:disabled)]:hover:bg-warning-600"],
+      class: [
+        "bg-warning",
+        "text-warning-foreground",
+        "[&:not(:disabled)]:hover:bg-warning-600",
+      ],
     },
     {
       variant: "default",
       color: "error",
-      class: ["bg-error", "text-error-foreground", "[&:not(:disabled)]:hover:bg-error-600"],
+      class: [
+        "bg-error",
+        "text-error-foreground",
+        "[&:not(:disabled)]:hover:bg-error-600",
+      ],
     },
     {
       variant: "default",
       color: "accent",
-      class: ["bg-accent", "text-accent-foreground", "[&:not(:disabled)]:hover:bg-accent-600"],
+      class: [
+        "bg-accent",
+        "text-accent-foreground",
+        "[&:not(:disabled)]:hover:bg-accent-600",
+      ],
     },
     // light
     {
       variant: "light",
       color: "default",
-      class: ["bg-default/20", "text-foreground", "[&:not(:disabled)]:hover:bg-default/50"],
+      class: [
+        "bg-default/20",
+        "text-foreground",
+        "[&:not(:disabled)]:hover:bg-default/50",
+      ],
     },
     {
       variant: "light",
       color: "primary",
-      class: ["bg-primary/20", "text-primary", "[&:not(:disabled)]:hover:bg-primary/50"],
+      class: [
+        "bg-primary/20",
+        "text-primary",
+        "[&:not(:disabled)]:hover:bg-primary/50",
+      ],
     },
     {
       variant: "light",
@@ -93,22 +125,38 @@ export const button = tv({
     {
       variant: "light",
       color: "success",
-      class: ["bg-success/20", "text-success", "[&:not(:disabled)]:hover:bg-success/50"],
+      class: [
+        "bg-success/20",
+        "text-success",
+        "[&:not(:disabled)]:hover:bg-success/50",
+      ],
     },
     {
       variant: "light",
       color: "warning",
-      class: ["bg-warning/20", "text-warning", "[&:not(:disabled)]:hover:bg-warning/50"],
+      class: [
+        "bg-warning/20",
+        "text-warning",
+        "[&:not(:disabled)]:hover:bg-warning/50",
+      ],
     },
     {
       variant: "light",
       color: "error",
-      class: ["bg-error/20", "text-error", "[&:not(:disabled)]:hover:bg-error/50"],
+      class: [
+        "bg-error/20",
+        "text-error",
+        "[&:not(:disabled)]:hover:bg-error/50",
+      ],
     },
     {
       variant: "light",
       color: "accent",
-      class: ["bg-accent/20", "accent-error", "[&:not(:disabled)]:hover:bg-accent/50"],
+      class: [
+        "bg-accent/20",
+        "accent-error",
+        "[&:not(:disabled)]:hover:bg-accent/50",
+      ],
     },
     // outlined
     {

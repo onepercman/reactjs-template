@@ -14,10 +14,10 @@ const Arrow = withSlot(HoverCard.Arrow)
 const ArrowTip = withSlot(HoverCard.ArrowTip, "arrowTip")
 const Content = withSlot(HoverCard.Content, "content")
 
-const CustomContent = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<typeof Content>>(function (
-  { children, ...props },
-  ref,
-) {
+const CustomContent = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof Content>
+>(function ({ children, ...props }, ref) {
   return (
     <Portal>
       <Positioner>
@@ -31,10 +31,10 @@ const CustomContent = React.forwardRef<HTMLDivElement, React.ComponentPropsWitho
 
 CustomContent.displayName = "Content"
 
-const CustomArrow = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<typeof Arrow>>(function (
-  { children, ...props },
-  ref,
-) {
+const CustomArrow = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof Arrow>
+>(function ({ children, ...props }, ref) {
   return (
     <Arrow ref={ref} {...props}>
       <ArrowTip />

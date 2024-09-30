@@ -16,10 +16,10 @@ const ItemHiddenInput = withSlot(RadioGroup.ItemHiddenInput)
 const ItemText = withSlot(RadioGroup.ItemText, "itemText")
 const Label = withSlot(RadioGroup.Label)
 
-const CustomItem = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<typeof Item>>(function (
-  { children, ...props },
-  ref,
-) {
+const CustomItem = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof Item>
+>(function ({ children, ...props }, ref) {
   return (
     <Item ref={ref} {...props}>
       <ItemControl />

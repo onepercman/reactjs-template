@@ -1,6 +1,9 @@
 import React from "react"
 
-export const Check = React.forwardRef<SVGSVGElement, React.SVGAttributes<SVGSVGElement>>(function (props, ref) {
+export const Check = React.forwardRef<
+  SVGSVGElement,
+  React.SVGAttributes<SVGSVGElement>
+>(function (props, ref) {
   return (
     <svg
       ref={ref}
@@ -20,7 +23,12 @@ export const Check = React.forwardRef<SVGSVGElement, React.SVGAttributes<SVGSVGE
         stroke-dasharray="50"
         stroke-dashoffset="50"
       >
-        <animate attributeName="stroke-dashoffset" values="50;0" dur="0.1s" fill="freeze" />
+        <animate
+          attributeName="stroke-dashoffset"
+          values="50;0"
+          dur="0.1s"
+          fill="freeze"
+        />
       </path>
     </svg>
   )

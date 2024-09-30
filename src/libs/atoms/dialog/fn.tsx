@@ -64,7 +64,9 @@ export async function confirm({
                   size="sm"
                   {...cancelProps}
                   onClick={async function (e) {
-                    if (cancelProps?.onClick?.constructor.name === "AsyncFunction") {
+                    if (
+                      cancelProps?.onClick?.constructor.name === "AsyncFunction"
+                    ) {
                       await cancelProps?.onClick(e)
                     } else if (cancelProps?.onClick) {
                       cancelProps?.onClick(e)
@@ -80,7 +82,10 @@ export async function confirm({
                   color="primary"
                   {...confirmProps}
                   onClick={async function (e) {
-                    if (confirmProps?.onClick?.constructor.name === "AsyncFunction") {
+                    if (
+                      confirmProps?.onClick?.constructor.name ===
+                      "AsyncFunction"
+                    ) {
                       await confirmProps?.onClick(e)
                     } else if (confirmProps?.onClick) {
                       confirmProps?.onClick(e)

@@ -1,6 +1,9 @@
 import { proxy, subscribe, useSnapshot } from "valtio"
 
-function omit<T extends object>(obj: T, keys: Array<keyof T>): Omit<T, (typeof keys)[number]> {
+function omit<T extends object>(
+  obj: T,
+  keys: Array<keyof T>,
+): Omit<T, (typeof keys)[number]> {
   const result: Partial<T> = {}
   for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key) && !keys.includes(key)) {
@@ -10,7 +13,10 @@ function omit<T extends object>(obj: T, keys: Array<keyof T>): Omit<T, (typeof k
   return result as Omit<T, (typeof keys)[number]>
 }
 
-function pick<T extends object>(obj: T, keys: Array<keyof T>): Pick<T, (typeof keys)[number]> {
+function pick<T extends object>(
+  obj: T,
+  keys: Array<keyof T>,
+): Pick<T, (typeof keys)[number]> {
   const result: Partial<T> = {}
   for (const key of keys) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -64,19 +70,38 @@ function persist<T extends object>(
 ) {
   const storage = getStorage(storageType)
   if (!storage) throw new Error("Persist failed, Client not found")
-  const data = include ? pick(state, include) : exclude ? omit(state, exclude) : state
+  const data = include
+    ? pick(state, include)
+    : exclude
+      ? omit(state, exclude)
+      : state
   storage.setItem(key, JSON.stringify(data))
 }
 
-function getMergedState<T extends object>(initialState: T, persistedState: T): T {
+function getMergedState<T extends object>(
+  initialState: T,
+  persistedState: T,
+): T {
   const states = { ...initialState, ...persistedState }
   Object.setPrototypeOf(states, Object.getPrototypeOf(initialState))
   return states
 }
 
-function createPersistStore<T extends object>(initialObject: T, persistOptions: ProxyWithPersistOptions<T>): T {
-  const { key, storage = "localStorage", exclude, include, onInit } = persistOptions
-  const mergedState = getMergedState(initialObject, getPersistedData(key, storage))
+function createPersistStore<T extends object>(
+  initialObject: T,
+  persistOptions: ProxyWithPersistOptions<T>,
+): T {
+  const {
+    key,
+    storage = "localStorage",
+    exclude,
+    include,
+    onInit,
+  } = persistOptions
+  const mergedState = getMergedState(
+    initialObject,
+    getPersistedData(key, storage),
+  )
   persist(key, mergedState, storage, { exclude, include })
   onInit && onInit(mergedState)
   const state = proxy(mergedState)
@@ -86,7 +111,10 @@ function createPersistStore<T extends object>(initialObject: T, persistOptions: 
   return state
 }
 
-function createStore<T extends object>(initialObject: T, persistOptions?: ProxyWithPersistOptions<T>): T {
+function createStore<T extends object>(
+  initialObject: T,
+  persistOptions?: ProxyWithPersistOptions<T>,
+): T {
   if (!persistOptions) return proxy(initialObject)
   return createPersistStore(initialObject, persistOptions)
 }

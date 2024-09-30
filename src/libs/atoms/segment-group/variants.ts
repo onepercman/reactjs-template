@@ -21,19 +21,23 @@ export const segmentGroup = tv({
     variant: {
       solid: {
         base: "rounded p-1 bg-line",
-        indicator: "absolute left-[var(--left)] w-[var(--width)] bottom-1 h-[var(--height)] bg-default rounded",
+        indicator:
+          "absolute left-[var(--left)] w-[var(--width)] bottom-1 h-[var(--height)] bg-default rounded",
       },
       underlined: {
         base: "",
-        indicator: "absolute left-[var(--left)] w-[var(--width)] bottom-0 h-1 bg-foreground rounded",
+        indicator:
+          "absolute left-[var(--left)] w-[var(--width)] bottom-0 h-1 bg-foreground rounded",
       },
       bordered: {
         base: "rounded p-1 border border-line",
-        indicator: "absolute left-[var(--left)] w-[var(--width)] bottom-1 h-[var(--height)] bg-default rounded",
+        indicator:
+          "absolute left-[var(--left)] w-[var(--width)] bottom-1 h-[var(--height)] bg-default rounded",
       },
       light: {
         base: "",
-        indicator: "absolute left-[var(--left)] w-[var(--width)] bottom-0 h-[var(--height)] bg-default rounded",
+        indicator:
+          "absolute left-[var(--left)] w-[var(--width)] bottom-0 h-[var(--height)] bg-default rounded",
       },
     },
   },

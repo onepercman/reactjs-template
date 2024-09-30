@@ -15,7 +15,10 @@ export interface InputFieldProps {
 }
 
 export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "prefix" | "suffix" | "size">,
+  extends Omit<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      "prefix" | "suffix" | "size"
+    >,
     InputFieldProps,
     ComposedTVProps<typeof input> {}
 
@@ -109,14 +112,16 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       const element = prefix as React.ReactElement
       if (!element) return null
 
-      if (typeof element === "object" && "type" in element) return React.cloneElement(element)
+      if (typeof element === "object" && "type" in element)
+        return React.cloneElement(element)
       return <span>{element}</span>
     }
 
     function _renderSuffix() {
       const element = suffix as React.ReactElement
       if (!element) return null
-      if (typeof element === "object" && "type" in element) return React.cloneElement(element)
+      if (typeof element === "object" && "type" in element)
+        return React.cloneElement(element)
       return <span>{element}</span>
     }
 
@@ -130,7 +135,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             class: classNames?.addonBefore,
           }),
         })
-      return <span className={styles.addonBefore({ class: classNames?.addonBefore })}>{element}</span>
+      return (
+        <span
+          className={styles.addonBefore({ class: classNames?.addonBefore })}
+        >
+          {element}
+        </span>
+      )
     }
 
     function _renderAddonAfter() {
@@ -143,14 +154,21 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             class: classNames?.addonAfter,
           }),
         })
-      return <span className={styles.addonAfter({ class: classNames?.addonAfter })}>{element}</span>
+      return (
+        <span className={styles.addonAfter({ class: classNames?.addonAfter })}>
+          {element}
+        </span>
+      )
     }
 
     return (
       <label
         role="input"
         className={styles.base({
-          className: cn(className, classNames?.base, { "pl-0": !!addonBefore, "pr-0": !!addonAfter }),
+          className: cn(className, classNames?.base, {
+            "pl-0": !!addonBefore,
+            "pr-0": !!addonAfter,
+          }),
         })}
       >
         {_renderAddonBefore()}

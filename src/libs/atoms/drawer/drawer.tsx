@@ -18,10 +18,10 @@ const Trigger = withSlot(Drawer.Trigger)
 const Content = withSlot(Drawer.Content, "content")
 const CloseTrigger = withSlot(Drawer.Close, "closeTrigger")
 
-const CustomContent = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<typeof Content>>(function (
-  { children, ...props },
-  ref,
-) {
+const CustomContent = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof Content>
+>(function ({ children, ...props }, ref) {
   return (
     <Portal>
       <Overlay />
@@ -36,15 +36,16 @@ const CustomContent = React.forwardRef<HTMLDivElement, React.ComponentPropsWitho
 
 Content.displayName = "Content"
 
-const CustomCloseTrigger = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<typeof CloseTrigger>>(
-  function ({ children, ...props }, ref) {
-    return (
-      <CloseTrigger ref={ref} asChild {...props}>
-        <LuX role="button" className="text-secondary" />
-      </CloseTrigger>
-    )
-  },
-)
+const CustomCloseTrigger = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof CloseTrigger>
+>(function ({ children, ...props }, ref) {
+  return (
+    <CloseTrigger ref={ref} asChild {...props}>
+      <LuX role="button" className="text-secondary" />
+    </CloseTrigger>
+  )
+})
 
 CloseTrigger.displayName = "CloseTrigger"
 

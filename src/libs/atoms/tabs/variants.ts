@@ -24,19 +24,23 @@ export const tabs = tv({
     variant: {
       solid: {
         list: "rounded p-1 bg-line",
-        indicator: "absolute left-[var(--left)] w-[var(--width)] bottom-1 h-[var(--height)] bg-default rounded",
+        indicator:
+          "absolute left-[var(--left)] w-[var(--width)] bottom-1 h-[var(--height)] bg-default rounded",
       },
       underlined: {
         list: "",
-        indicator: "absolute left-[var(--left)] w-[var(--width)] bottom-0 h-1 bg-foreground rounded",
+        indicator:
+          "absolute left-[var(--left)] w-[var(--width)] bottom-0 h-1 bg-foreground rounded",
       },
       bordered: {
         list: "rounded p-1 border border-line",
-        indicator: "absolute left-[var(--left)] w-[var(--width)] bottom-1 h-[var(--height)] bg-default rounded",
+        indicator:
+          "absolute left-[var(--left)] w-[var(--width)] bottom-1 h-[var(--height)] bg-default rounded",
       },
       light: {
         list: "",
-        indicator: "absolute left-[var(--left)] w-[var(--width)] bottom-0 h-[var(--height)] bg-default rounded",
+        indicator:
+          "absolute left-[var(--left)] w-[var(--width)] bottom-0 h-[var(--height)] bg-default rounded",
       },
     },
   },

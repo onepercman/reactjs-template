@@ -4,7 +4,10 @@ export const switchVariants = tv({
   base: "inline-flex items-center gap-2 cursor-pointer",
   slots: {
     label: "",
-    control: ["bg-default rounded-full relative flex transition-colors", "data-[state=checked]:bg-primary"],
+    control: [
+      "bg-default rounded-full relative flex transition-colors",
+      "data-[state=checked]:bg-primary",
+    ],
     thumb: [
       "absolute top-1 bottom-1 aspect-square bg-muted rounded-full left-1 transition-all",
       "data-[state=checked]:bg-white",
@@ -35,7 +38,8 @@ export const switchVariants = tv({
     },
     indeterminate: {
       true: {
-        control: "data-[state=checked]:bg-primary data-[state=checked]:text-white",
+        control:
+          "data-[state=checked]:bg-primary data-[state=checked]:text-white",
       },
     },
     placement: {

@@ -17,16 +17,23 @@ const HiddenInput = withSlot(Checkbox.HiddenInput)
 const Indicator = withSlot(Checkbox.Indicator, "indicator")
 const Label = withSlot(Checkbox.Label, "label")
 
-export interface CheckboxProps extends CheckboxRootProps, ComposedTVProps<typeof checkbox> {}
+export interface CheckboxProps
+  extends CheckboxRootProps,
+    ComposedTVProps<typeof checkbox> {}
 
 export interface Checkbox extends ForwardedRefComponent {
   (props: CheckboxProps): React.ReactElement | null
 }
 
 function _bootstrap(
-  render: (props: CheckboxProps, ref: React.ForwardedRef<HTMLDivElement>) => React.ReactElement | null,
+  render: (
+    props: CheckboxProps,
+    ref: React.ForwardedRef<HTMLDivElement>,
+  ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLDivElement, CheckboxProps>(render) as unknown as Checkbox
+  return React.forwardRef<HTMLDivElement, CheckboxProps>(
+    render,
+  ) as unknown as Checkbox
 }
 
 export const CustomRoot = _bootstrap(function ({ children, ...props }, ref) {
@@ -37,7 +44,15 @@ export const CustomRoot = _bootstrap(function ({ children, ...props }, ref) {
           <>
             <Label>{children}</Label>
             <Control>
-              <Indicator>{checked ? props.indeterminate ? <LuMinus strokeWidth={6} /> : <Check /> : null}</Indicator>
+              <Indicator>
+                {checked ? (
+                  props.indeterminate ? (
+                    <LuMinus strokeWidth={6} />
+                  ) : (
+                    <Check />
+                  )
+                ) : null}
+              </Indicator>
             </Control>
             <HiddenInput />
           </>

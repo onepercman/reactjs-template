@@ -11,7 +11,10 @@ export default exampleForm.withProvider(function () {
 
   return (
     <div className="p-4">
-      <form className="mx-auto max-w-xs space-y-2 rounded border border-line p-6" onSubmit={submit}>
+      <form
+        className="mx-auto max-w-xs space-y-2 rounded border border-line p-6"
+        onSubmit={submit}
+      >
         <Controller
           control={form.control}
           name="name"

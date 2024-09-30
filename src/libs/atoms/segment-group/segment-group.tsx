@@ -17,10 +17,10 @@ const ItemHiddenInput = withSlot(SegmentGroup.ItemHiddenInput)
 const ItemText = withSlot(SegmentGroup.ItemText)
 const Label = withSlot(SegmentGroup.Label)
 
-const CustomItem = React.forwardRef<HTMLElement, React.ComponentPropsWithoutRef<typeof Item>>(function (
-  { children, ...props },
-  ref,
-) {
+const CustomItem = React.forwardRef<
+  HTMLElement,
+  React.ComponentPropsWithoutRef<typeof Item>
+>(function ({ children, ...props }, ref) {
   return (
     <Item ref={ref} {...props}>
       <ItemText>{children}</ItemText>
@@ -42,7 +42,9 @@ function _bootstrap(
     ref: React.ForwardedRef<HTMLDivElement>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLDivElement, React.ComponentProps<typeof Root>>(render) as unknown as SegmentGroup
+  return React.forwardRef<HTMLDivElement, React.ComponentProps<typeof Root>>(
+    render,
+  ) as unknown as SegmentGroup
 }
 
 export const CustomRoot = _bootstrap(function ({ children, ...props }, ref) {

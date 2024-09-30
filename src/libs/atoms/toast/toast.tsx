@@ -34,9 +34,16 @@ export const Component: FC<{
               {getIcon(type)}
               {title}
             </Toast.Title>
-            <Toast.Description className={styles.description()}>{description}</Toast.Description>
+            <Toast.Description className={styles.description()}>
+              {description}
+            </Toast.Description>
             <Toast.CloseTrigger asChild>
-              <Button size="xs" shape="circle" className={styles.dismiss()} leftIcon={<LuX />} />
+              <Button
+                size="xs"
+                shape="circle"
+                className={styles.dismiss()}
+                leftIcon={<LuX />}
+              />
             </Toast.CloseTrigger>
           </Toast.Root>
         )

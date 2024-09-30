@@ -27,7 +27,8 @@ export const textarea = tv({
     },
     invalid: {
       true: {
-        group: "border-2 border-error text-error bg-error/10 focus-within:border-error-600",
+        group:
+          "border-2 border-error text-error bg-error/10 focus-within:border-error-600",
         label: "text-error",
       },
     },

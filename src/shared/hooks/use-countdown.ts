@@ -13,8 +13,13 @@ export interface UseCountdownStates<Format extends boolean = false> {
   isFinished: boolean
 }
 
-export function useCountdown<Format extends boolean = false>(targetDate: number | string, format?: Format) {
-  const [remaining, setRemaining] = useState<number>(new Date(targetDate).valueOf() - Date.now())
+export function useCountdown<Format extends boolean = false>(
+  targetDate: number | string,
+  format?: Format,
+) {
+  const [remaining, setRemaining] = useState<number>(
+    new Date(targetDate).valueOf() - Date.now(),
+  )
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -41,7 +46,9 @@ export function useCountdown<Format extends boolean = false>(targetDate: number 
 
   return useMemo(() => {
     const days = Math.floor(remaining / (1000 * 60 * 60 * 24))
-    const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    const hours = Math.floor(
+      (remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+    )
     const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60))
     const seconds = Math.floor((remaining % (1000 * 60)) / 1000)
 

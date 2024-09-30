@@ -1,6 +1,11 @@
 import { DatePicker, DatePickerRootProps, Portal } from "@ark-ui/react"
 import React, { Fragment } from "react"
-import { LuArrowRightCircle, LuCalendar, LuChevronLeft, LuChevronRight } from "react-icons/lu"
+import {
+  LuArrowRightCircle,
+  LuCalendar,
+  LuChevronLeft,
+  LuChevronRight,
+} from "react-icons/lu"
 import { Button } from "../button"
 import { Input as AtomInput, InputProps } from "../input"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
@@ -26,7 +31,10 @@ const RangeText = withSlot(DatePicker.RangeText)
 const Table = withSlot(DatePicker.Table, "table")
 const TableBody = withSlot(DatePicker.TableBody)
 const TableCell = withSlot(DatePicker.TableCell)
-const TableCellTrigger = withSlot(DatePicker.TableCellTrigger, "tableCellTrigger")
+const TableCellTrigger = withSlot(
+  DatePicker.TableCellTrigger,
+  "tableCellTrigger",
+)
 const TableHead = withSlot(DatePicker.TableHead)
 const TableHeader = withSlot(DatePicker.TableHeader, "tableHeader")
 const TableRow = withSlot(DatePicker.TableRow)
@@ -36,7 +44,9 @@ const ViewControl = withSlot(DatePicker.ViewControl, "viewControl")
 const ViewTrigger = withSlot(DatePicker.ViewTrigger)
 const YearSelect = withSlot(DatePicker.YearSelect)
 
-export interface DatePickerCompactProps extends DatePickerRootProps, ComposedTVProps<typeof datePicker> {
+export interface DatePickerCompactProps
+  extends DatePickerRootProps,
+    ComposedTVProps<typeof datePicker> {
   inputProps?: InputProps
 }
 
@@ -45,14 +55,27 @@ export interface DatePicker extends ForwardedRefComponent {
 }
 
 function _bootstrap(
-  render: (props: DatePickerCompactProps, ref: React.ForwardedRef<HTMLInputElement>) => React.ReactElement | null,
+  render: (
+    props: DatePickerCompactProps,
+    ref: React.ForwardedRef<HTMLInputElement>,
+  ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLInputElement, DatePickerCompactProps>(render) as unknown as DatePicker
+  return React.forwardRef<HTMLInputElement, DatePickerCompactProps>(
+    render,
+  ) as unknown as DatePicker
 }
 
-export const CustomRoot = _bootstrap(function ({ inputProps = {}, positioning, ...props }, ref) {
+export const CustomRoot = _bootstrap(function (
+  { inputProps = {}, positioning, ...props },
+  ref,
+) {
   return (
-    <Root ref={ref} asChild positioning={{ placement: "bottom-end", ...positioning }} {...props}>
+    <Root
+      ref={ref}
+      asChild
+      positioning={{ placement: "bottom-end", ...positioning }}
+      {...props}
+    >
       <Fragment>
         {props.selectionMode === "range" ? (
           <Control>
@@ -64,7 +87,10 @@ export const CustomRoot = _bootstrap(function ({ inputProps = {}, positioning, .
               <AtomInput {...inputProps} />
             </Input>
             <Trigger asChild onClick={(e) => e.stopPropagation()}>
-              <Button shape="square" leftIcon={<LuCalendar className="text-secondary" />} />
+              <Button
+                shape="square"
+                leftIcon={<LuCalendar className="text-secondary" />}
+              />
             </Trigger>
           </Control>
         ) : (
@@ -107,7 +133,9 @@ export const CustomRoot = _bootstrap(function ({ inputProps = {}, positioning, .
                         <TableHead>
                           <TableRow>
                             {datePicker.weekDays.map((weekDay, id) => (
-                              <TableHeader key={id}>{weekDay.narrow}</TableHeader>
+                              <TableHeader key={id}>
+                                {weekDay.narrow}
+                              </TableHeader>
                             ))}
                           </TableRow>
                         </TableHead>
@@ -151,19 +179,21 @@ export const CustomRoot = _bootstrap(function ({ inputProps = {}, positioning, .
                       </ViewControl>
                       <Table>
                         <TableBody>
-                          {datePicker.getMonthsGrid({ columns: 4, format: "short" }).map((months, id) => (
-                            <TableRow key={id}>
-                              {months.map((month, id) => (
-                                <TableCell key={id} value={month.value}>
-                                  <TableCellTrigger asChild>
-                                    <Button size="xs" variant="ghost">
-                                      {month.label}
-                                    </Button>
-                                  </TableCellTrigger>
-                                </TableCell>
-                              ))}
-                            </TableRow>
-                          ))}
+                          {datePicker
+                            .getMonthsGrid({ columns: 4, format: "short" })
+                            .map((months, id) => (
+                              <TableRow key={id}>
+                                {months.map((month, id) => (
+                                  <TableCell key={id} value={month.value}>
+                                    <TableCellTrigger asChild>
+                                      <Button size="xs" variant="ghost">
+                                        {month.label}
+                                      </Button>
+                                    </TableCellTrigger>
+                                  </TableCell>
+                                ))}
+                              </TableRow>
+                            ))}
                         </TableBody>
                       </Table>
                     </>
@@ -190,19 +220,21 @@ export const CustomRoot = _bootstrap(function ({ inputProps = {}, positioning, .
                       </ViewControl>
                       <Table>
                         <TableBody>
-                          {datePicker.getYearsGrid({ columns: 4 }).map((years, id) => (
-                            <TableRow key={id}>
-                              {years.map((year, id) => (
-                                <TableCell key={id} value={year.value}>
-                                  <TableCellTrigger asChild>
-                                    <Button size="xs" variant="ghost">
-                                      {year.label}
-                                    </Button>
-                                  </TableCellTrigger>
-                                </TableCell>
-                              ))}
-                            </TableRow>
-                          ))}
+                          {datePicker
+                            .getYearsGrid({ columns: 4 })
+                            .map((years, id) => (
+                              <TableRow key={id}>
+                                {years.map((year, id) => (
+                                  <TableCell key={id} value={year.value}>
+                                    <TableCellTrigger asChild>
+                                      <Button size="xs" variant="ghost">
+                                        {year.label}
+                                      </Button>
+                                    </TableCellTrigger>
+                                  </TableCell>
+                                ))}
+                              </TableRow>
+                            ))}
                         </TableBody>
                       </Table>
                     </>

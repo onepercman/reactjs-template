@@ -27,10 +27,10 @@ const Trigger = withSlot(Menu.Trigger)
 const TriggerItem = withSlot(Menu.TriggerItem)
 const Content = withSlot(Menu.Content, "content")
 
-const CustomContent = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<typeof Content>>(function (
-  { children, ...props },
-  ref,
-) {
+const CustomContent = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof Content>
+>(function ({ children, ...props }, ref) {
   return (
     <Portal>
       <Positioner>

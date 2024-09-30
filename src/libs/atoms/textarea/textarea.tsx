@@ -1,12 +1,17 @@
 import React from "react"
 import { LuX } from "react-icons/lu"
-import TextAreaAutoSize, { TextareaAutosizeProps } from "react-textarea-autosize"
+import TextAreaAutoSize, {
+  TextareaAutosizeProps,
+} from "react-textarea-autosize"
 import { ComposedTVProps } from "../types"
 import { cn, useComposedRefs } from "../utils"
 import { textarea } from "./variants"
 
 export interface TextareaProps<AutoSize extends boolean = true>
-  extends Omit<React.HTMLAttributes<HTMLTextAreaElement>, "prefix" | "suffix" | "size">,
+  extends Omit<
+      React.HTMLAttributes<HTMLTextAreaElement>,
+      "prefix" | "suffix" | "size"
+    >,
     ComposedTVProps<typeof textarea> {
   autoSize?: AutoSize
   prefix?: React.ReactNode | React.ReactElement
@@ -80,14 +85,16 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       const element = prefix as React.ReactElement
       if (!element) return null
 
-      if (typeof element === "object" && "type" in element) return React.cloneElement(element)
+      if (typeof element === "object" && "type" in element)
+        return React.cloneElement(element)
       return <span>{element}</span>
     }
 
     function _renderSuffix() {
       const element = suffix as React.ReactElement
       if (!element) return null
-      if (typeof element === "object" && "type" in element) return React.cloneElement(element)
+      if (typeof element === "object" && "type" in element)
+        return React.cloneElement(element)
       return <span>{element}</span>
     }
 
@@ -101,7 +108,13 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             class: classNames?.addonBefore,
           }),
         })
-      return <span className={styles.addonBefore({ class: classNames?.addonBefore })}>{element}</span>
+      return (
+        <span
+          className={styles.addonBefore({ class: classNames?.addonBefore })}
+        >
+          {element}
+        </span>
+      )
     }
 
     function _renderAddonAfter() {
@@ -114,7 +127,11 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             class: classNames?.addonAfter,
           }),
         })
-      return <span className={styles.addonAfter({ class: classNames?.addonAfter })}>{element}</span>
+      return (
+        <span className={styles.addonAfter({ class: classNames?.addonAfter })}>
+          {element}
+        </span>
+      )
     }
 
     const Component = autoSize ? TextAreaAutoSize : ("textarea" as any)

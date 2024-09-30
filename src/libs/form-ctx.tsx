@@ -3,10 +3,10 @@ import React from "react"
 import { useForm, UseFormProps, UseFormReturn } from "react-hook-form"
 import { z, ZodType } from "zod"
 
-export function createFormCtx<Schema extends ZodType, DTO extends z.infer<Schema>>(
-  schema: Schema,
-  options: UseFormProps<DTO> = {},
-) {
+export function createFormCtx<
+  Schema extends ZodType,
+  DTO extends z.infer<Schema>,
+>(schema: Schema, options: UseFormProps<DTO> = {}) {
   const Ctx = React.createContext<UseFormReturn<DTO>>(undefined as any)
 
   const formOptions = {
