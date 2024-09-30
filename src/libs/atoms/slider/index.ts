@@ -1,2 +1,2 @@
-export * as Slider from "./slider"
+export { Component as Slider } from "./slider"
 export * from "./variants"

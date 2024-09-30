@@ -12,8 +12,8 @@ export function createCtx<TVFN extends Recipe, Slot extends keyof ReturnType<TVF
   const useCtx = () => React.useContext(Ctx)
 
   function withRoot<C extends React.ElementType>(Component: C, slot?: Slot) {
-    const Comp = React.forwardRef(function (
-      { className, classNames, ...props }: React.ComponentProps<C> & ComposedTVProps<TVFN>,
+    const Comp = React.forwardRef<unknown, React.ComponentProps<C> & ComposedTVProps<TVFN>>(function (
+      { className, classNames, ...props },
       ref,
     ) {
       const variants = tvFn(props) as any
@@ -33,8 +33,8 @@ export function createCtx<TVFN extends Recipe, Slot extends keyof ReturnType<TVF
   }
 
   function withSlot<C extends React.ElementType>(Component: C, slot?: Slot) {
-    const Comp = React.forwardRef(function (
-      { className, ...props }: React.ComponentProps<C> & VariantProps<TVFN>,
+    const Comp = React.forwardRef<unknown, React.ComponentProps<C> & VariantProps<TVFN>>(function (
+      { className, ...props },
       ref,
     ) {
       const ctx = useCtx()

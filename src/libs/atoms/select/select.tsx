@@ -1,4 +1,4 @@
-import { Portal, Select, SelectCollectionItem, SelectRootProps, SelectValueTextProps } from "@ark-ui/react"
+import { CollectionItem, Portal, Select, SelectRootProps, SelectValueTextProps } from "@ark-ui/react"
 import React from "react"
 import { LuChevronDown } from "react-icons/lu"
 import { Button, ButtonProps } from "../button"
@@ -28,18 +28,16 @@ const Item = withSlot(Select.Item, "item")
 const ItemText = withSlot(Select.ItemText, "itemText")
 const ItemIndicator = withSlot(Select.ItemIndicator, "itemIndicator")
 
-export interface SelectProps<T extends SelectCollectionItem>
-  extends SelectRootProps<T>,
-    ComposedTVProps<typeof select> {
+export interface SelectProps<T extends CollectionItem> extends SelectRootProps<T>, ComposedTVProps<typeof select> {
   trigger?: ButtonProps
   valueText?: SelectValueTextProps
 }
 
 export interface Select extends ForwardedRefComponent {
-  <T extends SelectCollectionItem>(props: SelectProps<T>): React.ReactElement | null
+  <T extends CollectionItem>(props: SelectProps<T>): React.ReactElement | null
 }
 
-function _bootstrap<T extends SelectCollectionItem>(
+function _bootstrap<T extends CollectionItem>(
   render: (props: SelectProps<T>, ref: React.ForwardedRef<HTMLDivElement>) => React.ReactElement | null,
 ) {
   return React.forwardRef<HTMLDivElement, SelectProps<T>>(render) as unknown as Select

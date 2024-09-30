@@ -1,61 +1,35 @@
-import { Slider, SliderMarkerProps, SliderRootProps } from "@ark-ui/react"
-import React from "react"
-import { ComposedTVProps, ForwardRefWithAsProps, ForwardedRefComponent, ReactTag } from "../types"
+import { Slider } from "@ark-ui/react"
+import { createCtx, createNested } from "../utils"
 import { slider } from "./variants"
 
-export interface SliderProps extends SliderRootProps, ComposedTVProps<typeof slider> {
-  label?: React.ReactNode
-  markers?: SliderMarkerProps[]
-}
+const { withRoot, withSlot } = createCtx(slider)
 
-interface Slider extends ForwardedRefComponent {
-  <As extends ReactTag>(props: ForwardRefWithAsProps<As, SliderProps>): React.ReactElement | null
-}
+const Root = withRoot(Slider.Root)
+const RootProvider = withRoot(Slider.RootProvider)
+const Context = withSlot(Slider.Context)
+const Control = withSlot(Slider.Control)
+const HiddenInput = withSlot(Slider.HiddenInput)
+const Label = withSlot(Slider.Label)
+const Marker = withSlot(Slider.Marker)
+const MarkerGroup = withSlot(Slider.MarkerGroup)
+const Range = withSlot(Slider.Range)
+const Thumb = withSlot(Slider.Thumb)
+const Track = withSlot(Slider.Track)
+const ValueText = withSlot(Slider.ValueText)
 
-function _bootstrap<As extends ReactTag>(
-  render: <As extends ReactTag>(
-    props: ForwardRefWithAsProps<As, SliderProps>,
-    ref: React.ForwardedRef<As>,
-  ) => React.ReactElement | null,
-) {
-  return React.forwardRef<As, ForwardRefWithAsProps<As, SliderProps>>(render) as unknown as Slider
-}
-
-export const Component = _bootstrap(function (
-  { as = "div", label, markers, size, className, classNames, ...props },
-  ref,
-) {
-  const Tag = as
-
-  const styles = slider({ size, className })
-
-  return (
-    <Slider.Root asChild {...props}>
-      <Tag ref={ref} className={styles.base({ class: classNames?.base })}>
-        <Slider.Label className={styles.label({ class: classNames?.label })}>
-          <span>{label}</span>
-          <Slider.ValueText className={styles.valueText({ class: classNames?.valueText })} />
-        </Slider.Label>
-
-        <Slider.Control className={styles.control({ class: classNames?.control })}>
-          <Slider.Track className={styles.track({ class: classNames?.track })}>
-            <Slider.Range className={styles.range({ class: classNames?.range })} />
-          </Slider.Track>
-          <Slider.Thumb index={0} className={styles.thumb({ class: classNames?.thumb })}>
-            <Slider.HiddenInput />
-          </Slider.Thumb>
-        </Slider.Control>
-
-        {markers?.length ? (
-          <Slider.MarkerGroup>
-            {markers.map((marker) => (
-              <Slider.Marker key={marker.value} className={styles.marker({ class: classNames?.marker })} {...marker} />
-            ))}
-          </Slider.MarkerGroup>
-        ) : null}
-      </Tag>
-    </Slider.Root>
-  )
+export const Component = createNested(Root, {
+  Root,
+  RootProvider,
+  Context,
+  Control,
+  HiddenInput,
+  Label,
+  Marker,
+  MarkerGroup,
+  Range,
+  Thumb,
+  Track,
+  ValueText,
 })
 
 Component.displayName = "Slider"
