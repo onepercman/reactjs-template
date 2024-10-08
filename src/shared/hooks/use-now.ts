@@ -6,7 +6,7 @@ export function useNow(interval = 1000) {
   useEffect(() => {
     function updateNow() {
       const newTime = Date.now()
-      setNow((prev) => {
+      setNow(prev => {
         if (newTime !== prev) return newTime
         return prev
       })

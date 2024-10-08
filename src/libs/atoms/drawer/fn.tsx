@@ -102,7 +102,7 @@ export async function confirm({
 }
 
 export function dismiss(id: string) {
-  document.querySelectorAll(`[data-dismiss=${id}]`).forEach((el) => {
+  document.querySelectorAll(`[data-dismiss=${id}]`).forEach(el => {
     return (el as HTMLElement).click()
   })
 }

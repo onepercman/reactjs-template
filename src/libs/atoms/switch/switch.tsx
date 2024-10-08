@@ -22,7 +22,12 @@ export const Component = React.forwardRef<HTMLLabelElement, SwitchProps>(
     },
     ref,
   ) {
-    const styles = switchVariants({ size, placement, indeterminate, className })
+    const styles = switchVariants({
+      size,
+      placement,
+      indeterminate,
+      className,
+    })
 
     return (
       <Switch.Root

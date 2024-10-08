@@ -86,7 +86,7 @@ export const CustomRoot = _bootstrap(function (
             <Input asChild index={1}>
               <AtomInput {...inputProps} />
             </Input>
-            <Trigger asChild onClick={(e) => e.stopPropagation()}>
+            <Trigger asChild onClick={e => e.stopPropagation()}>
               <Button
                 shape="square"
                 leftIcon={<LuCalendar className="text-secondary" />}
@@ -98,7 +98,7 @@ export const CustomRoot = _bootstrap(function (
             <Input asChild>
               <AtomInput
                 suffix={
-                  <Trigger onClick={(e) => e.stopPropagation()}>
+                  <Trigger onClick={e => e.stopPropagation()}>
                     <LuCalendar className="text-secondary" />
                   </Trigger>
                 }
@@ -114,7 +114,7 @@ export const CustomRoot = _bootstrap(function (
               {/* VIEW DAY */}
               <View view="day">
                 <Context>
-                  {(datePicker) => (
+                  {datePicker => (
                     <>
                       <ViewControl>
                         <PrevTrigger asChild>
@@ -162,7 +162,7 @@ export const CustomRoot = _bootstrap(function (
               {/* VIEW MONTH */}
               <View view="month">
                 <Context>
-                  {(datePicker) => (
+                  {datePicker => (
                     <>
                       <ViewControl>
                         <PrevTrigger asChild>
@@ -203,7 +203,7 @@ export const CustomRoot = _bootstrap(function (
               {/* VIEW YEAR */}
               <View view="year">
                 <Context>
-                  {(datePicker) => (
+                  {datePicker => (
                     <>
                       <ViewControl>
                         <PrevTrigger asChild>

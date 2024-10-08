@@ -55,7 +55,7 @@ export const Component = _bootstrap(function (
       </Pagination.PrevTrigger>
 
       <Pagination.Context>
-        {(pagination) =>
+        {pagination =>
           pagination.pages.map((page, index) =>
             page.type === "page" ? (
               <Pagination.Item asChild key={index} {...page}>
