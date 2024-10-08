@@ -33,6 +33,8 @@ export const Wrapper = React.forwardRef<
   )
 })
 
+Wrapper.displayName = "TableWrapper"
+
 export const Header = React.forwardRef<
   React.ComponentRef<typeof Head>,
   React.ComponentProps<typeof Head>
@@ -43,6 +45,8 @@ export const Header = React.forwardRef<
     </Head>
   )
 })
+
+Header.displayName = "TableHeader"
 
 export const Component = createNested(Wrapper, {
   Root,

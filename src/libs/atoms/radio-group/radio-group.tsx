@@ -29,7 +29,7 @@ const CustomItem = React.forwardRef<
   )
 })
 
-Item.displayName = "Item"
+CustomItem.displayName = "Item"
 
 export const Component = createNested(Root, {
   Root,

@@ -1,6 +1,6 @@
-import React from "react"
+import React, { useMemo } from "react"
 import { VariantProps } from "tailwind-variants"
-import { ComposedTVProps, Recipe } from "../types"
+import { ComposedTVProps, CtxClassNames, Recipe } from "../types"
 import { cn } from "./cn"
 
 export function createCtx<
@@ -9,9 +9,7 @@ export function createCtx<
 >(tvFn: TVFN) {
   const Ctx = React.createContext<{
     variants?: ReturnType<TVFN>
-    classNames?: ComposedTVProps<TVFN> extends { classNames: any }
-      ? ComposedTVProps<TVFN>["classNames"]
-      : unknown
+    classNames?: CtxClassNames<TVFN>
   }>({})
 
   const useCtx = () => React.useContext(Ctx)
@@ -23,17 +21,16 @@ export function createCtx<
     >(function ({ className, classNames, ...props }, ref) {
       const variants = tvFn(props) as any
 
-      const slotClassName = variants[slot ?? ""]?.()
-
-      const externalClassName = classNames ? classNames[slot] : undefined
+      const _className = useMemo(
+        function () {
+          return cn(variants?.[slot ?? ""]?.(), classNames?.[slot], className)
+        },
+        [variants, classNames, className, slot],
+      )
 
       return (
         <Ctx.Provider value={{ variants, classNames: classNames }}>
-          <Component
-            ref={ref}
-            className={cn(slotClassName, externalClassName, className)}
-            {...(props as any)}
-          />
+          <Component ref={ref} className={_className} {...(props as any)} />
         </Ctx.Provider>
       )
     })
@@ -46,25 +43,20 @@ export function createCtx<
       unknown,
       React.ComponentProps<C> & VariantProps<TVFN>
     >(function ({ className, ...props }, ref) {
-      const ctx = useCtx()
+      const { variants, classNames } = useCtx()
 
-      function _classNames() {
-        if (!slot) return className
-        let slotClassName: string = ""
-        let externalSlotClassName: string = ""
-        if (ctx.variants) {
-          slotClassName = ctx.variants[slot]()
-        }
-        if (ctx.classNames) {
-          externalSlotClassName = (ctx.classNames as any)[slot]
-        }
-
-        return cn(slotClassName, externalSlotClassName, className)
-      }
-
-      return (
-        <Component ref={ref} className={_classNames()} {...(props as any)} />
+      const _className = useMemo(
+        function () {
+          return cn(
+            slot ? variants?.[slot]?.() : undefined,
+            slot ? (classNames as any)?.[slot] : undefined,
+            className,
+          )
+        },
+        [variants, classNames, className, slot],
       )
+
+      return <Component ref={ref} className={_className} {...(props as any)} />
     })
 
     Comp.displayName =
@@ -84,9 +76,6 @@ export function createNested<
     Record<string, React.ElementType | ((...args: any) => any)>
   >,
 >(Factory: F, nestedChildren: Readonly<N>) {
-  const c = Factory as any
-  Object.keys(nestedChildren).forEach(function (key) {
-    c[key] = nestedChildren[key]
-  })
-  return c as F & N
+  const c = Factory as F & N
+  return Object.assign(c, nestedChildren)
 }

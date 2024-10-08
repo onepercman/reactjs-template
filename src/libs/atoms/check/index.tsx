@@ -16,12 +16,12 @@ export const Check = React.forwardRef<
     >
       <path
         fill="none"
-        stroke-width="8"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         d="M10 27l10 12 25-25"
-        stroke-dasharray="50"
-        stroke-dashoffset="50"
+        strokeDasharray="50"
+        strokeDashoffset="50"
       >
         <animate
           attributeName="stroke-dashoffset"
@@ -33,3 +33,5 @@ export const Check = React.forwardRef<
     </svg>
   )
 })
+
+Check.displayName = "Check"

@@ -34,6 +34,8 @@ const Compact = React.forwardRef<
   )
 })
 
+Compact.displayName = "Avatar"
+
 export const Component = createNested(Compact, {
   Root,
   RootProvider,

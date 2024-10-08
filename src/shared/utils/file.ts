@@ -1,3 +1,5 @@
+import React from "react"
+
 export function browseTextFile<Multiple extends boolean = false>(options?: {
   accept?: string
   multiple?: Multiple

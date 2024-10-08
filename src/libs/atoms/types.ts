@@ -33,3 +33,8 @@ export type TVSlotClassNamesProps<TVFN extends Recipe> =
     : object
 export type ComposedTVProps<TVFN extends Recipe> = VariantProps<TVFN> &
   TVSlotClassNamesProps<TVFN>
+
+export type CtxClassNames<TVFN extends Recipe> =
+  ComposedTVProps<TVFN> extends { classNames: any }
+    ? ComposedTVProps<TVFN>["classNames"]
+    : unknown

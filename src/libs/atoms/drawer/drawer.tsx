@@ -34,7 +34,7 @@ const CustomContent = React.forwardRef<
   )
 })
 
-Content.displayName = "Content"
+CustomContent.displayName = "Content"
 
 const CustomCloseTrigger = React.forwardRef<
   HTMLDivElement,
@@ -47,7 +47,7 @@ const CustomCloseTrigger = React.forwardRef<
   )
 })
 
-CloseTrigger.displayName = "CloseTrigger"
+CustomCloseTrigger.displayName = "CloseTrigger"
 
 export const Component = createNested(Root, {
   Root,
