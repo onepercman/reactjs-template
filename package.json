@@ -8,11 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "staging": "vite --mode staging",
-    "production": "vite --mode production",
     "build": "tsc && vite build",
-    "build:staging": "tsc && vite build --mode staging",
-    "build:production": "tsc && vite build --mode production",
     "preview": "vite preview",
     "lint": "eslint",
     "format": "prettier . --write",
