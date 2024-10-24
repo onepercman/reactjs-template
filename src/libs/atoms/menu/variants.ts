@@ -3,7 +3,7 @@ import { tv } from "tailwind-variants"
 export const menu = tv({
   slots: {
     content: [
-      "flex flex-col w-full rounded overflow-hidden bg-component shadow-lg p-2 outline-none",
+      "flex w-full flex-col overflow-hidden rounded bg-component p-2 shadow-lg outline-none",
       "data-[state=open]:animate-in",
       "data-[state=open]:fade-in",
       "data-[state=closed]:animate-out",
@@ -11,17 +11,17 @@ export const menu = tv({
     ],
     itemGroup: "flex flex-col",
     itemGroupLabel: "w-full px-2 py-1 text-xs text-secondary",
-    item: "inline-flex relative gap-2 justify-between items-center cursor-pointer hover:bg-foreground/5 px-3 py-2 rounded font-medium",
+    item: "relative inline-flex cursor-pointer items-center justify-between gap-2 rounded px-3 py-2 font-medium hover:bg-foreground/5",
     itemIndicator: [
-      "h-full absolute right-2 top-0 items-center",
+      "absolute right-2 top-0 h-full items-center",
       "data-[state=checked]:flex",
     ],
-    separator: "w-full h-px border-line my-1",
+    separator: "my-1 h-px w-full border-line",
   },
   variants: {
     size: {
-      xs: { item: "text-xs py-1" },
-      sm: { item: "text-sm py-1" },
+      xs: { item: "py-1 text-xs" },
+      sm: { item: "py-1 text-sm" },
       md: { item: "text-sm" },
       lg: { item: "text-lg" },
     },

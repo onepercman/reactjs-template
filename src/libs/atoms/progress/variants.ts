@@ -1,10 +1,10 @@
 import { tv } from "tailwind-variants"
 
 export const progress = tv({
-  base: "p-1 border border-line rounded-full",
+  base: "rounded-full border border-line p-1",
   slots: {
-    track: "relative rounded-full h-2",
+    track: "relative h-2 rounded-full",
     range:
-      "rounded-full bg-gradient-to-r from-primary to-accent h-full absolute transition-transform",
+      "absolute h-full rounded-full bg-gradient-to-r from-primary to-accent transition-transform",
   },
 })

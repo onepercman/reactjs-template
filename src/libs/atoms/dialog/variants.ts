@@ -9,16 +9,16 @@ export const dialog = tv({
       "data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out",
     ],
-    positioner: "flex fixed inset-0 p-4",
+    positioner: "fixed inset-0 flex p-4",
     content: [
-      "bg-component border border-line shadow p-4 rounded relative w-full h-fit",
+      "relative h-fit w-full rounded border border-line bg-component p-4 shadow",
       "data-[state=open]:animate-in",
       "data-[state=open]:fade-in",
       "data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out",
     ],
-    title: "text-sm font-medium pb-4",
-    closeTrigger: "absolute top-3 right-4",
+    title: "pb-4 text-sm font-medium",
+    closeTrigger: "absolute right-4 top-3",
     description: "",
   },
   variants: {
@@ -30,8 +30,8 @@ export const dialog = tv({
     placement: {
       center: { content: "m-auto" },
       topCenter: { content: "mx-auto mt-24" },
-      left: { content: "h-full mr-auto" },
-      right: { content: "h-full ml-auto" },
+      left: { content: "mr-auto h-full" },
+      right: { content: "ml-auto h-full" },
     },
     scrollBehavior: {
       inside: "",

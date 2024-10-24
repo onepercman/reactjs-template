@@ -5,7 +5,7 @@ export const accordion = tv({
   slots: {
     item: "flex flex-col",
     itemTrigger:
-      "w-full rounded inline-flex justify-between gap-2 items-center",
+      "inline-flex w-full items-center justify-between gap-2 rounded",
     itemIndicator: ["transition-all", "data-[state=open]:rotate-180"],
     itemContent: [
       "overflow-hidden !duration-150",

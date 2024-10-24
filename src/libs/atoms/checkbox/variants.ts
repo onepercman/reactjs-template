@@ -1,11 +1,11 @@
 import { tv } from "tailwind-variants"
 
 export const checkbox = tv({
-  base: "inline-flex items-center gap-2 cursor-pointer",
+  base: "inline-flex cursor-pointer items-center gap-2",
   slots: {
     label: "",
     control: [
-      "rounded flex border-2 border-line hover:border-primary transition-colors text-primary",
+      "flex rounded border-2 border-line text-primary transition-colors hover:border-primary",
       "data-[state=checked]:border-primary",
     ],
     indicator: "m-auto",

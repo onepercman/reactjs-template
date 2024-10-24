@@ -1,15 +1,15 @@
 import { tv } from "tailwind-variants"
 
 export const switchVariants = tv({
-  base: "inline-flex items-center gap-2 cursor-pointer",
+  base: "inline-flex cursor-pointer items-center gap-2",
   slots: {
     label: "",
     control: [
-      "bg-default rounded-full relative flex transition-colors",
+      "relative flex rounded-full bg-default transition-colors",
       "data-[state=checked]:bg-primary",
     ],
     thumb: [
-      "absolute top-1 bottom-1 aspect-square bg-muted rounded-full left-1 transition-all",
+      "absolute bottom-1 left-1 top-1 aspect-square rounded-full bg-muted transition-all",
       "data-[state=checked]:bg-white",
     ],
   },

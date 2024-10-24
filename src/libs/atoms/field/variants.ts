@@ -21,7 +21,7 @@ export const field = tv({
     },
     required: {
       true: {
-        label: "after:content-['*'] after:inline after:text-error after:ml-1",
+        label: "after:ml-1 after:inline after:text-error after:content-['*']",
       },
     },
   },

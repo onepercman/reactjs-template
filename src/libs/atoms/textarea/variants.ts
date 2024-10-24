@@ -1,14 +1,14 @@
 import { tv } from "tailwind-variants"
 
 export const textarea = tv({
-  base: "flex flex-col gap-1 group",
+  base: "group flex flex-col gap-1",
   slots: {
     group: [
-      "border-2 rounded px-2 transition-all text-ellipsis inline-flex items-center overflow-hidden cursor-text gap-2 py-2",
+      "inline-flex cursor-text items-center gap-2 overflow-hidden text-ellipsis rounded border-2 px-2 py-2 transition-all",
       "focus-within:border-primary",
     ],
     textarea: [
-      "grow bg-transparent border-transparent p-0 self-stretch text-ellipsis h-fit my-auto",
+      "my-auto h-fit grow self-stretch text-ellipsis border-transparent bg-transparent p-0",
       "focus:outline-none focus:ring-transparent",
     ],
     addonBefore: "rounded-r-none",
@@ -22,13 +22,13 @@ export const textarea = tv({
       lg: { group: "min-h-[3rem] min-w-[3rem] px-4" },
     },
     variant: {
-      filled: { group: "bg-default border-transparent" },
+      filled: { group: "border-transparent bg-default" },
       outlined: { group: "border-2 border-line" },
     },
     invalid: {
       true: {
         group:
-          "border-2 border-error text-error bg-error/10 focus-within:border-error-600",
+          "border-2 border-error bg-error/10 text-error focus-within:border-error-600",
         label: "text-error",
       },
     },

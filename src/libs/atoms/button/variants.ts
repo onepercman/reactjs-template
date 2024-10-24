@@ -3,17 +3,17 @@ import { tv } from "tailwind-variants"
 export const button = tv({
   base: [
     "inline-flex items-center justify-center gap-2 whitespace-nowrap font-semibold",
-    "border-transparent ring ring-transparent transition-all cursor-pointer border-0 outline-none",
+    "cursor-pointer border-0 border-transparent outline-none ring ring-transparent transition-all",
     "h-[var(--button-size)] min-h-[var(--button-size)] min-w-[var(--button-size)] px-2 text-xs",
     "[&:not(:disabled)]:active:brightness-105",
-    "disabled:saturate-0 disabled:opacity-75 disabled:cursor-not-allowed disabled:data-[loading]:saturate-50",
+    "disabled:cursor-not-allowed disabled:opacity-75 disabled:saturate-0 disabled:data-[loading]:saturate-50",
   ],
   variants: {
     size: {
-      xs: "[--button-size:1.25rem] px-2 text-xs",
-      sm: "[--button-size:1.5rem] px-2 text-sm",
-      md: "[--button-size:2.25rem] px-4 text-sm",
-      lg: "[--button-size:2.75rem] px-4",
+      xs: "px-2 text-xs [--button-size:1.25rem]",
+      sm: "px-2 text-sm [--button-size:1.5rem]",
+      md: "px-4 text-sm [--button-size:2.25rem]",
+      lg: "px-4 [--button-size:2.75rem]",
     },
     variant: {
       default: "border-0",
@@ -33,8 +33,8 @@ export const button = tv({
     shape: {
       normal: "rounded",
       pill: "rounded-full",
-      circle: "rounded-full aspect-square p-0",
-      square: "aspect-square p-0 rounded",
+      circle: "aspect-square rounded-full p-0",
+      square: "aspect-square rounded p-0",
     },
   },
   compoundVariants: [

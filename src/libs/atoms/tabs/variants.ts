@@ -3,44 +3,44 @@ import { tv } from "tailwind-variants"
 export const tabs = tv({
   base: "",
   slots: {
-    list: "inline-flex items-center gap-2 relative",
+    list: "relative inline-flex items-center gap-2",
     trigger:
-      "relative text-secondary data-[selected]:text-primary hover:text-foreground transition-colors select-none data-[selected]:[text-shadow:_0px_0px_10px_rgba(var(--tw-schemes-primary),0.50)]",
+      "relative select-none text-secondary transition-colors data-[selected]:text-primary data-[selected]:[text-shadow:_0px_0px_10px_rgba(var(--tw-schemes-primary),0.50)] hover:text-foreground",
     indicator: "",
     content: "",
   },
   variants: {
     size: {
       sm: {
-        trigger: "text-sm px-2 py-1",
+        trigger: "px-2 py-1 text-sm",
       },
       md: {
-        trigger: "text-base px-4 py-2",
+        trigger: "px-4 py-2 text-base",
       },
       lg: {
-        trigger: "text-base px-3 py-2",
+        trigger: "px-3 py-2 text-base",
       },
     },
     variant: {
       solid: {
-        list: "rounded p-1 bg-line",
+        list: "rounded bg-line p-1",
         indicator:
-          "absolute left-[var(--left)] w-[var(--width)] bottom-1 h-[var(--height)] bg-default rounded",
+          "absolute bottom-1 left-[var(--left)] h-[var(--height)] w-[var(--width)] rounded bg-default",
       },
       underlined: {
         list: "",
         indicator:
-          "absolute left-[var(--left)] w-[var(--width)] bottom-0 h-1 bg-foreground rounded",
+          "absolute bottom-0 left-[var(--left)] h-1 w-[var(--width)] rounded bg-foreground",
       },
       bordered: {
-        list: "rounded p-1 border border-line",
+        list: "rounded border border-line p-1",
         indicator:
-          "absolute left-[var(--left)] w-[var(--width)] bottom-1 h-[var(--height)] bg-default rounded",
+          "absolute bottom-1 left-[var(--left)] h-[var(--height)] w-[var(--width)] rounded bg-default",
       },
       light: {
         list: "",
         indicator:
-          "absolute left-[var(--left)] w-[var(--width)] bottom-0 h-[var(--height)] bg-default rounded",
+          "absolute bottom-0 left-[var(--left)] h-[var(--height)] w-[var(--width)] rounded bg-default",
       },
     },
   },

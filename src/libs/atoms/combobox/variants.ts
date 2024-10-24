@@ -4,15 +4,15 @@ export const combobox = tv({
   base: "",
   slots: {
     trigger: [
-      "rounded bg-default inline-flex items-center gap-2 justify-between",
+      "inline-flex items-center justify-between gap-2 rounded bg-default",
       "h-[var(--button-size)] min-h-[var(--button-size)] min-w-[var(--button-size)]",
       "data-[placeholder-shown]:text-secondary",
     ],
-    input: "min-w-6 w-full",
+    input: "w-full min-w-6",
     clearTrigger:
-      "text-secondary text-xs absolute top-1/2 right-3 -translate-y-1/2",
+      "absolute right-3 top-1/2 -translate-y-1/2 text-xs text-secondary",
     content: [
-      "flex flex-col w-full rounded overflow-hidden bg-component shadow-lg p-2",
+      "flex w-full flex-col overflow-hidden rounded bg-component p-2 shadow-lg",
       "data-[state=open]:animate-in",
       "data-[state=open]:fade-in",
       "data-[state=closed]:animate-out",
@@ -20,31 +20,31 @@ export const combobox = tv({
     ],
     itemGroup: "flex flex-col",
     ItemGroupLabel: "w-full px-2 py-1 text-xs text-secondary",
-    item: "inline-flex relative gap-2 justify-between items-start cursor-pointer hover:bg-foreground/5 pl-3 py-2 pr-8 rounded data-[state=checked]:text-primary font-medium",
+    item: "relative inline-flex cursor-pointer items-start justify-between gap-2 rounded py-2 pl-3 pr-8 font-medium data-[state=checked]:text-primary hover:bg-foreground/5",
     itemText: "grow",
     itemIndicator:
-      "h-full absolute right-2 top-0 data-[state=checked]:flex items-center text-xs text-primary",
+      "absolute right-2 top-0 h-full items-center text-xs text-primary data-[state=checked]:flex",
   },
   variants: {
     size: {
       xs: {
-        trigger: "[--button-size:1.25rem] px-2 text-xs",
-        item: "text-xs py-1",
+        trigger: "px-2 text-xs [--button-size:1.25rem]",
+        item: "py-1 text-xs",
       },
       sm: {
-        trigger: "[--button-size:1.5rem] px-2 text-sm",
-        item: "text-sm py-1",
+        trigger: "px-2 text-sm [--button-size:1.5rem]",
+        item: "py-1 text-sm",
       },
       md: {
-        trigger: "[--button-size:2.25rem] px-4 text-sm",
+        trigger: "px-4 text-sm [--button-size:2.25rem]",
         item: "text-base",
       },
-      lg: { trigger: "[--button-size:2.75rem] px-4", item: "text-lg" },
+      lg: { trigger: "px-4 [--button-size:2.75rem]", item: "text-lg" },
     },
     invalid: {
       true: {
         label: "text-error",
-        trigger: "bg-error/10 border-error border-2 !text-error",
+        trigger: "border-2 border-error bg-error/10 !text-error",
       },
     },
   },

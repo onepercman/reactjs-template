@@ -3,10 +3,10 @@ import { tv } from "tailwind-variants"
 export const radioGroup = tv({
   base: "flex flex-col gap-2",
   slots: {
-    item: "inline-flex items-center gap-2 cursor-pointer",
+    item: "inline-flex cursor-pointer items-center gap-2",
     itemText: "",
     control:
-      "rounded-full text-transparent border-2 border-line after:content-[''] after:h-full after:w-full after:rounded-full after:bg-transparent data-[state=checked]:after:bg-primary flex text-sm p-1 data-[hover]:border-primary duration-300 data-[state=checked]:border-primary",
+      "flex rounded-full border-2 border-line p-1 text-sm text-transparent duration-300 after:h-full after:w-full after:rounded-full after:bg-transparent after:content-[''] data-[hover]:border-primary data-[state=checked]:border-primary data-[state=checked]:after:bg-primary",
   },
   variants: {
     size: {

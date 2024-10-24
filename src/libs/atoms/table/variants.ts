@@ -3,12 +3,12 @@ import { tv } from "tailwind-variants"
 export const table = tv({
   base: "overflow-auto rounded text-xs",
   slots: {
-    table: "w-full border-spacing-y-1 border-separate",
+    table: "w-full border-separate border-spacing-y-1",
     head: "",
     body: "relative",
-    column: "bg-default font-semibold px-4 py-2 first:rounded-l last:rounded-r",
+    column: "bg-default px-4 py-2 font-semibold first:rounded-l last:rounded-r",
     row: "group",
-    cell: "px-4 py-2 first:rounded-l last:rounded-r font-normal bg-component",
+    cell: "bg-component px-4 py-2 font-normal first:rounded-l last:rounded-r",
   },
   variants: {
     size: {
@@ -30,7 +30,7 @@ export const table = tv({
     },
     highlightRow: {
       true: {
-        cell: "transition-colors group-hover:bg-default cursor-pointer",
+        cell: "cursor-pointer transition-colors group-hover:bg-default",
       },
     },
   },

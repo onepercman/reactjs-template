@@ -3,12 +3,12 @@ import { tv } from "tailwind-variants"
 export const slider = tv({
   base: "flex flex-col gap-1",
   slots: {
-    label: "text-xs text-secondary inline-flex justify-between gap-2",
+    label: "inline-flex justify-between gap-2 text-xs text-secondary",
     valueText: "",
-    control: "inline-flex items-center gap-2 cursor-pointer",
-    track: "bg-default relative rounded overflow-hidden grow",
+    control: "inline-flex cursor-pointer items-center gap-2",
+    track: "relative grow overflow-hidden rounded bg-default",
     range: "absolute h-full bg-primary",
-    thumb: "bg-foreground rounded-full -top-1/2",
+    thumb: "-top-1/2 rounded-full bg-foreground",
     marker: "",
   },
   variants: {

@@ -3,18 +3,18 @@ import { tv } from "tailwind-variants"
 export const datePicker = tv({
   slots: {
     content: [
-      "bg-component border border-line p-2 shadow rounded w-fit",
+      "w-fit rounded border border-line bg-component p-2 shadow",
       "data-[state=open]:animate-in",
       "data-[state=open]:fade-in",
       "data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out",
     ],
     control: "inline-flex items-center gap-2",
-    viewControl: "inline-flex gap-2 justify-between w-full items-center py-2",
+    viewControl: "inline-flex w-full items-center justify-between gap-2 py-2",
     table: "border-spacing-0",
-    tableHeader: "text-xs text-secondary font-normal",
+    tableHeader: "text-xs font-normal text-secondary",
     tableCellTrigger: [
-      "text-xs font-normal w-full hover:bg-primary/20",
+      "w-full text-xs font-normal hover:bg-primary/20",
       "data-[today]:border data-[today]:border-primary",
       "data-[in-range]:bg-primary/50",
       "data-[selected]:bg-primary",
