@@ -14,7 +14,7 @@
     "format": "prettier . --write",
     "tsc": "tsc --pretty --noEmit",
     "test": "vitest",
-    "postinstall": "husky install",
+    "postinstall": "husky",
     "prepare": "husky"
   },
   "dependencies": {
