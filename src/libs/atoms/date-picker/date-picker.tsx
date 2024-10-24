@@ -9,7 +9,7 @@ import {
 import { Button } from "../button"
 import { Input as AtomInput, InputProps } from "../input"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createCtx, createNested } from "../utils"
+import { createComponentTree, createCtx } from "../utils"
 import { datePicker } from "./variants"
 
 const { withRoot, withSlot } = createCtx(datePicker)
@@ -86,10 +86,11 @@ export const CustomRoot = _bootstrap(function (
             <Input asChild index={1}>
               <AtomInput {...inputProps} />
             </Input>
-            <Trigger asChild onClick={e => e.stopPropagation()}>
+            <Trigger asChild>
               <Button
                 shape="square"
                 leftIcon={<LuCalendar className="text-secondary" />}
+                onClick={e => e.stopPropagation()}
               />
             </Trigger>
           </Control>
@@ -249,7 +250,7 @@ export const CustomRoot = _bootstrap(function (
   )
 })
 
-export const Component = createNested(CustomRoot, {
+export const Component = createComponentTree(CustomRoot, {
   Root,
   RootProvider,
   ClearTrigger,

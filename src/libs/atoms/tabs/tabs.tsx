@@ -1,6 +1,6 @@
 import { Tabs } from "@ark-ui/react"
 import React from "react"
-import { createCtx, createNested } from "../utils"
+import { createComponentTree, createCtx } from "../utils"
 import { tabs } from "./variants"
 
 const { withRoot, withSlot } = createCtx(tabs)
@@ -27,7 +27,7 @@ const CustomList = React.forwardRef<
 
 CustomList.displayName = "List"
 
-export const Component = createNested(Root, {
+export const Component = createComponentTree(Root, {
   Root,
   Content,
   Context,

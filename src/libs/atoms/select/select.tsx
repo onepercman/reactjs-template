@@ -10,7 +10,7 @@ import React from "react"
 import { LuChevronDown } from "react-icons/lu"
 import { Button, ButtonProps } from "../button"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createCtx, createNested } from "../utils"
+import { createComponentTree, createCtx } from "../utils"
 import { select } from "./variants"
 
 const { withRoot, withSlot } = createCtx(select)
@@ -43,18 +43,18 @@ export interface SelectProps<T extends CollectionItem>
 }
 
 export interface Select extends ForwardedRefComponent {
-  <T extends CollectionItem>(props: SelectProps<T>): React.ReactElement | null
+  <T extends CollectionItem>(
+    props: SelectProps<T> & React.RefAttributes<HTMLDivElement>,
+  ): JSX.Element
 }
 
 function _bootstrap<T extends CollectionItem>(
   render: (
     props: SelectProps<T>,
-    ref: React.ForwardedRef<HTMLDivElement>,
+    ref: React.ForwardedRef<Select>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLDivElement, SelectProps<T>>(
-    render,
-  ) as unknown as Select
+  return React.forwardRef<Select, SelectProps<T>>(render) as unknown as Select
 }
 
 export const CustomRoot = _bootstrap(function (
@@ -93,7 +93,7 @@ export const CustomRoot = _bootstrap(function (
   )
 })
 
-export const Component = createNested(CustomRoot, {
+export const Component = createComponentTree(CustomRoot, {
   Root: Root as Select,
   RootProvider,
   Context,

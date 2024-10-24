@@ -1,7 +1,7 @@
 import { SegmentGroup } from "@ark-ui/react"
 import React from "react"
 import { ForwardedRefComponent } from "../types"
-import { createCtx, createNested } from "../utils"
+import { createComponentTree, createCtx } from "../utils"
 import { segmentGroup } from "./variants"
 
 const { withRoot, withSlot } = createCtx(segmentGroup)
@@ -56,7 +56,7 @@ export const CustomRoot = _bootstrap(function ({ children, ...props }, ref) {
   )
 })
 
-export const Component = createNested(CustomRoot, {
+export const Component = createComponentTree(CustomRoot, {
   Root,
   RootProvider,
   Context,

@@ -1,5 +1,5 @@
 import { Slider } from "@ark-ui/react"
-import { createCtx, createNested } from "../utils"
+import { createComponentTree, createCtx } from "../utils"
 import { slider } from "./variants"
 
 const { withRoot, withSlot } = createCtx(slider)
@@ -17,7 +17,7 @@ const Thumb = withSlot(Slider.Thumb)
 const Track = withSlot(Slider.Track)
 const ValueText = withSlot(Slider.ValueText)
 
-export const Component = createNested(Root, {
+export const Component = createComponentTree(Root, {
   Root,
   RootProvider,
   Context,

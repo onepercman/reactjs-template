@@ -1,6 +1,6 @@
 import { Avatar } from "@ark-ui/react"
 import React from "react"
-import { createCtx, createNested } from "../utils"
+import { createComponentTree, createCtx } from "../utils"
 import { avatar } from "./variants"
 
 const { withRoot, withSlot } = createCtx(avatar)
@@ -36,7 +36,7 @@ const Compact = React.forwardRef<
 
 Compact.displayName = "Avatar"
 
-export const Component = createNested(Compact, {
+export const Component = createComponentTree(Compact, {
   Root,
   RootProvider,
   Context,

@@ -70,7 +70,7 @@ export function createCtx<
   }
 }
 
-export function createNested<
+export function createComponentTree<
   F extends React.ElementType,
   N extends Readonly<
     Record<string, React.ElementType | ((...args: any) => any)>

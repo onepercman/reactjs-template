@@ -1,5 +1,5 @@
 import { FileUpload } from "@ark-ui/react"
-import { createCtx, createNested } from "../utils"
+import { createComponentTree, createCtx } from "../utils"
 import { fileUpload } from "./variants"
 
 const { withRoot, withSlot } = createCtx(fileUpload)
@@ -19,7 +19,7 @@ const ItemSizeText = withSlot(FileUpload.ItemSizeText)
 const Label = withSlot(FileUpload.Label)
 const Trigger = withSlot(FileUpload.Trigger)
 
-export const Component = createNested(Root, {
+export const Component = createComponentTree(Root, {
   Root,
   RootProvider,
   Context,

@@ -1,5 +1,5 @@
 import { Editable } from "@ark-ui/react"
-import { createCtx, createNested } from "../utils"
+import { createComponentTree, createCtx } from "../utils"
 import { editable } from "./variants"
 
 const { withRoot, withSlot } = createCtx(editable)
@@ -16,7 +16,7 @@ const Label = withSlot(Editable.Label)
 const Preview = withSlot(Editable.Preview)
 const SubmitTrigger = withSlot(Editable.SubmitTrigger)
 
-export const Component = createNested(Root, {
+export const Component = createComponentTree(Root, {
   Root,
   RootProvider,
   Context,

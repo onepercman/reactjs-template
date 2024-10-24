@@ -1,5 +1,5 @@
 import React from "react"
-import { createCtx, createNested } from "../utils"
+import { createComponentTree, createCtx } from "../utils"
 import { table } from "./variants"
 
 const { withRoot, withSlot } = createCtx(table)
@@ -48,7 +48,7 @@ export const Header = React.forwardRef<
 
 Header.displayName = "TableHeader"
 
-export const Component = createNested(Wrapper, {
+export const Component = createComponentTree(Wrapper, {
   Root,
   Table,
   Head,

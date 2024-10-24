@@ -1,5 +1,5 @@
 import { Clipboard } from "@ark-ui/react"
-import { createCtx, createNested } from "../utils"
+import { createComponentTree, createCtx } from "../utils"
 import { clipboard } from "./variants"
 
 const { withRoot, withSlot } = createCtx(clipboard)
@@ -13,7 +13,7 @@ const Input = withSlot(Clipboard.Input)
 const Label = withSlot(Clipboard.Label)
 const Trigger = withSlot(Clipboard.Trigger)
 
-export const Component = createNested(Root, {
+export const Component = createComponentTree(Root, {
   Root,
   RootProvider,
   Context,

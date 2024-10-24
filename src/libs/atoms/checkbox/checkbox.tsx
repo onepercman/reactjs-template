@@ -3,7 +3,7 @@ import React from "react"
 import { LuMinus } from "react-icons/lu"
 import { Check } from "../check"
 import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createCtx, createNested } from "../utils"
+import { createComponentTree, createCtx } from "../utils"
 import { checkbox } from "./variants"
 
 const { withRoot, withSlot } = createCtx(checkbox)
@@ -62,7 +62,7 @@ export const CustomRoot = _bootstrap(function ({ children, ...props }, ref) {
   )
 })
 
-export const Component = createNested(CustomRoot, {
+export const Component = createComponentTree(CustomRoot, {
   Root,
   RootProvider,
   Context,

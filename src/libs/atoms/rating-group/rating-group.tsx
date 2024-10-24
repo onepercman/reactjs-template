@@ -1,5 +1,5 @@
 import { RatingGroup } from "@ark-ui/react"
-import { createCtx, createNested } from "../utils"
+import { createComponentTree, createCtx } from "../utils"
 import { ratingGroup } from "./variants"
 
 const { withRoot, withSlot } = createCtx(ratingGroup)
@@ -13,7 +13,7 @@ const Item = withSlot(RatingGroup.Item)
 const ItemContext = withSlot(RatingGroup.ItemContext)
 const Label = withSlot(RatingGroup.Label)
 
-export const Component = createNested(Root, {
+export const Component = createComponentTree(Root, {
   Root,
   RootProvider,
   Context,
