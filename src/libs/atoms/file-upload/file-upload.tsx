@@ -1,8 +1,8 @@
 import { FileUpload } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { fileUpload } from "./variants"
 
-const { withRoot, withSlot } = createCtx(fileUpload)
+const { withRoot, withSlot } = createComponentFactory(fileUpload)
 
 const Root = withRoot(FileUpload.Root)
 const RootProvider = withRoot(FileUpload.RootProvider)

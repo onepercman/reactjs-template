@@ -1,8 +1,8 @@
 import { Clipboard } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { clipboard } from "./variants"
 
-const { withRoot, withSlot } = createCtx(clipboard)
+const { withRoot, withSlot } = createComponentFactory(clipboard)
 
 const Root = withRoot(Clipboard.Root)
 const RootProvider = withRoot(Clipboard.RootProvider)

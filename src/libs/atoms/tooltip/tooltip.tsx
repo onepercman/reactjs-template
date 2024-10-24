@@ -1,9 +1,9 @@
 import { Tooltip } from "@ark-ui/react"
 import React from "react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { tooltip } from "./variants"
 
-const { withRoot, withSlot } = createCtx(tooltip)
+const { withRoot, withSlot } = createComponentFactory(tooltip)
 
 const Root = withRoot(Tooltip.Root)
 const RootProvider = withRoot(Tooltip.RootProvider)

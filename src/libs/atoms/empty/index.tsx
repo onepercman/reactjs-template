@@ -1,6 +1,6 @@
 import React from "react"
 import { LuBird } from "react-icons/lu"
-import { cn } from "../utils"
+import { cn } from "react-tvcx"
 
 export const Empty = React.forwardRef<
   HTMLDivElement,

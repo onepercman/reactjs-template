@@ -1,8 +1,8 @@
 import { NumberInput } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { numberInput } from "./variants"
 
-const { withRoot, withSlot } = createCtx(numberInput)
+const { withRoot, withSlot } = createComponentFactory(numberInput)
 
 const Root = withRoot(NumberInput.Root)
 const RootProvider = withRoot(NumberInput.RootProvider)

@@ -1,9 +1,9 @@
 import { RadioGroup } from "@ark-ui/react"
 import React from "react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { radioGroup } from "./variants"
 
-const { withRoot, withSlot } = createCtx(radioGroup)
+const { withRoot, withSlot } = createComponentFactory(radioGroup)
 
 const Root = withRoot(RadioGroup.Root, "base")
 const RootProvider = withRoot(RadioGroup.RootProvider)

@@ -1,8 +1,8 @@
 import { ColorPicker } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { colorPicker } from "./variants"
 
-const { withRoot, withSlot } = createCtx(colorPicker)
+const { withRoot, withSlot } = createComponentFactory(colorPicker)
 
 const Root = withRoot(ColorPicker.Root)
 const RootProvider = withRoot(ColorPicker.RootProvider)

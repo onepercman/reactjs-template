@@ -7,12 +7,16 @@ import {
 } from "@ark-ui/react"
 import React from "react"
 import { LuChevronsUpDown } from "react-icons/lu"
+import {
+  ComponentMetadata,
+  ComposedTVProps,
+  createComponentFactory,
+  createComponentTree,
+} from "react-tvcx"
 import { Input as AtomInput, InputProps } from "../input"
-import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createComponentTree, createCtx } from "../utils"
 import { combobox } from "./variants"
 
-const { withRoot, withSlot } = createCtx(combobox)
+const { withRoot, withSlot } = createComponentFactory(combobox)
 
 const Root = withRoot(Combobox.Root, "base")
 const RootProvider = withRoot(Combobox.RootProvider, "base")
@@ -39,7 +43,7 @@ export interface ComboboxProps<T extends CollectionItem>
   renderInput?(props: InputProps): React.ReactNode
 }
 
-export interface Combobox extends ForwardedRefComponent {
+export interface Combobox extends ComponentMetadata {
   <T extends CollectionItem>(props: ComboboxProps<T>): React.ReactElement | null
 }
 

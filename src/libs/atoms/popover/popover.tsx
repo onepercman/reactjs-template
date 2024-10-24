@@ -1,9 +1,9 @@
 import { Popover } from "@ark-ui/react"
 import React from "react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { popover } from "./variants"
 
-const { withRoot, withSlot } = createCtx(popover)
+const { withRoot, withSlot } = createComponentFactory(popover)
 
 const Root = withRoot(Popover.Root)
 const RootProvider = withRoot(Popover.RootProvider)

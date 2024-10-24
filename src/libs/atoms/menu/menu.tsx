@@ -1,9 +1,9 @@
 import { Menu, Portal } from "@ark-ui/react"
 import React from "react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { menu } from "./variants"
 
-const { withRoot, withSlot } = createCtx(menu)
+const { withRoot, withSlot } = createComponentFactory(menu)
 
 const Root = withRoot(Menu.Root)
 const RootProvider = withRoot(Menu.RootProvider)

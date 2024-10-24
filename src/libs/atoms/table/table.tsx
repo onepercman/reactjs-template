@@ -1,8 +1,8 @@
 import React from "react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { table } from "./variants"
 
-const { withRoot, withSlot } = createCtx(table)
+const { withRoot, withSlot } = createComponentFactory(table)
 
 const Root = withRoot("div", "base")
 const Table = withSlot("table", "table")

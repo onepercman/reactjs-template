@@ -1,8 +1,8 @@
 import { QrCode } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { qrCode } from "./variants"
 
-const { withRoot, withSlot } = createCtx(qrCode)
+const { withRoot, withSlot } = createComponentFactory(qrCode)
 
 const Root = withRoot(QrCode.Root)
 const RootProvider = withRoot(QrCode.RootProvider)

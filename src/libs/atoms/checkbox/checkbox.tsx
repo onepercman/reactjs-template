@@ -1,12 +1,16 @@
 import { Checkbox, CheckboxRootProps } from "@ark-ui/react"
 import React from "react"
 import { LuMinus } from "react-icons/lu"
+import {
+  ComponentMetadata,
+  ComposedTVProps,
+  createComponentFactory,
+  createComponentTree,
+} from "react-tvcx"
 import { Check } from "../check"
-import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createComponentTree, createCtx } from "../utils"
 import { checkbox } from "./variants"
 
-const { withRoot, withSlot } = createCtx(checkbox)
+const { withRoot, withSlot } = createComponentFactory(checkbox)
 
 const Root = withRoot(Checkbox.Root, "base")
 const RootProvider = withRoot(Checkbox.RootProvider, "base")
@@ -21,7 +25,7 @@ export interface CheckboxProps
   extends CheckboxRootProps,
     ComposedTVProps<typeof checkbox> {}
 
-export interface Checkbox extends ForwardedRefComponent {
+export interface Checkbox extends ComponentMetadata {
   (props: CheckboxProps): React.ReactElement | null
 }
 

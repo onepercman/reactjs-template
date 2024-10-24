@@ -1,9 +1,9 @@
 import { Tabs } from "@ark-ui/react"
 import React from "react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { tabs } from "./variants"
 
-const { withRoot, withSlot } = createCtx(tabs)
+const { withRoot, withSlot } = createComponentFactory(tabs)
 
 const Root = withRoot(Tabs.Root, "base")
 const Content = withSlot(Tabs.Content, "content")

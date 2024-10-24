@@ -1,8 +1,8 @@
 import { Splitter } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { splitter } from "./variants"
 
-const { withRoot, withSlot } = createCtx(splitter)
+const { withRoot, withSlot } = createComponentFactory(splitter)
 
 const Root = withRoot(Splitter.Root)
 const RootProvider = withRoot(Splitter.RootProvider)

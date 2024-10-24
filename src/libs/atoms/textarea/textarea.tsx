@@ -3,8 +3,8 @@ import { LuX } from "react-icons/lu"
 import TextAreaAutoSize, {
   TextareaAutosizeProps,
 } from "react-textarea-autosize"
-import { ComposedTVProps } from "../types"
-import { cn, useComposedRefs } from "../utils"
+import { cn, ComposedTVProps } from "react-tvcx"
+import { useComposedRefs } from "../utils"
 import { textarea } from "./variants"
 
 export interface TextareaProps<AutoSize extends boolean = true>

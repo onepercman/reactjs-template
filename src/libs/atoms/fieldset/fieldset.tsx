@@ -1,8 +1,8 @@
 import { Fieldset } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { fieldset } from "./variants"
 
-const { withRoot, withSlot } = createCtx(fieldset)
+const { withRoot, withSlot } = createComponentFactory(fieldset)
 
 const Root = withRoot(Fieldset.Root)
 const RootProvider = withRoot(Fieldset.RootProvider)

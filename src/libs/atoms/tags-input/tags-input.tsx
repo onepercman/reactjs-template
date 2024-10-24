@@ -1,8 +1,8 @@
 import { TagsInput } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { tagsInput } from "./variants"
 
-const { withRoot, withSlot } = createCtx(tagsInput)
+const { withRoot, withSlot } = createComponentFactory(tagsInput)
 
 const Root = withRoot(TagsInput.Root)
 const RootProvider = withRoot(TagsInput.RootProvider)

@@ -1,9 +1,9 @@
 import { HoverCard, Portal } from "@ark-ui/react"
 import React from "react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { hoverCard } from "./variants"
 
-const { withRoot, withSlot } = createCtx(hoverCard)
+const { withRoot, withSlot } = createComponentFactory(hoverCard)
 
 const Root = withRoot(HoverCard.Root)
 const RootProvider = withRoot(HoverCard.RootProvider)

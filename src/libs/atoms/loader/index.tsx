@@ -1,6 +1,6 @@
 import React from "react"
+import { cn } from "react-tvcx"
 import { Spinner } from "../spinner"
-import { cn } from "../utils"
 
 export const Loader = React.forwardRef<
   HTMLDivElement,

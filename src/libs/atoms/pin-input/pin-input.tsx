@@ -1,8 +1,8 @@
 import { PinInput } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { pinInput } from "./variants"
 
-const { withRoot, withSlot } = createCtx(pinInput)
+const { withRoot, withSlot } = createComponentFactory(pinInput)
 
 const Root = withRoot(PinInput.Root)
 const RootProvider = withRoot(PinInput.RootProvider)

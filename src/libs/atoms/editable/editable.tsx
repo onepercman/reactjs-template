@@ -1,8 +1,8 @@
 import { Editable } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { editable } from "./variants"
 
-const { withRoot, withSlot } = createCtx(editable)
+const { withRoot, withSlot } = createComponentFactory(editable)
 
 const Root = withRoot(Editable.Root)
 const RootProvider = withRoot(Editable.RootProvider)

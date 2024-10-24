@@ -1,8 +1,8 @@
 import { Collapsible } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { collapsible } from "./variants"
 
-const { withRoot, withSlot } = createCtx(collapsible)
+const { withRoot, withSlot } = createComponentFactory(collapsible)
 
 const Root = withRoot(Collapsible.Root, "base")
 const Content = withSlot(Collapsible.Content, "content")

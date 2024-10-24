@@ -1,11 +1,11 @@
 import React from "react"
 import { LuX } from "react-icons/lu"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { Drawer } from "vaul"
-import { createComponentTree, createCtx } from "../utils"
 import { open } from "./fn"
 import { drawer } from "./variants"
 
-const { withRoot, withSlot } = createCtx(drawer)
+const { withRoot, withSlot } = createComponentFactory(drawer)
 
 const Root = withRoot(Drawer.Root)
 const NestedRoot = withSlot(Drawer.NestedRoot)

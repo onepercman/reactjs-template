@@ -1,8 +1,8 @@
 import { Accordion } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { accordion } from "./variants"
 
-const { withRoot, withSlot } = createCtx(accordion)
+const { withRoot, withSlot } = createComponentFactory(accordion)
 
 const Root = withRoot(Accordion.Root, "base")
 const RootProvider = withSlot(Accordion.RootProvider, "base")

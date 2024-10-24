@@ -8,12 +8,16 @@ import {
 } from "@ark-ui/react"
 import React from "react"
 import { LuChevronDown } from "react-icons/lu"
+import {
+  ComponentMetadata,
+  ComposedTVProps,
+  createComponentFactory,
+  createComponentTree,
+} from "react-tvcx"
 import { Button, ButtonProps } from "../button"
-import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { createComponentTree, createCtx } from "../utils"
 import { select } from "./variants"
 
-const { withRoot, withSlot } = createCtx(select)
+const { withRoot, withSlot } = createComponentFactory(select)
 
 const Root = withRoot(Select.Root, "base")
 const RootProvider = withRoot(Select.RootProvider, "base")
@@ -42,7 +46,7 @@ export interface SelectProps<T extends CollectionItem>
   valueText?: SelectValueTextProps
 }
 
-export interface Select extends ForwardedRefComponent {
+export interface Select extends ComponentMetadata {
   <T extends CollectionItem>(
     props: SelectProps<T> & React.RefAttributes<Select>,
   ): JSX.Element

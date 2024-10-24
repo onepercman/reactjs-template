@@ -1,8 +1,8 @@
 import { Carousel } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { carousel } from "./variants"
 
-const { withRoot, withSlot } = createCtx(carousel)
+const { withRoot, withSlot } = createComponentFactory(carousel)
 
 const Root = withRoot(Carousel.Root)
 const RootProvider = withRoot(Carousel.RootProvider)

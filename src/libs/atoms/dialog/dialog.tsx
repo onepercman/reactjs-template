@@ -1,11 +1,11 @@
 import { Dialog, Portal } from "@ark-ui/react"
 import React from "react"
 import { LuX } from "react-icons/lu"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { confirm, open } from "./fn"
 import { dialog } from "./variants"
 
-const { withRoot, withSlot } = createCtx(dialog)
+const { withRoot, withSlot } = createComponentFactory(dialog)
 
 const Root = withRoot(Dialog.Root)
 const RootProvider = withSlot(Dialog.RootProvider)

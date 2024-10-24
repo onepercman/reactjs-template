@@ -1,10 +1,13 @@
 import { SegmentGroup } from "@ark-ui/react"
 import React from "react"
-import { ForwardedRefComponent } from "../types"
-import { createComponentTree, createCtx } from "../utils"
+import {
+  ComponentMetadata,
+  createComponentFactory,
+  createComponentTree,
+} from "react-tvcx"
 import { segmentGroup } from "./variants"
 
-const { withRoot, withSlot } = createCtx(segmentGroup)
+const { withRoot, withSlot } = createComponentFactory(segmentGroup)
 
 const Root = withRoot(SegmentGroup.Root, "base")
 const RootProvider = withRoot(SegmentGroup.RootProvider, "base")
@@ -32,7 +35,7 @@ const CustomItem = React.forwardRef<
 
 CustomItem.displayName = "Item"
 
-interface SegmentGroup extends ForwardedRefComponent {
+interface SegmentGroup extends ComponentMetadata {
   (props: React.ComponentProps<typeof Root>): React.ReactElement | null
 }
 

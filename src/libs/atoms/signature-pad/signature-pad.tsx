@@ -1,8 +1,8 @@
 import { SignaturePad } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { signaturePad } from "./variants"
 
-const { withRoot, withSlot } = createCtx(signaturePad)
+const { withRoot, withSlot } = createComponentFactory(signaturePad)
 
 const Root = withRoot(SignaturePad.Root)
 const RootProvider = withRoot(SignaturePad.RootProvider)

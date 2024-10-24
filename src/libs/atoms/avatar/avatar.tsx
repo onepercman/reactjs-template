@@ -1,9 +1,9 @@
 import { Avatar } from "@ark-ui/react"
 import React from "react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { avatar } from "./variants"
 
-const { withRoot, withSlot } = createCtx(avatar)
+const { withRoot, withSlot } = createComponentFactory(avatar)
 
 const Root = withRoot(Avatar.Root, "base")
 const RootProvider = withSlot(Avatar.RootProvider, "base")

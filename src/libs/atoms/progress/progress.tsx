@@ -1,8 +1,8 @@
 import { Progress } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { progress } from "./variants"
 
-const { withRoot, withSlot } = createCtx(progress)
+const { withRoot, withSlot } = createComponentFactory(progress)
 
 const Root = withRoot(Progress.Root, "base")
 const RootProvider = withRoot(Progress.RootProvider, "base")

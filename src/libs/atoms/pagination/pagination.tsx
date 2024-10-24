@@ -1,9 +1,8 @@
 import { Pagination, PaginationRootProps } from "@ark-ui/react"
 import React from "react"
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
+import { cn, ComponentMetadata, ComposedTVProps } from "react-tvcx"
 import { button, Button, ButtonProps } from "../button"
-import { ComposedTVProps, ForwardedRefComponent } from "../types"
-import { cn } from "../utils"
 
 export interface PaginationProps
   extends Omit<PaginationRootProps, "color">,
@@ -12,7 +11,7 @@ export interface PaginationProps
   inactiveProps?: ButtonProps
 }
 
-interface Pagination extends ForwardedRefComponent {
+interface Pagination extends ComponentMetadata {
   (props: PaginationProps): React.ReactElement | null
 }
 

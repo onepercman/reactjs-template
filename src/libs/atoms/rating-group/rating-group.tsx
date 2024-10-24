@@ -1,8 +1,8 @@
 import { RatingGroup } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { ratingGroup } from "./variants"
 
-const { withRoot, withSlot } = createCtx(ratingGroup)
+const { withRoot, withSlot } = createComponentFactory(ratingGroup)
 
 const Root = withRoot(RatingGroup.Root)
 const RootProvider = withRoot(RatingGroup.RootProvider)

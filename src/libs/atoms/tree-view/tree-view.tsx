@@ -1,8 +1,8 @@
 import { TreeView } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { treeView } from "./variants"
 
-const { withRoot, withSlot } = createCtx(treeView)
+const { withRoot, withSlot } = createComponentFactory(treeView)
 
 const Root = withRoot(TreeView.Root)
 const RootProvider = withRoot(TreeView.RootProvider)

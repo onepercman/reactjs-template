@@ -1,8 +1,8 @@
 import { Field } from "@ark-ui/react"
-import { createComponentTree, createCtx } from "../utils"
+import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { field } from "./variants"
 
-const { withRoot, withSlot } = createCtx(field)
+const { withRoot, withSlot } = createComponentFactory(field)
 
 const Context = withSlot(Field.Context)
 const ErrorText = withSlot(Field.ErrorText, "errorText")
