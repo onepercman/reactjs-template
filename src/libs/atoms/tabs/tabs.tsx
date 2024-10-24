@@ -14,7 +14,7 @@ const RootProvider = withSlot(Tabs.RootProvider)
 const Trigger = withSlot(Tabs.Trigger, "trigger")
 
 const CustomList = React.forwardRef<
-  HTMLElement,
+  React.ElementRef<typeof List>,
   React.ComponentPropsWithoutRef<typeof List>
 >(function ({ children, ...props }, ref) {
   return (

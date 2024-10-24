@@ -37,7 +37,7 @@ const CustomContent = React.forwardRef<
 CustomContent.displayName = "Content"
 
 const CustomCloseTrigger = React.forwardRef<
-  HTMLDivElement,
+  React.ElementRef<typeof CloseTrigger>,
   React.ComponentPropsWithoutRef<typeof CloseTrigger>
 >(function ({ children, ...props }, ref) {
   return (

@@ -28,12 +28,12 @@ export interface Checkbox extends ForwardedRefComponent {
 function _bootstrap(
   render: (
     props: CheckboxProps,
-    ref: React.ForwardedRef<HTMLDivElement>,
+    ref: React.ForwardedRef<React.ElementRef<Checkbox>>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLDivElement, CheckboxProps>(
+  return React.forwardRef<React.ElementRef<Checkbox>, CheckboxProps>(
     render,
-  ) as unknown as Checkbox
+  ) as Checkbox
 }
 
 export const CustomRoot = _bootstrap(function ({ children, ...props }, ref) {

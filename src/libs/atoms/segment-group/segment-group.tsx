@@ -18,7 +18,7 @@ const ItemText = withSlot(SegmentGroup.ItemText)
 const Label = withSlot(SegmentGroup.Label)
 
 const CustomItem = React.forwardRef<
-  HTMLElement,
+  React.ElementRef<typeof Item>,
   React.ComponentPropsWithoutRef<typeof Item>
 >(function ({ children, ...props }, ref) {
   return (

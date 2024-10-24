@@ -16,7 +16,7 @@ export function createCtx<
 
   function withRoot<C extends React.ElementType>(Component: C, slot?: Slot) {
     const Comp = React.forwardRef<
-      unknown,
+      React.ElementRef<C>,
       React.ComponentProps<C> & ComposedTVProps<TVFN>
     >(function ({ className, classNames, ...props }, ref) {
       const variants = tvFn(props) as any
@@ -40,7 +40,7 @@ export function createCtx<
 
   function withSlot<C extends React.ElementType>(Component: C, slot?: Slot) {
     const Comp = React.forwardRef<
-      unknown,
+      React.ElementRef<C>,
       React.ComponentProps<C> & VariantProps<TVFN>
     >(function ({ className, ...props }, ref) {
       const { variants, classNames } = useCtx()
