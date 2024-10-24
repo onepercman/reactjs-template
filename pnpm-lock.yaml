@@ -120,8 +120,8 @@ importers:
         specifier: ^2.5.3
         version: 2.5.3
       tailwind-schemes:
-        specifier: ^1.6.5
-        version: 1.6.5(tailwindcss@3.4.13(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.13))(@types/node@22.7.5)(typescript@5.6.2)))
+        specifier: ^1.7.0
+        version: 1.7.0(tailwindcss@3.4.13(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.13))(@types/node@22.7.5)(typescript@5.6.2)))
       tailwind-scrollbar:
         specifier: ^3.1.0
         version: 3.1.0(tailwindcss@3.4.13(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.13))(@types/node@22.7.5)(typescript@5.6.2)))
@@ -4018,10 +4018,10 @@ packages:
         integrity: sha512-d9ZolCAIzom1nf/5p4LdD5zvjmgSxY0BGgdSvmXIoMYAiPdAW/dSpP7joCDYFY7r/HkEa2qmPtkgsu0xjQeQtw==,
       }
 
-  tailwind-schemes@1.6.5:
+  tailwind-schemes@1.7.0:
     resolution:
       {
-        integrity: sha512-9JTlKEqELg1Icdg9Y1ABtE9zk3n9HthNAwlQNgm34csnEtap1EIaoG7ys+lmre/N7sVeTob/IkollthUIzIBSw==,
+        integrity: sha512-BOwVWXUD12a6EyE25baC7FV1T9h9QurG6GF5idTXqKtYXbtg5ILHUmAU2/kuetiAuc0PGnXmUyI097QSk9k99w==,
       }
     peerDependencies:
       tailwindcss: ">=3.2.0"
@@ -7113,7 +7113,7 @@ snapshots:
 
   tailwind-merge@2.5.3: {}
 
-  tailwind-schemes@1.6.5(tailwindcss@3.4.13(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.13))(@types/node@22.7.5)(typescript@5.6.2))):
+  tailwind-schemes@1.7.0(tailwindcss@3.4.13(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.13))(@types/node@22.7.5)(typescript@5.6.2))):
     dependencies:
       tailwindcss: 3.4.13(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.13))(@types/node@22.7.5)(typescript@5.6.2))
 
