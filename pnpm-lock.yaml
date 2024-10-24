@@ -126,8 +126,8 @@ importers:
         specifier: ^2.5.3
         version: 2.5.3
       tailwind-schemes:
-        specifier: ^1.6.1
-        version: 1.6.1(tailwindcss@3.4.13(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.13))(@types/node@22.7.5)(typescript@5.6.2)))
+        specifier: ^1.6.5
+        version: 1.6.5(tailwindcss@3.4.13(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.13))(@types/node@22.7.5)(typescript@5.6.2)))
       tailwind-scrollbar:
         specifier: ^3.1.0
         version: 3.1.0(tailwindcss@3.4.13(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.13))(@types/node@22.7.5)(typescript@5.6.2)))
@@ -179,24 +179,24 @@ packages:
       react: ">=18.0.0"
       react-dom: ">=18.0.0"
 
-  "@babel/code-frame@7.25.7":
+  "@babel/code-frame@7.25.9":
     resolution:
       {
-        integrity: sha512-0xZJFNE5XMpENsgfHYTw8FbX4kv53mFLn2i3XPoq69LyhYSCBJtitaHx9QnsVTrsogI4Z3+HtEfZ2/GFPOtf5g==,
+        integrity: sha512-z88xeGxnzehn2sqZ8UdGQEvYErF1odv2CftxInpSYJt6uHuPe9YjahKZITGs3l5LeI9d2ROG+obuDAoSlqbNfQ==,
       }
     engines: { node: ">=6.9.0" }
 
-  "@babel/helper-validator-identifier@7.25.7":
+  "@babel/helper-validator-identifier@7.25.9":
     resolution:
       {
-        integrity: sha512-AM6TzwYqGChO45oiuPqwL2t20/HdMC1rTPAesnBCgPCSF1x3oN9MVUwQV2iyz4xqWrctwK5RNC8LV22kaQCNYg==,
+        integrity: sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==,
       }
     engines: { node: ">=6.9.0" }
 
-  "@babel/highlight@7.25.7":
+  "@babel/highlight@7.25.9":
     resolution:
       {
-        integrity: sha512-iYyACpW3iW8Fw+ZybQK+drQre+ns/tKpXbNESfrhNnPLIklLbXr7MYJ6gPEd0iETGLOK+SxMjVvKb/ffmk+FEw==,
+        integrity: sha512-llL88JShoCsth8fF8R4SJnIn+WLvR6ccFxu1H3FlMhDontdcmZWf2HgIZ7AIqV3Xcck1idlohrN4EUBQz6klbw==,
       }
     engines: { node: ">=6.9.0" }
 
@@ -204,6 +204,13 @@ packages:
     resolution:
       {
         integrity: sha512-FjoyLe754PMiYsFaN5C94ttGiOmBNYTf6pLr4xXHAT5uctHb092PBszndLDR5XA/jghQvn4n7JMHl7dmTgbm9w==,
+      }
+    engines: { node: ">=6.9.0" }
+
+  "@babel/runtime@7.25.9":
+    resolution:
+      {
+        integrity: sha512-4zpTHZ9Cm6L9L+uIqghQX8ZXg8HKFcjYO3qHoO8zTmRm6HQUJ8SSJ+KRvbMBZn0EGVlT4DRYeQ/6hjlyXBh+Kg==,
       }
     engines: { node: ">=6.9.0" }
 
@@ -3385,6 +3392,12 @@ packages:
         integrity: sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==,
       }
 
+  picocolors@1.1.1:
+    resolution:
+      {
+        integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==,
+      }
+
   picomatch@2.3.1:
     resolution:
       {
@@ -4017,10 +4030,10 @@ packages:
         integrity: sha512-d9ZolCAIzom1nf/5p4LdD5zvjmgSxY0BGgdSvmXIoMYAiPdAW/dSpP7joCDYFY7r/HkEa2qmPtkgsu0xjQeQtw==,
       }
 
-  tailwind-schemes@1.6.1:
+  tailwind-schemes@1.6.5:
     resolution:
       {
-        integrity: sha512-Y4qaozWg1ryyKObo3I80yjc0d9mJM7150iXkqnRMEmLaNd9iXe4rekWIfMRwkjfFBV8HtU3dRhksnTEmT9kzwQ==,
+        integrity: sha512-9JTlKEqELg1Icdg9Y1ABtE9zk3n9HthNAwlQNgm34csnEtap1EIaoG7ys+lmre/N7sVeTob/IkollthUIzIBSw==,
       }
     peerDependencies:
       tailwindcss: ">=3.2.0"
@@ -4588,21 +4601,25 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  "@babel/code-frame@7.25.7":
+  "@babel/code-frame@7.25.9":
     dependencies:
-      "@babel/highlight": 7.25.7
-      picocolors: 1.1.0
+      "@babel/highlight": 7.25.9
+      picocolors: 1.1.1
 
-  "@babel/helper-validator-identifier@7.25.7": {}
+  "@babel/helper-validator-identifier@7.25.9": {}
 
-  "@babel/highlight@7.25.7":
+  "@babel/highlight@7.25.9":
     dependencies:
-      "@babel/helper-validator-identifier": 7.25.7
+      "@babel/helper-validator-identifier": 7.25.9
       chalk: 2.4.2
       js-tokens: 4.0.0
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   "@babel/runtime@7.25.7":
+    dependencies:
+      regenerator-runtime: 0.14.1
+
+  "@babel/runtime@7.25.9":
     dependencies:
       regenerator-runtime: 0.14.1
 
@@ -5049,8 +5066,8 @@ snapshots:
 
   "@testing-library/dom@10.4.0":
     dependencies:
-      "@babel/code-frame": 7.25.7
-      "@babel/runtime": 7.25.7
+      "@babel/code-frame": 7.25.9
+      "@babel/runtime": 7.25.9
       "@types/aria-query": 5.0.4
       aria-query: 5.3.0
       chalk: 4.1.2
@@ -6736,6 +6753,8 @@ snapshots:
 
   picocolors@1.1.0: {}
 
+  picocolors@1.1.1: {}
+
   picomatch@2.3.1: {}
 
   pify@2.3.0: {}
@@ -7120,7 +7139,7 @@ snapshots:
 
   tailwind-merge@2.5.3: {}
 
-  tailwind-schemes@1.6.1(tailwindcss@3.4.13(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.13))(@types/node@22.7.5)(typescript@5.6.2))):
+  tailwind-schemes@1.6.5(tailwindcss@3.4.13(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.13))(@types/node@22.7.5)(typescript@5.6.2))):
     dependencies:
       tailwindcss: 3.4.13(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.13))(@types/node@22.7.5)(typescript@5.6.2))
 
