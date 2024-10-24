@@ -43,6 +43,9 @@ importers:
       react-router-dom:
         specifier: ^6.26.2
         version: 6.26.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      use-valtio-store:
+        specifier: ^1.0.0
+        version: 1.0.0(valtio@2.0.0(@types/react@18.3.11)(react@18.3.1))
       valtio:
         specifier: ^2.0.0
         version: 2.0.0(@types/react@18.3.11)(react@18.3.1)
@@ -4323,6 +4326,14 @@ packages:
       "@types/react":
         optional: true
 
+  use-valtio-store@1.0.0:
+    resolution:
+      {
+        integrity: sha512-K9853hItfyhJbsvmX926JH4HnDmDVeFNRq5BWSt31lLFtfQeLs5dT2/HU/9rUEZw2rC73P/mZQZenOj18/6AHg==,
+      }
+    peerDependencies:
+      valtio: ^2.1.0
+
   util-deprecate@1.0.2:
     resolution:
       {
@@ -7316,6 +7327,10 @@ snapshots:
       tslib: 2.7.0
     optionalDependencies:
       "@types/react": 18.3.11
+
+  use-valtio-store@1.0.0(valtio@2.0.0(@types/react@18.3.11)(react@18.3.1)):
+    dependencies:
+      valtio: 2.0.0(@types/react@18.3.11)(react@18.3.1)
 
   util-deprecate@1.0.2: {}
 

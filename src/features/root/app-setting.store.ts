@@ -1,7 +1,7 @@
 import { _DEV_ } from "@/config/mode.config"
 import { storageKeys } from "@/config/storage.config"
 import { version } from "@/config/version.config"
-import { createStore } from "@/libs/valtio"
+import { createStore } from "use-valtio-store"
 import { devtools } from "valtio/utils"
 import { AppSettingModel } from "./app-setting.model"
 

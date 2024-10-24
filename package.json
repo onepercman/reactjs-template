@@ -30,6 +30,7 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.0",
     "react-router-dom": "^6.26.2",
+    "use-valtio-store": "^1.0.0",
     "valtio": "^2.0.0"
   },
   "devDependencies": {
