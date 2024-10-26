@@ -2,7 +2,7 @@ import React from "react"
 import { HiEye, HiEyeOff } from "react-icons/hi"
 import { LuX } from "react-icons/lu"
 import { cn, ComposedTVProps } from "react-tvcx"
-import { useComposedRefs } from "../utils"
+import { useComposedRefs } from "use-composed-refs"
 import { input } from "./variants"
 
 export interface InputFieldProps {

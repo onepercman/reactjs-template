@@ -31,6 +31,7 @@
     "react-hook-form": "^7.53.1",
     "react-router-dom": "^6.27.0",
     "react-tvcx": "^1.0.4",
+    "use-composed-refs": "^0.0.1",
     "use-valtio-store": "^1.0.1",
     "valtio": "^2.1.0"
   },

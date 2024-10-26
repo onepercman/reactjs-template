@@ -4,7 +4,7 @@ import TextAreaAutoSize, {
   TextareaAutosizeProps,
 } from "react-textarea-autosize"
 import { cn, ComposedTVProps } from "react-tvcx"
-import { useComposedRefs } from "../utils"
+import { useComposedRefs } from "use-composed-refs"
 import { textarea } from "./variants"
 
 export interface TextareaProps<AutoSize extends boolean = true>
