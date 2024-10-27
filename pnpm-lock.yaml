@@ -50,8 +50,8 @@ importers:
         specifier: ^0.0.1
         version: 0.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       use-valtio-store:
-        specifier: ^1.0.2
-        version: 1.0.2(valtio@2.1.0(@types/react@18.3.12)(react@18.3.1))
+        specifier: ^1.1.0
+        version: 1.1.0(valtio@2.1.0(@types/react@18.3.12)(react@18.3.1))
       valtio:
         specifier: ^2.1.0
         version: 2.1.0(@types/react@18.3.12)(react@18.3.1)
@@ -4264,10 +4264,10 @@ packages:
       "@types/react":
         optional: true
 
-  use-valtio-store@1.0.2:
+  use-valtio-store@1.1.0:
     resolution:
       {
-        integrity: sha512-YOd09J7L1E+pj73SpGSOuw1T64/OXamIGxwHUnpz3yoEkPHAX5YGm95wD9Nxsjxu3Fs2Ec2hPQcWsayUZ8HEag==,
+        integrity: sha512-L/4ig/H97zIhsD7vwMS+fdpjG85GFkUHc19GCEhvmZ71NaPD9tXxNTwlSRXy2k9gsyljH2IQxqZmQefeIbMJ6w==,
       }
     peerDependencies:
       valtio: ^2.1.0
@@ -7227,7 +7227,7 @@ snapshots:
     optionalDependencies:
       "@types/react": 18.3.12
 
-  use-valtio-store@1.0.2(valtio@2.1.0(@types/react@18.3.12)(react@18.3.1)):
+  use-valtio-store@1.1.0(valtio@2.1.0(@types/react@18.3.12)(react@18.3.1)):
     dependencies:
       valtio: 2.1.0(@types/react@18.3.12)(react@18.3.1)
 
