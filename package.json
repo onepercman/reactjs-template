@@ -32,6 +32,7 @@
     "react-router-dom": "^6.28.0",
     "react-tvcx": "^1.0.5",
     "react-use": "^17.5.1",
+    "tailwindcss-motion": "0.4.3-beta",
     "use-composed-refs": "^0.0.1",
     "use-valtio-store": "^1.1.0",
     "valtio": "^2.1.2"
@@ -65,7 +66,6 @@
     "tailwind-scrollbar": "^3.1.0",
     "tailwind-variants": "^0.2.1",
     "tailwindcss": "^3.4.14",
-    "tailwindcss-animate": "^1.0.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.13.0",

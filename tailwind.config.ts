@@ -1,7 +1,7 @@
 import { colorize, resetCSS, schemes } from "tailwind-schemes"
 import tailwindScrollbar from "tailwind-scrollbar"
 import type { Config } from "tailwindcss"
-import tailwindAnimate from "tailwindcss-animate"
+import tailwindcssMotion from "tailwindcss-motion"
 import colors from "tailwindcss/colors"
 import defaultTheme from "tailwindcss/defaultTheme"
 
@@ -27,7 +27,7 @@ const config: Config = {
     },
   },
   plugins: [
-    tailwindAnimate,
+    tailwindcssMotion,
     tailwindScrollbar({ nocompatible: true }),
     schemes({
       schemes: {

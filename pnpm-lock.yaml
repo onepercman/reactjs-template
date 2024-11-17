@@ -49,6 +49,9 @@ importers:
       react-use:
         specifier: ^17.5.1
         version: 17.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      tailwindcss-motion:
+        specifier: 0.4.3-beta
+        version: 0.4.3-beta(tailwindcss@3.4.14(ts-node@10.9.2(@swc/core@1.9.1(@swc/helpers@0.5.13))(@types/node@22.9.0)(typescript@5.6.3)))
       use-composed-refs:
         specifier: ^0.0.1
         version: 0.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -143,9 +146,6 @@ importers:
       tailwindcss:
         specifier: ^3.4.14
         version: 3.4.14(ts-node@10.9.2(@swc/core@1.9.1(@swc/helpers@0.5.13))(@types/node@22.9.0)(typescript@5.6.3))
-      tailwindcss-animate:
-        specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@3.4.14(ts-node@10.9.2(@swc/core@1.9.1(@swc/helpers@0.5.13))(@types/node@22.9.0)(typescript@5.6.3)))
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@swc/core@1.9.1(@swc/helpers@0.5.13))(@types/node@22.9.0)(typescript@5.6.3)
@@ -4178,10 +4178,10 @@ packages:
     peerDependencies:
       tailwindcss: "*"
 
-  tailwindcss-animate@1.0.7:
+  tailwindcss-motion@0.4.3-beta:
     resolution:
       {
-        integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==,
+        integrity: sha512-9S4nmSw01m0/z0UxodUNT7U+yUdlZdXnH9RMkb2rXvrUEQQ+rMVPeP9j4pMwJy779LECiSr+IoSTVrGluSfU2w==,
       }
     peerDependencies:
       tailwindcss: ">=3.0.0 || insiders"
@@ -7372,7 +7372,7 @@ snapshots:
       tailwind-merge: 2.5.4
       tailwindcss: 3.4.14(ts-node@10.9.2(@swc/core@1.9.1(@swc/helpers@0.5.13))(@types/node@22.9.0)(typescript@5.6.3))
 
-  tailwindcss-animate@1.0.7(tailwindcss@3.4.14(ts-node@10.9.2(@swc/core@1.9.1(@swc/helpers@0.5.13))(@types/node@22.9.0)(typescript@5.6.3))):
+  tailwindcss-motion@0.4.3-beta(tailwindcss@3.4.14(ts-node@10.9.2(@swc/core@1.9.1(@swc/helpers@0.5.13))(@types/node@22.9.0)(typescript@5.6.3))):
     dependencies:
       tailwindcss: 3.4.14(ts-node@10.9.2(@swc/core@1.9.1(@swc/helpers@0.5.13))(@types/node@22.9.0)(typescript@5.6.3))
 
