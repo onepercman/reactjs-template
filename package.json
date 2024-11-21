@@ -30,7 +30,7 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.2",
     "react-router-dom": "^6.28.0",
-    "react-tvcx": "^1.0.5",
+    "react-tvcx": "^1.1.1",
     "react-use": "^17.5.1",
     "tailwindcss-motion": "0.4.3-beta",
     "use-composed-refs": "^0.0.1",
