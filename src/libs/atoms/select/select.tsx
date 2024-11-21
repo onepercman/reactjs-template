@@ -1,20 +1,11 @@
-import {
-  CollectionItem,
-  createListCollection,
-  Portal,
-  Select,
-  SelectRootProps,
-  SelectValueTextProps,
-} from "@ark-ui/react"
+import { CollectionItem, Portal, Select, SelectRootProps } from "@ark-ui/react"
 import React from "react"
-import { LuChevronDown } from "react-icons/lu"
 import {
   ComponentMetadata,
   ComposedTVProps,
   createComponentFactory,
   createComponentTree,
 } from "react-tvcx"
-import { Button, ButtonProps } from "../button"
 import { select } from "./variants"
 
 const { withRoot, withSlot } = createComponentFactory(select)
@@ -41,10 +32,7 @@ const ItemIndicator = withSlot(Select.ItemIndicator, "itemIndicator")
 
 export interface SelectProps<T extends CollectionItem>
   extends SelectRootProps<T>,
-    ComposedTVProps<typeof select> {
-  trigger?: ButtonProps
-  valueText?: SelectValueTextProps
-}
+    ComposedTVProps<typeof select> {}
 
 export interface Select extends ComponentMetadata {
   <T extends CollectionItem>(
@@ -64,7 +52,7 @@ function _bootstrap<T extends CollectionItem>(
 }
 
 export const CustomRoot = _bootstrap(function (
-  { children, positioning, trigger, valueText, ...props },
+  { children, positioning, ...props },
   ref,
 ) {
   return (
@@ -74,30 +62,28 @@ export const CustomRoot = _bootstrap(function (
       unmountOnExit
       {...props}
     >
-      <Control>
-        <Trigger
-          asChild
-          rightIcon={
-            <Indicator asChild>
-              <LuChevronDown />
-            </Indicator>
-          }
-          {...trigger}
-        >
-          <Button>
-            <ValueText {...valueText} />
-          </Button>
-        </Trigger>
-      </Control>
-      <Portal>
-        <Positioner>
-          <Content>{children}</Content>
-        </Positioner>
-      </Portal>
+      {children}
       <HiddenSelect />
     </Root>
   )
 })
+
+const CustomContent = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentProps<typeof Content>
+>(function ({ children, ...props }, ref) {
+  return (
+    <Portal>
+      <Positioner>
+        <Content ref={ref} {...props}>
+          {children}
+        </Content>
+      </Positioner>
+    </Portal>
+  )
+})
+
+CustomContent.displayName = "Content"
 
 export const Component = createComponentTree(CustomRoot, {
   Root: Root as Select,
@@ -113,13 +99,12 @@ export const Component = createComponentTree(CustomRoot, {
   HiddenSelect,
   Positioner,
   List,
-  Content,
+  Content: CustomContent,
   ItemGroup,
   ItemGroupLabel,
   Item,
   ItemText,
   ItemIndicator,
-  createListCollection,
 })
 
 Component.displayName = "Select"

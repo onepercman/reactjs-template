@@ -2,18 +2,15 @@ import {
   CollectionItem,
   Combobox,
   ComboboxRootProps,
-  createListCollection,
   Portal,
 } from "@ark-ui/react"
 import React from "react"
-import { LuChevronsUpDown } from "react-icons/lu"
 import {
   ComponentMetadata,
   ComposedTVProps,
   createComponentFactory,
   createComponentTree,
 } from "react-tvcx"
-import { Input as AtomInput, InputProps } from "../input"
 import { combobox } from "./variants"
 
 const { withRoot, withSlot } = createComponentFactory(combobox)
@@ -38,10 +35,7 @@ const ItemIndicator = withSlot(Combobox.ItemIndicator, "itemIndicator")
 
 export interface ComboboxProps<T extends CollectionItem>
   extends ComboboxRootProps<T>,
-    ComposedTVProps<typeof combobox> {
-  placeholder?: string
-  renderInput?(props: InputProps): React.ReactNode
-}
+    ComposedTVProps<typeof combobox> {}
 
 export interface Combobox extends ComponentMetadata {
   <T extends CollectionItem>(props: ComboboxProps<T>): React.ReactElement | null
@@ -59,25 +53,7 @@ function _bootstrap<T extends CollectionItem>(
 }
 
 export const CustomRoot = _bootstrap(function (
-  {
-    children,
-    placeholder,
-    invalid,
-    positioning,
-    renderInput = function (props) {
-      return (
-        <AtomInput
-          addonAfter={
-            <Trigger>
-              <LuChevronsUpDown />
-            </Trigger>
-          }
-          {...props}
-        />
-      )
-    },
-    ...props
-  },
+  { children, positioning, ...props },
   ref,
 ) {
   return (
@@ -87,17 +63,25 @@ export const CustomRoot = _bootstrap(function (
       positioning={{ sameWidth: true, ...positioning }}
       {...props}
     >
-      <Control>
-        <Input asChild>{renderInput({ placeholder })}</Input>
-      </Control>
-      <Portal>
-        <Positioner>
-          <Content>{children}</Content>
-        </Positioner>
-      </Portal>
+      {children}
     </Root>
   )
 })
+
+const CustomContent = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentProps<typeof Content>
+>(function ({ children, ...props }) {
+  return (
+    <Portal>
+      <Positioner>
+        <Content {...props}>{children}</Content>
+      </Positioner>
+    </Portal>
+  )
+})
+
+CustomContent.displayName = "Content"
 
 export const Component = createComponentTree(CustomRoot, {
   Root: Root as Combobox,
@@ -111,13 +95,12 @@ export const Component = createComponentTree(CustomRoot, {
   ClearTrigger,
   Positioner,
   List,
-  Content,
+  Content: CustomContent,
   ItemGroup,
   ItemGroupLabel,
   Item,
   ItemText,
   ItemIndicator,
-  createListCollection,
 })
 
 Component.displayName = "Combobox"
