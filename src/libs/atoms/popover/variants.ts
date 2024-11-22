@@ -9,7 +9,7 @@ export const popover = tv({
       "data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out",
     ],
-    arrow: "[--arrow-offset:-3px] [--arrow-size:6px]",
+    arrow: "",
     arrowTip: "border-l border-t border-line !bg-component",
   },
   variants: {
@@ -18,8 +18,12 @@ export const popover = tv({
       md: { content: "px-2 py-1 text-sm" },
       lg: { content: "px-3 py-2 text-base" },
     },
+    arrowSize: {
+      md: { arrow: "[--arrow-size:0.5rem]" },
+    },
   },
   defaultVariants: {
     size: "md",
+    arrowSize: "md",
   },
 })

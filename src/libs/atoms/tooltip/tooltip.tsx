@@ -10,7 +10,7 @@ const RootProvider = withRoot(Tooltip.RootProvider)
 const Context = withSlot(Tooltip.Context)
 const Positioner = withSlot(Tooltip.Positioner)
 const Trigger = withSlot(Tooltip.Trigger)
-const Arrow = withSlot(Tooltip.Arrow)
+const Arrow = withSlot(Tooltip.Arrow, "arrow")
 const ArrowTip = withSlot(Tooltip.ArrowTip, "arrowTip")
 const Content = withSlot(Tooltip.Content, "content")
 

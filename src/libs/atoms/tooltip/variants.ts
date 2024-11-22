@@ -9,9 +9,13 @@ export const tooltip = tv({
       "data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out",
     ],
+    arrow: "",
     arrowTip: "border-l border-t border-line !bg-component",
   },
   variants: {
+    arrowSize: {
+      md: { arrow: "[--arrow-size:0.5rem]" },
+    },
     size: {
       sm: { content: "p-1 text-xs" },
       md: { content: "px-2 py-1 text-sm" },
@@ -20,5 +24,6 @@ export const tooltip = tv({
   },
   defaultVariants: {
     size: "md",
+    arrowSize: "md",
   },
 })
