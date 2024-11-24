@@ -10,7 +10,7 @@ export const accordion = tv({
     itemContent: [
       "overflow-hidden !duration-150",
       "data-[state=open]:animate-collapse",
-      "data-[state=closed]:animate-collapse data-[state=closed]:direction-reverse",
+      "data-[state=closed]:direction-reverse data-[state=closed]:animate-collapse",
     ],
   },
 })

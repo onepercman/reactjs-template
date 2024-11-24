@@ -1,5 +1,5 @@
-import { Toaster } from "@/libs/atoms"
 import { toaster } from "@/libs/toaster"
+import { Toaster } from "@/shared/components"
 import { FC, Fragment } from "react"
 import { Outlet } from "react-router-dom"
 
