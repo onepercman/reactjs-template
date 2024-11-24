@@ -43,7 +43,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       if (onClick.constructor.name === "AsyncFunction") {
         try {
           setAsyncLoading(true)
-          onClick && (await onClick(ev))
+          await onClick(ev)
         } catch (err) {
           throw new Error(err as any)
         } finally {

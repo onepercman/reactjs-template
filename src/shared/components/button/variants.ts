@@ -2,7 +2,7 @@ import { tv } from "tailwind-variants"
 
 export const button = tv({
   base: [
-    "inline-flex items-center justify-center gap-2 whitespace-nowrap font-semibold",
+    "inline-flex select-none items-center justify-center gap-2 whitespace-nowrap font-semibold",
     "cursor-pointer border-0 border-transparent outline-none ring ring-transparent transition-all",
     "h-[var(--button-size)] min-h-[var(--button-size)] min-w-[var(--button-size)] px-2 text-xs",
     "[&:not(:disabled)]:active:brightness-105",

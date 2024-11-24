@@ -3,15 +3,15 @@ import { tv } from "tailwind-variants"
 export const dialog = tv({
   slots: {
     backdrop: [
-      "fixed inset-0 bg-background/60 backdrop-blur",
+      "fixed inset-0 bg-background/80",
       "data-[state=open]:animate-in",
       "data-[state=open]:fade-in",
       "data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out",
     ],
-    positioner: "fixed inset-0 flex p-4",
+    positioner: "z-modal fixed inset-0 z-50 flex overflow-auto p-4",
     content: [
-      "relative h-fit w-full rounded border border-line bg-component p-4 shadow",
+      "relative z-auto h-fit w-full rounded border border-line bg-component p-4 shadow",
       "data-[state=open]:animate-in",
       "data-[state=open]:fade-in",
       "data-[state=closed]:animate-out",

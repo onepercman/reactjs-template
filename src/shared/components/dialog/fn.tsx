@@ -23,7 +23,9 @@ export function open({ children, onOpenChange, ...props }: DialogRootProps): {
     <Dialog.Root
       open={true}
       onOpenChange={function (details) {
-        onOpenChange && onOpenChange(details)
+        if (onOpenChange) {
+          onOpenChange(details)
+        }
         close()
       }}
       {...props}

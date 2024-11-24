@@ -12,6 +12,7 @@ export default [
   pluginReact.configs.flat.recommended,
   {
     name: "custom",
+    settings: { react: { version: "detect" } },
     rules: {
       "react/react-in-jsx-scope": "off",
       "@typescript-eslint/no-explicit-any": "off",
@@ -20,7 +21,7 @@ export default [
         { ignoreRestSiblings: true },
       ],
       "@typescript-eslint/no-unused-expressions": ["warn"],
-      "react/prop-types": ["warn"],
+      "react/prop-types": ["off"],
       "react/display-name": ["warn"],
     },
   },

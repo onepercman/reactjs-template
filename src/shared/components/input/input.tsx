@@ -92,7 +92,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                   target: { value: currentTarget },
                   currentTarget: { value: currentTarget },
                 })
-                onChange && onChange(event)
+                if (onChange) onChange(event)
               }
             }}
           />
@@ -104,7 +104,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       if (transform && internalRef.current) {
         internalRef.current.value = transform(internalRef.current.value)
       }
-      onChange && onChange(ev)
+      if (onChange) onChange(ev)
       setShowClear(!!ev.target.value)
     }
 

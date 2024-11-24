@@ -65,7 +65,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
                   target: { value: currentTarget },
                   currentTarget: { value: currentTarget },
                 })
-                onChange && onChange(event)
+                if (onChange) onChange(event)
               }
             }}
           />
@@ -77,7 +77,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       if (transform && internalRef.current) {
         internalRef.current.value = transform(internalRef.current.value)
       }
-      onChange && onChange(ev)
+      if (onChange) onChange(ev)
       setShowClear(!!ev.target.value)
     }
 

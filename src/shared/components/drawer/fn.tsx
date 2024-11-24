@@ -23,7 +23,7 @@ export function open({ children, onClose, ...props }: DialogProps): {
     <Drawer.Root
       open={true}
       onClose={function () {
-        onClose && onClose()
+        if (onClose) onClose()
         close()
       }}
       {...props}
@@ -66,7 +66,9 @@ export async function confirm({
                 ) {
                   await cancelProps.onClick(e)
                 } else {
-                  cancelProps?.onClick && cancelProps.onClick(e)
+                  if (cancelProps?.onClick) {
+                    cancelProps.onClick(e)
+                  }
                 }
                 resolve(false)
                 d.close()
