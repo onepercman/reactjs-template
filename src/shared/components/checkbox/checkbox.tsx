@@ -1,3 +1,5 @@
+"use client"
+
 import { Checkbox, CheckboxRootProps } from "@ark-ui/react"
 import React from "react"
 import { LuMinus } from "react-icons/lu"

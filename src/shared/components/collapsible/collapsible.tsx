@@ -1,3 +1,5 @@
+"use client"
+
 import { Collapsible } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { collapsible } from "./variants"

@@ -1,3 +1,5 @@
+"use client"
+
 import { Clipboard } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { clipboard } from "./variants"

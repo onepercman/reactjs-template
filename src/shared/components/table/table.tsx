@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { table } from "./variants"

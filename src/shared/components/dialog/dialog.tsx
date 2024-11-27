@@ -1,3 +1,5 @@
+"use client"
+
 import { Dialog, Portal } from "@ark-ui/react"
 import React from "react"
 import { LuX } from "react-icons/lu"

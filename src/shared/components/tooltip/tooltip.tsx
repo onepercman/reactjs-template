@@ -1,3 +1,5 @@
+"use client"
+
 import { Tooltip } from "@ark-ui/react"
 import React from "react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"

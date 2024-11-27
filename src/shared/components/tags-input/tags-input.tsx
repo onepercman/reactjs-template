@@ -1,3 +1,5 @@
+"use client"
+
 import { TagsInput } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { tagsInput } from "./variants"

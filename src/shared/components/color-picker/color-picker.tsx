@@ -1,3 +1,5 @@
+"use client"
+
 import { ColorPicker } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { colorPicker } from "./variants"

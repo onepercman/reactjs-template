@@ -1,3 +1,5 @@
+"use client"
+
 import { QrCode } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { qrCode } from "./variants"

@@ -1,3 +1,5 @@
+"use client"
+
 import { FC, SVGAttributes } from "react"
 
 export const Spinner: FC<SVGAttributes<SVGElement>> = function ({ ...props }) {

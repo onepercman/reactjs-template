@@ -1,3 +1,5 @@
+"use client"
+
 import { Switch, SwitchRootProps } from "@ark-ui/react"
 import React from "react"
 import { ComposedTVProps } from "react-tvcx"

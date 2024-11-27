@@ -1,3 +1,5 @@
+"use client"
+
 import { Carousel } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { carousel } from "./variants"

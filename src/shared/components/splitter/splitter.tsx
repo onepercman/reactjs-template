@@ -1,3 +1,5 @@
+"use client"
+
 import { Splitter } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { splitter } from "./variants"

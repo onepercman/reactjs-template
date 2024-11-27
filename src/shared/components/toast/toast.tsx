@@ -1,3 +1,5 @@
+"use client"
+
 import { createToaster, Toast, Toaster } from "@ark-ui/react"
 import { FC } from "react"
 import { LuCheck, LuInfo, LuX, LuXCircle } from "react-icons/lu"

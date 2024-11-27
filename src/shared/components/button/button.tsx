@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { cn, ComposedTVProps } from "react-tvcx"
 import { Spinner } from "../spinner"

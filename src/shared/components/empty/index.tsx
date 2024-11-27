@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { LuBird } from "react-icons/lu"
 import { cn } from "react-tvcx"

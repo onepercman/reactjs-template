@@ -1,3 +1,5 @@
+"use client"
+
 import { Slider } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { slider } from "./variants"

@@ -1,3 +1,5 @@
+"use client"
+
 import { NumberInput } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { numberInput } from "./variants"

@@ -1,3 +1,5 @@
+"use client"
+
 import { RatingGroup } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { ratingGroup } from "./variants"

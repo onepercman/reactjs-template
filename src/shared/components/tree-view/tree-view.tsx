@@ -1,3 +1,5 @@
+"use client"
+
 import { TreeView } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { treeView } from "./variants"

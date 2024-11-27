@@ -1,3 +1,5 @@
+"use client"
+
 import { Progress } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { progress } from "./variants"

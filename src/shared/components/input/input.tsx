@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { HiEye, HiEyeOff } from "react-icons/hi"
 import { LuX } from "react-icons/lu"

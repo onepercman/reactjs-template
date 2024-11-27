@@ -1,3 +1,5 @@
+"use client"
+
 import { Fieldset } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { fieldset } from "./variants"

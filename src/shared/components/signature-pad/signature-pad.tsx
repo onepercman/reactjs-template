@@ -1,3 +1,5 @@
+"use client"
+
 import { SignaturePad } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { signaturePad } from "./variants"

@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { LuX } from "react-icons/lu"
 import TextAreaAutoSize, {

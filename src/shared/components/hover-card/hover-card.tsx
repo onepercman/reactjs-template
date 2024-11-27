@@ -1,3 +1,5 @@
+"use client"
+
 import { HoverCard, Portal } from "@ark-ui/react"
 import React from "react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"

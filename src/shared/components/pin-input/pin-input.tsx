@@ -1,3 +1,5 @@
+"use client"
+
 import { PinInput } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { pinInput } from "./variants"

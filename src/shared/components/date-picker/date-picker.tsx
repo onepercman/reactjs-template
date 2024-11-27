@@ -1,3 +1,5 @@
+"use client"
+
 import { DatePicker, DatePickerRootProps, Portal } from "@ark-ui/react"
 import React, { Fragment } from "react"
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu"

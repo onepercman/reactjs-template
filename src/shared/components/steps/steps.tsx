@@ -1,3 +1,5 @@
+"use client"
+
 import { Steps } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { steps } from "./variants"

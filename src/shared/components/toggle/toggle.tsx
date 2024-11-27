@@ -1,3 +1,5 @@
+"use client"
+
 import { Toggle } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { toggle } from "./variants"

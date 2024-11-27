@@ -1,3 +1,5 @@
+"use client"
+
 import { Field } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { field } from "./variants"

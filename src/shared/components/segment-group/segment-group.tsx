@@ -1,3 +1,5 @@
+"use client"
+
 import { SegmentGroup } from "@ark-ui/react"
 import React from "react"
 import {

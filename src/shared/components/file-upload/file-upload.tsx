@@ -1,3 +1,5 @@
+"use client"
+
 import { FileUpload } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { fileUpload } from "./variants"

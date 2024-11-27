@@ -1,3 +1,5 @@
+"use client"
+
 import { CollectionItem, Portal, Select, SelectRootProps } from "@ark-ui/react"
 import React from "react"
 import {

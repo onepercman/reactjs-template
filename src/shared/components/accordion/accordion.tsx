@@ -1,3 +1,5 @@
+"use client"
+
 import { Accordion } from "@ark-ui/react"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
 import { accordion } from "./variants"
