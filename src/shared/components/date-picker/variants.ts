@@ -10,6 +10,7 @@ export const datePicker = tv({
       "data-[state=closed]:fade-out",
     ],
     control: "inline-flex items-center gap-2",
+    trigger: "inline-flex items-center gap-2",
     viewControl: "inline-flex w-full items-center justify-between gap-2 py-2",
     table: "border-spacing-0",
     tableHeader: "text-xs font-normal text-secondary",
