@@ -1,4 +1,4 @@
-import { API_URL } from "@/config/endpoints.config"
+import { ENV } from "@/config/env.config"
 import userStore from "@/features/user/user.store"
 import axios, {
   AxiosError,
@@ -66,7 +66,7 @@ export class BaseService {
 
   constructor(cfg: CreateAxiosDefaults = {}) {
     this.http = axios.create({
-      baseURL: API_URL,
+      baseURL: ENV.API_URL,
       timeout: 10000,
       headers: {},
       ...cfg,
