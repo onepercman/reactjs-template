@@ -1,6 +1,6 @@
 "use client"
 
-import { Dialog, Portal } from "@ark-ui/react"
+import { Dialog } from "@ark-ui/react"
 import React from "react"
 import { LuX } from "react-icons/lu"
 import { createComponentFactory, createComponentTree } from "react-tvcx"
@@ -25,14 +25,14 @@ const CustomContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof Content>
 >(function ({ children, ...props }, ref) {
   return (
-    <Portal>
+    <>
       <Backdrop />
       <Positioner>
         <Content ref={ref} {...props}>
           {children}
         </Content>
       </Positioner>
-    </Portal>
+    </>
   )
 })
 

@@ -9,9 +9,9 @@ export const dialog = tv({
       "data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out",
     ],
-    positioner: "z-modal fixed inset-0 z-50 flex overflow-auto p-4",
+    positioner: "fixed inset-0 flex overflow-auto p-4",
     content: [
-      "relative z-auto h-fit w-full rounded border border-line bg-component p-4 shadow",
+      "relative h-fit w-fit rounded border border-line bg-component p-4 shadow",
       "data-[state=open]:animate-in",
       "data-[state=open]:fade-in",
       "data-[state=closed]:animate-out",
@@ -23,9 +23,9 @@ export const dialog = tv({
   },
   variants: {
     size: {
-      sm: { content: "max-w-[340px]" },
-      md: { content: "max-w-[640px]" },
-      lg: { content: "max-w-[768px]" },
+      sm: { content: "min-w-[340px]" },
+      md: { content: "min-w-[640px]" },
+      lg: { content: "min-w-[768px]" },
     },
     placement: {
       center: { content: "m-auto" },
