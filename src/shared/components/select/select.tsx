@@ -1,6 +1,6 @@
 "use client"
 
-import { CollectionItem, Portal, Select, SelectRootProps } from "@ark-ui/react"
+import { CollectionItem, Select, SelectRootProps } from "@ark-ui/react"
 import React from "react"
 import {
   ComponentMetadata,
@@ -75,13 +75,11 @@ const CustomContent = React.forwardRef<
   React.ComponentProps<typeof Content>
 >(function ({ children, ...props }, ref) {
   return (
-    <Portal>
-      <Positioner>
-        <Content ref={ref} {...props}>
-          {children}
-        </Content>
-      </Positioner>
-    </Portal>
+    <Positioner>
+      <Content ref={ref} {...props}>
+        {children}
+      </Content>
+    </Positioner>
   )
 })
 

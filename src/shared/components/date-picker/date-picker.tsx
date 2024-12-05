@@ -1,6 +1,6 @@
 "use client"
 
-import { DatePicker, DatePickerRootProps, Portal } from "@ark-ui/react"
+import { DatePicker, DatePickerRootProps } from "@ark-ui/react"
 import React, { Fragment } from "react"
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 import {
@@ -84,11 +84,9 @@ export const CustomContent = React.forwardRef<
   React.ComponentProps<typeof Content>
 >(function ({ ...props }) {
   return (
-    <Portal>
-      <Positioner>
-        <Content {...props} />
-      </Positioner>
-    </Portal>
+    <Positioner>
+      <Content {...props} />
+    </Positioner>
   )
 })
 
