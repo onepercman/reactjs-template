@@ -2,7 +2,7 @@
 
 import { createToaster, Toast, Toaster } from "@ark-ui/react"
 import { FC } from "react"
-import { LuCheck, LuInfo, LuX, LuXCircle } from "react-icons/lu"
+import { LuCheck, LuCircleX, LuInfo, LuX } from "react-icons/lu"
 import { Button } from "../button"
 import { Spinner } from "../spinner"
 import { toast } from "./variants"
@@ -14,7 +14,7 @@ function getIcon(type?: "success" | "error" | "loading" | "info" | any) {
     case "success":
       return <LuCheck className="text-success" />
     case "error":
-      return <LuXCircle className="text-error" />
+      return <LuCircleX className="text-error" />
     case "info":
       return <LuInfo className="text-info" />
     default:
