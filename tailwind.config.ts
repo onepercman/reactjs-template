@@ -12,18 +12,14 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: { sans: [...defaultTheme.fontFamily.sans] },
-      keyframes: {
-        collapse: { from: { height: "0px" }, to: { height: "var(--height)" } },
-      },
       borderRadius: {
         DEFAULT: "6px",
       },
+      keyframes: {
+        collapse: { from: { height: "0px" }, to: { height: "var(--height)" } },
+      },
       animation: {
         collapse: "collapse",
-      },
-      boxShadow: {
-        button:
-          "0px 0px 10px 0px var(--color), 0px 1px 0px 0px rgba(255, 255, 255, 0.20) inset, 0px -3px 0px 0px rgba(0, 0, 0, 0.15) inset, 0px 0px 12px 0px var(--shadow-color) inset",
       },
     },
   },
