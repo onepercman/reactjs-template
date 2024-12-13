@@ -17,7 +17,7 @@ const ArrowTip = withSlot(Tooltip.ArrowTip, "arrowTip")
 const Content = withSlot(Tooltip.Content, "content")
 
 const CustomContent = React.forwardRef<
-  HTMLDivElement,
+  React.ElementRef<typeof Content>,
   React.ComponentPropsWithoutRef<typeof Content>
 >(function ({ children, ...props }, ref) {
   return (
@@ -32,7 +32,7 @@ const CustomContent = React.forwardRef<
 CustomContent.displayName = "Content"
 
 const CustomArrow = React.forwardRef<
-  HTMLDivElement,
+  React.ElementRef<typeof Arrow>,
   React.ComponentPropsWithoutRef<typeof Arrow>
 >(function ({ children, ...props }, ref) {
   return (

@@ -21,7 +21,7 @@ const Content = withSlot(Dialog.Content, "content")
 const CloseTrigger = withSlot(Dialog.CloseTrigger, "closeTrigger")
 
 const CustomContent = React.forwardRef<
-  HTMLDivElement,
+  React.ElementRef<typeof Content>,
   React.ComponentPropsWithoutRef<typeof Content>
 >(function ({ children, ...props }, ref) {
   return (

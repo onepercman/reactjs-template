@@ -15,8 +15,9 @@ const Row = withSlot("tr", "row")
 const Cell = withSlot("td", "cell")
 
 export const Wrapper = React.forwardRef<
-  React.ComponentRef<typeof Table>,
-  React.ComponentProps<typeof Table> & React.ComponentProps<typeof Root>
+  React.ElementRef<typeof Table>,
+  React.ComponentPropsWithoutRef<typeof Table> &
+    React.ComponentPropsWithoutRef<typeof Root>
 >(function (
   { size, highlightRow, className, classNames, children, ...props },
   ref,
@@ -38,8 +39,8 @@ export const Wrapper = React.forwardRef<
 Wrapper.displayName = "TableWrapper"
 
 export const Header = React.forwardRef<
-  React.ComponentRef<typeof Head>,
-  React.ComponentProps<typeof Head>
+  React.ElementRef<typeof Head>,
+  React.ComponentPropsWithoutRef<typeof Head>
 >(function ({ children, ...props }, ref) {
   return (
     <Head ref={ref} {...props}>

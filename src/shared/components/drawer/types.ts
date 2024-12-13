@@ -21,10 +21,10 @@ export type DialogProps = {
   dismissible?: boolean
   handleOnly?: boolean
   onDrag?: (
-    event: React.PointerEvent<HTMLDivElement>,
+    event: React.PointerEvent<HTMLElement>,
     percentageDragged: number,
   ) => void
-  onRelease?: (event: React.PointerEvent<HTMLDivElement>, open: boolean) => void
+  onRelease?: (event: React.PointerEvent<HTMLElement>, open: boolean) => void
   modal?: boolean
   nested?: boolean
   onClose?: () => void

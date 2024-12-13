@@ -41,10 +41,10 @@ export interface Combobox extends ComponentMetadata {
 function _bootstrap<T extends CollectionItem>(
   render: (
     props: ComboboxProps<T>,
-    ref: React.ForwardedRef<HTMLDivElement>,
+    ref: React.ForwardedRef<React.ElementRef<Combobox>>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLDivElement, ComboboxProps<T>>(
+  return React.forwardRef<React.ElementRef<Combobox>, ComboboxProps<T>>(
     render,
   ) as unknown as Combobox
 }
@@ -66,8 +66,8 @@ export const CustomRoot = _bootstrap(function (
 })
 
 const CustomContent = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentProps<typeof Content>
+  React.ElementRef<typeof Content>,
+  React.ComponentPropsWithoutRef<typeof Content>
 >(function ({ children, ...props }) {
   return (
     <Positioner>

@@ -45,10 +45,10 @@ export interface Select extends ComponentMetadata {
 function _bootstrap<T extends CollectionItem>(
   render: (
     props: SelectProps<T>,
-    ref: React.ForwardedRef<HTMLDivElement>,
+    ref: React.ForwardedRef<React.ElementRef<typeof Root>>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLDivElement, SelectProps<T>>(
+  return React.forwardRef<React.ElementRef<typeof Root>, SelectProps<T>>(
     render,
   ) as unknown as Select
 }
@@ -71,8 +71,8 @@ export const CustomRoot = _bootstrap(function (
 })
 
 const CustomContent = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentProps<typeof Content>
+  React.ElementRef<typeof Content>,
+  React.ComponentPropsWithoutRef<typeof Content>
 >(function ({ children, ...props }, ref) {
   return (
     <Positioner>

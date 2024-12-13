@@ -21,7 +21,7 @@ const Content = withSlot(Drawer.Content, "content")
 const CloseTrigger = withSlot(Drawer.Close, "closeTrigger")
 
 const CustomContent = React.forwardRef<
-  HTMLDivElement,
+  React.ElementRef<typeof Content>,
   React.ComponentPropsWithoutRef<typeof Content>
 >(function ({ children, ...props }, ref) {
   return (

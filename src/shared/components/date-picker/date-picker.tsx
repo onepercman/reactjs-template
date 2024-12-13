@@ -55,10 +55,10 @@ export interface DatePicker extends ComponentMetadata {
 function _bootstrap(
   render: (
     props: DatePickerCompactProps,
-    ref: React.ForwardedRef<HTMLInputElement>,
+    ref: React.ForwardedRef<React.ElementRef<DatePicker>>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLInputElement, DatePickerCompactProps>(
+  return React.forwardRef<React.ElementRef<DatePicker>, DatePickerCompactProps>(
     render,
   ) as unknown as DatePicker
 }
@@ -80,8 +80,8 @@ export const CustomRoot = _bootstrap(function (
 })
 
 export const CustomContent = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentProps<typeof Content>
+  React.ElementRef<typeof Content>,
+  React.ComponentPropsWithoutRef<typeof Content>
 >(function ({ ...props }) {
   return (
     <Positioner>
@@ -93,8 +93,8 @@ export const CustomContent = React.forwardRef<
 CustomContent.displayName = "Content"
 
 export const SimpleViews = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentProps<typeof Content>
+  React.ElementRef<typeof Content>,
+  React.ComponentPropsWithoutRef<typeof Content>
 >(function () {
   return (
     <>

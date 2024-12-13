@@ -3,7 +3,7 @@
 import React from "react"
 import { HiEye, HiEyeOff } from "react-icons/hi"
 import { LuX } from "react-icons/lu"
-import { cn, ComposedTVProps } from "react-tvcx"
+import { cn, ComposedTVProps, forwardRefWithAs } from "react-tvcx"
 import { useComposedRefs } from "use-composed-refs"
 import { input } from "./variants"
 
@@ -24,7 +24,7 @@ export interface InputProps
     InputFieldProps,
     ComposedTVProps<typeof input> {}
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+export const Input = forwardRefWithAs<InputProps, "input">(
   (
     {
       prefix,

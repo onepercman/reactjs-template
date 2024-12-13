@@ -14,8 +14,8 @@ const Image = withSlot(Avatar.Image, "image")
 const Fallback = withSlot(Avatar.Fallback, "fallback")
 
 const Compact = React.forwardRef<
-  React.ComponentRef<typeof Root>,
-  React.ComponentProps<typeof Image> & {
+  React.ElementRef<typeof Root>,
+  React.ComponentPropsWithoutRef<typeof Image> & {
     seed?: any
     fallback?: React.ReactNode
   }

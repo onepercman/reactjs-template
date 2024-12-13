@@ -20,10 +20,10 @@ interface Pagination extends ComponentMetadata {
 function _bootstrap(
   render: (
     props: PaginationProps,
-    ref: React.ForwardedRef<HTMLDivElement>,
+    ref: React.ForwardedRef<React.ElementRef<Pagination>>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLDivElement, PaginationProps>(
+  return React.forwardRef<React.ElementRef<Pagination>, PaginationProps>(
     render,
   ) as unknown as Pagination
 }

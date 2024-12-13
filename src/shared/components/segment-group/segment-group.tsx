@@ -38,18 +38,21 @@ const CustomItem = React.forwardRef<
 CustomItem.displayName = "Item"
 
 interface SegmentGroup extends ComponentMetadata {
-  (props: React.ComponentProps<typeof Root>): React.ReactElement | null
+  (
+    props: React.ComponentPropsWithoutRef<typeof Root>,
+  ): React.ReactElement | null
 }
 
 function _bootstrap(
   render: (
-    props: React.ComponentProps<typeof Root>,
-    ref: React.ForwardedRef<HTMLDivElement>,
+    props: React.ComponentPropsWithoutRef<typeof Root>,
+    ref: React.ForwardedRef<React.ElementRef<SegmentGroup>>,
   ) => React.ReactElement | null,
 ) {
-  return React.forwardRef<HTMLDivElement, React.ComponentProps<typeof Root>>(
-    render,
-  ) as unknown as SegmentGroup
+  return React.forwardRef<
+    React.ElementRef<SegmentGroup>,
+    React.ComponentPropsWithoutRef<typeof Root>
+  >(render) as unknown as SegmentGroup
 }
 
 export const CustomRoot = _bootstrap(function ({ children, ...props }, ref) {

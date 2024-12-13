@@ -5,7 +5,7 @@ import { LuX } from "react-icons/lu"
 import TextAreaAutoSize, {
   TextareaAutosizeProps,
 } from "react-textarea-autosize"
-import { cn, ComposedTVProps } from "react-tvcx"
+import { cn, ComposedTVProps, forwardRefWithAs } from "react-tvcx"
 import { useComposedRefs } from "use-composed-refs"
 import { textarea } from "./variants"
 
@@ -25,7 +25,7 @@ export interface TextareaProps<AutoSize extends boolean = true>
   autoSizeOptions?: AutoSize extends true ? TextareaAutosizeProps : undefined
 }
 
-export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+export const Textarea = forwardRefWithAs<TextareaProps, "textarea">(
   (
     {
       prefix,
