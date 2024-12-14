@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import { Button, ButtonProps } from "../button"
+import { Button } from "../button"
 import { Component as Drawer } from "./drawer"
 import { DialogProps } from "./types"
 
@@ -44,8 +44,8 @@ export async function confirm({
   ...props
 }: DialogProps & {
   question?: React.ReactNode
-  confirmProps?: ButtonProps
-  cancelProps?: ButtonProps
+  confirmProps?: React.ComponentPropsWithoutRef<typeof Button>
+  cancelProps?: React.ComponentPropsWithoutRef<typeof Button>
 }) {
   return new Promise(function (resolve) {
     const d = open({

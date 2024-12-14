@@ -2,7 +2,7 @@ import { DialogRootProps } from "@ark-ui/react"
 import React from "react"
 import ReactDOM from "react-dom/client"
 import { Dialog } from "."
-import { Button, ButtonProps } from "../button"
+import { Button } from "../button"
 
 export function open({ children, onOpenChange, ...props }: DialogRootProps): {
   close(): void
@@ -46,8 +46,8 @@ export async function confirm({
   ...props
 }: DialogRootProps & {
   question?: React.ReactNode
-  confirmProps?: ButtonProps
-  cancelProps?: ButtonProps
+  confirmProps?: React.ComponentPropsWithoutRef<typeof Button>
+  cancelProps?: React.ComponentPropsWithoutRef<typeof Button>
 }) {
   return new Promise(function (resolve) {
     open({
