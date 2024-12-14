@@ -1,7 +1,7 @@
-import { BaseService } from "./base.service"
-export class AuthService extends BaseService {
+import axiosInstance from "@/libs/axios-instance"
+export class AuthService {
   getNonce(address: string) {
-    return this.http.request({
+    return axiosInstance.request({
       method: "GET",
       url: `/auth/get-nonce/${address}`,
       params: {
@@ -10,7 +10,7 @@ export class AuthService extends BaseService {
     })
   }
   login(data: { address: string; signature: string }) {
-    return this.http.request({
+    return axiosInstance.request({
       method: "POST",
       url: "/auth/login-wallet",
       data,
@@ -18,14 +18,14 @@ export class AuthService extends BaseService {
   }
 
   twitterAuthUrl() {
-    return this.http.request<string>({
+    return axiosInstance.request<string>({
       method: "GET",
       url: "/auth/twitter-auth-url",
     })
   }
 
   loginTwitter(code: string) {
-    return this.http.request({
+    return axiosInstance.request({
       method: "POST",
       url: "/auth/login-twitter",
       data: { code },

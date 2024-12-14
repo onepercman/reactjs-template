@@ -19,9 +19,6 @@ importers:
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
-      humps:
-        specifier: ^2.0.1
-        version: 2.0.1
       jwt-decode:
         specifier: ^4.0.0
         version: 4.0.0
@@ -71,9 +68,6 @@ importers:
       "@testing-library/react":
         specifier: ^16.1.0
         version: 16.1.0(@testing-library/dom@10.4.0)(@types/react-dom@18.3.5(@types/react@18.3.16))(@types/react@18.3.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      "@types/humps":
-        specifier: ^2.0.6
-        version: 2.0.6
       "@types/node":
         specifier: ^22.10.1
         version: 22.10.2
@@ -1190,12 +1184,6 @@ packages:
     resolution:
       {
         integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==,
-      }
-
-  "@types/humps@2.0.6":
-    resolution:
-      {
-        integrity: sha512-Fagm1/a/1J9gDKzGdtlPmmTN5eSw/aaTzHtj740oSfo+MODsSY2WglxMmhTdOglC8nxqUhGGQ+5HfVtBvxo3Kg==,
       }
 
   "@types/js-cookie@2.2.7":
@@ -2791,12 +2779,6 @@ packages:
         integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==,
       }
     engines: { node: ">= 0.4" }
-
-  humps@2.0.1:
-    resolution:
-      {
-        integrity: sha512-E0eIbrFWUhwfXJmsbdjRQFQPrl5pTEoKlz163j1mTqqUnU9PgR4AgB8AIITzuB3vLBdxZXyZ9TDIrwB2OASz4g==,
-      }
 
   husky@9.1.7:
     resolution:
@@ -5315,8 +5297,6 @@ snapshots:
 
   "@types/estree@1.0.6": {}
 
-  "@types/humps@2.0.6": {}
-
   "@types/js-cookie@2.2.7": {}
 
   "@types/json-schema@7.0.15": {}
@@ -6660,8 +6640,6 @@ snapshots:
   hasown@2.0.2:
     dependencies:
       function-bind: 1.1.2
-
-  humps@2.0.1: {}
 
   husky@9.1.7: {}
 

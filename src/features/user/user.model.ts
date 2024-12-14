@@ -11,4 +11,8 @@ export class UserModel {
   logout() {
     this.user = undefined
   }
+
+  refreshToken() {
+    return ""
+  }
 }
