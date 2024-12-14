@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { cn, ComposedTVProps, forwardRefWithAs } from "react-tvcx"
+import { cn, ComposedTVProps, forwardRef } from "react-tvcx"
 import { Spinner } from "../spinner"
 import { button } from "./variants"
 
@@ -15,17 +15,16 @@ export interface ButtonBaseProps {
 
 export interface ButtonProps
   extends ButtonBaseProps,
-    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "color">,
     ComposedTVProps<typeof button> {}
 
-export const Button = forwardRefWithAs<ButtonProps, "button">(function (
+export const Button = forwardRef<"button", ButtonProps>(function (
   {
     as: Component = "button",
     children,
     disabled,
     loading,
     loadingText,
-    loadingVariant = "default",
+    loadingVariant = "transparent",
     leftIcon,
     rightIcon,
     className,

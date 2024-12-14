@@ -3,7 +3,7 @@
 import React from "react"
 import { HiEye, HiEyeOff } from "react-icons/hi"
 import { LuX } from "react-icons/lu"
-import { cn, ComposedTVProps, forwardRefWithAs } from "react-tvcx"
+import { cn, ComposedTVProps, forwardRef } from "react-tvcx"
 import { useComposedRefs } from "use-composed-refs"
 import { input } from "./variants"
 
@@ -17,14 +17,10 @@ export interface InputFieldProps {
 }
 
 export interface InputProps
-  extends Omit<
-      React.InputHTMLAttributes<HTMLInputElement>,
-      "prefix" | "suffix" | "size"
-    >,
-    InputFieldProps,
+  extends InputFieldProps,
     ComposedTVProps<typeof input> {}
 
-export const Input = forwardRefWithAs<InputProps, "input">(
+export const Input = forwardRef<"input", InputProps>(
   (
     {
       prefix,

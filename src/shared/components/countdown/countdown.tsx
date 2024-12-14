@@ -1,10 +1,8 @@
 "use client"
 
-import React from "react"
-import { cn } from "react-tvcx"
+import { cn, forwardRef } from "react-tvcx"
 
-type BaseProps = React.HTMLAttributes<HTMLSpanElement>
-export interface CountdownProps extends BaseProps {
+export interface CountdownProps {
   value?: number
   maxValue?: number
 }
@@ -19,23 +17,24 @@ function generateNumbers(maxValue: number) {
     .map((_, index) => [pad(index), <br key={index} />])
 }
 
-export const Countdown = React.forwardRef<HTMLSpanElement, CountdownProps>(
-  function ({ value = 0, className, maxValue = 99, ...props }, ref) {
-    return (
-      <span ref={ref} className={cn(className, "inline-flex")}>
-        <span className="inline-block h-[1em] overflow-hidden" {...props}>
-          <span
-            className="ease-expo relative block whitespace-pre text-center leading-none transition-all duration-500"
-            style={{
-              top: -value + "em",
-            }}
-          >
-            {generateNumbers(maxValue)}
-          </span>
+export const Countdown = forwardRef<"span", CountdownProps>(function (
+  { as: Component = "span", value = 0, className, maxValue = 99, ...props },
+  ref,
+) {
+  return (
+    <Component ref={ref} className={cn(className, "inline-flex")}>
+      <span className="inline-block h-[1em] overflow-hidden" {...props}>
+        <span
+          className="ease-expo relative block whitespace-pre text-center leading-none transition-all duration-500"
+          style={{
+            top: -value + "em",
+          }}
+        >
+          {generateNumbers(maxValue)}
         </span>
       </span>
-    )
-  },
-)
+    </Component>
+  )
+})
 
 Countdown.displayName = "Countdown"

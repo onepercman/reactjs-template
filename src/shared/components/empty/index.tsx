@@ -1,20 +1,19 @@
 "use client"
 
-import React from "react"
 import { LuBird } from "react-icons/lu"
-import { cn } from "react-tvcx"
+import { cn, forwardRef } from "react-tvcx"
 
-export const Empty = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(function ({ children, className, ...props }, ref) {
+export const Empty = forwardRef(function (
+  { as: Component = "div", children, className, ...props },
+  ref,
+) {
   return (
-    <div ref={ref} className={cn("flex min-h-56", className)} {...props}>
+    <Component ref={ref} className={cn("flex min-h-56", className)} {...props}>
       <div className="m-auto flex flex-col items-center gap-4 p-4">
         <LuBird />
         <div>{children ?? "Not found"}</div>
       </div>
-    </div>
+    </Component>
   )
 })
 

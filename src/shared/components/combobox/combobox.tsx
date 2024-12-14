@@ -68,10 +68,12 @@ export const CustomRoot = _bootstrap(function (
 const CustomContent = React.forwardRef<
   React.ElementRef<typeof Content>,
   React.ComponentPropsWithoutRef<typeof Content>
->(function ({ children, ...props }) {
+>(function ({ children, ...props }, ref) {
   return (
     <Positioner>
-      <Content {...props}>{children}</Content>
+      <Content ref={ref} {...props}>
+        {children}
+      </Content>
     </Positioner>
   )
 })

@@ -1,8 +1,8 @@
 "use client"
 
-import { createComponentFactory } from "react-tvcx"
+import { styled } from "react-tvcx"
 import { badge } from "./variants"
 
-export const Component = createComponentFactory(badge).withRoot("span")
+export const Component = styled("span", badge)
 
 Component.displayName = "Badge"
