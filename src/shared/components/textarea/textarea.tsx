@@ -24,6 +24,7 @@ export interface TextareaProps<AutoSize extends boolean = true>
 export const Textarea = forwardRef<"textarea", TextareaProps>(
   (
     {
+      as: Comp = "textarea",
       prefix,
       suffix,
       addonBefore,
@@ -132,7 +133,7 @@ export const Textarea = forwardRef<"textarea", TextareaProps>(
       )
     }
 
-    const Component = autoSize ? TextAreaAutoSize : ("textarea" as any)
+    const Component = autoSize ? TextAreaAutoSize : (Comp as any)
 
     return (
       <label

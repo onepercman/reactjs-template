@@ -23,6 +23,7 @@ export interface InputProps
 export const Input = forwardRef<"input", InputProps>(
   (
     {
+      as: Component = "input",
       prefix,
       suffix,
       addonBefore,
@@ -171,7 +172,7 @@ export const Input = forwardRef<"input", InputProps>(
       >
         {_renderAddonBefore()}
         {_renderPrefix()}
-        <input
+        <Component
           ref={composedRef}
           onChange={handleChange}
           className={styles.input({ class: classNames?.input })}
