@@ -1,88 +1,37 @@
 "use client"
 
-import React from "react"
-import { cn, ComposedTVProps, forwardRef } from "react-tvcx"
+import { cn, forwardRef } from "react-tvcx"
 import { Spinner } from "../spinner"
-import { button } from "./variants"
-
-export interface ButtonBaseProps {
-  loading?: boolean
-  loadingText?: string
-  leftIcon?: React.ReactElement | React.ReactNode
-  rightIcon?: React.ReactElement | React.ReactNode
-  loadingVariant?: "default" | "transparent"
-}
-
-export interface ButtonProps
-  extends ButtonBaseProps,
-    ComposedTVProps<typeof button> {}
+import { ButtonProps, useButton } from "./use-button"
 
 export const Button = forwardRef<"button", ButtonProps>(function (
   {
     as: Component = "button",
     children,
-    disabled,
-    loading,
     loadingText,
     loadingVariant = "transparent",
     leftIcon,
     rightIcon,
-    className,
-    variant,
-    color,
-    size,
-    shape,
-    onClick,
     ...props
   },
   ref,
 ) {
-  const [asyncLoading, setAsyncLoading] = React.useState(false)
-
-  async function _onClick(ev: React.MouseEvent<HTMLButtonElement>) {
-    if (!onClick) return
-    if (onClick.constructor.name === "AsyncFunction") {
-      try {
-        setAsyncLoading(true)
-        await onClick(ev)
-      } catch (err) {
-        throw new Error(err as any)
-      } finally {
-        setAsyncLoading(false)
-      }
-    } else {
-      onClick(ev)
-    }
-  }
-
-  const _loading = asyncLoading || loading
-  const _disabled = disabled || _loading
-  const _className = button({
-    variant,
-    color,
-    size,
-    className,
-    shape,
-  })
+  const buttonProps = useButton(props)
 
   return (
     <Component
       ref={ref}
       type="button"
-      className={_className}
-      disabled={_disabled}
-      onClick={_onClick}
-      data-loading={_loading}
-      {...props}
+      data-loading={buttonProps.loading}
+      {...buttonProps}
     >
-      {_loading && (
+      {buttonProps.loading && (
         <Spinner
           className={loadingVariant === "default" ? "relative" : "absolute"}
         />
       )}
-
       {leftIcon ? (
-        _loading ? (
+        buttonProps.loading ? (
           <span
             className={loadingVariant === "default" ? "hidden" : "opacity-0"}
           >
@@ -92,9 +41,8 @@ export const Button = forwardRef<"button", ButtonProps>(function (
           leftIcon
         )
       ) : null}
-
       {children || loadingText ? (
-        _loading ? (
+        buttonProps.loading ? (
           <span
             className={cn({ "opacity-0": loadingVariant === "transparent" })}
           >
@@ -104,9 +52,8 @@ export const Button = forwardRef<"button", ButtonProps>(function (
           children
         )
       ) : null}
-
       {rightIcon ? (
-        _loading ? (
+        buttonProps.loading ? (
           <span
             className={cn({ "opacity-0": loadingVariant === "transparent" })}
           >
