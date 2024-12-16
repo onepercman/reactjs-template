@@ -3,6 +3,6 @@ import { defineConfig } from "vite"
 import { default as viteTsConfigPaths } from "vite-tsconfig-paths"
 
 export default defineConfig({
-  plugins: [react({ tsDecorators: true }), viteTsConfigPaths()],
+  plugins: [react(), viteTsConfigPaths()],
   server: { host: true, port: 3000 },
 })
