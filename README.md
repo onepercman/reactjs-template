@@ -1,17 +1,14 @@
 # Ark UI components kit
 
-- [x] Color Picker
-- [x] Pin Input
-- [x] Rating Group
-- [x] Tags Input
 - [x] Accordion
 - [x] Avatar
-- [x] Button
+- [x] Badge
 - [x] Button
 - [x] Carousel
 - [x] Checkbox
 - [x] Clipboard
 - [x] Collapsible
+- [x] Color Picker
 - [x] Combobox
 - [x] Date Picker
 - [x] Dialog
@@ -21,14 +18,17 @@
 - [x] Hover Card
 - [x] Input
 - [x] Input
+- [x] Kbd
 - [x] Loader
 - [x] Menu
 - [x] Number Input
 - [x] Pagination
+- [x] Pin Input
 - [x] Popover
 - [x] Progress
 - [x] QRCode
 - [x] Radio Group
+- [x] Rating Group
 - [x] Segment Group
 - [x] Select
 - [x] SignaturePad
@@ -37,6 +37,7 @@
 - [x] Switch
 - [x] Table
 - [x] Tabs
+- [x] Tags Input
 - [x] Textarea
 - [x] Toast
 - [x] Toggle Group
