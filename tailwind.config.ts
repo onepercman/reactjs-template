@@ -64,7 +64,7 @@ const config: Config = {
       },
     }),
     resetCSS({
-      html: "bg-background text-foreground",
+      html: "bg-background text-foreground selection:text-primary selection:bg-primary/20",
       "*": "scrollbar scrollbar-thumb-default scrollbar-thumb-rounded scrollbar-track-rounded scrollbar-track-transparent",
     }),
   ],
