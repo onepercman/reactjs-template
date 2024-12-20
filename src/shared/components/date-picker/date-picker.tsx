@@ -105,15 +105,15 @@ export const SimpleViews = React.forwardRef<
             <>
               <ViewControl>
                 <PrevTrigger asChild>
-                  <Button size="xs" leftIcon={<LuChevronLeft />} />
+                  <Button leftIcon={<LuChevronLeft />} />
                 </PrevTrigger>
                 <ViewTrigger asChild>
-                  <Button size="xs">
+                  <Button>
                     <RangeText />
                   </Button>
                 </ViewTrigger>
                 <NextTrigger asChild>
-                  <Button size="xs" leftIcon={<LuChevronRight />} />
+                  <Button leftIcon={<LuChevronRight />} />
                 </NextTrigger>
               </ViewControl>
               <Table>
@@ -129,11 +129,7 @@ export const SimpleViews = React.forwardRef<
                     <TableRow key={id}>
                       {week.map((day, id) => (
                         <TableCell key={id} value={day}>
-                          <TableCellTrigger asChild>
-                            <Button size="xs" variant="ghost">
-                              {day.day}
-                            </Button>
-                          </TableCellTrigger>
+                          <TableCellTrigger>{day.day}</TableCellTrigger>
                         </TableCell>
                       ))}
                     </TableRow>
@@ -151,15 +147,15 @@ export const SimpleViews = React.forwardRef<
             <>
               <ViewControl>
                 <PrevTrigger asChild>
-                  <Button size="xs" leftIcon={<LuChevronLeft />} />
+                  <Button leftIcon={<LuChevronLeft />} />
                 </PrevTrigger>
                 <ViewTrigger asChild>
-                  <Button size="xs">
+                  <Button>
                     <RangeText />
                   </Button>
                 </ViewTrigger>
                 <NextTrigger asChild>
-                  <Button size="xs" leftIcon={<LuChevronRight />} />
+                  <Button leftIcon={<LuChevronRight />} />
                 </NextTrigger>
               </ViewControl>
               <Table>
@@ -170,11 +166,7 @@ export const SimpleViews = React.forwardRef<
                       <TableRow key={id}>
                         {months.map((month, id) => (
                           <TableCell key={id} value={month.value}>
-                            <TableCellTrigger asChild>
-                              <Button size="xs" variant="ghost">
-                                {month.label}
-                              </Button>
-                            </TableCellTrigger>
+                            <TableCellTrigger>{month.label}</TableCellTrigger>
                           </TableCell>
                         ))}
                       </TableRow>
@@ -192,15 +184,15 @@ export const SimpleViews = React.forwardRef<
             <>
               <ViewControl>
                 <PrevTrigger asChild>
-                  <Button size="xs" leftIcon={<LuChevronLeft />} />
+                  <Button leftIcon={<LuChevronLeft />} />
                 </PrevTrigger>
                 <ViewTrigger asChild>
-                  <Button size="xs">
+                  <Button>
                     <RangeText />
                   </Button>
                 </ViewTrigger>
                 <NextTrigger asChild>
-                  <Button size="xs" leftIcon={<LuChevronRight />} />
+                  <Button leftIcon={<LuChevronRight />} />
                 </NextTrigger>
               </ViewControl>
               <Table>
@@ -209,11 +201,7 @@ export const SimpleViews = React.forwardRef<
                     <TableRow key={id}>
                       {years.map((year, id) => (
                         <TableCell key={id} value={year.value}>
-                          <TableCellTrigger asChild>
-                            <Button size="xs" variant="ghost">
-                              {year.label}
-                            </Button>
-                          </TableCellTrigger>
+                          <TableCellTrigger>{year.label}</TableCellTrigger>
                         </TableCell>
                       ))}
                     </TableRow>

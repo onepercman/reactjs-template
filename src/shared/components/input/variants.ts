@@ -33,6 +33,6 @@ export const input = tv({
   },
   defaultVariants: {
     size: "md",
-    variant: "filled",
+    variant: "outlined",
   },
 })
