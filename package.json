@@ -19,7 +19,11 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
-    "@tanstack/react-query": "^5.62.3",
+    "@reown/appkit": "^1.6.4",
+    "@reown/appkit-adapter-solana": "^1.6.4",
+    "@reown/appkit-adapter-wagmi": "^1.6.4",
+    "@solana/wallet-adapter-wallets": "^0.19.32",
+    "@tanstack/react-query": "^5.62.7",
     "axios": "^1.7.9",
     "dayjs": "^1.11.13",
     "jwt-decode": "^4.0.0",
@@ -34,7 +38,9 @@
     "tailwindcss-motion": "0.4.3-beta",
     "use-composed-refs": "^0.0.1",
     "use-valtio-store": "^1.1.0",
-    "valtio": "^2.1.2"
+    "valtio": "^2.1.2",
+    "viem": "^2.22.9",
+    "wagmi": "^2.14.8"
   },
   "devDependencies": {
     "@ark-ui/react": "^4.4.4",
