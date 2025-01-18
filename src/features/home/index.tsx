@@ -1,5 +1,6 @@
 import { Button } from "@/shared/components"
 import { useAppKit, useAppKitAccount } from "@reown/appkit/react"
+import { LuWallet } from "react-icons/lu"
 
 export default function Home() {
   const { open } = useAppKit()
@@ -12,6 +13,7 @@ export default function Home() {
         color="primary"
         onClick={() => open()}
         loading={status === "connecting"}
+        leftIcon={<LuWallet />}
       >
         {address ?? "Connect Wallet"}
       </Button>
