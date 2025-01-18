@@ -32,7 +32,7 @@ const config: Config = {
         light: {
           background: colors.white,
           foreground: colors.black,
-          primary: colorize(colors.orange, "500", "950"),
+          primary: colorize(colors.rose, "500", "950"),
           secondary: colors.gray[500],
           muted: colors.gray[400],
           accent: colorize(colors.cyan, "500", "950"),
@@ -48,7 +48,7 @@ const config: Config = {
         dark: {
           background: colors.gray[950],
           foreground: colors.white,
-          primary: colorize(colors.orange, "500", "50"),
+          primary: colorize(colors.rose, "500", "50"),
           secondary: colors.gray[400],
           muted: colors.gray[700],
           accent: colorize(colors.cyan, "500", "50"),
