@@ -8,8 +8,12 @@ export default function Home() {
 
   return (
     <div className="p-4">
-      <Button onClick={() => open()} loading={status === "connecting"}>
-        Connect Wallet {address}
+      <Button
+        color="primary"
+        onClick={() => open()}
+        loading={status === "connecting"}
+      >
+        {address ?? "Connect Wallet"}
       </Button>
     </div>
   )
