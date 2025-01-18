@@ -4,7 +4,8 @@ import { Pagination, PaginationRootProps } from "@ark-ui/react"
 import React from "react"
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 import { cn, ComponentMetadata, ComposedTVProps } from "react-tvcx"
-import { button, Button, ButtonProps } from "../button"
+import { button, Button } from "../button"
+import { ButtonProps } from "../button/use-button"
 
 export interface PaginationProps
   extends Omit<PaginationRootProps, "color">,
