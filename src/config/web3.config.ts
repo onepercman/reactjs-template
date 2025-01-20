@@ -35,9 +35,7 @@ const appKitOptions: CreateAppKit = {
   networks: [mainnet, arbitrum, sepolia, solanaDevnet, solana],
   metadata: metadata,
   projectId,
-  features: {
-    analytics: true,
-  },
+  features: { analytics: true },
 }
 
 export const modal = createAppKit(appKitOptions)
