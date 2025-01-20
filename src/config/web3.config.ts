@@ -31,10 +31,10 @@ const metadata = {
 }
 
 const appKitOptions: CreateAppKit = {
+  metadata,
+  projectId,
   adapters: [wagmiAdapter, solanaAdapter],
   networks: [mainnet, arbitrum, sepolia, solanaDevnet, solana],
-  metadata: metadata,
-  projectId,
   features: { analytics: true },
 }
 
