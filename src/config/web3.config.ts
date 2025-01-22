@@ -8,7 +8,7 @@ import {
   solana,
   solanaDevnet,
 } from "@reown/appkit/networks"
-import { createAppKit } from "@reown/appkit/react"
+import { createAppKit, Metadata } from "@reown/appkit/react"
 
 export const networks = [arbitrum, mainnet, sepolia]
 
@@ -23,7 +23,7 @@ export const wagmiAdapter = new WagmiAdapter({
 export const solanaAdapter = new SolanaAdapter()
 
 // 3. Set up the metadata - Optional
-const metadata = {
+const metadata: Metadata = {
   name: "AppKit",
   description: "AppKit Example",
   url: "http://localhost:3000", // origin must match your domain & subdomain
