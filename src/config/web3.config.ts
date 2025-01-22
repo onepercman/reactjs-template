@@ -38,4 +38,4 @@ const appKitOptions: CreateAppKit = {
   features: { analytics: true },
 }
 
-export const modal = createAppKit(appKitOptions)
+export const appKitModal = createAppKit(appKitOptions)
