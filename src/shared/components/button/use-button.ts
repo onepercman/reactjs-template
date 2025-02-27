@@ -46,10 +46,10 @@ export function useButton({
   const _loading = Boolean(asyncLoading || loading)
 
   return {
+    ...props,
     className,
     onClick: handleClick,
     loading: _loading,
     disabled: _loading || disabled,
-    ...props,
   }
 }
