@@ -12,3 +12,5 @@ interface ImportMeta {
 interface Window {
   ethereum: any
 }
+
+declare const __PATCH_VERSION__: string

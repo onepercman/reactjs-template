@@ -1,7 +1,12 @@
 import react from "@vitejs/plugin-react-swc"
+import { execSync } from "child_process"
 import { defineConfig } from "vite"
 import { VitePWA } from "vite-plugin-pwa"
 import { default as viteTsConfigPaths } from "vite-tsconfig-paths"
+
+const gitHash = execSync("git rev-parse --short HEAD").toString().trim()
+const timestamp = new Date().toISOString().replace(/[-T:.Z]/g, "")
+const version = `${gitHash}-${timestamp}`
 
 export default defineConfig({
   plugins: [
@@ -37,4 +42,5 @@ export default defineConfig({
     }),
   ],
   server: { host: true, port: 3000 },
+  define: { __PATCH_VERSION__: JSON.stringify(version) },
 })
