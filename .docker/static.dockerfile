@@ -19,5 +19,5 @@ FROM nginx:alpine
 
 WORKDIR /app
 
-COPY ./.config/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./.docker/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=BASE /app/dist /usr/share/nginx/html
