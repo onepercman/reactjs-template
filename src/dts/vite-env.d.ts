@@ -13,4 +13,4 @@ interface Window {
   ethereum: any
 }
 
-declare const __COMMIT_HASH__: string
+declare const __PATCH_VERSION__: string

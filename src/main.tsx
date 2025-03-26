@@ -3,6 +3,7 @@ import { QueryClientProvider } from "@tanstack/react-query"
 import { ThemeProvider } from "next-themes"
 import ReactDOM from "react-dom/client"
 import App from "./app"
+import { AutoUpdateVersion } from "./features/root/auto-update-version"
 import "./styles/styles.css"
 
 if ("serviceWorker" in navigator) {
@@ -26,6 +27,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <ThemeProvider defaultTheme="dark">
     <QueryClientProvider client={queryClient}>
       <App />
+      <AutoUpdateVersion />
     </QueryClientProvider>
   </ThemeProvider>,
 )
