@@ -1,3 +1,4 @@
+import { heroui } from "@heroui/react"
 import { colorize, resetCSS, schemes } from "tailwind-schemes"
 import tailwindScrollbar from "tailwind-scrollbar"
 import type { Config } from "tailwindcss"
@@ -7,7 +8,12 @@ import colors from "tailwindcss/colors"
 import defaultTheme from "tailwindcss/defaultTheme"
 
 const config: Config = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    // Root Source
+    "./src/**/*.{js,jsx,ts,tsx}",
+    // Hero UI
+    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
+  ],
   darkMode: ["class", '[data-theme="dark"]'],
   theme: {
     extend: {
@@ -27,6 +33,7 @@ const config: Config = {
     tailwindcssAnimate,
     tailwindcssMotion,
     tailwindScrollbar({ nocompatible: true }),
+    heroui(),
     schemes({
       schemes: {
         light: {

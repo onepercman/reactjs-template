@@ -22,16 +22,22 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@heroui/react": "^2.7.6",
     "@hookform/resolvers": "^3.9.1",
     "@tanstack/react-query": "^5.62.3",
     "axios": "^1.7.9",
     "dayjs": "^1.11.13",
+    "framer-motion": "^12.7.4",
+    "i18next": "^23.10.0",
+    "i18next-browser-languagedetector": "^7.2.0",
+    "i18next-http-backend": "^2.5.0",
     "jwt-decode": "^4.0.0",
     "next-themes": "^0.3.0",
     "react": "^18.3.1",
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.54.0",
+    "react-i18next": "^14.1.0",
     "react-router-dom": "^6.28.0",
     "react-tvcx": "^2.1.0",
     "react-use": "^17.6.0",
@@ -40,15 +46,11 @@
     "use-valtio-store": "^1.1.0",
     "valtio": "^2.1.2",
     "vite-plugin-pwa": "^0.19.0",
-    "workbox-window": "^7.0.0",
-    "i18next": "^23.10.0",
-    "i18next-browser-languagedetector": "^7.2.0",
-    "i18next-http-backend": "^2.5.0",
-    "react-i18next": "^14.1.0"
+    "workbox-window": "^7.0.0"
   },
   "devDependencies": {
-    "@ark-ui/react": "^4.4.4",
     "@eslint/js": "^9.16.0",
+    "@playwright/test": "^1.42.1",
     "@testing-library/react": "^16.1.0",
     "@types/node": "^22.10.1",
     "@types/react": "^18.3.14",
@@ -56,6 +58,7 @@
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
     "@vitejs/plugin-react-swc": "^3.7.2",
+    "@vitest/coverage-v8": "^1.3.1",
     "autoprefixer": "^10.4.20",
     "clsx": "^2.1.1",
     "eslint": "^9.16.0",
@@ -63,6 +66,7 @@
     "eslint-plugin-react": "^7.37.2",
     "globals": "^15.13.0",
     "husky": "^9.1.7",
+    "playwright": "^1.42.1",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
     "prettier-plugin-organize-imports": "^4.1.0",
@@ -81,9 +85,6 @@
     "vaul": "^1.1.1",
     "vite": "^5.4.11",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^2.1.8",
-    "@playwright/test": "^1.42.1",
-    "@vitest/coverage-v8": "^1.3.1",
-    "playwright": "^1.42.1"
+    "vitest": "^2.1.8"
   }
 }
