@@ -1,0 +1,302 @@
+{
+  "name": "React Components Registry",
+  "description": "A comprehensive collection of reusable UI components for React applications",
+  "version": "1.0.0",
+  "owner": "onepercman",
+  "files": [
+    {
+      "name": "accordion",
+      "type": "component",
+      "description": "Collapsible content panels for organizing information",
+      "path": "src/shared/components/accordion/index.tsx"
+    },
+    {
+      "name": "avatar",
+      "type": "component",
+      "description": "User avatar component for displaying profile images",
+      "path": "src/shared/components/avatar/index.tsx"
+    },
+    {
+      "name": "badge",
+      "type": "component",
+      "description": "Small status indicators and labels",
+      "path": "src/shared/components/badge/index.tsx"
+    },
+    {
+      "name": "button",
+      "type": "component",
+      "description": "Customizable button component with various styles",
+      "path": "src/shared/components/button/index.tsx"
+    },
+    {
+      "name": "carousel",
+      "type": "component",
+      "description": "Image or content carousel/slider component",
+      "path": "src/shared/components/carousel/index.tsx"
+    },
+    {
+      "name": "checkbox",
+      "type": "component",
+      "description": "Checkbox input component with custom styling",
+      "path": "src/shared/components/checkbox/index.tsx"
+    },
+    {
+      "name": "clipboard",
+      "type": "component",
+      "description": "Copy to clipboard functionality component",
+      "path": "src/shared/components/clipboard/index.tsx"
+    },
+    {
+      "name": "color-picker",
+      "type": "component",
+      "description": "Color selection component with picker",
+      "path": "src/shared/components/color-picker/index.tsx"
+    },
+    {
+      "name": "combobox",
+      "type": "component",
+      "description": "Combined input and dropdown component",
+      "path": "src/shared/components/combobox/index.tsx"
+    },
+    {
+      "name": "countdown",
+      "type": "component",
+      "description": "Countdown timer component",
+      "path": "src/shared/components/countdown/index.tsx"
+    },
+    {
+      "name": "date-picker",
+      "type": "component",
+      "description": "Date selection component with calendar",
+      "path": "src/shared/components/date-picker/index.tsx"
+    },
+    {
+      "name": "dialog",
+      "type": "component",
+      "description": "Modal dialog component",
+      "path": "src/shared/components/dialog/index.tsx"
+    },
+    {
+      "name": "drawer",
+      "type": "component",
+      "description": "Side drawer component",
+      "path": "src/shared/components/drawer/index.tsx"
+    },
+    {
+      "name": "editable",
+      "type": "component",
+      "description": "Inline editable content component",
+      "path": "src/shared/components/editable/index.tsx"
+    },
+    {
+      "name": "empty",
+      "type": "component",
+      "description": "Empty state component",
+      "path": "src/shared/components/empty/index.tsx"
+    },
+    {
+      "name": "field",
+      "type": "component",
+      "description": "Form field component",
+      "path": "src/shared/components/field/index.tsx"
+    },
+    {
+      "name": "fieldset",
+      "type": "component",
+      "description": "Form fieldset component",
+      "path": "src/shared/components/fieldset/index.tsx"
+    },
+    {
+      "name": "file-upload",
+      "type": "component",
+      "description": "File upload component",
+      "path": "src/shared/components/file-upload/index.tsx"
+    },
+    {
+      "name": "hover-card",
+      "type": "component",
+      "description": "Hover card component",
+      "path": "src/shared/components/hover-card/index.tsx"
+    },
+    {
+      "name": "input",
+      "type": "component",
+      "description": "Text input component",
+      "path": "src/shared/components/input/index.tsx"
+    },
+    {
+      "name": "kbd",
+      "type": "component",
+      "description": "Keyboard key component",
+      "path": "src/shared/components/kbd/index.tsx"
+    },
+    {
+      "name": "loader",
+      "type": "component",
+      "description": "Loading indicator component",
+      "path": "src/shared/components/loader/index.tsx"
+    },
+    {
+      "name": "menu",
+      "type": "component",
+      "description": "Dropdown menu component",
+      "path": "src/shared/components/menu/index.tsx"
+    },
+    {
+      "name": "number-input",
+      "type": "component",
+      "description": "Number input component",
+      "path": "src/shared/components/number-input/index.tsx"
+    },
+    {
+      "name": "pagination",
+      "type": "component",
+      "description": "Pagination component",
+      "path": "src/shared/components/pagination/index.tsx"
+    },
+    {
+      "name": "pin-input",
+      "type": "component",
+      "description": "PIN code input component",
+      "path": "src/shared/components/pin-input/index.tsx"
+    },
+    {
+      "name": "popover",
+      "type": "component",
+      "description": "Popover component",
+      "path": "src/shared/components/popover/index.tsx"
+    },
+    {
+      "name": "progress",
+      "type": "component",
+      "description": "Progress indicator component",
+      "path": "src/shared/components/progress/index.tsx"
+    },
+    {
+      "name": "qr-code",
+      "type": "component",
+      "description": "QR code generator component",
+      "path": "src/shared/components/qr-code/index.tsx"
+    },
+    {
+      "name": "radio-group",
+      "type": "component",
+      "description": "Radio button group component",
+      "path": "src/shared/components/radio-group/index.tsx"
+    },
+    {
+      "name": "rating-group",
+      "type": "component",
+      "description": "Rating input component",
+      "path": "src/shared/components/rating-group/index.tsx"
+    },
+    {
+      "name": "segment-group",
+      "type": "component",
+      "description": "Segmented control component",
+      "path": "src/shared/components/segment-group/index.tsx"
+    },
+    {
+      "name": "select",
+      "type": "component",
+      "description": "Select dropdown component",
+      "path": "src/shared/components/select/index.tsx"
+    },
+    {
+      "name": "signature-pad",
+      "type": "component",
+      "description": "Signature pad component",
+      "path": "src/shared/components/signature-pad/index.tsx"
+    },
+    {
+      "name": "slider",
+      "type": "component",
+      "description": "Range slider component",
+      "path": "src/shared/components/slider/index.tsx"
+    },
+    {
+      "name": "spinner",
+      "type": "component",
+      "description": "Loading spinner component",
+      "path": "src/shared/components/spinner/index.tsx"
+    },
+    {
+      "name": "splitter",
+      "type": "component",
+      "description": "Resizable split panel component",
+      "path": "src/shared/components/splitter/index.tsx"
+    },
+    {
+      "name": "steps",
+      "type": "component",
+      "description": "Step indicator component",
+      "path": "src/shared/components/steps/index.tsx"
+    },
+    {
+      "name": "switch",
+      "type": "component",
+      "description": "Toggle switch component",
+      "path": "src/shared/components/switch/index.tsx"
+    },
+    {
+      "name": "table",
+      "type": "component",
+      "description": "Data table component",
+      "path": "src/shared/components/table/index.tsx"
+    },
+    {
+      "name": "tabs",
+      "type": "component",
+      "description": "Tabbed interface component",
+      "path": "src/shared/components/tabs/index.tsx"
+    },
+    {
+      "name": "tags-input",
+      "type": "component",
+      "description": "Input for multiple tags",
+      "path": "src/shared/components/tags-input/index.tsx"
+    },
+    {
+      "name": "textarea",
+      "type": "component",
+      "description": "Multiline text input component",
+      "path": "src/shared/components/textarea/index.tsx"
+    },
+    {
+      "name": "timer",
+      "type": "component",
+      "description": "Timer component",
+      "path": "src/shared/components/timer/index.tsx"
+    },
+    {
+      "name": "toast",
+      "type": "component",
+      "description": "Toast notification component",
+      "path": "src/shared/components/toast/index.tsx"
+    },
+    {
+      "name": "toggle",
+      "type": "component",
+      "description": "Toggle button component",
+      "path": "src/shared/components/toggle/index.tsx"
+    },
+    {
+      "name": "toggle-group",
+      "type": "component",
+      "description": "Group of toggle buttons",
+      "path": "src/shared/components/toggle-group/index.tsx"
+    },
+    {
+      "name": "tooltip",
+      "type": "component",
+      "description": "Tooltip component",
+      "path": "src/shared/components/tooltip/index.tsx"
+    },
+    {
+      "name": "tree-view",
+      "type": "component",
+      "description": "Tree view component",
+      "path": "src/shared/components/tree-view/index.tsx"
+    }
+  ]
+}
