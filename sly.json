@@ -1,0 +1,12 @@
+{
+  "$schema": "https://raw.githubusercontent.com/onepercman/reactjs-template/main/src/shared/components",
+  "libraries": [
+    {
+      "name": "ark",
+      "directory": "./src/components/download"
+      // "transformers": ["transform-script.ts"],
+      // "postinstall": ["npm", "run", "build"],
+      // "dependencies": ["react", "react-dom"]
+    }
+  ]
+}
