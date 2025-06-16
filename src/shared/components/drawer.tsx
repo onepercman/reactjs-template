@@ -92,6 +92,7 @@ export const Component = createComponentTree(Root, {
   CloseTrigger: CustomCloseTrigger,
   open,
   confirm,
+  dismiss,
 })
 
 Component.displayName = "Drawer"
