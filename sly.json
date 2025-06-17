@@ -1,12 +1,11 @@
 {
-  "$schema": "https://raw.githubusercontent.com/onepercman/reactjs-template/main/src/shared/components",
+  "$schema": "https://onepercman-ui-lib.web.app/registry/config.json",
   "libraries": [
     {
-      "name": "ark",
-      "directory": "./src/components/download"
-      // "transformers": ["transform-script.ts"],
-      // "postinstall": ["npm", "run", "build"],
-      // "dependencies": ["react", "react-dom"]
+      "name": "onepercman-ui",
+      "directory": "./components",
+      "postinstall": [],
+      "transformers": []
     }
   ]
 }
