@@ -117,8 +117,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       codereg:
-        specifier: ^1.0.5
-        version: 1.0.5(typescript@5.7.2)
+        specifier: ^1.2.2
+        version: 1.2.2(typescript@5.7.2)
       eslint:
         specifier: ^9.16.0
         version: 9.16.0(jiti@1.21.6)
@@ -3188,10 +3188,10 @@ packages:
       }
     engines: { node: ">=6" }
 
-  codereg@1.0.5:
+  codereg@1.2.2:
     resolution:
       {
-        integrity: sha512-uAFX8SgnrZ/t6PAjpN/+k314xw/CDYSDsiTw84E9Njtue4BlJ8XoXkVGDBB2WGfEWt+lxv+u038jyYgLQfx5vA==,
+        integrity: sha512-cZpS1kEB7DSdj+hA1rN3mbnLFzuari2WwfEkT4uyt19vYbvwE4V63nko508m3TTW88chGsKVFhahWQiqsZAhlw==,
       }
     hasBin: true
 
@@ -9559,7 +9559,7 @@ snapshots:
 
   clsx@2.1.1: {}
 
-  codereg@1.0.5(typescript@5.7.2):
+  codereg@1.2.2(typescript@5.7.2):
     dependencies:
       chalk: 5.4.1
       commander: 14.0.0

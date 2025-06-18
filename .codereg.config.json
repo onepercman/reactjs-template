@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/onepercman/codereg/main/src/schema/config.schema.json",
+  "$schema": "https://cdn.jsdelivr.net/npm/codereg/dist/config.schema.json",
   "registry": [
     {
       "name": "ui",
