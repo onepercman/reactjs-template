@@ -1,0 +1,11 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/npm/codereg/dist/config.schema.json",
+  "registry": [
+    {
+      "name": "ui",
+      "url": "https://github.com/onepercman/onepercman-ui",
+      "path": "/packages/ui/src",
+      "dirname": "./src/shared/components"
+    }
+  ]
+}
